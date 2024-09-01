@@ -1,0 +1,50 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 1
+
+## Chameleon tooltip
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''return generate_card_ui(self.config.center, nil, loc_vars, card_type, badges, hide_desc, main_start, main_end)'''
+position = 'before'
+match_indent = true
+payload = '''if value == 'ortalab_chameleon' then return loc_vars end'''
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''function Card:generate_UIBox_ability_table()'''
+position = 'at'
+match_indent = true
+payload = '''function Card:generate_UIBox_ability_table(value)'''
+
+# Black Friday discount
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''G.GAME.discount_percent = center_table.extra'''
+position = "after"
+match_indent = true
+payload = '''
+--Ortalab/Jokers/Black Friday
+local results = SMODS.find_card('j_ortalab_black_friday')
+for _, card in ipairs(results) do
+    G.GAME.discount_percent = G.GAME.discount_percent + card.ability.extra.money_off
+    sendDebugMessage('test')
+end
+'''
+
+# Monochrome shader
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''if self.ability.name == 'Invisible Joker' and (self.config.center.discovered or self.bypass_discovery_center) then'''
+position = "before"
+payload = '''
+if self.config.center_key == 'j_ortalab_monochrome' then
+    G.SHADERS['ortalab_monochrome']:send("suit_colour",G.C.SUITS[self.ability.extra.suit])
+    self.children.center:draw_shader('ortalab_monochrome', nil, self.ARGS.send_to_shader)
+end'''
+match_indent = true
+overwrite = false
