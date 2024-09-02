@@ -31,43 +31,43 @@ local joker_list = {
     'business',
     'collatz',
     -- 'rusty',
-    -- 'scared_face',
+    'scared_face',
     'art_gallery',
     'gratification',
     -- 'crowd_pleaser',
     -- 'hypercalculia',
-    -- 'taliaferro',
+    'taliaferro',
     -- 'red_fred',
     -- 'pitch_mitch',
     -- 'dropout',
     -- 'scratch_card',
     -- 'protostar',
     -- 'crash',
-    -- 'skydiving',
+    'skydiving',
     -- 'sunny_side',
     -- 'policeman',
     -- 'whiteboard',
     -- 'driver',
     -- 'hot_chocolate',
-    -- 'virus',
+    'virus',
     -- 'miracle_cure',
     -- 'yellow', 
     -- 'common_sense',
-    -- 'shrine',
+    'shrine',
     -- 'biker',
     'mathmagician',
     -- 'purple',
     -- 'pinpoint',
     'blacklist',
-    -- 'royal_gala',
+    'royal_gala',
     'croupier',
     -- 'blue_card',
     -- 'attached',
-    -- 'triangle',
-    -- 'slot_machine',
+    'triangle',
+    'slot_machine',
     -- 'street_rat',
     -- 'belmont',
-    -- 'scenic',
+    'scenic',
     -- 'mirage',
     -- 'head_honcho',
     -- 'peasant',
@@ -79,7 +79,7 @@ local joker_list = {
     -- 'chain_mail',
     'black_friday',
     'fine_wine',
-    -- 'sedimentation',
+    'sedimentation',
     -- 'no_parking',
     -- 'scam_email',
     -- 'reduce_reuse',
@@ -95,11 +95,11 @@ local joker_list = {
     'mystery_soda',
     -- 'collectors',
     -- 'dnd',
-    -- 'popcorn_bag',
+    'popcorn_bag',
     -- 'knitted_sweater',
     -- 'futuristic',
     -- 'salad',
-    -- 'roscharch',
+    'roscharch',
     -- 'still_water',
     -- 'CASTLEINVERSE',
     'frowny_face',
@@ -124,16 +124,16 @@ local joker_list = {
     -- 'pinkprint',
     -- 'wide',
     -- 'gloomy_gus',
-    -- 'woo_all_1',
+    'woo_all_1',
     -- 'heresy',
     -- '20_20',
     -- 'proletaire',
     -- 'hit_the_gym',
-    -- 'solo',
-    -- 'mysterium',
+    'solo',
+    'mysterium',
     -- 'misfits',
     -- 'shelter',
-    -- 'spectrum',
+    'spectrum',
     -- 'actor',
     'chameleon',
     -- 'right_hand',
@@ -156,6 +156,25 @@ SMODS.Atlas({
 
 for _, key in ipairs(joker_list) do
     SMODS.load_file('objects/jokers/'..key..'.lua')()
+end
+
+function Ortalab.remove_joker(card)
+    G.E_MANAGER:add_event(Event({
+        func = function()
+            play_sound('tarot1')
+            card.T.r = -0.2
+            card:juice_up(0.3, 0.4)
+            card.states.drag.is = true
+            card.children.center.pinch.x = true
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.3, blockable = false,
+                func = function()
+                        G.jokers:remove_card(card)
+                        card:remove()
+                        card = nil
+                    return true
+            end}))
+            return true
+    end}))
 end
 
 function SMODS.current_mod.reset_game_globals(first_pass)

@@ -6,7 +6,10 @@ return {
 			['ortalab_leak'] = 'Leaked!',
 			['ortalab_empty'] = 'Empty!',
 			['ortalab_copied'] = 'Copied!',
-			['ortalab_na'] = 'N/A'
+			['ortalab_na'] = 'N/A',
+			['ortalab_explode'] = 'Exploded!',
+			['ortalab_infected'] = 'Infected!',
+			['ortalab_destroyed'] = 'Destroyed!',
         }
     },
     ["descriptions"] = {
@@ -84,6 +87,11 @@ return {
 			['hat'] = {
 				["text"] = {
 					"Hat Stack",
+				}
+			},
+			['coro'] = {
+				["text"] = {
+					"Coronacht",
 				}
 			}
 		},
@@ -308,6 +316,134 @@ return {
 					"All {C:spectral}Spectral{} cards and",
 					"{C:spectral}Spectral Packs{} in the",
 					"shop are free",
+				}
+			},
+			['j_ortalab_popcorn_bag'] = {
+				["name"] = "Popcorn Bag",
+				["text"] = {
+					"{C:mult}+#1#{} Mult.",
+					"{C:mult}+#2#{} Mult per round played",
+					"Explodes when greater than {C:mult}+20{}",
+				}
+			},
+			['j_ortalab_roscharch'] = {
+				["name"] = "Roscharch Test",
+				["text"] = {
+					"For each played 2 or 5, either give",
+					"{C:chips}+#1#{} Chips or {C:mult}+#2#{} when scored",
+				}
+			},
+			['j_ortalab_royal_gala'] = {
+				["name"] = "Royal Gala",
+				["text"] = {
+					"{C:chips}+#1#{} Chips",
+					"{C:green}#2# in #3#{} chance this",
+					"card is destroyed",
+					"at end of round",
+				}
+			},
+			['j_ortalab_scared_face'] = {
+				["name"] = "Scared Face",
+				["text"] = {
+					"Played numbered cards",
+					"give {C:chips}+#1#{} Chips when scored",
+				}
+			},
+			['j_ortalab_scenic'] = {
+				["name"] = "Scenic Route",
+				["text"] = {
+					"{C:attention}Straights{} can be",
+					"made with {C:attention}pairs{}",
+					"{C:inactive}(ex: {C:attention}7 7 6 6 5{C:inactive})",
+				}
+			},
+			['j_ortalab_sedimentation'] = {
+				["name"] = "Sedimentation",
+				["text"] = {
+					"{C:red}+#1#{} Mult for each",
+					"card above {C:attention}#3#{}",
+					"in your full deck",
+					"{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)",
+				}
+			},
+			['j_ortalab_shrine'] = {
+				["name"] = "Shrine",
+				["text"] = {
+					"{X:mult,C:white}X#1#{} Mult per",
+					"{C:spectral}Spectral{} card used",
+					"{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+				}
+			},
+			['j_ortalab_skydiving'] = {
+				["name"] = "Skydiving",
+				["text"] = {
+					"Sets played {C:attention}poker hand",
+					"level to 1",
+					"Gain {X:mult,C:white}#1#X{} Mult",
+					"per level {C:attention}removed",
+					"{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+				}
+			},
+			['j_ortalab_slot_machine'] = {
+				["name"] = "Slot Machine",
+				["text"] = {
+					"If played hand contains three {C:attention}Lucky 7s{}",
+					"create a random {C:spectral}Spectral{} card",
+				}
+			},
+			['j_ortalab_taliaferro'] = {
+				["name"] = "Taliaferro",
+				["text"] = {
+					"{C:chips}+#1#{} Chips",
+					"{C:green}#2# in #3#{} chance this",
+					"card is destroyed",
+					"at end of round",
+				}
+			},
+			['j_ortalab_mysterium'] = {
+				["name"] = "The Mysterium",
+				["text"] = {
+					"{X:mult,C:white}X#1#{} Mult if played",
+					"hand is a Secret Hand",
+				}
+			},
+			['j_ortalab_solo'] = {
+				["name"] = "The Solo",
+				["text"] = {
+					"{X:mult,C:white}X#1#{} Mult if played",
+					"hand is a {C:attention}#2#",
+				}
+			},
+			['j_ortalab_spectrum'] = {
+				["name"] = "The Spectrum",
+				["text"] = {
+					"{X:mult,C:white}X#1#{} Mult if played",
+					"hand does not",
+					"contain a {C:attention}#2#",
+				}
+			},
+			['j_ortalab_triangle'] = {
+				["name"] = "Triangle Joker",
+				["text"] = {
+					"This Joker gains {C:mult}+#1#{} Mult if played hand",
+					"has exactly {C:attention}3{} cards",
+					"{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)",
+				}
+			},
+			['j_ortalab_virus'] = {
+				["name"] = "Virus",
+				["text"] = {
+					"If {C:attention}first hand{} of round has only",
+					"{C:attention}1{} card, destroy it and",
+					"convert {C:attention}#1# random cards",
+					"in hand to played card",
+				}
+			},
+			['j_ortalab_woo_all_1'] = {
+				["name"] = "Woo! All 1s",
+				["text"] = {
+					"Halves all {C:attention}listed{} {C:green,E:1,S:1.1}probabilities{}",
+					"{C:inactive}(ex: {C:green}2 in 4{C:inactive} -> {C:green}1 in 4{C:inactive})",
 				}
 			}
 		},
