@@ -174,3 +174,21 @@ SMODS.Back({
         return {vars = {self.config.amount}}
     end,
 })
+
+SMODS.Back({
+    key = 'frozen',
+    atlas = 'decks',
+    pos = {x = 3, y = 2},
+    config = {round = 1},
+    trigger_effect = function(self, args)
+        if args.context == 'final_scoring_step' and G.GAME.current_round.hands_played == 0 then
+            G.GAME.modifiers.frozen_deck = true
+        else
+            G.GAME.modifiers.frozen_deck = false
+        end
+    end,
+    loc_vars = function(self, info_queue, card)
+        -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'crimson'}
+        return {vars = {self.config.round}}
+    end,
+})

@@ -787,6 +787,15 @@ return {
 					"{s:0.9,C:attention}Face Card{s:0.9} to your deck"
 				}
 			},
+			['b_ortalab_striped'] = {
+				["name"] = "Striped Deck",
+				["text"] = {
+					"All cards of a rank start",
+					"as the same {C:attention}suit{}",
+					"All {C:attention}#1#s{} become",
+					"{T:m_wild,C:attention}Wild Cards"
+				}
+			},
 			['b_ortalab_sketched'] = {
 				["name"] = "Sketched Deck",
 				["text"] = {
@@ -796,6 +805,14 @@ return {
 			},
 			['b_ortalab_hoarder'] = {
 				["name"] = "Hoarder Deck",
+				["text"] = {
+					"After defeating each",
+                    "{C:attention}Boss Blind{}, gain {C:attention}#1#",
+                    "random tags"
+				}
+			},
+			['b_ortalab_frozen'] = {
+				["name"] = "Frozen Deck",
 				["text"] = {
 					"After defeating each",
                     "{C:attention}Boss Blind{}, gain {C:attention}#1#",
