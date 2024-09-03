@@ -22,7 +22,7 @@ local load_table = {
     decks = true,
     coupons = true
 }
-
+loc_colour('red')
 for k, v in pairs(load_table) do
     if v then SMODS.load_file('objects/'..k..'.lua')() end
 end
