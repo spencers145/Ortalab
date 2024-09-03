@@ -10,6 +10,7 @@ return {
 			['ortalab_explode'] = 'Exploded!',
 			['ortalab_infected'] = 'Infected!',
 			['ortalab_destroyed'] = 'Destroyed!',
+			['ortalab_loteria_pack'] = 'Loteria Pack'
         }
     },
     ["descriptions"] = {
@@ -847,6 +848,40 @@ return {
 					"in shop", 
 				}
 			},
+		},
+		['Other'] = {
+			['p_ortalab_small_loteria_1'] = {
+                name = "Loteria Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_small_loteria_2'] = {
+                name = "Loteria Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_small_loteria_3'] = {
+                name = "Loteria Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_small_loteria_4'] = {
+                name = "Loteria Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "be used immediately"
+                }
+            },
 		}
     }
 }
