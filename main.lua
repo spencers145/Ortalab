@@ -17,8 +17,10 @@ local load_table = {
     enhancements = true,
     editions = true,
     loteria = true,
-    zodiac = true,
-    patches = true
+    zodiac = false,
+    patches = false,
+    decks = true,
+    coupons = true
 }
 
 for k, v in pairs(load_table) do

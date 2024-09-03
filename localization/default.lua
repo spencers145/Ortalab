@@ -531,7 +531,7 @@ return {
 				},
 			},
             ["c_ortalab_lot_ladder"] = {
-				["name"] = "The Umbrella",
+				["name"] = "The Ladder",
 				["text"] = {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
@@ -736,6 +736,91 @@ return {
 					"Shop has a free",
 					"{C:purple,E:1}Legendary{} Joker"
 				},
+			},
+		},
+		["Back"] = {
+			['b_ortalab_orange'] = {
+				["name"] = "Orange Deck",
+				["text"] = {
+					"{C:red}+#2#{} discards",
+					"{C:blue}#1#{} hand",
+				}
+			},
+			['b_ortalab_cyan'] = {
+				["name"] = "Cyan Deck",
+				["text"] = {
+					"{C:blue}+#1#{} hands",
+					"{C:red}#2#{} discard",
+				}
+			},
+			['b_ortalab_experimental'] = {
+				["name"] = "Experimental Deck",
+				["text"] = {
+					"{C:blue}+#1#{} hand size",
+					"Start with a copy of",
+					"{T:c_ortalab_lot_barrel,C:Loteria}The Barrel",
+				}
+			},
+			['b_ortalab_sketched'] = {
+				["name"] = "Sketched Deck",
+				["text"] = {
+					"{C:red}#1#{} Hand Size",
+					"{C:attention}+#2#{} Joker Slot",
+				}
+			},
+			['b_ortalab_hoarder'] = {
+				["name"] = "Hoarder Deck",
+				["text"] = {
+					"After defeating each",
+                    "{C:attention}Boss Blind{}, gain {C:attention}#1#",
+                    "random tags"
+				}
+			}
+		},
+		['Voucher'] = {
+			['v_ortalab_window_shopping'] = {
+				["name"] = "Window Shopping",
+				["text"] = {
+					"{C:attention}+#1#{} free {C:green}reroll{}",
+					"per shop", 
+					"{C:green}Reroll{} price {C:red}+$#2#{}",
+				}
+			},
+			['v_ortalab_infinite_scroll'] = {
+				["name"] = "Infinite Scroll",
+				["text"] = {
+					"{C:attention}+#1#{} free {C:green}reroll{}",
+					"per shop", 
+					"{C:green}Reroll{} price {C:red}+$#2#{}",
+				}
+			},
+			['v_ortalab_abacus'] = {
+				["name"] = "Abacus",
+				["text"] = {
+					"{C:attention}+#1#{} Ante",
+					"Gain {C:money}$#2#", 
+				}
+			},
+			['v_ortalab_calculator'] = {
+				["name"] = "Calculator",
+				["text"] = {
+					"{C:attention}+#1#{} Ante",
+					"{C:attention}+#1#{} Joker slot", 
+				}
+			},
+			['v_ortalab_catalog'] = {
+				["name"] = "Catalog",
+				["text"] = {
+					"{C:attention}+#1#{} Booster Pack",
+					"in shop", 
+				}
+			},
+			['v_ortalab_ad_campaign'] = {
+				["name"] = "Ad Campaign",
+				["text"] = {
+					"{C:attention}+#1#{} Voucher",
+					"in shop", 
+				}
 			},
 		}
     }

@@ -1,0 +1,57 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 1
+
+## Window Shopping + Infinite Scroll
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = '''G.GAME.current_round.free_rerolls = #chaos'''
+position = 'after'
+match_indent = true
+payload = '''G.GAME.current_round.free_rerolls = G.GAME.current_round.free_rerolls + (G.GAME.current_round.ortalab_rerolls or 0)'''
+
+# Catalog
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''for i = 1, 2 do'''
+position = 'at'
+match_indent = true
+payload = '''for i = 1, G.GAME.modifiers.booster_count do'''
+
+# Ad Campaign
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = '''G.GAME.current_round.voucher = get_next_voucher_key()'''
+position = 'after'
+match_indent = true
+payload = '''if G.GAME.used_vouchers['v_ortalab_ad_campaign'] then G.GAME.current_round.voucher_2 = get_next_voucher_key() end'''
+
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''if G.GAME.current_round.voucher and G.P_CENTERS[G.GAME.current_round.voucher] then'''
+position = 'before'
+match_indent = true
+payload = '''
+if G.GAME.current_round.voucher_2 and G.P_CENTERS[G.GAME.current_round.voucher_2] then
+    G.shop_vouchers.config.card_limit = 2
+    local card = Card(G.shop_vouchers.T.x + G.shop_vouchers.T.w / 2, G.shop_vouchers.T.y, G.CARD_W, G.CARD_H,
+        G.P_CARDS.empty, G.P_CENTERS[G.GAME.current_round.voucher_2], {
+            bypass_discovery_center = true,
+            bypass_discovery_ui = true
+        })
+    create_shop_card_ui(card, 'Voucher', G.shop_vouchers)
+    G.shop_vouchers:emplace(card)
+
+end'''
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''G.shop_vouchers:emplace(card)'''
+position = 'at'
+match_indent = true
+payload = '''G.shop_vouchers:emplace(card, 'front')'''
