@@ -530,7 +530,7 @@ SMODS.Consumable({
         return #G.hand.cards > 0
     end,
     use = function(self, loteria, area, copier)
-        track_usage(card.config.center.set, card.config.center_key)
+        track_usage(loteria.config.center.set, loteria.config.center_key)
         local cards = {}
 
         for i=1, loteria.ability.extra.amount do
