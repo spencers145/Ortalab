@@ -28,6 +28,19 @@ SMODS.Back({
         return {vars = {self.config.hands, self.config.discards}}
     end,
 })
+SMODS.Back({
+    key = "cobalt", 
+    atlas = "decks",
+    pos = {x = 2, y = 0}, 
+    config = {debt = 25}, 
+    apply = function(self)
+        G.GAME.bankrupt_at = -self.config.debt
+    end,
+    loc_vars = function(self, info_queue, card)
+        -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'}
+        return {vars = {self.config.debt}}
+    end,
+})
 
 -- SMODS.Back({
 --     key = "cyan", 
