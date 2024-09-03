@@ -775,6 +775,17 @@ return {
 					"{T:c_ortalab_lot_barrel,C:Loteria}The Barrel",
 				}
 			},
+			['b_ortalab_royal'] = {
+				["name"] = "Royal Deck",
+				["text"] = {
+					"Start with only", 
+					"{C:attention}Face Cards{}", 
+					"in your deck",
+					"{s:0.9}At the end of each",
+					"{s:0.9}round, add a {C:attention,s:0.9}random",
+					"{s:0.9,C:attention}Face Card{s:0.9} to your deck"
+				}
+			},
 			['b_ortalab_sketched'] = {
 				["name"] = "Sketched Deck",
 				["text"] = {

@@ -84,6 +84,54 @@ SMODS.Back({
 })
 
 SMODS.Back({
+    key = "royal", 
+    atlas = "decks",
+    pos = {x = 3, y = 1}, 
+    config = {},
+    apply = function(self)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                local faces = {}
+                for k, rank in pairs(SMODS.Ranks) do
+                    if rank.face then faces[#faces + 1] = k end
+                end
+                for k, v in pairs(G.playing_cards) do
+                    if not v:is_face() then 
+                        v.to_remove = true
+                        -- SMODS.change_base(v, nil, pseudorandom_element(faces, pseudoseed('royal_deck_'..k)))
+                    end
+                end
+                local i = 1
+                while i <= #G.playing_cards do
+                    if G.playing_cards[i].to_remove then
+                        G.playing_cards[i]:remove()
+                    else
+                        i = i + 1
+                    end
+                end
+                G.GAME.starting_deck_size = #G.playing_cards
+                return true
+            end
+        }))
+    end,
+    trigger_effect = function(self, args)
+        if args.context == 'eval' then
+            local faces = {}
+            for k, rank in pairs(SMODS.Ranks) do
+                if rank.face then faces[#faces + 1] = k end
+            end
+            local new_card = create_playing_card(nil, G.deck)
+            new_card:add_to_deck()
+            SMODS.change_base(new_card, nil, pseudorandom_element(faces, pseudoseed('royal_deck_spawn')))
+            bottle_randomise(new_card)
+        end
+    end,
+    loc_vars = function(self, info_queue, card)
+        -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'salad'}
+    end,
+})
+
+SMODS.Back({
 	key = "sketched", 
 	atlas = "decks",
 	pos = {x = 1, y = 2}, 
