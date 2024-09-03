@@ -76,7 +76,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {key = 'm_'..Ortalab.prefix..'_moldy', amount = 2}},
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue+1] = G.P_CENTERS[self.config.key]
+        info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = ''} end
         return {vars = {card and card.ability.extra.amount or self.config.extra.amount}}
     end,
@@ -117,7 +117,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {key = 'm_'..Ortalab.prefix..'_bentcard', amount = 3}},
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue+1] = G.P_CENTERS[self.config.key]
+        info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
         return {vars = {card and card.ability.extra.amount or self.config.extra.amount}}
     end,
@@ -158,7 +158,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {key = 'm_'..Ortalab.prefix..'_postcard', amount = 3}},
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue+1] = G.P_CENTERS[self.config.key]
+        info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
         return {vars = {card and card.ability.extra.amount or self.config.extra.amount}}
     end,
@@ -179,7 +179,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {key = 'm_'..Ortalab.prefix..'_index', amount = 2}},
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue+1] = G.P_CENTERS[self.config.key]
+        info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
         return {vars = {card and card.ability.extra.amount or self.config.extra.amount}}
     end,
@@ -200,7 +200,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {key = 'm_'..Ortalab.prefix..'_rusty', amount = 2}},
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue+1] = G.P_CENTERS[self.config.key]
+        info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
         return {vars = {card and card.ability.extra.amount or self.config.extra.amount}}
     end,
@@ -221,7 +221,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {key = 'm_'..Ortalab.prefix..'_sand', amount = 2}},
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue+1] = G.P_CENTERS[self.config.key]
+        info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
         return {vars = {card and card.ability.extra.amount or self.config.extra.amount}}
     end,
@@ -580,7 +580,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {key = 'm_'..Ortalab.prefix..'_iou', amount = 2}},
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue+1] = G.P_CENTERS[self.config.key]
+        info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = ''} end
         return {vars = {card and card.ability.extra.amount or self.config.extra.amount}}
     end,
@@ -601,7 +601,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {key = 'm_'..Ortalab.prefix..'_ore', amount = 2}},
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue+1] = G.P_CENTERS[self.config.key]
+        info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
         return {vars = {card and card.ability.extra.amount or self.config.extra.amount}}
     end,
