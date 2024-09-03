@@ -28,6 +28,7 @@ SMODS.Back({
         return {vars = {self.config.hands, self.config.discards}}
     end,
 })
+
 SMODS.Back({
     key = "cobalt", 
     atlas = "decks",
@@ -41,6 +42,24 @@ SMODS.Back({
         return {vars = {self.config.debt}}
     end,
 })
+
+SMODS.Back({
+    key = "brown", 
+    atlas = "decks",
+    pos = {x = 3, y = 0}, 
+    config = {}, 
+    apply = function(self)
+        G.GAME.interest_amount = 2
+        G.GAME.modifiers.no_extra_hand_money = true
+    end,
+    loc_vars = function(self, info_queue, card)
+        -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'}
+        return {vars = {self.config.debt}}
+    end,
+})
+
+SMODS.Voucher:take_ownership('v_seed_money', {loc_vars = function(self, info_queue, card) return {vars = {self.config.extra/5 * G.GAME.interest_amount}} end})
+SMODS.Voucher:take_ownership('v_money_tree', {loc_vars = function(self, info_queue, card) return {vars = {self.config.extra/5 * G.GAME.interest_amount}} end})
 
 -- SMODS.Back({
 --     key = "cyan", 

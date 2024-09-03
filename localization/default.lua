@@ -753,6 +753,20 @@ return {
 					"{C:red}#2#{} discard",
 				}
 			},
+			['b_ortalab_cobalt'] = {
+				["name"] = "Cobalt Deck",
+				["text"] = {
+					"Go up to {C:red}-$#1#",
+					"in debt"
+				}
+			},
+			['b_ortalab_brown'] = {
+				["name"] = "Brown Deck",
+				["text"] = {
+					"{C:blue}Hands{} no longer earn money",
+					"Earn double {C:attention}Interest"
+				}
+			},
 			['b_ortalab_experimental'] = {
 				["name"] = "Experimental Deck",
 				["text"] = {
