@@ -786,7 +786,8 @@ function can_enhance_cards(self, card)
 end
 
 function use_enhance_cards(self, loteria, area, copier)
-     shuffle_cards()
+    G.hand:unhighlight_all()
+    shuffle_cards()
     for i=1, loteria.ability.extra.amount do
         local set = true
         while set do
