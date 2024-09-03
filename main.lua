@@ -6,6 +6,7 @@
 --- MOD_DESCRIPTION: A dev environment for the Ortalab mod
 --- BADGE_COLOUR: 3FC7EB
 --- VERSION: 0.1
+--- DEPENDENCIES: [Talisman>=2.0.0-beta5]
 
 Ortalab = SMODS.current_mod
 Ortalab.usage = {}

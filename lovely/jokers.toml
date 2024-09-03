@@ -58,8 +58,10 @@ pattern = '''boot_timer('splash prep', 'end',1)'''
 position = "after"
 payload = '''
 --Ortalab/Jokers/The Mysterium
-for k, v in pairs(G.GAME.hands) do
-    if v.visible == false then G.P_CENTERS['j_ortalab_mysterium'].config.extra.secret_hand_list[#G.P_CENTERS['j_ortalab_mysterium'].config.extra.secret_hand_list+1] = k end
+if (SMODS.Mods['ortalab'] or {}).can_load then
+    for k, v in pairs(G.GAME.hands) do
+        if v.visible == false then G.P_CENTERS['j_ortalab_mysterium'].config.extra.secret_hand_list[#G.P_CENTERS['j_ortalab_mysterium'].config.extra.secret_hand_list+1] = k end
+    end
 end
 '''
 match_indent = true
