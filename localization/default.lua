@@ -10,7 +10,9 @@ return {
 			['ortalab_explode'] = 'Exploded!',
 			['ortalab_infected'] = 'Infected!',
 			['ortalab_destroyed'] = 'Destroyed!',
-			['ortalab_loteria_pack'] = 'Loteria Pack'
+			['ortalab_loteria_pack'] = 'Chalupa Pack',
+			['ortalab_loteria_pack_2'] = 'Wumbo Chalupa Pack',
+			['ortalab_loteria_pack_3'] = 'Giga Chalupa Pack'
         }
     },
     ["descriptions"] = {
@@ -868,7 +870,7 @@ return {
 		},
 		['Other'] = {
 			['p_ortalab_small_loteria_1'] = {
-                name = "Loteria Pack",
+                name = "Chalupa Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2#{C:Loteria} Loteria{} cards to",
@@ -876,7 +878,7 @@ return {
                 }
             },
 			['p_ortalab_small_loteria_2'] = {
-                name = "Loteria Pack",
+                name = "Chalupa Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2#{C:Loteria} Loteria{} cards to",
@@ -884,7 +886,7 @@ return {
                 }
             },
 			['p_ortalab_small_loteria_3'] = {
-                name = "Loteria Pack",
+                name = "Chalupa Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2#{C:Loteria} Loteria{} cards to",
@@ -892,7 +894,39 @@ return {
                 }
             },
 			['p_ortalab_small_loteria_4'] = {
-                name = "Loteria Pack",
+                name = "Chalupa Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_mid_loteria_1'] = {
+                name = "Wumbo Chalupa Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_mid_loteria_2'] = {
+                name = "Wumbo Chalupa Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_big_loteria_1'] = {
+                name = "Giga Chalupa Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_big_loteria_2'] = {
+                name = "Giga Chalupa Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2#{C:Loteria} Loteria{} cards to",
