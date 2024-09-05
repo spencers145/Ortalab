@@ -786,6 +786,7 @@ local small_boosters = {keys = {'small_loteria_1', 'small_loteria_2', 'small_lot
     group_key = 'ortalab_loteria_pack',
     draw_hand = true,
     cost = 4,
+    weight = 1,
     particles = function(self)
         G.booster_pack_sparkles = Particles(1, 1, 0,0, {
             timer = 0.015,
@@ -830,6 +831,7 @@ local mid_boosters = {keys = {'mid_loteria_1', 'mid_loteria_2'}, info = {
     group_key = 'ortalab_loteria_pack_2',
     draw_hand = true,
     cost = 6,
+    weight = 1,
     particles = function(self)
         G.booster_pack_sparkles = Particles(1, 1, 0,0, {
             timer = 0.015,
@@ -874,6 +876,7 @@ local large_boosters = {keys = {'big_loteria_1', 'big_loteria_2'}, info = {
     group_key = 'ortalab_loteria_pack_3',
     draw_hand = true,
     cost = 8,
+    weight = 1,
     particles = function(self)
         G.booster_pack_sparkles = Particles(1, 1, 0,0, {
             timer = 0.015,
