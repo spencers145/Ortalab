@@ -239,6 +239,7 @@ SMODS.Tag({
     pos = {x = 0, y = 2},
     soul_pos = {x = 1, y = 2},
     discovered = false,
+    min_ante = 3,
     config = {type = 'store_joker_create'},
     in_pool = function(self)
         local chance = pseudoseed('ortalab_soul_patch')
