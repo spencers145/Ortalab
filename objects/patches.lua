@@ -233,18 +233,39 @@ SMODS.Tag({
 --     discovered = false,
 -- })
 
--- SMODS.Tag({
---     key = 'soul',
---     atlas = 'patches',
---     pos = {x = 0, y = 2},
---     soul_pos = {x = 1, y = 2},
---     discovered = false,
---     config = {cost = 50},
---     loc_vars = function(self, info_queue, card)
---         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
---         return {vars = {self.config.cost}}
---     end,
--- })
+SMODS.Tag({
+    key = 'soul',
+    atlas = 'patches',
+    pos = {x = 0, y = 2},
+    soul_pos = {x = 1, y = 2},
+    discovered = false,
+    config = {type = 'store_joker_create'},
+    in_pool = function(self)
+        local chance = pseudoseed('ortalab_soul_patch')
+        sendDebugMessage('Soul patch seed: '..chance)
+        if chance < 0.25 then
+            sendDebugMessage('Soul Patch in pool!')
+            return true
+        end
+    end,
+    loc_vars = function(self, info_queue, card)
+        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
+        return {vars = {self.config.cost}}
+    end,
+    apply = function(tag, context)
+        local card = create_card('Joker', context.area, true, 1, nil, nil, nil, 'uta')
+        create_shop_card_ui(card, 'Joker', context.area)
+        card.states.visible = false
+        tag:yep('+', G.C.GREEN,function() 
+            card:start_materialize()
+            card.ability.couponed = true
+            card:set_cost()
+            return true
+        end)
+        tag.triggered = true
+        return card
+    end
+})
 
 SMODS.Tag({
     key = 'slayer',
