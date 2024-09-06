@@ -19,7 +19,7 @@ local load_table = {
     editions = true,
     loteria = true,
     zodiac = false,
-    patches = false,
+    patches = true,
     decks = true,
     coupons = true
 }

@@ -17,6 +17,11 @@ return {
     },
     ["descriptions"] = {
 		["Ortalab Artist"] = {
+			['5381'] = {
+				["text"] = {
+					"5381",
+				}
+			},
 			['parchment'] = {
 				["text"] = {
 					"parchmentVoyage",
@@ -726,11 +731,35 @@ return {
 			},
 		},
 		["Tag"] = {
+			["tag_ortalab_common"] = {
+				["name"] = "Common Patch",
+				["text"] = {
+					"Shop has a free",
+					"{C:blue}Common Joker{} with",
+					"a random {C:dark_edition}edition"
+				},
+			},
 			["tag_ortalab_slipup"] = {
 				["name"] = "Slip-Up Patch",
 				["text"] = {
 					"{C:red}+#1#{} discards",
 					"next round"
+				},
+			},
+			["tag_ortalab_slayer"] = {
+				["name"] = "Slayer Patch",
+				["text"] = {
+					"{C:money}$#1#{} per defeated",
+					"Blind this run",
+					"{C:inactive}(Will give {C:money}$#2#{C:inactive})"
+				},
+			},
+			["tag_ortalab_dandy"] = {
+				["name"] = "Dandy Patch",
+				["text"] = {
+					"{C:money}$#1#{} for each",
+					"unused {C:blue}Hand{} this run",
+					"{C:inactive}(Will give {C:money}$#2#{C:inactive})"
 				},
 			},
 			["tag_ortalab_soul"] = {
@@ -740,6 +769,46 @@ return {
 					"{C:purple,E:1}Legendary{} Joker"
 				},
 			},
+			['tag_ortalab_overexposed'] = {
+                name = "Overexposed Patch",
+                text = {
+                    "Next base edition shop",
+                    "{C:attention}Joker{} is free and",
+                    "becomes {C:dark_edition}Overexposed"
+                }
+            },
+			['tag_ortalab_anaglyphic'] = {
+                name = "Anaglyphic Patch",
+                text = {
+                    "Next base edition shop",
+                    "{C:attention}Joker{} is free and",
+                    "becomes {C:dark_edition}Anaglyphic"
+                }
+            },
+			['tag_ortalab_fluorescent'] = {
+                name = "Fluorescent Patch",
+                text = {
+                    "Next base edition shop",
+                    "{C:attention}Joker{} is free and",
+                    "becomes {C:dark_edition}Fluorescent"
+                }
+            },
+			['tag_ortalab_greyscale'] = {
+                name = "Greyscale Patch",
+                text = {
+                    "Next base edition shop",
+                    "{C:attention}Joker{} is free and",
+                    "becomes {C:dark_edition}Greyscale"
+                }
+            },
+			['tag_ortalab_minion'] = {
+                name = "Minion Patch",
+                text = {
+                    "{C:attention}Halve{} the required",
+                    "Chips of the next",
+                    "Small or Big Blind"
+                }
+            },
 		},
 		["Back"] = {
 			['b_ortalab_orange'] = {
