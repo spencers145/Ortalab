@@ -387,9 +387,7 @@ SMODS.Consumable({
             for i=1, card.ability.extra.amount do
                 G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function()
                     local new_card = create_playing_card({center = G.P_CENTERS[pseudorandom_element(get_current_pool('Enhanced'), pseudoseed('bottle'))]}, G.play)
-                    new_card:add_to_deck()
                     G.deck.config.card_limit = G.deck.config.card_limit + 1
-                    table.insert(G.playing_cards, new_card)
                     new_cards[i] = new_card
                     return true
                 end}))
@@ -411,8 +409,6 @@ SMODS.Consumable({
                 delay(0.5)
                 return true
             end}))
-            for _, card in pairs(new_cards) do
-            end
             return true
         end}))
     end
