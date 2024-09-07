@@ -243,9 +243,7 @@ SMODS.Tag({
     config = {type = 'store_joker_create'},
     in_pool = function(self)
         local chance = pseudoseed('ortalab_soul_patch')
-        sendDebugMessage('Soul patch seed: '..chance)
         if chance < 0.25 then
-            sendDebugMessage('Soul Patch in pool!')
             return true
         end
     end,
