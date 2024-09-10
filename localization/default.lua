@@ -12,7 +12,9 @@ return {
 			['ortalab_destroyed'] = 'Destroyed!',
 			['ortalab_loteria_pack'] = 'Chalupa Pack',
 			['ortalab_loteria_pack_2'] = 'Wumbo Chalupa Pack',
-			['ortalab_loteria_pack_3'] = 'Giga Chalupa Pack'
+			['ortalab_loteria_pack_3'] = 'Giga Chalupa Pack',
+			['ortalab_moldy_discard'] = 'Discard!',
+			['ortalab_moldy_hand'] = 'Hand!'
         }
     },
     ["descriptions"] = {
@@ -720,14 +722,54 @@ return {
 			["m_ortalab_rusty"] = {
 				["name"] = "Rusty Card",
 				["text"] = {
-					"{C:inactive}Not yet implemented",
+					"{X:mult,C:white}X#1#{} Mult",
+					"Gain {X:mult,C:white}X#2#{} Mult per",
+					"{C:attention}Rusty{} card held in hand"
 				},
 			},
 			["m_ortalab_moldy"] = {
-				["name"] = "Moldy Card",
+				["name"] = "??? Card",
 				["text"] = {
-					"{C:inactive}Not yet implemented",
+					"{C:green}#1# in #2#{} chance",
+					"for {C:red}+#3# Discard",
+					"{C:green}#1# in #4#{} chance",
+					"for {C:blue}+#5# Hand",
 				},
+			},
+			["m_ortalab_bent"] = {
+				["name"] = "Bent Card",
+				["text"] = {
+					"{C:mult}+#1#{} Mult for every",
+					"{C:attention}card{} held in hand"
+				}
+			},
+			["m_ortalab_post"] = {
+				["name"] = "Post Card",
+				["text"] = {
+					"{C:chips}+#1#{} chips for every",
+					"{C:attention}card{} held in hand"
+				}
+			},
+			["m_ortalab_index"] = {
+				["name"] = "Index Card",
+				["text"] = {
+					"{C:attention}Temporarily{} increase",
+					"hand level by {C:attention}#1#"
+				}
+			},
+			["m_ortalab_ore"] = {
+				["name"] = "Ore Card",
+				["text"] = {
+					"{C:mult}+#1#{} Mult",
+					"no rank or suit"
+				}
+			},
+			["m_ortalab_iou"] = {
+				["name"] = "IOU Card",
+				["text"] = {
+					"{C:attention}Temporarily{} increase",
+					"hand level by {C:attention}#1#"
+				}
 			},
 		},
 		["Tag"] = {
@@ -851,8 +893,7 @@ return {
 				["name"] = "Royal Deck",
 				["text"] = {
 					"Start with only", 
-					"{C:attention}Face Cards{}", 
-					"in your deck",
+					"{C:attention}Face Cards{} in your deck",
 					"{s:0.9}At the end of each",
 					"{s:0.9}round, add a {C:attention,s:0.9}random",
 					"{s:0.9,C:attention}Face Card{s:0.9} to your deck"
@@ -885,9 +926,8 @@ return {
 			['b_ortalab_frozen'] = {
 				["name"] = "Frozen Deck",
 				["text"] = {
-					"After defeating each",
-                    "{C:attention}Boss Blind{}, gain {C:attention}#1#",
-                    "random tags"
+					"Blind rewards are {C:attention}doubled",
+					"if beaten in {C:attention}1{} {C:blue}Hand"
 				}
 			}
 		},
