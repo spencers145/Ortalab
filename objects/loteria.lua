@@ -402,6 +402,7 @@ SMODS.Consumable({
             end
             G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.35,func = function()
                 play_sound('holo1')
+                playing_card_joker_effects(new_cards)
                 for _, card in pairs(new_cards) do
                     card:juice_up(0.7, 0.3)
                     draw_card(G.play, G.hand, 1, 'up', false, card, nil, true)
