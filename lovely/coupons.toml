@@ -16,10 +16,10 @@ payload = '''G.GAME.current_round.free_rerolls = G.GAME.current_round.free_rerol
 [[patches]]
 [patches.pattern]
 target = 'game.lua'
-pattern = '''for i = 1, 2 do'''
-position = 'at'
+pattern = '''G.GAME.current_round.used_packs = G.GAME.current_round.used_packs or {}'''
+position = 'before'
 match_indent = true
-payload = '''for i = 1, G.GAME.modifiers.booster_count do'''
+payload = '''if i == 1 and G.GAME.modifiers.ortalab_boosters then for _ = 1, G.GAME.modifiers.ortalab_boosters do Ortalab.spawn_booster() end end'''
 
 # Ad Campaign
 [[patches]]
@@ -48,6 +48,14 @@ if G.GAME.current_round.voucher_2 and G.P_CENTERS[G.GAME.current_round.voucher_2
     G.shop_vouchers:emplace(card)
 
 end'''
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = '''if G.shop_vouchers and G.shop_vouchers.cards then'''
+position = 'before'
+match_indent = true
+payload = '''if G.GAME.current_round.voucher and G.GAME.current_round.voucher == v.key then include = false end'''
+
 [[patches]]
 [patches.pattern]
 target = 'game.lua'

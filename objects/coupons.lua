@@ -15,20 +15,8 @@ SMODS.Voucher({
 	available = true,
 	config = {extra = {booster_gain = 1}},
 	redeem = function(self)
-        G.GAME.modifiers.booster_count = G.GAME.modifiers.booster_count + self.config.extra.booster_gain
-        G.GAME.current_round.used_packs = G.GAME.current_round.used_packs or {}
-        if not G.GAME.current_round.used_packs[1] then
-            G.GAME.current_round.used_packs[1] = get_pack('shop_pack').key
-        end
-
-        if G.GAME.current_round.used_packs[1] ~= 'USED' then 
-            local card = Card(G.shop_booster.T.x + G.shop_booster.T.w/2,
-            G.shop_booster.T.y, G.CARD_W*1.27, G.CARD_H*1.27, G.P_CARDS.empty, G.P_CENTERS[G.GAME.current_round.used_packs[1]], {bypass_discovery_center = true, bypass_discovery_ui = true})
-            create_shop_card_ui(card, 'Booster', G.shop_booster)
-            card.ability.booster_pos = #G.shop_booster.cards + 1
-            card:start_materialize()
-            G.shop_booster:emplace(card)
-        end
+        G.GAME.modifiers.ortalab_boosters = (G.GAME.modifiers.ortalab_boosters or 0) + self.config.extra.booster_gain
+        Ortalab.spawn_booster()
     end,
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
@@ -172,4 +160,20 @@ function window_infinite(card)
     G.GAME.current_round.reroll_cost = math.max(0, G.GAME.current_round.reroll_cost + card.config.extra.cost)
     G.GAME.current_round["ortalab_rerolls"] = (G.GAME.current_round["ortalab_rerolls"] or 0) + card.config.extra.free_rerolls
     calculate_reroll_cost(true)
+end
+
+function Ortalab.spawn_booster()
+    G.GAME.current_round.used_packs = G.GAME.current_round.used_packs or {}
+    if not G.GAME.current_round.used_packs[1] then
+        G.GAME.current_round.used_packs[1] = get_pack('shop_pack').key
+    end
+
+    if G.GAME.current_round.used_packs[1] ~= 'USED' then 
+        local card = Card(G.shop_booster.T.x + G.shop_booster.T.w/2,
+        G.shop_booster.T.y, G.CARD_W*1.27, G.CARD_H*1.27, G.P_CARDS.empty, G.P_CENTERS[G.GAME.current_round.used_packs[1]], {bypass_discovery_center = true, bypass_discovery_ui = true})
+        create_shop_card_ui(card, 'Booster', G.shop_booster)
+        card.ability.booster_pos = #G.shop_booster.cards + 1
+        card:start_materialize()
+        G.shop_booster:emplace(card)
+    end
 end
