@@ -6,6 +6,7 @@
 --- MOD_DESCRIPTION: A dev environment for the Ortalab mod
 --- BADGE_COLOUR: 3FC7EB
 --- VERSION: 0.1
+--- PRIORITY: -5
 --- DEPENDENCIES: [Talisman>=2.0.0-beta5]
 
 Ortalab = SMODS.current_mod
@@ -29,5 +30,13 @@ for k, v in pairs(load_table) do
 end
 
 SMODS.load_file('util/artists.lua')()
+
+SMODS.Atlas({
+    key = 'modicon',
+    path = 'modicon.png',
+    px = '34',
+    py = '34'
+})
+
 
 -- Config tab stuff to go below

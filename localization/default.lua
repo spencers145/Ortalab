@@ -302,7 +302,7 @@ return {
 				["name"] = "Mint Condition",
 				["text"] = {
 					"{X:mult,C:white}X#1#{} Mult when", 
-					"{C:money}${} are gained during",
+					"{C:money}dollars{} are gained during",
 					"scoring"
 				}
 			},
