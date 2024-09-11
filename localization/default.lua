@@ -14,7 +14,8 @@ return {
 			['ortalab_loteria_pack_2'] = 'Wumbo Chalupa Pack',
 			['ortalab_loteria_pack_3'] = 'Giga Chalupa Pack',
 			['ortalab_moldy_discard'] = 'Discard!',
-			['ortalab_moldy_hand'] = 'Hand!'
+			['ortalab_moldy_hand'] = 'Hand!',
+			['ortalab_no_tag'] = 'None'
         }
     },
     ["descriptions"] = {

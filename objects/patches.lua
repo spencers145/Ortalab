@@ -137,17 +137,16 @@ SMODS.Tag({
     pos = {x = 0, y = 0},
     discovered = false,
     in_pool = function(self)
-        sendDebugMessage("check")
         if G.GAME.last_selected_tag and G.GAME.last_selected_tag.key ~= 'tag_ortalab_rewind' then
-            sendDebugMessage("rewind")
             return true
         end
+        return false
     end,
     config = {type = 'immediate'},
     loc_vars = function(self, info_queue, card)
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
-        return {vars = {localize({type = 'name_text', set = 'Tag', key = G.GAME.last_selected_tag.key})}}
+        return {vars = {G.GAME.last_selected_tag and localize({type = 'name_text', set = 'Tag', key = G.GAME.last_selected_tag.key}) or localize('ortalab_no_tag')}}
     end,
     apply = function(tag, context)
         if G.GAME.last_selected_tag then
@@ -274,6 +273,7 @@ SMODS.Tag({
         if chance < 0.25 then
             return true
         end
+        return false
     end,
     loc_vars = function(self, info_queue, card)
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
@@ -299,6 +299,7 @@ SMODS.Tag({
     atlas = 'patches',
     pos = {x = 0, y = 4},
     discovered = false,
+    min_ante = 2,
     config = {type = 'immediate', dollars = 3},
     loc_vars = function(self, info_queue, card)
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
@@ -320,6 +321,7 @@ SMODS.Tag({
     atlas = 'patches',
     pos = {x = 3, y = 3},
     discovered = false,
+    min_ante = 2,
     config = {type = 'immediate', dollars = 1},
     loc_vars = function(self, info_queue, card)
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end

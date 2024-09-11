@@ -2,10 +2,10 @@
 --- MOD_NAME: Ortalab Dev
 --- MOD_ID: ortalab
 --- PREFIX: ortalab
---- MOD_AUTHOR: [Eremel_]
---- MOD_DESCRIPTION: A dev environment for the Ortalab mod
---- BADGE_COLOUR: 3FC7EB
---- VERSION: 0.1
+--- MOD_AUTHOR: [Balatro Discord]
+--- MOD_DESCRIPTION: Every action has an opposite reaction. In another world, in the nation of "Virtue", a simple indie developer created Ortalab, which so happened to be the opposite of our world's Balatro. This mod is intended to port everything from that parallel world to Balatro. Within this demo, it includes 60 Jokers, 10 Decks, 5 sets of Coupons, a new Consumable Type, 8 Enhancements, 3 Editions, 10 patches, and 2 Challenges for you to check out.
+--- BADGE_COLOUR: 990000
+--- VERSION: 0.9-demo-2.0.0
 --- PRIORITY: -5
 --- DEPENDENCIES: [Talisman>=2.0.0-beta5]
 
