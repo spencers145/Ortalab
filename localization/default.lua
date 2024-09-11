@@ -852,6 +852,14 @@ return {
                     "Small or Big Blind"
                 }
             },
+			['tag_ortalab_rewind'] = {
+                name = "Rewind Patch",
+                text = {
+					"Add a copy of the", 
+					"last selected {C:attention}Tag{}",
+                    "{C:inactive,s:0.8}Currently #1#"
+                }
+            },
 		},
 		["Back"] = {
 			['b_ortalab_orange'] = {

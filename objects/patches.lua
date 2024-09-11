@@ -111,7 +111,7 @@ SMODS.Tag({
     atlas = 'patches',
     pos = {x = 1, y = 3},
     discovered = false,
-    config = {type = 'store_joker_modify', edition = 'e_ortalab_greyscale'},
+    config = {typ = 'store_joker_modify', edition = 'e_ortalab_greyscale'},
     loc_vars = function(self, info_queue, card)
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'coro'} end
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
@@ -131,12 +131,40 @@ SMODS.Tag({
     end
 })
 
--- SMODS.Tag({
---     key = 'rewind',
---     atlas = 'patches',
---     pos = {x = 0, y = 0},
---     discovered = false,
--- })
+SMODS.Tag({
+    key = 'rewind',
+    atlas = 'patches',
+    pos = {x = 0, y = 0},
+    discovered = false,
+    in_pool = function(self)
+        sendDebugMessage("check")
+        if G.GAME.last_selected_tag and G.GAME.last_selected_tag.key ~= 'tag_ortalab_rewind' then
+            sendDebugMessage("rewind")
+            return true
+        end
+    end,
+    config = {type = 'immediate'},
+    loc_vars = function(self, info_queue, card)
+        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
+        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
+        return {vars = {localize({type = 'name_text', set = 'Tag', key = G.GAME.last_selected_tag.key})}}
+    end,
+    apply = function(tag, context)
+        if G.GAME.last_selected_tag then
+            tag:yep('+', G.C.GREEN,function() 
+                return true
+            end)
+            G.E_MANAGER:add_event(Event({
+                trigger = 'immediate',
+                func = function()
+                    add_tag(G.GAME.last_selected_tag)
+                    return true
+            end}))
+            tag.triggered = true
+            return true
+        end
+    end
+})
 
 -- SMODS.Tag({
 --     key = 'recycle',
@@ -306,3 +334,11 @@ SMODS.Tag({
         return true
     end
 })
+
+local skip_blind = G.FUNCS.skip_blind
+G.FUNCS.skip_blind = function(e)
+    skip_blind(e)
+    local _tag = e.UIBox:get_UIE_by_ID('tag_container').config.ref_table
+    if _tag.key == 'tag_ortalab_rewind' then return end
+    G.GAME.last_selected_tag = _tag or G.GAME.last_selected_tag
+end
