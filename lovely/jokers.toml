@@ -65,3 +65,16 @@ if (SMODS.Mods['ortalab'] or {}).can_load then
 end
 '''
 match_indent = true
+
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''G.FUNCS.evaluate_play()'''
+position = "at"
+payload = '''
+G.GAME.Ortalab_Scoring_Active = true
+G.FUNCS.evaluate_play()
+G.GAME.Ortalab_Scoring_Active = false
+'''
+match_indent = true

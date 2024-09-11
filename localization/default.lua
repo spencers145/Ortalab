@@ -301,8 +301,9 @@ return {
 			['j_ortalab_mint_condition'] = {
 				["name"] = "Mint Condition",
 				["text"] = {
-					"{C:attention}Jokers{} that earn money on {C:money}payout{}",
-					"each give {X:mult,C:white}X#1#{} Mult",
+					"{X:mult,C:white}X#1#{} Mult when", 
+					"{C:money}${} are gained during",
+					"scoring"
 				}
 			},
 			['j_ortalab_monochrome'] = {
@@ -727,8 +728,8 @@ return {
 					"{C:attention}Rusty{} card held in hand"
 				},
 			},
-			["m_ortalab_moldy"] = {
-				["name"] = "??? Card",
+			["m_ortalab_recycled"] = {
+				["name"] = "Recycled Card",
 				["text"] = {
 					"{C:green}#1# in #2#{} chance",
 					"for {C:red}+#3# Discard",
