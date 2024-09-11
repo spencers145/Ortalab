@@ -190,7 +190,7 @@ SMODS.Enhancement({
 })
 
 SMODS.Enhancement({
-    key = "moldy",
+    key = "recycled",
     atlas = "ortalab_enhanced",
     pos = {x = 3, y = 1},
     discovered = false,
