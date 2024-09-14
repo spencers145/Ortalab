@@ -457,7 +457,35 @@ return {
 					"Halves all {C:attention}listed{} {C:green,E:1,S:1.1}probabilities{}",
 					"{C:inactive}(ex: {C:green}2 in 4{C:inactive} -> {C:green}1 in 4{C:inactive})",
 				}
-			}
+			},
+			['j_ortalab_fools_gold'] = {
+				["name"] = "Fool's Gold",
+				["text"] = {
+					"{C:green}#1# in #2#{} chance to",
+					"gain {C:money}$#3#{} for each", 
+					"{V:1}#4#{} held in hand"				}
+			},
+			['j_ortalab_amber_mosquito'] = {
+				["name"] = "Amber Mosquito",
+				["text"] = {
+					"{X:mult,C:white}X#1#{} Mult for each",
+					"{V:1}#2#{} held in hand"
+				}
+			},
+			['j_ortalab_dripstone'] = {
+				["name"] = "Dripstone",
+				["text"] = {
+					"{C:blue}+#1#{} Chips for each",
+					"{V:1}#2#{} held in hand",
+				}
+			},
+			['j_ortalab_basalt_column'] = {
+				["name"] = "Basalt Column",
+				["text"] = {
+					"{C:red}+#1#{} Mult for each",
+					"{V:1}#2#{} held in hand",
+				}
+			},
 		},
         ["Loteria"] = {
             ["c_ortalab_lot_umbrella"] = {

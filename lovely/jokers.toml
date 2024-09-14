@@ -78,3 +78,18 @@ G.FUNCS.evaluate_play()
 G.GAME.Ortalab_Scoring_Active = false
 '''
 match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''if effects[ii].message then'''
+position = "before"
+payload = '''
+if effects[ii].chips then 
+    mod_percent = true
+    hand_chips = mod_chips(hand_chips + effects[ii].chips)
+    update_hand_text({delay = 0}, {chips = hand_chips})
+    card_eval_status_text(G.hand.cards[i], 'chips', effects[ii].chips, percent)
+end
+'''
+match_indent = true
