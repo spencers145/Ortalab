@@ -95,7 +95,38 @@ SMODS.Voucher({
     end,
 })
 
+SMODS.Voucher({
+	key = "home_delivery",
+	atlas = "coupons",
+	pos = {x = 2, y = 0},
+	cost = 10,
+	unlocked = true,
+	discovered = false,
+	available = true,
+	redeem = function(self)
+        sendDebugMessage('redeemed home delivery')
+    end,
+    loc_vars = function(self, info_queue, card)
+        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
+    end,
+})
 
+SMODS.Voucher({
+	key = "hoarding",
+	atlas = "coupons",
+	pos = {x = 3, y = 0},
+	cost = 10,
+	unlocked = true,
+	discovered = false,
+	available = false,
+    requires = {'v_ortalab_home_delivery'},
+	redeem = function(self)
+        sendDebugMessage('redeemed hoarding')
+    end,
+    loc_vars = function(self, info_queue, card)
+        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
+    end,
+})
 
 SMODS.Voucher({
 	key = "abacus",
@@ -144,7 +175,43 @@ SMODS.Voucher({
     end,
 })
 
+SMODS.Voucher({
+	key = "shady_trading",
+	atlas = "coupons",
+	pos = {x = 0, y = 1},
+	cost = 10,
+	unlocked = true,
+	discovered = false,
+	available = true,
+	redeem = function(self)
+        if G.GAME.spectral_rate < 2 then
+            G.GAME.spectral_rate = 2
+        end
+        G.GAME.pool_flags.shady_trading_redeemed = true
+    end,
+    loc_vars = function(self, info_queue, card)
+        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
+    end,
+})
 
+SMODS.Voucher({
+	key = "illegal_imports",
+	atlas = "coupons",
+	pos = {x = 1, y = 1},
+	cost = 10,
+	unlocked = true,
+	discovered = false,
+	available = false,
+	requires = {'v_ortalab_shady_trading'},
+    config = {extra = {rate = 2}},
+	redeem = function(self)
+        G.GAME.spectral_rate = G.GAME.spectral_rate * self.config.extra.rate
+    end,
+    loc_vars = function(self, info_queue, card)
+        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
+        return {vars = {self.config.extra.rate}}
+    end,
+})
 
 
 local BackApply_to_run_ref = Back.apply_to_run
@@ -176,4 +243,35 @@ function Ortalab.spawn_booster()
         card:start_materialize()
         G.shop_booster:emplace(card)
     end
+end
+
+local skip_blind = G.FUNCS.skip_blind
+G.FUNCS.skip_blind = function(e)
+    if G.GAME.used_vouchers['v_ortalab_hoarding'] then
+        local _tag = e.UIBox:get_UIE_by_ID('tag_container')
+        if _tag then 
+            add_tag(Tag(_tag.config.ref_table.key))
+        end
+    end
+    G.E_MANAGER:add_event(Event({
+        trigger = 'after',
+        func = function()
+            if G.GAME.used_vouchers['v_ortalab_home_delivery'] then
+                if G.blind_select then 
+                    G.blind_select:remove()
+                    G.blind_prompt_box:remove()
+                    G.blind_select = nil
+                end
+                G.GAME.current_round.jokers_purchased = 0
+                G.GAME.current_round.used_packs = {}
+                G.GAME.round_resets.temp_reroll_cost = nil
+                G.GAME.round_resets.reroll_cost_increase = 0
+                calculate_reroll_cost(true)
+                sendDebugMessage(tprint(G.GAME.round_resets))
+                G.STATE = G.STATES.SHOP
+                G.STATE_COMPLETE = false    
+            end
+            return true
+    end}))
+    skip_blind(e)
 end

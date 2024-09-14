@@ -1126,6 +1126,34 @@ return {
 					"in shop", 
 				}
 			},
+			['v_ortalab_shady_trading'] = {
+				["name"] = "Shady Trading",
+				["text"] = {
+					"{C:spectral}Spectral{} cards can",
+					"appear in the shop",
+				}
+			},
+			['v_ortalab_illegal_imports'] = {
+				["name"] = "Illegal Imports",
+				["text"] = {
+					"{C:spectral}Spectral{} cards appear",
+					"{C:attention}#1#x{} more frequently in the shop",
+				}
+			},
+			['v_ortalab_home_delivery'] = {
+				["name"] = "Home Delivery",
+				["text"] = {
+					"Skipping {C:attention}Blinds{} no",
+					"longer skips {C:attention}Shops"
+				}
+			},
+			['v_ortalab_hoarding'] = {
+				["name"] = "Hoarding",
+				["text"] = {
+					"{C:attention}Doubles Tag{} rewards",
+					"from skipping {C:attention}Blinds"
+				}
+			},
 		},
 		['Other'] = {
 			['p_ortalab_small_loteria_1'] = {

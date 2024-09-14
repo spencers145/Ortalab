@@ -339,8 +339,8 @@ SMODS.Tag({
 
 local skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
-    skip_blind(e)
     local _tag = e.UIBox:get_UIE_by_ID('tag_container').config.ref_table
+    skip_blind(e)
     if _tag.key == 'tag_ortalab_rewind' then return end
     G.GAME.last_selected_tag = _tag or G.GAME.last_selected_tag
 end
