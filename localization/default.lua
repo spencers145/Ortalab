@@ -376,6 +376,13 @@ return {
 					"{C:inactive,s:0.8}Changes when blind is selected",
 				}
 			},
+			['j_ortalab_multiplyers'] = {
+				["name"] = "Multiply-ers",
+				["text"] = {
+					"{C:attention}Retrigger{} all played",
+					"{C:attention}numbered{} cards",
+				}
+			},
 			['j_ortalab_mysterium'] = {
 				["name"] = "The Mysterium",
 				["text"] = {
