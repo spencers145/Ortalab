@@ -132,7 +132,7 @@ local joker_list = {
     'solo',
     'mysterium',
     -- 'misfits',
-    -- 'shelter',
+    'shelter',
     'spectrum',
     -- 'actor',
     'chameleon',

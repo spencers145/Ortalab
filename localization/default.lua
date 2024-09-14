@@ -426,6 +426,22 @@ return {
 					"hand is a {C:attention}#2#",
 				}
 			},
+			['j_ortalab_shelter'] = {
+				["name"] = "The Shelter",
+				["text"] = {
+					"{X:mult,C:white}X#1#{} Mult if played",
+					"hand contains a",
+					"{C:attention}#2#",
+				}
+			},
+			['j_ortalab_sunnyside'] = {
+				["name"] = "Sunny Side Up",
+				["text"] = {
+					"Adds {C:money}$#1#{} of",
+					"{C:attention}sell value{} to",
+					"leftmost {C:attention}Consumable{}"
+				}
+			},
 			['j_ortalab_spectrum'] = {
 				["name"] = "The Spectrum",
 				["text"] = {
