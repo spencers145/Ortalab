@@ -419,6 +419,14 @@ return {
 					"hand is a Secret Hand",
 				}
 			},
+			['j_ortalab_scratch_card'] = {
+				["name"] = "Scratch Card",
+				["text"] = {
+					"Played {C:attention}numbered{} cards",
+					"have a {C:green}#1# in #2#{} chance",
+					"to give {C:money}$#3#{} when scored"
+				}
+			},
 			['j_ortalab_solo'] = {
 				["name"] = "The Solo",
 				["text"] = {
@@ -465,6 +473,14 @@ return {
 					"{C:attention}1{} card, destroy it and",
 					"convert {C:attention}#1# random cards",
 					"in hand to played card",
+				}
+			},
+			['j_ortalab_whiteboard'] = {
+				["name"] = "Whiteboard",
+				["text"] = {
+					"{X:mult,C:white}X#1#{} Mult if all",
+					"cards held in hand",
+					"are {C:hearts}Hearts{} or {C:diamonds}Diamonds{}"
 				}
 			},
 			['j_ortalab_woo_all_1'] = {

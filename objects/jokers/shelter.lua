@@ -16,7 +16,7 @@ SMODS.Joker({
     end,
     calculate = function(self, card, context) --The Mysterium Logic
         if context.joker_main then
-            if context.poker_hands[card.ability.extra.type] then
+            if next(context.poker_hands[card.ability.extra.type]) then
                 return {
                     message = localize{type='variable',key='a_xmult',vars={card.ability.extra.x_mult}},
                     Xmult_mod = card.ability.extra.x_mult
