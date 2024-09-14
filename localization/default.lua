@@ -17,6 +17,8 @@ return {
 			['ortalab_moldy_hand'] = 'Hand!',
 			['ortalab_no_tag'] = 'None',
 			['ortalab_flashback'] = 'Flashback!',
+			['ortalab_joker_miles'] = 'Upgrade!',
+			['ortalab_joker_miles_reset'] = 'Reset!',
         }
     },
     ["descriptions"] = {
@@ -104,6 +106,11 @@ return {
 			['coro'] = {
 				["text"] = {
 					"Coronacht",
+				}
+			},
+			['logan'] = {
+				["text"] = {
+					"loganboi2",
 				}
 			}
 		},
@@ -325,6 +332,16 @@ return {
 				["text"] = {
 					"All cards count as",
 					"{C:attention}numbered{} cards"
+				}
+			},
+			['j_ortalab_joker_miles'] = {
+				["name"] = "Joker Miles Card",
+				["text"] = {
+					"Gains {C:blue}+#1#{} Chips per",
+					"{C:blue}Hand{} played",
+					"{C:green}#3# in #4#{} chance to reset",
+					"when {C:blue}Hand{} played",
+					"{C:inactive}(Currently {C:blue}+#2#{C:inactive} Chips)"
 				}
 			},
 			['j_ortalab_mathmagician'] = {
