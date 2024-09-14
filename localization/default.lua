@@ -113,30 +113,6 @@ return {
 					"{C:chips}+#1#{} Chips",
 				}
 			},
-			['j_ortalab_generous'] = {
-				["name"] = "Generous Joker",
-				["text"] = {
-					"Played cards with",
-					"{C:diamonds}#2#{} suit give",
-					"{C:chips}+#1#{} Chips when scored", 
-				}
-			},
-			['j_ortalab_chastful'] = {
-				["name"] = "Chastful Joker",
-				["text"] = {
-					"Played cards with",
-					"{C:hearts}#2#{} suit give",
-					"{C:chips}+#1#{} Chips when scored", 
-				}
-			},
-			['j_ortalab_patient'] = {
-				["name"] = "Patient Joker",
-				["text"] = {
-					"Played cards with",
-					"{C:spades}#2#{} suit give",
-					"{C:chips}+#1#{} Chips when scored", 
-				}
-			},
 			['j_ortalab_abstemious'] = {
 				["name"] = "Abstemious Joker",
 				["text"] = {
@@ -153,6 +129,13 @@ return {
 					"{C:attention}Boss Blind{} is defeated",
 				}
 			},
+			['j_ortalab_amber_mosquito'] = {
+				["name"] = "Amber Mosquito",
+				["text"] = {
+					"{X:mult,C:white}X#1#{} Mult for each",
+					"{V:1}#2#{} held in hand"
+				}
+			},
 			['j_ortalab_art_gallery'] = {
 				["name"] = "Art Gallery",
 				["text"] = {
@@ -160,6 +143,13 @@ return {
 					"each {C:attention}Joker{} and",
 					"{C:tarot}Consumable{} card",
 					"{C:inactive}(Currently {C:chips}+#2#{C:inactive}){}",
+				}
+			},
+			['j_ortalab_basalt_column'] = {
+				["name"] = "Basalt Column",
+				["text"] = {
+					"{C:red}+#1#{} Mult for each",
+					"{V:1}#2#{} held in hand",
 				}
 			},
 			['j_ortalab_beyond_the_mask'] = {
@@ -200,6 +190,14 @@ return {
 					"Copies ability of a random",
 					"Joker when blind is selected",
 					"{C:inactive}(Copied Joker: {C:attention}#1#{C:inactive})",
+				}
+			},
+			['j_ortalab_chastful'] = {
+				["name"] = "Chastful Joker",
+				["text"] = {
+					"Played cards with",
+					"{C:hearts}#2#{} suit give",
+					"{C:chips}+#1#{} Chips when scored", 
 				}
 			},
 			['j_ortalab_collatz'] = {
@@ -250,6 +248,13 @@ return {
 					"{C:attention}hand{} of round",
 				}
 			},
+			['j_ortalab_dripstone'] = {
+				["name"] = "Dripstone",
+				["text"] = {
+					"{C:blue}+#1#{} Chips for each",
+					"{V:1}#2#{} held in hand",
+				}
+			},
 			['j_ortalab_evil_eye'] = {
 				["name"] = "Evil Eye",
 				["text"] = {
@@ -268,11 +273,27 @@ return {
 					"destroyed at end of round",
 				}
 			},
+			['j_ortalab_fools_gold'] = {
+				["name"] = "Fool's Gold",
+				["text"] = {
+					"{C:green}#1# in #2#{} chance to",
+					"gain {C:money}$#3#{} for each", 
+					"{V:1}#4#{} held in hand"
+				}
+			},
 			['j_ortalab_frowny_face'] = {
 				["name"] = "Frowny Face",
 				["text"] = {
 					"Played numbered cards",
 					"give {C:mult}+#1#{} Mult when scored",
+				}
+			},
+			['j_ortalab_generous'] = {
+				["name"] = "Generous Joker",
+				["text"] = {
+					"Played cards with",
+					"{C:diamonds}#2#{} suit give",
+					"{C:chips}+#1#{} Chips when scored", 
 				}
 			},
 			['j_ortalab_graffiti'] = {
@@ -330,12 +351,36 @@ return {
 					"shop are free",
 				}
 			},
+			['j_ortalab_patient'] = {
+				["name"] = "Patient Joker",
+				["text"] = {
+					"Played cards with",
+					"{C:spades}#2#{} suit give",
+					"{C:chips}+#1#{} Chips when scored", 
+				}
+			},
+			['j_ortalab_pitch_mitch'] = {
+				["name"] = "Pitch Mitch",
+				["text"] = {
+					"Played {C:spades}Spades{} and",
+					"{C:clubs}Clubs give {C:blue}+#1#{} Chips",
+					"when scored"
+				}
+			},
 			['j_ortalab_popcorn_bag'] = {
 				["name"] = "Popcorn Bag",
 				["text"] = {
 					"{C:mult}+#1#{} Mult.",
 					"{C:mult}+#2#{} Mult per round played",
 					"Explodes when greater than {C:mult}+20{}",
+				}
+			},
+			['j_ortalab_red_fred'] = {
+				["name"] = "Red Fred",
+				["text"] = {
+					"Played {C:hearts}Hearts{} and",
+					"{C:diamonds}Diamonds give {C:red}+#1#{} Mult",
+					"when scored"
 				}
 			},
 			['j_ortalab_roscharch'] = {
@@ -427,19 +472,19 @@ return {
 					"to give {C:money}$#3#{} when scored"
 				}
 			},
-			['j_ortalab_solo'] = {
-				["name"] = "The Solo",
-				["text"] = {
-					"{X:mult,C:white}X#1#{} Mult if played",
-					"hand is a {C:attention}#2#",
-				}
-			},
 			['j_ortalab_shelter'] = {
 				["name"] = "The Shelter",
 				["text"] = {
 					"{X:mult,C:white}X#1#{} Mult if played",
 					"hand contains a",
 					"{C:attention}#2#",
+				}
+			},
+			['j_ortalab_solo'] = {
+				["name"] = "The Solo",
+				["text"] = {
+					"{X:mult,C:white}X#1#{} Mult if played",
+					"hand is a {C:attention}#2#",
 				}
 			},
 			['j_ortalab_sunnyside'] = {
@@ -488,34 +533,6 @@ return {
 				["text"] = {
 					"Halves all {C:attention}listed{} {C:green,E:1,S:1.1}probabilities{}",
 					"{C:inactive}(ex: {C:green}2 in 4{C:inactive} -> {C:green}1 in 4{C:inactive})",
-				}
-			},
-			['j_ortalab_fools_gold'] = {
-				["name"] = "Fool's Gold",
-				["text"] = {
-					"{C:green}#1# in #2#{} chance to",
-					"gain {C:money}$#3#{} for each", 
-					"{V:1}#4#{} held in hand"				}
-			},
-			['j_ortalab_amber_mosquito'] = {
-				["name"] = "Amber Mosquito",
-				["text"] = {
-					"{X:mult,C:white}X#1#{} Mult for each",
-					"{V:1}#2#{} held in hand"
-				}
-			},
-			['j_ortalab_dripstone'] = {
-				["name"] = "Dripstone",
-				["text"] = {
-					"{C:blue}+#1#{} Chips for each",
-					"{V:1}#2#{} held in hand",
-				}
-			},
-			['j_ortalab_basalt_column'] = {
-				["name"] = "Basalt Column",
-				["text"] = {
-					"{C:red}+#1#{} Mult for each",
-					"{V:1}#2#{} held in hand",
 				}
 			},
 		},
