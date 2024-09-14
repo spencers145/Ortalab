@@ -16,6 +16,6 @@ SMODS.Joker({
 
 local face_check = Card.is_face
 function Card:is_face(from_boss)
-    if SMODS.find_card('j_ortalab_hypercalculia') then return false end
-    return face_check(from_boss)
+    if next(SMODS.find_card('j_ortalab_hypercalculia')) then return false end
+    return face_check(self, from_boss)
 end

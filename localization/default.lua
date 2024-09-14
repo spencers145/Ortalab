@@ -140,7 +140,8 @@ return {
 			['j_ortalab_amber_mosquito'] = {
 				["name"] = "Amber Mosquito",
 				["text"] = {
-					"Each {V:1}#2#{} held in hand",
+					"Each {V:1}#2#{}",
+					"held in hand",
 					"gives {X:mult,C:white}X#1#{} Mult",
 				}
 			},
@@ -156,7 +157,8 @@ return {
 			['j_ortalab_basalt_column'] = {
 				["name"] = "Basalt Column",
 				["text"] = {
-					"Each {V:1}#2#{} held in hand",
+					"Each {V:1}#2#{}",
+					"held in hand",
 					"gives {C:red}+#1#{} Mult",
 				}
 			},
@@ -177,6 +179,14 @@ return {
 					"{C:inactive,s:0.8}Poker hands change on every payout",
 				}
 			},
+			['j_ortalab_black_friday'] = {
+				["name"] = "Black Friday",
+				["text"] = {
+					"{C:red}-#1#{} Chips",
+					"All cards in the shop",
+					"are {C:money}#2#%{} off",
+				}
+			},
 			['j_ortalab_bowling_ball'] = {
 				["name"] = "Bowling Ball Solar System",
 				["text"] = {
@@ -195,9 +205,10 @@ return {
 			['j_ortalab_chameleon'] = {
 				["name"] = "Chameleon Joker",
 				["text"] = {
-					"Copies ability of a random",
-					"Joker when blind is selected",
-					"{C:inactive}(Copied Joker: {C:attention}#1#{C:inactive})",
+					"Copies ability of",
+					"a random {C:attention}Joker{}", 
+					"when {C:attention}Blind{} is selected",
+					"{C:inactive,s:0.9}(Copied Joker: {C:attention,s:0.9}#1#{C:inactive,s:0.9})",
 				}
 			},
 			['j_ortalab_chastful'] = {
@@ -215,14 +226,6 @@ return {
 					"Joker is scored are {C:attention}odd{}",
 					"{X:mult,C:white}X#2#{} Mult if total chips when this",
 					"Joker is scored are {C:attention}even{}",
-				}
-			},
-			['j_ortalab_black_friday'] = {
-				["name"] = "Black Friday",
-				["text"] = {
-					"{C:red}-#1#{} Chips",
-					"All cards in the shop",
-					"are {C:money}#2#%{} off",
 				}
 			},
 			['j_ortalab_crime_scene'] = {
@@ -259,7 +262,8 @@ return {
 			['j_ortalab_dripstone'] = {
 				["name"] = "Dripstone",
 				["text"] = {
-					"Each {V:1}#2#{} held in hand",
+					"Each {V:1}#2#{}",
+					"held in hand",
 					"gives {C:blue}+#1#{} Chips",
 				}
 			},
@@ -267,8 +271,9 @@ return {
 				["name"] = "Evil Eye",
 				["text"] = {
 					"Earn {C:money}$#1#{} at end of round",
-					"per each unique {C:spectral}Spectral{} card {C:attention}sold",
-					"{C:inactive}(Currently {C:money}$#2#{C:inactive})",
+					"per each unique",
+					"{C:spectral}Spectral{} card {C:attention}sold",
+					"{C:inactive,s:0.9}(Currently {C:money,s:0.9}$#2#{C:inactive,s:0.9})",
 				}
 			},
 			['j_ortalab_fine_wine'] = {
@@ -292,7 +297,8 @@ return {
 			['j_ortalab_fools_gold'] = {
 				["name"] = "Fool's Gold",
 				["text"] = {
-					"Each {V:1}#4#{} held in hand",
+					"Each {V:1}#4#{}",
+					"held in hand",
 					"has {C:green}#1# in #2#{} chance",
 					"to gain {C:money}$#3#{}", 
 				}
@@ -300,8 +306,9 @@ return {
 			['j_ortalab_frowny_face'] = {
 				["name"] = "Frowny Face",
 				["text"] = {
-					"Played numbered cards",
-					"give {C:mult}+#1#{} Mult when scored",
+					"Played {C:attention}numbered{} cards",
+					"give {C:mult}+#1#{} Mult",
+					"when scored",
 				}
 			},
 			['j_ortalab_generous'] = {
@@ -317,7 +324,7 @@ return {
 				["text"] = {
 					"{C:mult}+#1#{} Mult",
 					"per hand remaining",
-					"{C:inactive}(Currently {C:mult}+#2#{} Mult){}",
+					"{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult){}",
 				}
 			},
 			['j_ortalab_gratification'] = {
@@ -364,9 +371,17 @@ return {
 			['j_ortalab_monochrome'] = {
 				["name"] = "Monochrome Joker",
 				["text"] = {
-					"All cards are also considered",
-					"to be {V:1}#1#{}",
-					"Changes when blind is selected",
+					"All cards are also",
+					"considered to be {V:1}#1#{}",
+					"{C:inactive,s:0.8}Changes when blind is selected",
+				}
+			},
+			['j_ortalab_mysterium'] = {
+				["name"] = "The Mysterium",
+				["text"] = {
+					"{X:mult,C:white}X#1#{} Mult if played",
+					"hand is a",
+					"{C:dark_edition,E:1}Secret Hand",
 				}
 			},
 			['j_ortalab_mystery_soda'] = {
@@ -396,14 +411,14 @@ return {
 				["name"] = "Pitch Mitch",
 				["text"] = {
 					"Played {C:spades}Spades{} and",
-					"{C:clubs}Clubs give {C:blue}+#1#{} Chips",
+					"{C:clubs}Clubs{} give {C:blue}+#1#{} Chips",
 					"when scored"
 				}
 			},
 			['j_ortalab_popcorn_bag'] = {
 				["name"] = "Popcorn Bag",
 				["text"] = {
-					"{C:mult}+#1#{} Mult.",
+					"{C:mult}+#1#{} Mult",
 					"{C:mult}+#2#{} Mult per round played",
 					"Explodes when greater than {C:mult}+20{}",
 				}
@@ -412,7 +427,7 @@ return {
 				["name"] = "Red Fred",
 				["text"] = {
 					"Played {C:hearts}Hearts{} and",
-					"{C:diamonds}Diamonds give {C:red}+#1#{} Mult",
+					"{C:diamonds}Diamonds{} give {C:red}+#1#{} Mult",
 					"when scored"
 				}
 			},
@@ -424,11 +439,22 @@ return {
 					"end of round"
 				}
 			},
+			['j_ortalab_revolver'] = {
+				["name"] = "Revolver",
+				["text"] = {
+					"When {C:attention}Blind{} is selected,",
+					"destroy leftmost {C:attention}Joker{}",
+					"and permanently add {C:attention}#1#x{}",
+					"its sell value to this {C:blue}Chips",
+					"{C:inactive}(Currently {C:blue}+#2#{C:inactive} Chips)"
+				}
+			},
 			['j_ortalab_roscharch'] = {
 				["name"] = "Roscharch Test",
 				["text"] = {
-					"For each played 2 or 5, either give",
-					"{C:chips}+#1#{} Chips or {C:mult}+#2#{} when scored",
+					"For each played {C:attention}2{} or {C:attention}5{},",
+					"{C:chips}+#1#{} Chips or {C:mult}+#2#{} Mult",
+					"when scored",
 				}
 			},
 			['j_ortalab_royal_gala'] = {
@@ -485,34 +511,9 @@ return {
 			['j_ortalab_slot_machine'] = {
 				["name"] = "Slot Machine",
 				["text"] = {
-					"If played hand contains three {C:attention}Lucky 7s{}",
-					"create a random {C:spectral}Spectral{} card",
-				}
-			},
-			['j_ortalab_taliaferro'] = {
-				["name"] = "Taliaferro",
-				["text"] = {
-					"{C:chips}+#1#{} Chips",
-					"{C:green}#2# in #3#{} chance this",
-					"card is destroyed",
-					"at end of round",
-				}
-			},
-			['j_ortalab_mysterium'] = {
-				["name"] = "The Mysterium",
-				["text"] = {
-					"{X:mult,C:white}X#1#{} Mult if played",
-					"hand is a Secret Hand",
-				}
-			},
-			['j_ortalab_revolver'] = {
-				["name"] = "Revolver",
-				["text"] = {
-					"When {C:attention}Blind{} is selected,",
-					"destroy leftmost {C:attention}Joker{}",
-					"and permanently add {C:attention}#1#x{}",
-					"its sell value to this {C:blue}Chips",
-					"{C:inactive}(Currently {C:blue}+#2#{C:inactive} Chips)"
+					"If played hand contains",
+					"three {C:attention}Lucky 7s{}, create",
+					"a random {C:spectral}Spectral{} card",
 				}
 			},
 			['j_ortalab_scratch_card'] = {
@@ -535,7 +536,8 @@ return {
 				["name"] = "The Solo",
 				["text"] = {
 					"{X:mult,C:white}X#1#{} Mult if played",
-					"hand is a {C:attention}#2#",
+					"hand is a",
+					"{C:attention}#2#",
 				}
 			},
 			['j_ortalab_sunnyside'] = {
@@ -552,6 +554,15 @@ return {
 					"{X:mult,C:white}X#1#{} Mult if played",
 					"hand does not",
 					"contain a {C:attention}#2#",
+				}
+			},
+			['j_ortalab_taliaferro'] = {
+				["name"] = "Taliaferro",
+				["text"] = {
+					"{C:chips}+#1#{} Chips",
+					"{C:green}#2# in #3#{} chance this",
+					"card is destroyed",
+					"at end of round",
 				}
 			},
 			['j_ortalab_triangle'] = {
@@ -582,7 +593,8 @@ return {
 			['j_ortalab_woo_all_1'] = {
 				["name"] = "Woo! All 1s",
 				["text"] = {
-					"Halves all {C:attention}listed{} {C:green,E:1,S:1.1}probabilities{}",
+					"Halves all {C:attention}listed{}",
+					"{C:green,E:1,S:1.1}probabilities{}",
 					"{C:inactive}(ex: {C:green}2 in 4{C:inactive} -> {C:green}1 in 4{C:inactive})",
 				}
 			},

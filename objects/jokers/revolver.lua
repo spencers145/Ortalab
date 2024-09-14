@@ -28,7 +28,7 @@ SMODS.Joker({
                     sliced_card:start_dissolve({HEX("dc486f")}, nil, 1.6)
                     play_sound('ortalab_gun1', 0.96+math.random()*0.08)
                 return true end }))
-                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type = 'variable', key = 'a_chips', vars = {card.ability.extra.chips+card.ability.extra.modifier*sliced_card.sell_cost}}, colour = G.C.BLUE, no_juice = true})
+                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type = 'variable', key = 'a_chips', vars = {card.ability.extra.modifier*sliced_card.sell_cost}}, colour = G.C.BLUE, no_juice = true})
             end
         end
         if context.joker_main and card.ability.extra.chips > 0 then
