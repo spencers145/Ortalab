@@ -156,7 +156,7 @@ SMODS.Tag({
             G.E_MANAGER:add_event(Event({
                 trigger = 'immediate',
                 func = function()
-                    add_tag(G.GAME.last_selected_tag)
+                    add_tag(Tag(G.GAME.last_selected_tag.key))
                     return true
             end}))
             tag.triggered = true

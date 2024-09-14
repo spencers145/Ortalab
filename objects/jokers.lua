@@ -83,7 +83,7 @@ local joker_list = {
     -- 'no_parking',
     -- 'scam_email',
     -- 'reduce_reuse',
-    -- 'flashback',
+    'flashback',
     -- 'televangelist',
     -- 'klutz',
     -- 'cardist',

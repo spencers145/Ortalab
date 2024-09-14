@@ -15,7 +15,8 @@ return {
 			['ortalab_loteria_pack_3'] = 'Giga Chalupa Pack',
 			['ortalab_moldy_discard'] = 'Discard!',
 			['ortalab_moldy_hand'] = 'Hand!',
-			['ortalab_no_tag'] = 'None'
+			['ortalab_no_tag'] = 'None',
+			['ortalab_flashback'] = 'Flashback!',
         }
     },
     ["descriptions"] = {
@@ -132,8 +133,8 @@ return {
 			['j_ortalab_amber_mosquito'] = {
 				["name"] = "Amber Mosquito",
 				["text"] = {
-					"{X:mult,C:white}X#1#{} Mult for each",
-					"{V:1}#2#{} held in hand"
+					"Each {V:1}#2#{} held in hand",
+					"gives {X:mult,C:white}X#1#{} Mult",
 				}
 			},
 			['j_ortalab_art_gallery'] = {
@@ -148,8 +149,8 @@ return {
 			['j_ortalab_basalt_column'] = {
 				["name"] = "Basalt Column",
 				["text"] = {
-					"{C:red}+#1#{} Mult for each",
-					"{V:1}#2#{} held in hand",
+					"Each {V:1}#2#{} held in hand",
+					"gives {C:red}+#1#{} Mult",
 				}
 			},
 			['j_ortalab_beyond_the_mask'] = {
@@ -251,8 +252,8 @@ return {
 			['j_ortalab_dripstone'] = {
 				["name"] = "Dripstone",
 				["text"] = {
-					"{C:blue}+#1#{} Chips for each",
-					"{V:1}#2#{} held in hand",
+					"Each {V:1}#2#{} held in hand",
+					"gives {C:blue}+#1#{} Chips",
 				}
 			},
 			['j_ortalab_evil_eye'] = {
@@ -273,12 +274,20 @@ return {
 					"destroyed at end of round",
 				}
 			},
+			['j_ortalab_flashback'] = {
+				["name"] = "Flashback",
+				["text"] = {
+					"When {C:attention}Blind{} is skipped,",
+					"{C:green}#2# in #3#{} chance to spawn",
+					"a {C:attention}#1#",
+				}
+			},
 			['j_ortalab_fools_gold'] = {
 				["name"] = "Fool's Gold",
 				["text"] = {
-					"{C:green}#1# in #2#{} chance to",
-					"gain {C:money}$#3#{} for each", 
-					"{V:1}#4#{} held in hand"
+					"Each {V:1}#4#{} held in hand",
+					"has {C:green}#1# in #2#{} chance",
+					"to gain {C:money}$#3#{}", 
 				}
 			},
 			['j_ortalab_frowny_face'] = {
