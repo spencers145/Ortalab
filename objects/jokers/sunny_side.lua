@@ -15,7 +15,7 @@ SMODS.Joker({
         return {vars = {card.ability.extra.money}}
     end,
     calculate = function(self, card, context) --The Mysterium Logic
-        if context.setting_blind then
+        if context.setting_blind and not card.getting_sliced then
             if #G.consumeables.cards > 0 then
                 local consumable = G.consumeables.cards[1]
                 consumable.ability.extra_value = consumable.ability.extra_value + card.ability.extra.money

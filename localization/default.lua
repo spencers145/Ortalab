@@ -311,6 +311,13 @@ return {
 					"use a {C:red}discard{}",
 				}
 			},
+			['j_ortalab_hypercalculia'] = {
+				["name"] = "Hypercalculia",
+				["text"] = {
+					"All cards count as",
+					"{C:attention}numbered{} cards"
+				}
+			},
 			['j_ortalab_mathmagician'] = {
 				["name"] = "Mathmagician",
 				["text"] = {
@@ -462,6 +469,16 @@ return {
 				["text"] = {
 					"{X:mult,C:white}X#1#{} Mult if played",
 					"hand is a Secret Hand",
+				}
+			},
+			['j_ortalab_revolver'] = {
+				["name"] = "Revolver",
+				["text"] = {
+					"When {C:attention}Blind{} is selected,",
+					"destroy leftmost {C:attention}Joker{}",
+					"and permanently add {C:attention}#1#x{}",
+					"its sell value to this {C:blue}Chips",
+					"{C:inactive}(Currently {C:blue}+#2#{C:inactive} Chips)"
 				}
 			},
 			['j_ortalab_scratch_card'] = {
