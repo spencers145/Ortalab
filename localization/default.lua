@@ -437,9 +437,9 @@ return {
 			['j_ortalab_sunnyside'] = {
 				["name"] = "Sunny Side Up",
 				["text"] = {
-					"Adds {C:money}$#1#{} of",
-					"{C:attention}sell value{} to",
-					"leftmost {C:attention}Consumable{}"
+					"Adds {C:money}$#1#{} of {C:attention}sell value",
+					"to leftmost {C:attention}Consumable{}",
+					"when {C:attention}Blind{} is selected"
 				}
 			},
 			['j_ortalab_spectrum'] = {
