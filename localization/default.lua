@@ -399,6 +399,14 @@ return {
 					"when scored"
 				}
 			},
+			['j_ortalab_reduce_reuse'] = {
+				["name"] = "Reduce, Reuse, Recycle",
+				["text"] = {
+					"Gain {C:money}$#1#{} for each",
+					"remaining {C:blue}Hand{} at",
+					"end of round"
+				}
+			},
 			['j_ortalab_roscharch'] = {
 				["name"] = "Roscharch Test",
 				["text"] = {
