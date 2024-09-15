@@ -414,6 +414,15 @@ return {
 					"{C:chips}+#1#{} Chips when scored", 
 				}
 			},
+			['j_ortalab_pickaxe'] = {
+				["name"] = "Pickaxe",
+				["text"] = {
+					"Destroy played {C:attention}Ore{} cards",
+					"Gain {X:mult,C:white}#2#X{} Mult per",
+					"card destroyed this way",
+					"{C:inactive,s:0.9}(Currently {X:mult,C:white,s:0.9}X#1#{C:inactive,s:0.9} Mult)"
+				}
+			},
 			['j_ortalab_pitch_mitch'] = {
 				["name"] = "Pitch Mitch",
 				["text"] = {
