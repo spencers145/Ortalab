@@ -94,6 +94,9 @@ SMODS.Enhancement({
         return {
             vars = { card and card.ability.extra.level_up or self.config.extra.level_up }
         }
+    end,
+    in_pool = function(self)
+        return false
     end
 })
 

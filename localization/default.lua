@@ -704,6 +704,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Index Cards",
+					"{C:inactive}Not in pool"
 				},
 			},
             ["c_ortalab_lot_heron"] = {
@@ -774,7 +775,8 @@ return {
 				["text"] = {
 					"Create up to {C:attention}#1#",
                     "random {C:Zodiac}Zodiac{} cards",
-                    "{S:0.8,C:inactive}(Must have room)"
+                    "{S:0.8,C:inactive}(Must have room)",
+					"{C:inactive}Not in pool"
 				},
 			},
 			["c_ortalab_lot_bonnet"] = {
@@ -911,8 +913,7 @@ return {
 			["m_ortalab_index"] = {
 				["name"] = "Index Card",
 				["text"] = {
-					"{C:attention}Temporarily{} increase",
-					"hand level by {C:attention}#1#"
+					"{C:inactive}Effect not decided"
 				}
 			},
 			["m_ortalab_ore"] = {
