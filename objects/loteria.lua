@@ -124,7 +124,7 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=0, y=0},
     discovered = false,
-    config = {extra = {key = 'm_'..Ortalab.prefix..'_bentcard', amount = 3}},
+    config = {extra = {key = 'm_'..Ortalab.prefix..'_bent', amount = 3}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
@@ -165,7 +165,7 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=4, y=3},
     discovered = false,
-    config = {extra = {key = 'm_'..Ortalab.prefix..'_postcard', amount = 3}},
+    config = {extra = {key = 'm_'..Ortalab.prefix..'_post', amount = 3}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
@@ -969,7 +969,7 @@ function set_enhancement(card, key)
     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.15, func = function() card:highlight(true); card:flip(); play_sound('generic1', 0.7, 0.35); card:juice_up(0.3,0.3); return true; end}))
     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4,
         func = function()
-            
+            sendDebugMessage(key)
             card:set_ability(G.P_CENTERS[key])
             card:juice_up()
             return true
