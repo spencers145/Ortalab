@@ -22,9 +22,11 @@ local load_table = {
     zodiac = false,
     patches = true,
     decks = true,
-    coupons = true
+    coupons = true,
+    stakes = true
 }
 loc_colour('red')
+G.ARGS.LOC_COLOURS['Ortalab'] = HEX('990000')
 for k, v in pairs(load_table) do
     if v then SMODS.load_file('objects/'..k..'.lua')() end
 end

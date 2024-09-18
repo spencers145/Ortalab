@@ -80,7 +80,7 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=3, y=3},
     discovered = false,
-    config = {extra = {key = 'm_'..Ortalab.prefix..'_moldy', amount = 2}},
+    config = {extra = {key = 'm_'..Ortalab.prefix..'_recycled', amount = 2}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = ''} end
@@ -101,6 +101,9 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=1, y=3},
     discovered = false,
+    in_pool = function(self)
+        return false
+    end,
     config = {extra = {type = 'Zodiac', amount = 2}},
     loc_vars = function(self, info_queue, card)
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
@@ -183,6 +186,9 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=1, y=1},
     discovered = false,
+    in_pool = function(self)
+        return false
+    end,
     config = {extra = {key = 'm_'..Ortalab.prefix..'_index', amount = 2}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
@@ -1045,7 +1051,11 @@ function bottle_randomise(card)
     local modifier = 8
     local edition = poll_edition('bottle_edition', modifier, false, false)
     card:set_edition(edition, true, true)
-    card:set_ability(G.P_CENTERS[pseudorandom_element(get_current_pool('Enhanced'), pseudoseed('bottle_enhancement'))])
+    local enhance = pseudorandom_element(get_current_pool('Enhanced'), pseudoseed('bottle_enhancement'))
+    while enhance == 'UNAVAILABLE' do
+        enhance = pseudorandom_element(get_current_pool('Enhanced'), pseudoseed('bottle_enhancement'))
+    end
+    card:set_ability(G.P_CENTERS[enhance])
     local seal = SMODS.poll_seal({key = 'bottle_seal', mod = modifier})
     card:set_seal(seal, true, true)
 end

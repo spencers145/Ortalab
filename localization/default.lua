@@ -629,7 +629,7 @@ return {
 				["text"] = {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
-                    "{C:attention}Moldy Cards",
+                    "{C:attention}Recycled Cards",
 				},
 			},
 			["c_ortalab_lot_mandolin"] = {
