@@ -66,6 +66,7 @@ SMODS.Tag({
     config = {type = 'store_joker_modify', edition = 'e_ortalab_anaglyphic'},
     loc_vars = function(self, info_queue, card)
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
+        info_queue[#info_queue+1] = G.P_CENTERS[self.config.edition]
     end,
     apply = function(tag, context)
         if not context.card.edition and not context.card.temp_edition and context.card.ability.set == 'Joker' then
@@ -90,6 +91,7 @@ SMODS.Tag({
     config = {type = 'store_joker_modify', edition = 'e_ortalab_fluorescent'},
     loc_vars = function(self, info_queue, card)
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
+        info_queue[#info_queue+1] = G.P_CENTERS[self.config.edition]
     end,
     apply = function(tag, context)
         if not context.card.edition and not context.card.temp_edition and context.card.ability.set == 'Joker' then
@@ -115,6 +117,7 @@ SMODS.Tag({
     loc_vars = function(self, info_queue, card)
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'coro'} end
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
+        info_queue[#info_queue+1] = G.P_CENTERS[self.config.edition]
     end,
     apply = function(tag, context)
         if not context.card.edition and not context.card.temp_edition and context.card.ability.set == 'Joker' then
@@ -149,7 +152,7 @@ SMODS.Tag({
         return {vars = {G.GAME.last_selected_tag and localize({type = 'name_text', set = 'Tag', key = G.GAME.last_selected_tag.key}) or localize('ortalab_no_tag')}}
     end,
     apply = function(tag, context)
-        if G.GAME.last_selected_tag then
+        if G.GAME.last_selected_tag and G.GAME.last_selected_tag.key then
             tag:yep('+', G.C.GREEN,function() 
                 return true
             end)
@@ -162,6 +165,8 @@ SMODS.Tag({
             tag.triggered = true
             return true
         end
+        tag:nope()
+        return true
     end
 })
 
