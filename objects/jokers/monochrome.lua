@@ -37,7 +37,6 @@ function Card.is_suit(self, suit, bypass_debuff, flush_calc) --Monochrome Logic
         for _, card in pairs(monochrome) do
             if suit == card.ability.extra.suit then return true end
         end
-	else
-		return orig_CardIs_Suit_ref
 	end
+    return orig_CardIs_Suit_ref
 end
