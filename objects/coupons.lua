@@ -104,7 +104,6 @@ SMODS.Voucher({
 	discovered = false,
 	available = true,
 	redeem = function(self)
-        sendDebugMessage('redeemed home delivery')
     end,
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
@@ -121,7 +120,6 @@ SMODS.Voucher({
 	available = false,
     requires = {'v_ortalab_home_delivery'},
 	redeem = function(self)
-        sendDebugMessage('redeemed hoarding')
     end,
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
@@ -267,7 +265,6 @@ G.FUNCS.skip_blind = function(e)
                 G.GAME.round_resets.temp_reroll_cost = nil
                 G.GAME.round_resets.reroll_cost_increase = 0
                 calculate_reroll_cost(true)
-                sendDebugMessage(tprint(G.GAME.round_resets))
                 G.STATE = G.STATES.SHOP
                 G.STATE_COMPLETE = false    
             end
