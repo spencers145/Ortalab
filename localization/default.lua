@@ -1237,6 +1237,23 @@ return {
                     "be used immediately"
                 }
             },
+		},
+		['Stake'] = {
+			['stake_ortalab_1'] = {
+				name = "Ruby Stake",
+				text = {
+				"Play with only",
+				"{C:Ortalab}Ortalab{} content"
+				}
+			},
+			['stake_ortalab_2'] = {
+				["name"] = 'Emerald Stake',
+				["text"] = {
+					"Required score scales",
+                    "faster for each {C:attention}Ante",
+                    "{s:0.8}Applies Ruby Stake"
+				}
+			}
 		}
     }
 }

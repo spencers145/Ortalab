@@ -969,7 +969,6 @@ function set_enhancement(card, key)
     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.15, func = function() card:highlight(true); card:flip(); play_sound('generic1', 0.7, 0.35); card:juice_up(0.3,0.3); return true; end}))
     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4,
         func = function()
-            sendDebugMessage(key)
             card:set_ability(G.P_CENTERS[key])
             card:juice_up()
             return true

@@ -9,13 +9,6 @@ SMODS.Stake({
     key = "ortalab_1",
     applied_stakes = {},
     above_stake = 'gold',
-    loc_txt = {
-        name = "Ortalab Only",
-        text = {
-        "Play with only",
-        "{C:Ortalab}Ortalab{} content"
-        }
-    },
     atlas = 'stakes',
     pos = {x = 0, y = 0},
     shiny = true,
@@ -23,6 +16,20 @@ SMODS.Stake({
     sticker_atlas = 'sticker',
     modifiers = function()
         G.GAME.modifiers.ortalab_only = true
+    end,
+})
+
+SMODS.Stake({
+    key = "ortalab_2",
+    applied_stakes = {'ortalab_1'},
+    above_stake = 'ortalab_1',
+    atlas = 'stakes',
+    pos = {x = 1, y = 0},
+    shiny = true,
+    sticker_pos = {x = 1, y = 0},
+    sticker_atlas = 'sticker',
+    modifiers = function()
+        G.GAME.modifiers.scaling = (G.GAME.modifiers.scaling or 1) + 1
     end,
 })
 
