@@ -19,7 +19,11 @@ SMODS.Joker({
             local available_tags = get_current_pool('Tag')
             local selected_tags = {}
             for i = 1, card.ability.extra.amount do
-                selected_tags[i] = pseudorandom_element(available_tags, pseudoseed('mystery_soda'))
+                local tag = pseudorandom_element(available_tags, pseudoseed('mystery_soda'))
+                while tag == 'UNAVAILABLE' do
+                    tag = pseudorandom_element(available_tags, pseudoseed('mystery_soda_reroll'))
+                end
+                selected_tags[i] = tag
             end
             G.E_MANAGER:add_event(Event({
                 func = (function()
