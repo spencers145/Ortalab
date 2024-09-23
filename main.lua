@@ -32,6 +32,7 @@ for k, v in pairs(load_table) do
 end
 
 SMODS.load_file('util/artists.lua')()
+SMODS.load_file('util/functions.lua')()
 
 SMODS.Atlas({
     key = 'modicon',
