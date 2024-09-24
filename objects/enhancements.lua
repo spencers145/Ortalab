@@ -91,6 +91,7 @@ SMODS.Enhancement({
     config = {extra = {level_up = 1}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'luna'} end
+        info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'no_demo', title = 'Not In Demo'}
         return {
             vars = { card and card.ability.extra.level_up or self.config.extra.level_up }
         }
@@ -202,7 +203,7 @@ SMODS.Enhancement({
     discovered = false,
     config = {extra = {discard_chance = 5, hand_chance = 15, discards = 1, hands = 1}},
     loc_vars = function(self, info_queue, card)
-        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
+        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
         local card_ability = card and card.ability or self.config
         return {
             vars = { G.GAME.probabilities.normal, card_ability.extra.discard_chance, card_ability.extra.discards, card_ability.extra.hand_chance, card_ability.extra.hands }

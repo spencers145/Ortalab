@@ -23,6 +23,11 @@ return {
     },
     ["descriptions"] = {
 		["Ortalab Artist"] = {
+			['no_demo'] = {
+				['text'] = {
+					'Coming soon...',
+				}
+			},
 			['5381'] = {
 				["text"] = {
 					"5381",
@@ -704,7 +709,6 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Index Cards",
-					"{C:inactive}Not in pool"
 				},
 			},
             ["c_ortalab_lot_heron"] = {
@@ -776,7 +780,6 @@ return {
 					"Create up to {C:attention}#1#",
                     "random {C:Zodiac}Zodiac{} cards",
                     "{S:0.8,C:inactive}(Must have room)",
-					"{C:inactive}Not in pool"
 				},
 			},
 			["c_ortalab_lot_bonnet"] = {
@@ -1252,6 +1255,15 @@ return {
 					"Required score scales",
                     "faster for each {C:attention}Ante",
                     "{s:0.8}Applies Ruby Stake"
+				}
+			}
+		},
+		['Blind'] = {
+			['bl_ortalab_sinker'] = {
+				name = 'The Sinker',
+				text = {
+					'{C:attention}-#1#{} hand size for',
+					'every {C:blue}hand{} you play'
 				}
 			}
 		}
