@@ -159,7 +159,15 @@ SMODS.Tag({
             G.E_MANAGER:add_event(Event({
                 trigger = 'immediate',
                 func = function()
-                    add_tag(Tag(G.GAME.last_selected_tag.key))
+                    local tag = Tag(G.GAME.last_selected_tag.key)
+                    if G.GAME.last_selected_tag.key == 'tag_orbital' then
+                        local _poker_hands = {}
+                        for k, v in pairs(G.GAME.hands) do
+                            if v.visible then _poker_hands[#_poker_hands+1] = k end
+                        end
+                        tag.ability.orbital_hand = pseudorandom_element(_poker_hands, pseudoseed('rewind_orbital'))
+                    end
+                    add_tag(tag)
                     return true
             end}))
             tag.triggered = true
