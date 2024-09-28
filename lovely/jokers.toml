@@ -11,6 +11,7 @@ pattern = '''return generate_card_ui(self.config.center, nil, loc_vars, card_typ
 position = 'before'
 match_indent = true
 payload = '''if value == 'ortalab_chameleon' then return loc_vars end'''
+
 [[patches]]
 [patches.pattern]
 target = 'card.lua'
@@ -93,3 +94,12 @@ if effects[ii].chips then
 end
 '''
 match_indent = true
+
+## Chameleon tooltip
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = '''badges[#badges + 1] = create_badge(((card.ability.name == 'Pluto' or card.ability.name == 'Ceres' or card.ability.name == 'Eris') and localize('k_dwarf_planet')) or (card.ability.name == 'Planet X' and localize('k_planet_q') or card_type),card_type_colour, nil, 1.2)'''
+position = 'after'
+match_indent = true
+payload = '''if card.config.center.ortalab_demo_card then badges = {}; end'''

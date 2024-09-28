@@ -21,6 +21,12 @@ function ortalab_artist_tooltip(_c, info_queue, card, desc_nodes, specific_vars,
     desc_nodes.title = _c.title or localize('ortalab_artist')
 end
 
+function tag_tooltip(_c, info_queue, card, desc_nodes, specific_vars, full_UI_table)
+    desc_nodes.tag = true
+    desc_nodes.title = localize({type = 'name_text', set = 'Tag', key = _c.key})
+    localize{type = 'descriptions', set = 'Tag', key = _c.key, nodes = desc_nodes, vars = specific_vars or G.P_TAGS[_c.key]:loc_vars().vars}
+end
+
 local itfr = info_tip_from_rows
 function info_tip_from_rows(desc_nodes, name)
     if desc_nodes.ortalab_artist then
@@ -29,8 +35,17 @@ function info_tip_from_rows(desc_nodes, name)
         t[#t+1] = {n=G.UIT.R, config={align = "cm"}, nodes=v}
         end
         return {n=G.UIT.R, config={align = "cm", colour = darken(desc_nodes.colour, 0.15), r = 0.1}, nodes={
-        {n=G.UIT.R, config={align = "tm", minh = 0.36, padding = 0.03}, nodes={{n=G.UIT.T, config={text = desc_nodes.title, scale = 0.32, colour = G.C.UI.TEXT_LIGHT}}}},
-        {n=G.UIT.R, config={align = "cm", minw = 1.5, minh = 0.4, r = 0.1, padding = 0.05, colour = lighten(desc_nodes.colour, 0.5)}, nodes={{n=G.UIT.R, config={align = "cm", padding = 0.03}, nodes=t}}}
+            {n=G.UIT.R, config={align = "tm", minh = 0.36, padding = 0.03}, nodes={{n=G.UIT.T, config={text = desc_nodes.title, scale = 0.32, colour = G.C.UI.TEXT_LIGHT}}}},
+            {n=G.UIT.R, config={align = "cm", minw = 1.5, minh = 0.4, r = 0.1, padding = 0.05, colour = lighten(desc_nodes.colour, 0.5)}, nodes={{n=G.UIT.R, config={align = "cm", padding = 0.03}, nodes=t}}}
+        }}
+    elseif desc_nodes.tag then
+        local t = {}
+        for k, v in ipairs(desc_nodes) do
+        t[#t+1] = {n=G.UIT.R, config={align = "cm"}, nodes=v}
+        end
+        return {n=G.UIT.R, config={align = "cm", colour = lighten(G.C.GREY, 0.15), r = 0.1}, nodes={
+            {n=G.UIT.R, config={align = "tm", minh = 0.36, padding = 0.03}, nodes={{n=G.UIT.T, config={text = desc_nodes.title, scale = 0.32, colour = G.C.UI.TEXT_LIGHT}}}},
+            {n=G.UIT.R, config={align = "cm", minw = 1.5, minh = 0.4, r = 0.1, padding = 0.05, colour = G.C.WHITE}, nodes={{n=G.UIT.R, config={align = "cm", padding = 0.03}, nodes=t}}}
         }}
     else
         return itfr(desc_nodes, name)
