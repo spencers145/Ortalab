@@ -18,11 +18,9 @@ SMODS.UndiscoveredSprite({
     no_overlay = true
 })
 
-G.ARGS.LOC_COLOURS['Loteria'] = HEX("A85D7C")
-
 SMODS.ConsumableType({
     key = "Loteria",
-    primary_colour = HEX("A85D7C"),
+    primary_colour = HEX("CC56CC"),
     secondary_colour = HEX("A85D7C"),
     loc_txt = {
         name = "Loteria Card",

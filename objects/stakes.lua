@@ -5,6 +5,13 @@ SMODS.Atlas({
     py = '29'
 })
 
+SMODS.Atlas({
+    key = 'stickers',
+    path = 'stake_stickers.png',
+    px = 71,
+    py = 95
+})
+
 SMODS.Stake({
     key = "ortalab_1",
     applied_stakes = {},
@@ -12,8 +19,8 @@ SMODS.Stake({
     atlas = 'stakes',
     pos = {x = 0, y = 0},
     shiny = true,
-    sticker_pos = {x = 1, y = 0},
-    sticker_atlas = 'sticker',
+    sticker_pos = {x = 0, y = 0},
+    sticker_atlas = 'stickers',
     modifiers = function()
         G.GAME.modifiers.ortalab_only = true
     end,
@@ -27,7 +34,7 @@ SMODS.Stake({
     pos = {x = 1, y = 0},
     shiny = true,
     sticker_pos = {x = 1, y = 0},
-    sticker_atlas = 'sticker',
+    sticker_atlas = 'stickers',
     modifiers = function()
         G.GAME.modifiers.scaling = (G.GAME.modifiers.scaling or 1) + 1
     end,

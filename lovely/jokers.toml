@@ -95,7 +95,7 @@ end
 '''
 match_indent = true
 
-## Chameleon tooltip
+## Demo Card Badges
 [[patches]]
 [patches.pattern]
 target = 'functions/UI_definitions.lua'

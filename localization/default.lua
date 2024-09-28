@@ -19,6 +19,8 @@ return {
 			['ortalab_flashback'] = 'Flashback!',
 			['ortalab_joker_miles'] = 'Upgrade!',
 			['ortalab_joker_miles_reset'] = 'Reset!',
+			['ortalab_sinker_message'] = '-1 Hand Size!',
+			['ortalab_hammer'] = 'Stripped!'
         }
     },
     ["descriptions"] = {
@@ -681,7 +683,7 @@ return {
 				["name"] = "The Rooster",
 				["text"] = {
 					"Creates a copy of a",
-                    "{C:Loteria}Loteria{} or {C:Zodiac}Zodiac{} card",
+                    "{C:loteria}Loteria{} or {C:Zodiac}Zodiac{} card",
                     "used during this run",
                     "{s:0.8,C:inactive}The Rooster excluded"
 				},
@@ -770,7 +772,7 @@ return {
 				["name"] = "The Barrel",
 				["text"] = {
 					"Create up to {C:attention}#1#",
-                    "random {C:Loteria}Loteria{} cards",
+                    "random {C:loteria}Loteria{} cards",
                     "{S:0.8,C:inactive}(Must have room)"
 				},
 			},
@@ -1056,7 +1058,7 @@ return {
 				["text"] = {
 					"{C:blue}+#1#{} hand size",
 					"Start with a copy of",
-					"{T:c_ortalab_lot_barrel,C:Loteria}The Barrel",
+					"{T:c_ortalab_lot_barrel,C:loteria}The Barrel",
 				}
 			},
 			['b_ortalab_royal'] = {
@@ -1180,7 +1182,7 @@ return {
                 name = "Chalupa Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "{C:attention}#2#{C:loteria} Loteria{} cards to",
                     "be used immediately"
                 }
             },
@@ -1188,7 +1190,7 @@ return {
                 name = "Chalupa Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "{C:attention}#2#{C:loteria} Loteria{} cards to",
                     "be used immediately"
                 }
             },
@@ -1196,7 +1198,7 @@ return {
                 name = "Chalupa Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "{C:attention}#2#{C:loteria} Loteria{} cards to",
                     "be used immediately"
                 }
             },
@@ -1204,7 +1206,7 @@ return {
                 name = "Chalupa Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "{C:attention}#2#{C:loteria} Loteria{} cards to",
                     "be used immediately"
                 }
             },
@@ -1212,7 +1214,7 @@ return {
                 name = "Wumbo Chalupa Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "{C:attention}#2#{C:loteria} Loteria{} cards to",
                     "be used immediately"
                 }
             },
@@ -1220,7 +1222,7 @@ return {
                 name = "Wumbo Chalupa Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "{C:attention}#2#{C:loteria} Loteria{} cards to",
                     "be used immediately"
                 }
             },
@@ -1228,7 +1230,7 @@ return {
                 name = "Giga Chalupa Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "{C:attention}#2#{C:loteria} Loteria{} cards to",
                     "be used immediately"
                 }
             },
@@ -1236,21 +1238,37 @@ return {
                 name = "Giga Chalupa Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:Loteria} Loteria{} cards to",
+                    "{C:attention}#2#{C:loteria} Loteria{} cards to",
                     "be used immediately"
+                }
+            },
+			['ortalab_1_sticker'] = {
+                name = "Ortalab Sticker",
+                text = {
+					"Used this Joker",
+                    "to win on {C:Ortalab}Ortalab",
+                    "{C:Ortalab}Stake{} difficulty"
+                }
+            },
+			['ortalab_2_sticker'] = {
+                name = "Ortalab II Sticker",
+                text = {
+					"Used this Joker",
+                    "to win on {C:Ortalab}Ortalab",
+                    "{C:Ortalab}Stake II{} difficulty"
                 }
             },
 		},
 		['Stake'] = {
 			['stake_ortalab_1'] = {
-				name = "Ruby Stake",
+				name = "Ortalab Stake",
 				text = {
 				"Play with only",
 				"{C:Ortalab}Ortalab{} content"
 				}
 			},
 			['stake_ortalab_2'] = {
-				["name"] = 'Emerald Stake',
+				["name"] = 'Ortalab Stake II',
 				["text"] = {
 					"Required score scales",
                     "faster for each {C:attention}Ante",
@@ -1264,6 +1282,32 @@ return {
 				text = {
 					'{C:attention}-#1#{} hand size for',
 					'every {C:blue}hand{} you play'
+				}
+			},
+			['bl_ortalab_hammer'] = {
+				name = 'The Hammer',
+				text = {
+					'Remove card enhancements',
+					'after they are scored'
+				}
+			},
+			['bl_ortalab_caramel_coin'] = {
+				name = 'Caramel Coin',
+				text = {
+					'{C:attention}-#1#{} hand size'
+				}
+			},
+			['bl_ortalab_saffron_shield'] = {
+				name = 'Saffron Shield',
+				text = {
+					'#1# in #2# cards are', 
+					'drawn face down'
+				}
+			},
+			['bl_ortalab_silver_sword'] = {
+				name = 'Silver Sword',
+				text = {
+					'Play only {C:attention}#1#{} hand'
 				}
 			}
 		}
