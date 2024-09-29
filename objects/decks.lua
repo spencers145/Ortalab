@@ -114,7 +114,7 @@ SMODS.Back({
             end
         }))
     end,
-    trigger_effect = function(self, args)
+    after_round = function(self, args)
         if args.context == 'eval' then
             local faces = {}
             for k, rank in pairs(SMODS.Ranks) do
@@ -222,3 +222,15 @@ SMODS.Back({
         return {vars = {self.config.round}}
     end,
 })
+
+local blind_defeat = Blind.defeat
+Blind.defeat = function(silent)
+    blind_defeat(silent)
+    local obj = G.GAME.selected_back.effect.center
+    if obj.after_round then
+        local args = {
+            context = 'eval'
+        }
+        obj:after_round(args)
+    end
+end

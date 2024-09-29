@@ -1304,6 +1304,13 @@ return {
 					'drawn face down'
 				}
 			},
+			['bl_ortalab_rouge_rose'] = {
+				name = 'Rouge Rose',
+				text = {
+					'Play with an', 
+					'unmodified deck'
+				}
+			},
 			['bl_ortalab_silver_sword'] = {
 				name = 'Silver Sword',
 				text = {
