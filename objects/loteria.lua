@@ -185,14 +185,10 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=1, y=1},
     discovered = false,
-    in_pool = function(self)
-        return false
-    end,
     config = {extra = {key = 'm_'..Ortalab.prefix..'_index', amount = 2}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
-        info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'no_demo', title = 'Not In Demo'}
         return {vars = {card and card.ability.extra.amount or self.config.extra.amount}}
     end,
     can_use = function(self, card)

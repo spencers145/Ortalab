@@ -2,7 +2,7 @@ return {
 	["misc"] = {
 		["dictionary"] = {
 			["ortalab_artist"] = 'Artist',
-			["oratlab_swap"] = 'Swap!',
+			["ortalab_swap"] = 'Swap!',
 			['ortalab_leak'] = 'Leaked!',
 			['ortalab_empty'] = 'Empty!',
 			['ortalab_copied'] = 'Copied!',
@@ -918,7 +918,8 @@ return {
 			["m_ortalab_index"] = {
 				["name"] = "Index Card",
 				["text"] = {
-					"{C:inactive}Effect not decided"
+					"Can act as {C:attention}rank",
+					"above or below"
 				}
 			},
 			["m_ortalab_ore"] = {

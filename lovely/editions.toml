@@ -35,6 +35,6 @@ if card.edition.swap then
     mult = mod_mult(hand_chips)
     hand_chips = mod_chips(old_mult)
     update_hand_text({delay = 0}, {chips = hand_chips, mult = mult})
-    card_eval_status_text(card, 'extra', nil, percent, nil, {message = localize('swap'), colour = G.C.PURPLE})
+    card_eval_status_text(card, 'extra', nil, percent, nil, {message = localize('ortalab_swap'), colour = G.C.PURPLE})
 end
 '''
