@@ -103,3 +103,48 @@ pattern = '''badges[#badges + 1] = create_badge(((card.ability.name == 'Pluto' o
 position = 'after'
 match_indent = true
 payload = '''if card.config.center.ortalab_demo_card then badges = {}; end'''
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''reset_idol_card()'''
+position = "before"
+payload = '''
+for i = 1, #G.jokers.cards do
+    if G.jokers.cards[i].ability.shinku then
+        G.E_MANAGER:add_event(Event({
+            func = function() 
+                G.jokers.cards[i]:start_dissolve()
+                return true
+        end}))   
+    end
+end
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''if first_pass and not (_c.set == 'Edition') and badges then'''
+position = "before"
+payload = '''
+if specific_vars and specific_vars.shinku then
+    info_queue[#info_queue + 1] = {generate_ui = ortalab_artist_tooltip, key = 'shinku', title = 'Shinku'}
+end
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''return generate_card_ui(self.config.center, nil, loc_vars, card_type, badges, hide_desc, main_start, main_end)'''
+position = "before"
+payload = '''
+if self.ability.shinku then 
+    if loc_vars then
+        loc_vars.shinku = true
+    else
+        loc_vars = {shinku = true}
+    end
+end'''
+match_indent = true

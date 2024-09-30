@@ -30,6 +30,13 @@ return {
 					'Coming soon...',
 				}
 			},
+			['shinku'] = {
+				['text'] = {
+					'This card is',
+					'a gift from',
+					'{C:Ortalab,E:1}Shinku'
+				}
+			},
 			['5381'] = {
 				["text"] = {
 					"5381",
@@ -553,6 +560,15 @@ return {
 					"{X:mult,C:white}X#1#{} Mult if played",
 					"hand contains a",
 					"{C:attention}#2#",
+				}
+			},
+			['j_ortalab_shinku'] = {
+				["name"] = "Shinku",
+				["text"] = {
+					"Create #1# random {C:Ortalab}Ortalab",
+					"{C:attention}Jokers{} that last for", 
+					"{C:attention}one round{} when {C:attention}Blind",
+					"is selected"
 				}
 			},
 			['j_ortalab_solo'] = {
