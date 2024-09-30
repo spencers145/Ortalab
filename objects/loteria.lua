@@ -356,7 +356,7 @@ SMODS.Consumable({
                     assert(SMODS.change_base(card, nil, rank_suffix))
                 return true end }))
             end
-            -- card_eval_status_text(card, 'extra', nil, nil, nil, {message = tostring(sign*change), colour = G.ARGS.LOC_COLOURS.Loteria, delay = 0.4})
+            -- card_eval_status_text(card, 'extra', nil, nil, nil, {message = tostring(sign*change), colour = G.ARGS.LOC_COLOURS.loteria, delay = 0.4})
         end
         for i=1, #G.hand.highlighted do
             local percent = 0.85 + (i-0.999)/(#G.hand.highlighted-0.998)*0.3
@@ -478,7 +478,7 @@ SMODS.Consumable({
                         speed = 3,
                         padding = -1,
                         attach = card,
-                        colours = {G.ARGS.LOC_COLOURS.Loteria, lighten(G.ARGS.LOC_COLOURS.Loteria, 0.4), lighten(G.ARGS.LOC_COLOURS.Loteria, 0.2), darken(G.ARGS.LOC_COLOURS.Loteria, 0.2)},
+                        colours = {G.ARGS.LOC_COLOURS.loteria, lighten(G.ARGS.LOC_COLOURS.loteria, 0.4), lighten(G.ARGS.LOC_COLOURS.loteria, 0.2), darken(G.ARGS.LOC_COLOURS.loteria, 0.2)},
                         fill = true
                     })
                     card.particles.fade_alpha = 1
@@ -795,7 +795,7 @@ local small_boosters = {keys = {'small_loteria_1', 'small_loteria_2', 'small_lot
             speed = 1.1,
             padding = -1,
             attach = G.ROOM_ATTACH,
-            colours = {G.ARGS.LOC_COLOURS.Loteria, lighten(G.ARGS.LOC_COLOURS.Loteria, 0.4), lighten(G.ARGS.LOC_COLOURS.Loteria, 0.2), darken(G.ARGS.LOC_COLOURS.Loteria, 0.2)},
+            colours = {G.ARGS.LOC_COLOURS.loteria, lighten(G.ARGS.LOC_COLOURS.loteria, 0.4), lighten(G.ARGS.LOC_COLOURS.loteria, 0.2), darken(G.ARGS.LOC_COLOURS.loteria, 0.2)},
             fill = true
         })
         G.booster_pack_sparkles.fade_alpha = 1
@@ -840,7 +840,7 @@ local mid_boosters = {keys = {'mid_loteria_1', 'mid_loteria_2'}, info = {
             speed = 1.1,
             padding = -1,
             attach = G.ROOM_ATTACH,
-            colours = {G.ARGS.LOC_COLOURS.Loteria, lighten(G.ARGS.LOC_COLOURS.Loteria, 0.4), lighten(G.ARGS.LOC_COLOURS.Loteria, 0.2), darken(G.ARGS.LOC_COLOURS.Loteria, 0.2)},
+            colours = {G.ARGS.LOC_COLOURS.loteria, lighten(G.ARGS.LOC_COLOURS.loteria, 0.4), lighten(G.ARGS.LOC_COLOURS.loteria, 0.2), darken(G.ARGS.LOC_COLOURS.loteria, 0.2)},
             fill = true
         })
         G.booster_pack_sparkles.fade_alpha = 1
@@ -885,7 +885,7 @@ local large_boosters = {keys = {'big_loteria_1', 'big_loteria_2'}, info = {
             speed = 1.1,
             padding = -1,
             attach = G.ROOM_ATTACH,
-            colours = {G.ARGS.LOC_COLOURS.Loteria, lighten(G.ARGS.LOC_COLOURS.Loteria, 0.4), lighten(G.ARGS.LOC_COLOURS.Loteria, 0.2), darken(G.ARGS.LOC_COLOURS.Loteria, 0.2)},
+            colours = {G.ARGS.LOC_COLOURS.loteria, lighten(G.ARGS.LOC_COLOURS.loteria, 0.4), lighten(G.ARGS.LOC_COLOURS.loteria, 0.2), darken(G.ARGS.LOC_COLOURS.loteria, 0.2)},
             fill = true
         })
         G.booster_pack_sparkles.fade_alpha = 1
