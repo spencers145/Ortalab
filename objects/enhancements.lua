@@ -93,7 +93,7 @@ SMODS.Enhancement({
         if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'luna'} end
     end,
     set_ability = function(self, card, initial, delay_sprites)
-        card.ability.extra.base_id = card.base.id
+        if card.base then card.ability.extra.base_id = card.base.id end
     end,
     set_sprites = function(self, card, front)
         if card.ability and card.ability.extra then 

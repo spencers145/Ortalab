@@ -118,7 +118,7 @@ local joker_list = {
     'amber_mosquito',
     'dripstone',
     'basalt_column',
-    -- 'sandstone',
+    'sandstone',
     'crime_scene',
     -- 'soil',
     -- 'pinkprint',

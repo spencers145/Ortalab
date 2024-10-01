@@ -496,6 +496,16 @@ return {
 					"at end of round",
 				}
 			},
+			['j_ortalab_sandstone'] = {
+				["name"] = "Sandstone Joker",
+				["text"] = {
+					"Played {C:attention}Sand{} cards",
+					"do not lose Mult",
+					"Gain {X:mult,C:white}#2#X{} Mult when",
+					"a {C:attention}Sand{} card is played",
+					"{C:inactive,s:0.7}Currently {C:white,X:mult,s:0.7}#1#X{}"
+				}
+			},
 			['j_ortalab_scared_face'] = {
 				["name"] = "Scared Face",
 				["text"] = {

@@ -92,7 +92,7 @@ pattern = '''if destroyed then'''
 position = 'before'
 match_indent = true
 payload = '''
-if scoring_hand[i].config.center == G.P_CENTERS['m_'..Ortalab.prefix..'_sand'] and not scoring_hand[i].debuff then
+if scoring_hand[i].config.center == G.P_CENTERS['m_'..Ortalab.prefix..'_sand'] and not scoring_hand[i].debuff and not next(SMODS.find_card('j_ortalab_sandstone')) then
     local card = scoring_hand[i]
     card.ability.extra.x_mult = card.ability.extra.x_mult - card.ability.extra.change
     G.E_MANAGER:add_event(Event({
