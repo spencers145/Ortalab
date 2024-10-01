@@ -14,12 +14,12 @@ SMODS.Joker({
 	loc_vars = function(self, info_queue, card)
         if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
         info_queue[#info_queue + 1] = G.P_CENTERS['m_ortalab_rusty']
-        local count = calculate_rusty_amount()
+        local count = G.playing_cards and calculate_rusty_amount() or 0
         return {vars = {card.ability.extra.xmult + (card.ability.extra.gain * count), card.ability.extra.gain}}
     end,
     calculate = function(self, card, context)
         if context.joker_main then
-            local count = calculate_rusty_amount()
+            local count = G.playing_cards and calculate_rusty_amount() or 0
             return {
                 message = localize{type='variable',key='a_xmult',vars={card.ability.extra.xmult + (card.ability.extra.gain * count)}},
                 Xmult_mod = card.ability.extra.xmult + (card.ability.extra.gain * count)
