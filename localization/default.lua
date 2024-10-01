@@ -21,7 +21,13 @@ return {
 			['ortalab_joker_miles_reset'] = 'Reset!',
 			['ortalab_sinker_message'] = '-1 Hand Size!',
 			['ortalab_hammer'] = 'Stripped!'
-        }
+        },
+		['labels'] = {
+			ortalab_greyscale = 'Greyscale',
+			ortalab_fluorescent = 'Fluroescent',
+			ortalab_overexposed = 'Overexposed',
+			ortalab_anaglyphic = 'Anaglyphic'
+		}
     },
     ["descriptions"] = {
 		["Ortalab Artist"] = {
@@ -969,6 +975,35 @@ return {
 				["text"] = {
 					"{C:attention}Temporarily{} increase",
 					"hand level by {C:attention}#1#"
+				}
+			},
+		},
+		["Edition"] = {
+			['e_ortalab_overexposed'] = {
+				name = "Overexposed",
+				text = {
+					"{C:green}Retrigger{} this card"
+				}
+			},
+			['e_ortalab_greyscale'] = {
+				name = "Greyscale",
+				text = {
+					"Swap {C:chips}Chips",
+					"and {C:mult}Mult"
+				}
+			},
+			['e_ortalab_fluorescent'] = {
+				name = "Fluorescent",
+				text = {
+					"Earn {C:money}$#1#{} when this",
+					"card is scored"
+				}
+			},
+			['e_ortalab_anaglyphic'] = {
+				name = "Anaglyphic",
+				text = {
+					"{C:chips}+#1#{} Chips",
+					"{C:red}+#2#{} Mult"
 				}
 			},
 		},

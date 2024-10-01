@@ -34,30 +34,6 @@ SMODS.Tag({
     end
 })
 
--- SMODS.Tag({
---     key = 'overexposed',
---     atlas = 'patches',
---     pos = {x = 3, y = 2},
---     discovered = false,
---     config = {type = 'store_joker_modify', edition = 'e_ortalab_overexposed'},
---     loc_vars = function(self, info_queue, card)
---         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
---     end,
---     apply = function(tag, context)
---         if not context.card.edition and not context.card.temp_edition and context.card.ability.set == 'Joker' then
---             context.card.temp_edition = true
---             tag:yep('+', G.C.DARK_EDITION,function() 
---                 context.card:set_edition(tag.config.edition, true)
---                 context.card.ability.couponed = true
---                 context.card:set_cost()
---                 context.card.temp_edition = nil
---                 return true
---             end)
---             tag.triggered = true
---         end
---     end
--- })
-
 SMODS.Tag({
     key = 'anaglyphic',
     atlas = 'patches',
@@ -118,6 +94,30 @@ SMODS.Tag({
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'coro'} end
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.edition]
+    end,
+    apply = function(tag, context)
+        if not context.card.edition and not context.card.temp_edition and context.card.ability.set == 'Joker' then
+            context.card.temp_edition = true
+            tag:yep('+', G.C.DARK_EDITION,function() 
+                context.card:set_edition(tag.config.edition, true)
+                context.card.ability.couponed = true
+                context.card:set_cost()
+                context.card.temp_edition = nil
+                return true
+            end)
+            tag.triggered = true
+        end
+    end
+})
+
+SMODS.Tag({
+    key = 'overexposed',
+    atlas = 'patches',
+    pos = {x = 3, y = 2},
+    discovered = false,
+    config = {type = 'store_joker_modify', edition = 'e_ortalab_overexposed'},
+    loc_vars = function(self, info_queue, card)
+        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
     end,
     apply = function(tag, context)
         if not context.card.edition and not context.card.temp_edition and context.card.ability.set == 'Joker' then
