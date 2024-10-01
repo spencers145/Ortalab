@@ -8,7 +8,7 @@ SMODS.Joker({
 	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
-	perishable_compat = false,
+	perishable_compat = true,
     enhancement_gate = 'm_ortalab_sand',
 	config = {extra = {xmult = 1, gain = 0.1}},
 	loc_vars = function(self, info_queue, card)

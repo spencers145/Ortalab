@@ -496,14 +496,23 @@ return {
 					"at end of round",
 				}
 			},
+			['j_ortalab_rusty'] = {
+				["name"] = "Rusty Joker",
+				["text"] = {
+					"Gain {X:mult,C:white}#2#X{} Mult for",
+					"each {C:attention}Rusty Card{}",
+					"in your {C:attention}full deck",
+					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
+				}
+			},
 			['j_ortalab_sandstone'] = {
 				["name"] = "Sandstone Joker",
 				["text"] = {
-					"Played {C:attention}Sand{} cards",
+					"Played {C:attention}Sand Cards{}",
 					"do not lose Mult",
 					"Gain {X:mult,C:white}#2#X{} Mult when",
-					"a {C:attention}Sand{} card is played",
-					"{C:inactive,s:0.7}Currently {C:white,X:mult,s:0.7}#1#X{}"
+					"a {C:attention}Sand Card{} is played",
+					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
 				}
 			},
 			['j_ortalab_scared_face'] = {
@@ -915,7 +924,7 @@ return {
 				["text"] = {
 					"{X:mult,C:white}X#1#{} Mult",
 					"Gain {X:mult,C:white}X#2#{} Mult per",
-					"{C:attention}Rusty{} card held in hand"
+					"{C:attention}Rusty Card{} held in hand"
 				},
 			},
 			["m_ortalab_recycled"] = {

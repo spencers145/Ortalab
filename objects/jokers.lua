@@ -30,7 +30,7 @@ local joker_list = {
     -- 'open_palm',
     'business',
     'collatz',
-    -- 'rusty',
+    'rusty',
     'scared_face',
     'art_gallery',
     'gratification',
