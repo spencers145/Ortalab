@@ -36,19 +36,6 @@ for _, card in ipairs(results) do
 end
 '''
 
-# Monochrome shader
-[[patches]]
-[patches.pattern]
-target = "card.lua"
-pattern = '''if self.ability.name == 'Invisible Joker' and (self.config.center.discovered or self.bypass_discovery_center) then'''
-position = "before"
-payload = '''
-if self.config.center_key == 'j_ortalab_monochrome' then
-    G.SHADERS['ortalab_monochrome']:send("suit_colour",G.C.SUITS[self.ability.extra.suit])
-    self.children.center:draw_shader('ortalab_monochrome', nil, self.ARGS.send_to_shader)
-end'''
-match_indent = true
-overwrite = false
 
 # Mysterium hand list population
 #Inject for start up
