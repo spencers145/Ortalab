@@ -89,7 +89,7 @@ SMODS.Tag({
     atlas = 'patches',
     pos = {x = 1, y = 3},
     discovered = false,
-    config = {typ = 'store_joker_modify', edition = 'e_ortalab_greyscale'},
+    config = {type = 'store_joker_modify', edition = 'e_ortalab_greyscale'},
     loc_vars = function(self, info_queue, card)
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'coro'} end
         if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
