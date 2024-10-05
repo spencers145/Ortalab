@@ -73,15 +73,15 @@ SMODS.Consumable({
 })
 
 SMODS.Consumable({
-    key = 'lot_brave',
+    key = 'lot_melon',
     set = 'Loteria',
     atlas = 'loteria_cards',
-    pos = {x=3, y=3},
+    pos = {x=3, y=4},
     discovered = false,
     config = {extra = {key = 'm_'..Ortalab.prefix..'_recycled', amount = 2}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = ''} end
+        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
         return {vars = {card and card.ability.extra.amount or self.config.extra.amount}}
     end,
     can_use = function(self, card)
@@ -246,11 +246,11 @@ SMODS.Consumable({
     key = 'lot_bonnet',
     set = 'Loteria',
     atlas = 'loteria_cards',
-    pos = {x=3, y=3},
+    pos = {x=2, y=4},
     discovered = false,
     config = {extra = {min = -3, max = 25}},
     loc_vars = function(self, info_queue, card)
-        -- if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
+        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
         return {vars = {card and math.abs(card.ability.extra.min) or math.abs(self.config.extra.min), card and card.ability.extra.max or self.config.extra.max}}
     end,
     can_use = function (self, card)
@@ -578,15 +578,15 @@ SMODS.Consumable({
 })
 
 SMODS.Consumable({
-    key = 'lot_lady',
+    key = 'lot_rose',
     set = 'Loteria',
     atlas = 'loteria_cards',
-    pos = {x=3, y=3},
+    pos = {x=1, y=4},
     discovered = false,
     config = {extra = {key = 'm_'..Ortalab.prefix..'_iou', amount = 2}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = ''} end
+        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
         return {vars = {card and card.ability.extra.amount or self.config.extra.amount}}
     end,
     can_use = function(self, card)

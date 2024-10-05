@@ -15,6 +15,17 @@ payload = '''if value == 'ortalab_chameleon' then return loc_vars end'''
 [[patches]]
 [patches.pattern]
 target = 'card.lua'
+pattern = '''if self.ability.name == 'Invisible Joker' and (self.config.center.discovered or self.bypass_discovery_center) then'''
+position = 'before'
+match_indent = true
+payload = '''if self.config.center_key == 'j_ortalab_chameleon' then
+    self.children.center:draw_shader('voucher')
+    if self.children.front then self.children.front:draw_shader('played') end
+end'''
+
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
 pattern = '''function Card:generate_UIBox_ability_table()'''
 position = 'at'
 match_indent = true

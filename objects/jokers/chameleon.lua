@@ -35,7 +35,7 @@ SMODS.Joker({
                 local chosen_joker = pseudorandom_element(potential_jokers, pseudoseed('chameleon'))
                 card.ability.extra.copied_joker = chosen_joker
                 card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_copied')})
-                print(card.ability.extra.copied_joker.config.center.key.." is being copied by Chameleon Joker")
+                update_chameleon_atlas(card, card.ability.extra.copied_joker.children.center.atlas, card.ability.extra.copied_joker.config.center.pos)
             end	
         end
         if card.ability.extra.copied_joker then
@@ -49,5 +49,30 @@ SMODS.Joker({
                 return other_joker_ret
             end
         end
-    end
+    end,
+    set_ability = function(self, card, initial, delay_sprites)
+        if card.ability.extra.copied_joker then
+            local chosen_joker = card.ability.extra.copier_joker
+            update_chameleon_atlas(card, card.ability.extra.copied_joker.children.center.atlas, card.ability.extra.copied_joker.config.center.pos)
+        end
+        card.ignore_base_shader = {chameleon = true}
+        card.ignore_shadow = {chameleon = true}
+    end,
+    
 })
+
+function update_chameleon_atlas(self, new_atlas, new_pos)
+    self:juice_up()
+    if not self.children.front then
+        self.children.front = Sprite(self.T.x, self.T.y, self.T.w, self.T.h, G.ASSET_ATLAS[new_atlas.name], new_pos)
+        self.children.front.states.hover = self.states.hover
+        self.children.front.states.click = self.states.click
+        self.children.front.states.drag = self.states.drag
+        self.children.front.states.collide.can = false
+        self.children.front:set_role({major = self, role_type = 'Glued', draw_major = self})
+    end
+    self.children.front.sprite_pos = new_pos
+    self.children.front.atlas.name = new_atlas.name
+    self.children.front:reset()
+    self:juice_up()    
+end

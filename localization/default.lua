@@ -672,8 +672,8 @@ return {
                     "{C:attention}Bent Cards",
 				},
 			},
-			["c_ortalab_lot_brave"] = {
-				["name"] = "The Brave Man",
+			["c_ortalab_lot_melon"] = {
+				["name"] = "The Melon",
 				["text"] = {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
@@ -688,8 +688,8 @@ return {
                     "{C:attention}Post Cards",
 				},
 			},
-			["c_ortalab_lot_lady"] = {
-				["name"] = "The Lady",
+			["c_ortalab_lot_rose"] = {
+				["name"] = "The Rose",
 				["text"] = {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
