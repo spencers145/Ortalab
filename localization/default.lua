@@ -174,6 +174,14 @@ return {
 					"{C:inactive}(Currently {C:chips}+#2#{C:inactive}){}",
 				}
 			},
+			['j_ortalab_artist_proof'] = {
+				["name"] = "Artist Proof",
+				["text"] = {
+					"Gain between {C:money}-$#1#",
+					"and {C:money}$#2#{} when",
+					"{C:attention}Blind{} is selected"
+				}
+			},
 			['j_ortalab_basalt_column'] = {
 				["name"] = "Basalt Column",
 				["text"] = {
