@@ -86,7 +86,7 @@ local joker_list = {
     'flashback',
     -- 'televangelist',
     -- 'klutz',
-    -- 'cardist',
+    'cardist',
     'pickaxe',
     -- 'fools',
     -- 'black_cat',

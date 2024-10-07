@@ -230,6 +230,12 @@ return {
 					"{C:money}$1{} less",
 				}
 			},
+			['j_ortalab_cardist'] = {
+				["name"] = "Cardist",
+				["text"] = {
+					"+#1# {C:blue}Hand"
+				}
+			},
 			['j_ortalab_chameleon'] = {
 				["name"] = "Chameleon Joker",
 				["text"] = {
