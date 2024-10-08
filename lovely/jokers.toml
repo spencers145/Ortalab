@@ -19,8 +19,12 @@ pattern = '''if self.ability.name == 'Invisible Joker' and (self.config.center.d
 position = 'before'
 match_indent = true
 payload = '''if self.config.center_key == 'j_ortalab_chameleon' then
-    self.children.center:draw_shader('voucher')
-    if self.children.front then self.children.front:draw_shader('played') end
+    if self.ability.extra.copied_joker then
+        if self.children.front then self.children.front:draw_shader('dissolve') end
+        self.children.center:draw_shader('ortalab_chameleon', nil, self.ARGS.send_to_shader)
+    else
+        self.children.center:draw_shader('dissolve')
+    end
 end'''
 
 [[patches]]

@@ -1,7 +1,7 @@
 SMODS.Joker({
 	key = "chameleon",
 	atlas = "jokers",
-	pos = {x = 0, y = 0},
+	pos = {x = 9, y = 9},
 	rarity = 3,
 	cost = 8,
 	unlocked = true,
@@ -41,11 +41,16 @@ SMODS.Joker({
         if card.ability.extra.copied_joker then
             context.blueprint = (context.blueprint and (context.blueprint + 1)) or 1
             context.blueprint_card = context.blueprint_card or card
+            context.no_callback = true
             if context.blueprint > #G.jokers.cards + 1 then return end
             local other_joker_ret = card.ability.extra.copied_joker:calculate_joker(context)
-            if other_joker_ret then 
-                other_joker_ret.card = context.blueprint_card or card
-                other_joker_ret.colour = G.C.BLUE
+            context.no_callback = false
+            if other_joker_ret then
+                if not other_joker_ret then
+                    return
+                end
+                other_joker_ret.card = card
+                other_joker_ret.colour = G.C.GREEN
                 return other_joker_ret
             end
         end
@@ -54,11 +59,18 @@ SMODS.Joker({
         if card.ability.extra.copied_joker then
             local chosen_joker = card.ability.extra.copier_joker
             update_chameleon_atlas(card, card.ability.extra.copied_joker.children.center.atlas, card.ability.extra.copied_joker.config.center.pos)
+        else
+            update_chameleon_atlas(card, card.children.center.atlas, card.config.center.pos)
         end
         card.ignore_base_shader = {chameleon = true}
         card.ignore_shadow = {chameleon = true}
     end,
     
+})
+
+SMODS.Shader({
+    key = 'chameleon',
+    path = 'chameleon.fs'
 })
 
 function update_chameleon_atlas(self, new_atlas, new_pos)
