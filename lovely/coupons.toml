@@ -63,3 +63,21 @@ pattern = '''G.shop_vouchers:emplace(card)'''
 position = 'at'
 match_indent = true
 payload = '''G.shop_vouchers:emplace(card, 'front')'''
+
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''G.GAME.pack_choices = self.config.center.config.choose or 1'''
+position = 'after'
+match_indent = true
+payload = '''if self.config.center.group_key:find('loteria') and G.GAME.used_vouchers['v_ortalab_loteria_1'] then G.GAME.pack_choices = G.GAME.pack_choices + G.GAME.Ortalab_loteria_voucher end'''
+
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''local used_tarot = copier or self'''
+position = 'after'
+match_indent = true
+payload = '''if self.config.center.set == 'Loteria' and G.GAME.used_vouchers['v_ortalab_loteria_2'] then
+    if self.ability.extra.amount then self.ability.extra.amount = self.ability.extra.amount + G.GAME.Ortalab_loteria_voucher_2 end
+end'''

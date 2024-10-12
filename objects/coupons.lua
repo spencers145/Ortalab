@@ -211,6 +211,43 @@ SMODS.Voucher({
     end,
 })
 
+SMODS.Voucher({
+	key = "loteria_1",
+	atlas = "coupons",
+	pos = {x = 6, y = 1},
+	cost = 10,
+	unlocked = true,
+	discovered = false,
+	available = true,
+    config = {extra = {bonus_cards = 1}},
+	redeem = function(self)
+        G.GAME.Ortalab_loteria_voucher = self.config.extra.bonus_cards
+    end,
+    loc_vars = function(self, info_queue, card)
+        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel'} end
+        return {vars = {self.config.extra.bonus_cards}}
+    end,
+})
+
+SMODS.Voucher({
+	key = "loteria_2",
+	atlas = "coupons",
+	pos = {x = 7, y = 1},
+	cost = 10,
+	unlocked = true,
+	discovered = false,
+	available = true,
+    config = {extra = {bonus_cards = 1}},
+    requires = {'v_ortalab_loteria_1'},
+	redeem = function(self)
+        G.GAME.Ortalab_loteria_voucher_2 = self.config.extra.bonus_cards
+    end,
+    loc_vars = function(self, info_queue, card)
+        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel'} end
+        return {vars = {self.config.extra.bonus_cards}}
+    end,
+})
+
 
 local BackApply_to_run_ref = Back.apply_to_run
 function Back.apply_to_run(self)

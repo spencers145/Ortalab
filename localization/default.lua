@@ -1245,6 +1245,21 @@ return {
 			}
 		},
 		['Voucher'] = {
+			['v_ortalab_loteria_1'] = {
+				["name"] = "Loteria Coupon 1",
+				["text"] = {
+					"You can select", 
+					"{C:attention}#1#{} extra card",
+					"from {C:loteria}Chalupa Packs"
+				}
+			},
+			['v_ortalab_loteria_2'] = {
+				["name"] = "Loteria Coupon 2",
+				["text"] = {
+					"{C:loteria}Loteria Cards{} affect", 
+					"{C:attention}#1#{} extra card"
+				}
+			},
 			['v_ortalab_window_shopping'] = {
 				["name"] = "Window Shopping",
 				["text"] = {
