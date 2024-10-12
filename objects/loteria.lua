@@ -53,6 +53,9 @@ SMODS.Consumable({
             return true
         end
     end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
+    end,
     use = function(self, card, area, copier)
         local options = {}
         for _, type in pairs(card.ability.extra.sets) do
@@ -87,6 +90,9 @@ SMODS.Consumable({
     can_use = function(self, card)
         return can_enhance_cards(self, card)
     end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
+    end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
         use_enhance_cards(self, card, area, copier)
@@ -111,6 +117,9 @@ SMODS.Consumable({
     can_use = function(self, card)
         return standard_use(self, card)
     end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
+    end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
         create_consumables(card)
@@ -132,6 +141,9 @@ SMODS.Consumable({
     can_use = function(self, card)
         return can_enhance_cards(self, card)
     end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
+    end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
         use_enhance_cards(self, card, area, copier)
@@ -151,6 +163,9 @@ SMODS.Consumable({
     end,
     can_use = function(self, card)
         return standard_use(self, card)
+    end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
     end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
@@ -173,6 +188,9 @@ SMODS.Consumable({
     can_use = function(self, card)
         return can_enhance_cards(self, card)
     end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
+    end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
         use_enhance_cards(self, card, area, copier)
@@ -193,6 +211,9 @@ SMODS.Consumable({
     end,
     can_use = function(self, card)
         return can_enhance_cards(self, card)
+    end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
     end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
@@ -215,6 +236,9 @@ SMODS.Consumable({
     can_use = function(self, card)
         return can_enhance_cards(self, card)
     end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
+    end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
         use_enhance_cards(self, card, area, copier)
@@ -236,6 +260,9 @@ SMODS.Consumable({
     can_use = function(self, card)
         return can_enhance_cards(self, card)
     end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
+    end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
         use_enhance_cards(self, card, area, copier)
@@ -255,6 +282,9 @@ SMODS.Consumable({
     end,
     can_use = function (self, card)
         return standard_use(self, card)
+    end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
     end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
@@ -282,6 +312,9 @@ SMODS.Consumable({
                 end
             end
         end
+    end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
     end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
@@ -336,6 +369,9 @@ SMODS.Consumable({
     can_use = function(self, card)
         return selected_use(self, card)
     end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
+    end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
         local options = {}
@@ -380,6 +416,9 @@ SMODS.Consumable({
     end,
     can_use = function(self, card)
         return #G.hand.cards > 0
+    end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
     end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
@@ -433,6 +472,9 @@ SMODS.Consumable({
                 return true
             end
         end
+    end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
     end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
@@ -512,7 +554,6 @@ SMODS.Consumable({
             draw_card(G.play, G.hand, 1, 'up', false, new_card, nil, true)
             return true
         end}))
-
     end
 })
 
@@ -533,6 +574,9 @@ SMODS.Consumable({
     end,
     can_use = function(self, card)
         return #G.hand.cards > 0
+    end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
     end,
     use = function(self, loteria, area, copier)
         track_usage(loteria.config.center.set, loteria.config.center_key)
@@ -592,6 +636,9 @@ SMODS.Consumable({
     can_use = function(self, card)
         return can_enhance_cards(self, card)
     end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
+    end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key) 
         use_enhance_cards(self, card, area, copier)
@@ -612,6 +659,9 @@ SMODS.Consumable({
     end,
     can_use = function(self, card)
         return can_enhance_cards(self, card)
+    end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
     end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
@@ -634,6 +684,9 @@ SMODS.Consumable({
     can_use = function(self, card)
         return selected_use(self, card)
     end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
+    end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
         change_suit(card)
@@ -655,6 +708,9 @@ SMODS.Consumable({
     can_use = function(self, card)
         return selected_use(self, card)
     end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
+    end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
         change_suit(card)
@@ -675,6 +731,9 @@ SMODS.Consumable({
     end,
     can_use = function(self, card)
         return selected_use(self, card)
+    end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
     end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
@@ -699,6 +758,9 @@ SMODS.Consumable({
                 return true
             end
         end
+    end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
     end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
@@ -760,6 +822,9 @@ SMODS.Consumable({
     can_use = function(self, card)
         return selected_use(self, card)
     end,
+    keep_on_use = function(self, card)
+        return loteria_joker_save_check(card)
+    end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
         change_suit(card)
@@ -817,7 +882,7 @@ local mid_boosters = {keys = {'mid_loteria_1', 'mid_loteria_2'}, info = {
     atlas = 'loteria_booster',
     config = {choose = 1, extra = 5},
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
+        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
         return {vars = {card and card.ability.choose or self.config.choose, card and card.ability.extra or self.config.extra}}
     end,
     create_card = function(self, card)
@@ -1016,7 +1081,7 @@ end
 function track_usage(type, key)
     if not G.GAME.Ortalab then G.GAME.Ortalab = {usage = {}} end
     if not G.GAME.Ortalab.usage[type] then G.GAME.Ortalab.usage[type] = {} end
-    G.GAME.Ortalab.usage[type][key] = G.GAME.Ortalab.usage[type][key] and G.GAME.Ortalab.usage[type][key] + 1 or 1 
+    G.GAME.Ortalab.usage[type][key] = G.GAME.Ortalab.usage[type][key] and G.GAME.Ortalab.usage[type][key] + 1 or 1     
 end
 
 function get_rank_suffix(card)
@@ -1032,6 +1097,7 @@ function get_rank_suffix(card)
 end
 
 function harp_randomise(new_card, card_1_info, card_2_info)
+    Ortalab.harp_usage = true
     local weighting = 0.2
     assert(SMODS.change_base(new_card, pseudorandom_element({card_1_info.suit, card_2_info.suit}, pseudoseed('harp_suit')), pseudorandom_element({card_1_info.rank, card_2_info.rank}, pseudoseed('harp_rank'))))
     local edition = pseudoseed('harp_edition') > (0.5 - (card_1_info.edition and weighting or 0) + (card_2_info.edition and weighting or 0)) and (card_1_info.edition or 'none') or (card_2_info.edition or 'none')
@@ -1040,6 +1106,7 @@ function harp_randomise(new_card, card_1_info, card_2_info)
     if enhancement ~= 'none' then new_card:set_ability(enhancement) else new_card:set_ability(G.P_CENTERS.c_base) end
     local seal = pseudoseed('harp_seal') > (0.5 - (card_1_info.seal and weighting or 0) + (card_2_info.seal and weighting or 0)) and (card_1_info.seal or 'none') or (card_2_info.seal or 'none')
     if seal ~= 'none' then new_card:set_seal(seal, true, true) else new_card:set_seal() end
+    Ortalab.harp_usage = false
 end
 
 function bottle_randomise(card)
@@ -1053,4 +1120,17 @@ function bottle_randomise(card)
     card:set_ability(G.P_CENTERS[enhance])
     local seal = SMODS.poll_seal({key = 'bottle_seal', mod = modifier})
     card:set_seal(seal, true, true)
+end
+
+function loteria_joker_save_check(card)
+    if G.booster_pack then return false end
+    local loteria_joker = SMODS.find_card('j_ortalab_loteria_3')
+    for _, joker_card in pairs(loteria_joker) do        
+        if pseudorandom(pseudoseed('loteria_check_keep')) < G.GAME.probabilities.normal / joker_card.ability.extra.chance then
+            joker_card:juice_up()
+            card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_loteria_saved')})
+            return true
+        end
+    end
+    return false
 end

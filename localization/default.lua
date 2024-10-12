@@ -20,13 +20,19 @@ return {
 			['ortalab_joker_miles'] = 'Upgrade!',
 			['ortalab_joker_miles_reset'] = 'Reset!',
 			['ortalab_sinker_message'] = '-1 Hand Size!',
-			['ortalab_hammer'] = 'Stripped!'
+			['ortalab_hammer'] = 'Stripped!',
+			['ortalab_corroded'] = 'Corroded!',
+			['ortalab_loteria_saved'] = 'Saved!'
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
 			ortalab_fluorescent = 'Fluroescent',
 			ortalab_overexposed = 'Overexposed',
-			ortalab_anaglyphic = 'Anaglyphic'
+			ortalab_anaglyphic = 'Anaglyphic',
+			ortalab_corroded_seal = 'Corroded',
+			ortalab_possessed_seal = 'Possessed',
+			ortalab_restrained_seal = 'Restrained',
+			ortalab_infected_seal = 'Infected',
 		}
     },
     ["descriptions"] = {
@@ -135,6 +141,48 @@ return {
 			}
 		},
 		["Joker"] = {
+			['j_ortalab_loteria_1'] = {
+				["name"] = "Loteria Joker 1",
+				["text"] = {
+					"Create a random",
+					"{C:loteria}Loteria Card{} and",
+					"lose {C:red}-$#1#{} when a",
+					"{C:blue}Hand{} is played"
+				}
+			},
+			['j_ortalab_loteria_2'] = {
+				["name"] = "Loteria Joker 2",
+				["text"] = {
+					"Gain {X:mult,C:white}#1#X{} Mult when",
+					"a {C:loteria}Loteria Card{} is used",
+					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#2#X{C:inactive,s:0.9})"
+				}
+			},
+			['j_ortalab_loteria_3'] = {
+				["name"] = "Loteria Joker 3",
+				["text"] = {
+					"{C:green}#1# in #2#{} chance for",
+					"{C:loteria}Loteria Cards{} to not be",
+					"consumed when used"
+				}
+			},
+			['j_ortalab_loteria_4'] = {
+				["name"] = "Loteria Joker 4",
+				["text"] = {
+					"Gain {C:money}$#1#{} after playing",
+					"{C:attention}#2#{C:loteria} Loteria Cards",
+					"Resets when {C:attention}Blind{} is defeated",
+					"{C:inactive,s:0.9}(Currently #3#/#2#)"
+				},
+			},
+			['j_ortalab_loteria_5'] = {
+				["name"] = "Loteria Joker 5",
+				["text"] = {
+					"Gain {X:mult,C:white}#2#X{} Mult when",
+					"a {C:attention}Card{} changes {C:attention}Suit",
+					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
+				}
+			},
 			['j_ortalab_jester'] = {
 				["name"] = "Jester",
 				["text"] = {
@@ -1108,6 +1156,14 @@ return {
                     "{C:inactive,s:0.8}Currently #1#"
                 }
             },
+			['tag_ortalab_loteria'] = {
+                name = "Loteria Patch",
+                text = {
+					"Add {C:attention}#1#{} free {C:loteria}Wumbo", 
+					"{C:loteria}Chalupa Packs{}",
+					"to the next shop"
+                }
+            },
 		},
 		["Back"] = {
 			['b_ortalab_orange'] = {
@@ -1263,6 +1319,15 @@ return {
 			},
 		},
 		['Other'] = {
+			['ortalab_corroded_seal'] = {
+                name = "Corroded",
+                text = {
+                    "{C:red}-$#1#{} when {C:blue}played",
+                    "If {C:attention}discarded{}, increase cost",
+					"by {C:money}$#2#{} and shuffle",
+					"into deck"
+                }
+            },
 			['p_ortalab_small_loteria_1'] = {
                 name = "Chalupa Pack",
                 text = {

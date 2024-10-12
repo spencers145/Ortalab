@@ -145,7 +145,12 @@ local joker_list = {
     'damp',
     -- 'inheritance',
     --legendaries
-    'shinku'
+    'shinku',
+    'loteria_1',
+    'loteria_2',
+    'loteria_3',
+    'loteria_4',
+    'loteria_5',
 }
 
 SMODS.Atlas({
