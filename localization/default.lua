@@ -153,7 +153,7 @@ return {
 			['j_ortalab_loteria_2'] = {
 				["name"] = "Loteria Joker 2",
 				["text"] = {
-					"Gain {X:mult,C:white}#1#X{} Mult when",
+					"Gains {X:mult,C:white}#1#X{} Mult when",
 					"a {C:loteria}Loteria Card{} is used",
 					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#2#X{C:inactive,s:0.9})"
 				}
@@ -174,14 +174,6 @@ return {
 					"Resets when {C:attention}Blind{} is defeated",
 					"{C:inactive,s:0.9}(Currently #3#/#2#)"
 				},
-			},
-			['j_ortalab_loteria_5'] = {
-				["name"] = "Loteria Joker 5",
-				["text"] = {
-					"Gain {X:mult,C:white}#2#X{} Mult when",
-					"a {C:attention}Card{} changes {C:attention}Suit",
-					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
-				}
 			},
 			['j_ortalab_jester'] = {
 				["name"] = "Jester",
@@ -442,6 +434,14 @@ return {
 					"and 2 {C:attention}even cards",
 				}
 			},
+			['j_ortalab_mill'] = {
+				["name"] = "Mill",
+				["text"] = {
+					"Gains {X:mult,C:white}#2#X{} Mult when",
+					"a {C:attention}Card{} changes {C:attention}Suit",
+					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
+				}
+			},
 			['j_ortalab_mint_condition'] = {
 				["name"] = "Mint Condition",
 				["text"] = {
@@ -500,7 +500,7 @@ return {
 				["name"] = "Pickaxe",
 				["text"] = {
 					"Destroy played {C:attention}Ore{} cards",
-					"Gain {X:mult,C:white}#2#X{} Mult per",
+					"Gains {X:mult,C:white}#2#X{} Mult per",
 					"card destroyed this way",
 					"{C:inactive,s:0.9}(Currently {X:mult,C:white,s:0.9}X#1#{C:inactive,s:0.9} Mult)"
 				}
@@ -567,7 +567,7 @@ return {
 			['j_ortalab_rusty'] = {
 				["name"] = "Rusty Joker",
 				["text"] = {
-					"Gain {X:mult,C:white}#2#X{} Mult for",
+					"Gives {X:mult,C:white}#2#X{} Mult for",
 					"each {C:attention}Rusty Card{}",
 					"in your {C:attention}full deck",
 					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
@@ -578,7 +578,7 @@ return {
 				["text"] = {
 					"Played {C:attention}Sand Cards{}",
 					"do not lose Mult",
-					"Gain {X:mult,C:white}#2#X{} Mult when",
+					"Gains {X:mult,C:white}#2#X{} Mult when",
 					"a {C:attention}Sand Card{} is played",
 					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
 				}
@@ -620,7 +620,7 @@ return {
 				["text"] = {
 					"Sets played {C:attention}poker hand",
 					"level to 1",
-					"Gain {X:mult,C:white}#1#X{} Mult",
+					"Gains {X:mult,C:white}#1#X{} Mult",
 					"per level {C:attention}removed",
 					"{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
 				}
@@ -991,7 +991,7 @@ return {
 				["name"] = "Rusty Card",
 				["text"] = {
 					"{X:mult,C:white}X#1#{} Mult",
-					"Gain {X:mult,C:white}X#2#{} Mult per",
+					"Gains {X:mult,C:white}X#2#{} Mult per",
 					"{C:attention}Rusty Card{} held in hand"
 				},
 			},

@@ -1,17 +1,17 @@
 SMODS.Joker({
-	key = "loteria_5",
+	key = "mill",
 	atlas = "jokers",
 	pos = {x=4,y=10},
-	rarity = 1,
-	cost = 4,
+	rarity = 2,
+	cost = 6,
 	unlocked = true,
 	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
-	config = {extra = {xmult = 1.5, gain = 0.1}},
+	config = {extra = {xmult = 1, gain = 0.1}},
 	loc_vars = function(self, info_queue, card)
-        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel'} end
+        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
 		return {vars = {card.ability.extra.xmult, card.ability.extra.gain}}
 	end,
 	calculate = function(self, card, context)

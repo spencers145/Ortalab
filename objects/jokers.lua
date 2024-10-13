@@ -101,7 +101,7 @@ local joker_list = {
     -- 'salad',
     'roscharch',
     -- 'still_water',
-    -- 'CASTLEINVERSE',
+    'mill',
     'frowny_face',
     -- 'freezer',
     -- 'polished',
@@ -150,7 +150,6 @@ local joker_list = {
     'loteria_2',
     'loteria_3',
     'loteria_4',
-    'loteria_5',
 }
 
 SMODS.Atlas({
