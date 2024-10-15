@@ -997,7 +997,6 @@ function use_enhance_cards(self, loteria, area, copier)
     for _,v in ipairs(G.hand.cards) do
         if v.config.center_key ~= loteria.ability.extra.key then valid_cards = valid_cards + 1 end
     end
-    print(valid_cards)
     shuffle_cards()
     for i=1, math.min(loteria.ability.extra.amount, valid_cards) do
         local set = true
