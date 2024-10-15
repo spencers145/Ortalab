@@ -1201,9 +1201,9 @@ return {
                 }
             },
 			['tag_ortalab_loteria'] = {
-                name = "Loteria Patch",
+                name = "Strange Patch",
                 text = {
-					"Add {C:attention}#1#{} free {C:loteria}Wumbo", 
+					"Add {C:attention}#1#{} free {C:loteria}Giga", 
 					"{C:loteria}Chalupa Packs{}",
 					"to the next shop"
                 }

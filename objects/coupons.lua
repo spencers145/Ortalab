@@ -238,7 +238,7 @@ SMODS.Voucher({
 	discovered = false,
 	available = true,
     config = {extra = {bonus_cards = 1}},
-    requires = {'v_ortalab_loteria_1'},
+    requires = {'v_ortalab_cantor'},
 	redeem = function(self)
         G.GAME.Ortalab_loteria_voucher_2 = self.config.extra.bonus_cards
     end,
