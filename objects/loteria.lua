@@ -159,7 +159,7 @@ SMODS.Consumable({
     config = {extra = {type = 'Loteria', amount = 2}},
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
-        return {vars = {card.ability.extra.amount + (G.GAME and G.GAME.Ortalab_loteria_voucher_2 and G.GAME.Ortalab_loteria_voucher_2 or 0)}}
+        return {vars = {card and (card.ability.extra.amount + (G.GAME and G.GAME.Ortalab_loteria_voucher_2 and G.GAME.Ortalab_loteria_voucher_2 or 0)) or self.config.extra.amount}}
     end,
     can_use = function(self, card)
         return standard_use(self, card)
