@@ -37,7 +37,8 @@ return {
 			['ortalab_sinker_message'] = '-1 Hand Size!',
 			['ortalab_hammer'] = 'Stripped!',
 			['ortalab_corroded'] = 'Corroded!',
-			['ortalab_loteria_saved'] = 'Saved!'
+			['ortalab_loteria_saved'] = 'Saved!',
+			ortalab_protostar = 'Collapsed!'
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
@@ -267,7 +268,7 @@ return {
 					"Gains {C:blue}#1#{} Chips when",
 					"any {C:attention}Card{} is used",
 					"from a {C:attention}Booster Pack",
-					"{C:inactive,s:0.9}(Currently {C:blue,s:0.9}#2# Chips{C:inactive,s:0.9})"
+					"{C:inactive,s:0.9}(Currently {C:blue,s:0.9}#2#{C:inactive,s:0.9}Chips)"
 				}
 			},
 			['j_ortalab_bowling_ball'] = {
@@ -369,7 +370,7 @@ return {
 				["name"] = "Fine Wine",
 				["text"] = {
 					"{C:red}+#1#{} discards,",
-					"Gain {C:red}+1{} discard",
+					"Gain {C:red}+#4#{} discard",
 					"when blind is selected",
 					"{C:green}#2# in #3#{} chance this Joker is",
 					"destroyed at end of round",
@@ -543,6 +544,16 @@ return {
 					"{C:mult}+#1#{} Mult",
 					"{C:mult}+#2#{} Mult per round played",
 					"Explodes when greater than {C:mult}+20{}",
+				}
+			},
+			['j_ortalab_protostar'] = {
+				["name"] = "Protostar",
+				["text"] = {
+					"{C:blue}+#1#{} Chips",
+					"{C:blue}-#2#{} Chips for the number",
+					"of times {C:attention}poker hand{} has been",
+					"played this run",
+					"{C:inactive,s:0.8}Create an {C:green,s:0.8}Uncommon Joker{C:inactive,s:0.8} when reaching 0"
 				}
 			},
 			['j_ortalab_red_fred'] = {
@@ -1269,16 +1280,16 @@ return {
 			}
 		},
 		['Voucher'] = {
-			['v_ortalab_loteria_1'] = {
-				["name"] = "Loteria Coupon 1",
+			['v_ortalab_cantor'] = {
+				["name"] = "Cantor Loteria",
 				["text"] = {
 					"You can select", 
 					"{C:attention}#1#{} extra card",
 					"from {C:loteria}Chalupa Packs"
 				}
 			},
-			['v_ortalab_loteria_2'] = {
-				["name"] = "Loteria Coupon 2",
+			['v_ortalab_tabla'] = {
+				["name"] = "Tabla Loteria",
 				["text"] = {
 					"{C:loteria}Loteria Cards{} affect", 
 					"{C:attention}#1#{} extra card"

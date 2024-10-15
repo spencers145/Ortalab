@@ -9,16 +9,16 @@ SMODS.Joker({
 	blueprint_compat = false,
 	eternal_compat = false,
 	perishable_compat = true,
-	config = {extra = {discards = 2, odds = 5}},
+	config = {extra = {discards = 2, odds = 5, gain = 1}},
 	loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
-        return {vars = {card.ability.extra.discards, ''..(G.GAME and G.GAME.probabilities.normal or 1), card.ability.extra.odds}}
+        return {vars = {card.ability.extra.discards, ''..(G.GAME and G.GAME.probabilities.normal or 1), card.ability.extra.odds, card.ability.extra.gain}}
     end,
     calculate = function(self, card, context) --Fine Wine Logic
         if not context.blueprint then
             if context.setting_blind and not card.getting_sliced then
                 ease_discard(card.ability.extra.discards)
-                card.ability.extra.discards = card.ability.extra.discards + 1
+                card.ability.extra.discards = card.ability.extra.discards + card.ability.extra.gain
                 card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('k_upgrade_ex')})
             end
             if context.end_of_round and not context.individual and not context.repetition then

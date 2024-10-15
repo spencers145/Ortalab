@@ -41,7 +41,7 @@ local joker_list = {
     'pitch_mitch',
     -- 'dropout',
     'scratch_card',
-    -- 'protostar',
+    'protostar',
     -- 'crash',
     'skydiving',
     'sunny_side',
