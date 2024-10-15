@@ -629,6 +629,14 @@ return {
 					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
 				}
 			},
+			['j_ortalab_scam_email'] = {
+				["name"] = "Scam Email",
+				["text"] = {
+					"Earn {C:money}$#1#{} when",
+					"a {C:attention}#2#{} is scored",
+					"{C:inactive,s:0.9}(Rank changes each round)"
+				},
+			},
 			['j_ortalab_scared_face'] = {
 				["name"] = "Scared Face",
 				["text"] = {
