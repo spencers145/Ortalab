@@ -154,6 +154,8 @@ function Card:open()
             end
 
         return true end }))
+    else
+        card_open(self)
     end
     card_open(self)
 end
