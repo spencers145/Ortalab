@@ -549,11 +549,12 @@ return {
 			['j_ortalab_protostar'] = {
 				["name"] = "Protostar",
 				["text"] = {
-					"{C:blue}+#1#{} Chips",
-					"{C:blue}-#2#{} Chips for the number",
-					"of times {C:attention}poker hand{} has been",
+					"{C:blue}+#1#{} Chips,",
+					"loses {C:blue}#2#{} Chips for each",
+					"time {C:attention}poker hand{} has been",
 					"played this run",
-					"{C:inactive,s:0.8}Create an {C:green,s:0.8}Uncommon Joker{C:inactive,s:0.8} when reaching 0"
+					"{C:inactive,s:0.8}(Create an {C:green,s:0.8}Uncommon Joker",
+					"{C:inactive,s:0.8} when reaching 0)"
 				}
 			},
 			['j_ortalab_red_fred'] = {
@@ -606,6 +607,14 @@ return {
 					"each {C:attention}Rusty Card{}",
 					"in your {C:attention}full deck",
 					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
+				}
+			},
+			['j_ortalab_salad'] = {
+				["name"] = "Salad",
+				["text"] = {
+					"{C:blue}+#1#{} Chips,",
+					"loses {C:blue}#2#{} Chips",
+                    "per {C:attention}card{} discarded",
 				}
 			},
 			['j_ortalab_sandstone'] = {
