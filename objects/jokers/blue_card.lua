@@ -15,10 +15,10 @@ SMODS.Joker({
 		return {vars = {card.ability.extra.gain, card.ability.extra.chips}}
 	end,
 	calculate = function(self, card, context)
-		if context.joker_main then
+		if context.joker_main and card.ability.extra.chips > 0 then
             return {
-                message = localize{type='variable',key='a_xmult',vars={card.ability.extra.xmult}},
-                Xmult_mod = card.ability.extra.xmult
+                message = localize{type='variable',key='a_chips',vars={card.ability.extra.chips}},
+                chip_mod = card.ability.extra.chips
             }
         end
         if context.using_consumeable then
