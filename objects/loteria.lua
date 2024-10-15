@@ -993,8 +993,13 @@ end
 
 function use_enhance_cards(self, loteria, area, copier)
     G.hand:unhighlight_all()
+    local valid_cards = 0
+    for _,v in ipairs(G.hand.cards) do
+        if v.config.center_key ~= loteria.ability.extra.key then valid_cards = valid_cards + 1 end
+    end
+    print(valid_cards)
     shuffle_cards()
-    for i=1, loteria.ability.extra.amount do
+    for i=1, math.min(loteria.ability.extra.amount, valid_cards) do
         local set = true
         while set do
             local card = pseudorandom_element(G.hand.cards, pseudoseed(loteria.ability.extra.key..'_select'))
@@ -1120,9 +1125,9 @@ end
 
 function loteria_joker_save_check(card)
     if G.booster_pack then return false end
-    local loteria_joker = SMODS.find_card('j_ortalab_loteria_3')
+    local loteria_joker = SMODS.find_card('j_ortalab_black_cat')
     for _, joker_card in pairs(loteria_joker) do        
-        if pseudorandom(pseudoseed('loteria_check_keep')) < G.GAME.probabilities.normal / joker_card.ability.extra.chance then
+        if pseudorandom(pseudoseed('loteria_check_keep')) < (3*G.GAME.probabilities.normal) / joker_card.ability.extra.chance then
             joker_card:juice_up()
             card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_loteria_saved')})
             return true
