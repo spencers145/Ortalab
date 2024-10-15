@@ -38,7 +38,7 @@ return {
 			['ortalab_hammer'] = 'Stripped!',
 			['ortalab_corroded'] = 'Corroded!',
 			['ortalab_loteria_saved'] = 'Saved!',
-			ortalab_protostar = 'Collapsed!'
+			ortalab_protostar = 'Collapsed!',
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
@@ -157,26 +157,17 @@ return {
 			}
 		},
 		["Joker"] = {
-			['j_ortalab_loteria_2'] = {
-				["name"] = "Loteria Joker 2",
+			['j_ortalab_televangelist'] = {
+				["name"] = "Televangelist",
 				["text"] = {
 					"Gains {X:mult,C:white}#1#X{} Mult when",
 					"a {C:loteria}Loteria Card{} is used",
 					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#2#X{C:inactive,s:0.9})"
 				}
 			},
-			['j_ortalab_black_cat'] = {
-				["name"] = "Black Cat",
-				["text"] = {
-					"{C:loteria}Loteria Cards{} can be",
-					"used more than once",
-					"{C:green,s:0.9}#1# in #2#{s:0.9} chance for",
-					"{C:loteria,s:0.9}Loteria Cards{s:0.9} to be",
-					"{s:0.9}consumed when used"
-				}
-			},
-			['j_ortalab_loteria_4'] = {
-				["name"] = "Loteria Joker 4",
+			
+			['j_ortalab_pictographer'] = {
+				["name"] = "Pictographer",
 				["text"] = {
 					"Gain {C:money}$#1#{} after playing",
 					"{C:attention}#2#{C:loteria} Loteria Cards",
@@ -254,6 +245,14 @@ return {
 					"is not a {C:attention}#2#{}",
 					"or {C:attention}#3#{}",
 					"{C:inactive,s:0.8}Poker hands change on every payout",
+				}
+			},
+			['j_ortalab_black_cat'] = {
+				["name"] = "Black Cat",
+				["text"] = {
+					"{C:green}#1# in #2#{} chance for",
+					"{C:loteria}Loteria Cards{} to be",
+					"consumed when used"
 				}
 			},
 			['j_ortalab_black_friday'] = {

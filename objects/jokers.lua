@@ -84,7 +84,7 @@ local joker_list = {
     'scam_email',
     'reduce_reuse',
     'flashback',
-    -- 'televangelist',
+    'televangelist',
     -- 'klutz',
     'cardist',
     'pickaxe',
@@ -140,14 +140,12 @@ local joker_list = {
     'evil_eye',
     -- 'boulevard',
     -- 'forklift',
-    -- 'celestial_bingo',
+    'pictographer',
     'occultist',
     'damp',
     -- 'inheritance',
     --legendaries
     'shinku',
-    'loteria_2',
-    'loteria_4',
 }
 
 SMODS.Atlas({
