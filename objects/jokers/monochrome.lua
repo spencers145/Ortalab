@@ -18,8 +18,8 @@ SMODS.Joker({
 	perishable_compat = true,
 	config = {extra = {suit = 'Hearts'}},
 	loc_vars = function(self, info_queue, card)
-        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'crimson'} end
-        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'crimson'} end
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
         return {vars = {localize((card.ability.extra.suit), 'suits_plural'), colours = {G.C.SUITS[card.ability.extra.suit]}}}
     end,
     calculate = function(self, card, context)

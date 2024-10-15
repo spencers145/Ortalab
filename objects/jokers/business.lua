@@ -11,7 +11,7 @@ SMODS.Joker({
 	perishable_compat = false,
 	config = {extra = {reroll_cut = 1}},
 	loc_vars = function(self, info_queue, card)
-        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'alex'} end
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'alex'} end
 		return {vars = {card.ability.extra.reroll_cut}}
 	end,
 	add_to_deck = function(self, card, from_debuff)

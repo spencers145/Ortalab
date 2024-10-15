@@ -163,24 +163,26 @@ for _, key in ipairs(joker_list) do
     SMODS.load_file('objects/jokers/'..key..'.lua')()
 end
 
-for i=1, 151-#joker_list do
-    SMODS.Joker({
-        key = 'ortalab_temp_'..i,
-        pos = {x = 8, y = 9},
-        loc_txt = {
-            name = 'Locked',
-            text = {'{E:1}???'}
-        },
-        discovered = true,
-        ortalab_demo_card = true,
-        rarity = nil,
-        in_pool = function(self)
-            return false
-        end,
-        loc_vars = function(self, info_queue, card)
-            info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'no_demo', title = 'Not In Demo'}
-        end
-    })
+if Ortalab.config.placeholders then
+    for i=1, 151-#joker_list do
+        SMODS.Joker({
+            key = 'ortalab_temp_'..i,
+            pos = {x = 8, y = 9},
+            loc_txt = {
+                name = 'Locked',
+                text = {'{E:1}???'}
+            },
+            discovered = true,
+            ortalab_demo_card = true,
+            rarity = nil,
+            in_pool = function(self)
+                return false
+            end,
+            loc_vars = function(self, info_queue, card)
+                info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'no_demo', title = 'Not In Demo'}
+            end
+        })
+    end
 end
 
 function Ortalab.remove_joker(card)

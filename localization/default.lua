@@ -1,6 +1,21 @@
 return {
 	["misc"] = {
 		["dictionary"] = {
+			['ortalab_config_artists'] = 'Artist Credits',
+			['ortalab_config_artists_desc'] = {
+				"Toggle the display of artist credit tooltips"
+			},
+			['ortalab_config_full'] = 'Full Credits',
+			['ortalab_config_full_desc'] = {
+				"Toggle the display of additional tooltips",
+				"such as editions and seals"
+			},
+			['ortalab_config_placeholder'] = 'Toggle Demo Objects',
+			['ortalab_config_placeholder_desc'] = {
+				"Toggle the display of locked demo",
+				"objects in the collection",
+				"Requires restart"
+			},
 			["ortalab_artist"] = 'Artist',
 			["ortalab_swap"] = 'Swap!',
 			['ortalab_leak'] = 'Leaked!',

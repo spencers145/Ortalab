@@ -13,8 +13,8 @@ SMODS.Edition({
     weight = 20,
     extra_cost = 4,
     apply_to_float = true,
-    loc_vars = function(self, info_queue)
-        if Ortalab.artist_credits and (card or Ortalab.full_credits) then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
+    loc_vars = function(self, info_queue, card)
+        if Ortalab.config.artist_credits and (card or Ortalab.config.full_credits) then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
         return { vars = {self.config.chips, self.config.mult}}
     end,
 })
@@ -29,8 +29,8 @@ SMODS.Edition({
     weight = 12,
     extra_cost = 4,
     apply_to_float = true,
-    loc_vars = function(self, info_queue)
-        if Ortalab.artist_credits and (card or Ortalab.full_credits) then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
+    loc_vars = function(self, info_queue, card)
+        if Ortalab.config.artist_credits and (card or Ortalab.config.full_credits) then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
         return { vars = {self.config.p_dollars}}
     end
 })
@@ -47,7 +47,7 @@ SMODS.Edition({
     badge_colour = HEX("858585"),
     apply_to_float = true,
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits and (card or Ortalab.full_credits) then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
+        if Ortalab.config.artist_credits and (card or Ortalab.config.full_credits) then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
         return { vars = { self.config.chips, self.config.mult, self.config.x_mult } }
     end
 })
@@ -63,7 +63,8 @@ SMODS.Edition({
     weight = 3,
     extra_cost = 4,
     apply_to_float = true,
-    loc_vars = function(self, info_queue)
-        return {}
+    loc_vars = function(self, info_queue, card)
+        if Ortalab.config.artist_credits and (card or Ortalab.config.full_credits) then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
+        return { vars = { self.config.retriggers } }
     end
 })

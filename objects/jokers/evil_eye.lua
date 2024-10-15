@@ -19,7 +19,7 @@ SMODS.Joker({
 		return card.ability.extra.money*count
 	end,
 	loc_vars = function(self, info_queue, card)
-        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flowwey'} end
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flowwey'} end
         local count = 0
         for _,_ in pairs(card.ability.extra.spectral_type_sold) do
             count = count + 1

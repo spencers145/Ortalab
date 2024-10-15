@@ -42,7 +42,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {}},
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
+        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
     end,
     can_use = function(self, card)
         return true
@@ -60,7 +60,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {}},
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
+        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
     end,
     can_use = function(self, card)
         return true
@@ -78,7 +78,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {}},
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
+        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
     end,
     can_use = function(self, card)
         return true
@@ -96,7 +96,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {}},
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits then 
+        if Ortalab.config.artist_credits then 
             info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'}
             info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'salad'}
         end
@@ -118,7 +118,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {}},
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
+        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
     end,
     can_use = function(self, card)
         return true
@@ -136,7 +136,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {}},
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
+        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
     end,
     can_use = function(self, card)
         return true
@@ -154,7 +154,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {}},
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
+        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
     end,
     can_use = function(self, card)
         return true
@@ -172,7 +172,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {}},
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
+        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
     end,
     can_use = function(self, card)
         return true
@@ -190,7 +190,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {}},
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
+        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
     end,
     can_use = function(self, card)
         return true
@@ -208,7 +208,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {}},
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
+        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
     end,
     can_use = function(self, card)
         return true
@@ -226,7 +226,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {}},
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
+        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
     end,
     can_use = function(self, card)
         return true
@@ -244,7 +244,7 @@ SMODS.Consumable({
     discovered = false,
     config = {extra = {}},
     loc_vars = function(self, info_queue, card)
-        if Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
+        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
     end,
     can_use = function(self, card)
         return true

@@ -12,7 +12,7 @@ SMODS.Joker({
 	yes_pool_flag = 'shady_trading_redeemed',
 	config = {extra = {xmult = 1, xmult_add = 0.25}},
 	loc_vars = function(self, info_queue, card)
-        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
         return {vars = {card.ability.extra.xmult_add, card.ability.extra.xmult}}
     end,
     calculate = function(self, card, context) --Shrine Logic

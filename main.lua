@@ -10,9 +10,6 @@
 --- DEPENDENCIES: [Talisman>=2.0.0-beta5]
 
 Ortalab = SMODS.current_mod
-Ortalab.usage = {}
-Ortalab.artist_credits = true
-Ortalab.full_credits = false
 
 local load_table = {
     jokers = true,
@@ -33,6 +30,7 @@ end
 
 SMODS.load_file('util/artists.lua')()
 SMODS.load_file('util/functions.lua')()
+SMODS.load_file('util/menu.lua')()
 
 SMODS.Atlas({
     key = 'modicon',

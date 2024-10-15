@@ -11,7 +11,7 @@ SMODS.Joker({
 	perishable_compat = false,
 	config = {extra = {hands = 1}},
 	loc_vars = function(self, info_queue, card)
-        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'salad'} end
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'salad'} end
 		return {vars = {card.ability.extra.hands}}
 	end,
 	add_to_deck = function(self, card, from_debuff)

@@ -14,7 +14,7 @@ SMODS.Joker({
 		return card.ability.extra.dollars
 	end,
     loc_vars = function(self, info_queue, card)
-        if card and Ortalab.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
         info_queue[#info_queue+1] = G.P_CENTERS.m_gold
         return {vars = {card.ability.extra.dollars, card.ability.extra.dollars_add}}
     end,
