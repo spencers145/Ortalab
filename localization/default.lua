@@ -165,12 +165,14 @@ return {
 					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#2#X{C:inactive,s:0.9})"
 				}
 			},
-			['j_ortalab_loteria_3'] = {
-				["name"] = "Loteria Joker 3",
+			['j_ortalab_black_cat'] = {
+				["name"] = "Black Cat",
 				["text"] = {
-					"{C:green}#1# in #2#{} chance for",
-					"{C:loteria}Loteria Cards{} to not be",
-					"consumed when used"
+					"{C:loteria}Loteria Cards{} can be",
+					"used more than once",
+					"{C:green,s:0.9}#1# in #2#{s:0.9} chance for",
+					"{C:loteria,s:0.9}Loteria Cards{s:0.9} to be",
+					"{s:0.9}consumed when used"
 				}
 			},
 			['j_ortalab_loteria_4'] = {

@@ -89,7 +89,7 @@ local joker_list = {
     'cardist',
     'pickaxe',
     -- 'fools',
-    -- 'black_cat',
+    'black_cat',
     'mint_condition',
     -- 'bear',
     'mystery_soda',
@@ -147,7 +147,6 @@ local joker_list = {
     --legendaries
     'shinku',
     'loteria_2',
-    'loteria_3',
     'loteria_4',
 }
 
