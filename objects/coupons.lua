@@ -212,7 +212,7 @@ SMODS.Voucher({
 })
 
 SMODS.Voucher({
-	key = "loteria_1",
+	key = "cantor",
 	atlas = "coupons",
 	pos = {x = 6, y = 1},
 	cost = 10,
@@ -224,13 +224,13 @@ SMODS.Voucher({
         G.GAME.Ortalab_loteria_voucher = self.config.extra.bonus_cards
     end,
     loc_vars = function(self, info_queue, card)
-        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel'} end
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'crimson'} end
         return {vars = {self.config.extra.bonus_cards}}
     end,
 })
 
 SMODS.Voucher({
-	key = "loteria_2",
+	key = "tabla",
 	atlas = "coupons",
 	pos = {x = 7, y = 1},
 	cost = 10,
@@ -243,7 +243,7 @@ SMODS.Voucher({
         G.GAME.Ortalab_loteria_voucher_2 = self.config.extra.bonus_cards
     end,
     loc_vars = function(self, info_queue, card)
-        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel'} end
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'crimson'} end
         return {vars = {self.config.extra.bonus_cards}}
     end,
 })
