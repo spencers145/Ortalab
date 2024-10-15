@@ -1,5 +1,5 @@
 --- STEAMODDED HEADER
---- MOD_NAME: Ortalab Dev
+--- MOD_NAME: Ortalab
 --- MOD_ID: ortalab
 --- PREFIX: ortalab
 --- MOD_AUTHOR: [Balatro Discord]

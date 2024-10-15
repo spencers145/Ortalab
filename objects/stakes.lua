@@ -157,5 +157,4 @@ function Card:open()
     else
         card_open(self)
     end
-    card_open(self)
 end
