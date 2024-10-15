@@ -156,15 +156,6 @@ return {
 			}
 		},
 		["Joker"] = {
-			['j_ortalab_loteria_1'] = {
-				["name"] = "Loteria Joker 1",
-				["text"] = {
-					"Create a random",
-					"{C:loteria}Loteria Card{} and",
-					"lose {C:red}-$#1#{} when a",
-					"{C:blue}Hand{} is played"
-				}
-			},
 			['j_ortalab_loteria_2'] = {
 				["name"] = "Loteria Joker 2",
 				["text"] = {
@@ -268,6 +259,15 @@ return {
 					"{C:red}-#1#{} Chips",
 					"All cards in the shop",
 					"are {C:money}#2#%{} off",
+				}
+			},
+			['j_ortalab_blue_card'] = {
+				["name"] = "Blue Card",
+				["text"] = {
+					"Gains {C:blue}#1#{} Chips when",
+					"any {C:attention}Card{} is used",
+					"from a {C:attention}Booster Pack",
+					"{C:inactive,s:0.9}(Currently {C:blue,s:0.9}#2# Chips{C:inactive,s:0.9})"
 				}
 			},
 			['j_ortalab_bowling_ball'] = {
@@ -421,6 +421,15 @@ return {
 				["text"] = {
 					"Earn {C:money}$#1#{} when you",
 					"use a {C:red}discard{}",
+				}
+			},
+			['j_ortalab_head_honcho'] = {
+				["name"] = "Head Honcho",
+				["text"] = {
+					"Create a random",
+					"{C:loteria}Loteria Card{} and",
+					"lose {C:red}$#1#{} when a",
+					"{C:blue}Hand{} is played"
 				}
 			},
 			['j_ortalab_hypercalculia'] = {
