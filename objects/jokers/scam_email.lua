@@ -15,7 +15,7 @@ SMODS.Joker({
 		return {vars = {card.ability.extra.dollars, localize(card.ability.extra.rank, 'ranks')}}
 	end,
     set_ability = function(self, card)
-        if #G.playing_cards > 0 then
+        if G.playing_cards and #G.playing_cards > 0 then
             local ranks_in_deck = {}
             for _, v in ipairs(G.playing_cards) do
                 table.insert(ranks_in_deck, v)
