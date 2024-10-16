@@ -205,13 +205,4 @@ function SMODS.current_mod.reset_game_globals(first_pass)
 		G.GAME.current_round["spectral_type_sold"] = {}
 		G.GAME.current_round["ortalab_free_rerolls"] = 0
 	end
-
-	--Monochrome Joker
-	local monochrome_suits = {}
-	G.GAME.current_round.monochrome_card = {}
-    for k, v in ipairs({'Spades','Hearts','Clubs','Diamonds'}) do
-        if v ~= G.GAME.current_round.monochrome_card.suit then monochrome_suits[#monochrome_suits + 1] = v end
-    end
-    local monochrome_card = pseudorandom_element(monochrome_suits, pseudoseed('monochrome'..G.GAME.round_resets.ante))
-    G.GAME.current_round.monochrome_card.suit = monochrome_card
 end
