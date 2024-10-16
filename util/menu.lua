@@ -30,12 +30,12 @@ end
 
 local main_menu = Game.main_menu
 function Game:main_menu(context)
-    main_menu(self, context)
     if Ortalab.config.initial_setup then
         G.FUNCS.overlay_menu({
             definition = create_initial_config()
         })
     end
+    main_menu(self, context)
 end
 
 function create_initial_config()
@@ -75,5 +75,5 @@ G.FUNCS.close_initial_config = function()
     Ortalab.config.initial_setup = false
     SMODS.save_mod_config(Ortalab)
     G.FUNCS:exit_overlay_menu()
-    G:main_menu()
+    -- G:main_menu()
 end
