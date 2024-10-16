@@ -269,7 +269,7 @@ return {
 					"Gains {C:blue}#1#{} Chips when",
 					"any {C:attention}Card{} is used",
 					"from a {C:attention}Booster Pack",
-					"{C:inactive,s:0.9}(Currently {C:blue,s:0.9}#2#{C:inactive,s:0.9}Chips)"
+					"{C:inactive,s:0.9}(Currently {C:blue,s:0.9}+#2#{C:inactive,s:0.9} Chips)"
 				}
 			},
 			['j_ortalab_bowling_ball'] = {
