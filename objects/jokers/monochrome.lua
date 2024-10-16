@@ -30,11 +30,11 @@ SMODS.Joker({
         end
     end,
     set_ability = function(self, card, initial, delay_sprites)
-        if card.area == G.your_collection then return end
         card.ability.extra.suit = pseudorandom_element(SMODS.Suits, pseudoseed('ortalab_monochrome')).key
         self:set_sprites(card)
     end,
     set_sprites = function(self, card, front)
+        if not card.config.center.discovered then return end
         card.children.center.atlas = {
             px = 71, py = 95, name = 'ortalab_monochrome',
             image_data = G.ASSET_ATLAS['ortalab_monochrome'].image_data:clone(),
@@ -57,6 +57,7 @@ function Card.is_suit(self, suit, bypass_debuff, flush_calc) --Monochrome Logic
 end
 
 function recolour_atlases(card, new_colour)
+
     card.children.center.atlas.image_data = G.ASSET_ATLAS['ortalab_monochrome'].image_data:clone()
     card.children.center.atlas.image_data:mapPixel(function(x,y,r,g,b,a)
         return recolour_pixel(x,y,r,g,b,a,new_colour)
