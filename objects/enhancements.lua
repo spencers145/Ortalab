@@ -92,9 +92,6 @@ SMODS.Enhancement({
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'luna'} end
     end,
-    set_ability = function(self, card, initial, delay_sprites)
-        if card.base then card.ability.extra.base_id = card.base.id end
-    end,
     set_sprites = function(self, card, front)
         if card.ability and card.ability.extra then 
             if card.ability.extra.index_state == 'MID' then card.children.center:set_sprite_pos({x = 2, y = 0}) 
@@ -300,9 +297,11 @@ G.FUNCS.increase_index = function(e, mute, nosave)
     e.config.button = nil
     local card = e.config.ref_table
     local area = card.area
+    local change = 1
+    if card.ability.extra.index_state == 'DOWN' then change = 2 end
     card.ability.extra.index_state = 'UP'
     card.children.center:set_sprite_pos({x = 1, y = 2})
-    card.base.id = card.ability.extra.base_id + 1
+    card.base.id = card.base.id + change
     SMODS.change_base(card, nil, get_rank_suffix(card)) 
 end
 
@@ -320,9 +319,11 @@ G.FUNCS.mid_index = function(e, mute, nosave)
     e.config.button = nil
     local card = e.config.ref_table
     local area = card.area
+    local change = 1
+    if card.ability.extra.index_state == 'UP' then change = -1 end
     card.ability.extra.index_state = 'MID'
     card.children.center:set_sprite_pos({x = 2, y = 0})
-    card.base.id = card.ability.extra.base_id
+    card.base.id = card.base.id + change
     SMODS.change_base(card, nil, get_rank_suffix(card)) 
 end
 
@@ -340,8 +341,10 @@ G.FUNCS.decrease_index = function(e, mute, nosave)
     e.config.button = nil
     local card = e.config.ref_table
     local area = card.area
+    local change = 1
+    if card.ability.extra.index_state == 'UP' then change = 2 end
     card.ability.extra.index_state = 'DOWN'
     card.children.center:set_sprite_pos({x = 0, y = 2}) 
-    card.base.id = card.ability.extra.base_id - 1
+    card.base.id = card.base.id - change
     SMODS.change_base(card, nil, get_rank_suffix(card))
 end
