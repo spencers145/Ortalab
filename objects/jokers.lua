@@ -50,7 +50,7 @@ local joker_list = {
     -- 'driver',
     -- 'hot_chocolate',
     'virus',
-    -- 'miracle_cure',
+    'miracle_cure',
     -- 'yellow', 
     -- 'common_sense',
     'shrine',

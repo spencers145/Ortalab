@@ -39,6 +39,7 @@ return {
 			['ortalab_corroded'] = 'Corroded!',
 			['ortalab_loteria_saved'] = 'Saved!',
 			ortalab_protostar = 'Collapsed!',
+			ortalab_cured = 'Cured!',
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
@@ -474,6 +475,13 @@ return {
 					"{X:mult,C:white}X#1#{} Mult when", 
 					"{C:money}dollars{} are gained during",
 					"scoring"
+				}
+			},
+			['j_ortalab_miracle_cure'] = {
+				["name"] = "Miracle Cure",
+				["text"] = {
+					"{C:attention}Debuffed{} cards are",
+					"instead {C:attention}retriggered"
 				}
 			},
 			['j_ortalab_monochrome'] = {
