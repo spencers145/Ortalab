@@ -15,13 +15,13 @@ local load_table = {
     enhancements = true,
     editions = true,
     loteria = true,
-    zodiac = true,
+    zodiac = false,
     patches = true,
     decks = true,
     coupons = true,
-    stakes = true,
-    blinds = true,
-    curses = true
+    stakes = false,
+    blinds = false,
+    curses = false
 }
 loc_colour('red')
 G.ARGS.LOC_COLOURS['Ortalab'] = HEX('990000')
@@ -40,30 +40,30 @@ SMODS.Atlas({
     py = '34'
 })
 
-AltTextures_Utils.default_atlas['Zodiac'] = 'ortalab_zodiac_cards'
+-- AltTextures_Utils.default_atlas['Zodiac'] = 'ortalab_zodiac_cards'
 
-AltTexture({
-    key = 'alt_zodiac',
-    set = 'Zodiac',
-    path = 'zodiac_rainbow.png',
-    loc_txt = {
-        name = 'Rainbow Zodiac'
-    }
-})
+-- AltTexture({
+--     key = 'alt_zodiac',
+--     set = 'Zodiac',
+--     path = 'zodiac_rainbow.png',
+--     loc_txt = {
+--         name = 'Rainbow Zodiac'
+--     }
+-- })
 
-TexturePack{
-    key = 'alt_orta',
-    textures = {
-        'alt_tex_ortalab_alt_zodiac',
-        'alt_tex_malverk_painted'
-    },
-    loc_txt = {
-        name = 'Ortalab Alternate Art',
-        text = {
-            'Alternate art for {C:zodiac}Zodiac',
-            'and {C:loteria}Loteria{} cards'
-        }
-    }
-}
+-- TexturePack{
+--     key = 'alt_orta',
+--     textures = {
+--         'alt_tex_ortalab_alt_zodiac',
+--         'alt_tex_malverk_painted'
+--     },
+--     loc_txt = {
+--         name = 'Ortalab Alternate Art',
+--         text = {
+--             'Alternate art for {C:zodiac}Zodiac',
+--             'and {C:loteria}Loteria{} cards'
+--         }
+--     }
+-- }
 
 -- Config tab stuff to go below
