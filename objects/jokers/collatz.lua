@@ -16,7 +16,7 @@ SMODS.Joker({
     end,
     calculate = function(self, card, context) --Collatz Logic
         if context.joker_main then
-            if math.floor(to_big(card.ability.extra.current_chips) / 2) * 2 == to_big(card.ability.extra.current_chips) then
+            if math.floor(card.ability.extra.current_chips / 2) * 2 == card.ability.extra.current_chips then
                 return {
                     message = localize{type='variable',key='a_xmult',vars={card.ability.extra.x_mult}},
                     Xmult_mod = card.ability.extra.x_mult
