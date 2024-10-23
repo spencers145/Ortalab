@@ -19,7 +19,7 @@ local load_table = {
     patches = true,
     decks = true,
     coupons = true,
-    stakes = false,
+    stakes = true,
     blinds = false,
     curses = false
 }
