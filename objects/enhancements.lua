@@ -93,7 +93,7 @@ SMODS.Enhancement({
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'luna'} end
     end,
     set_sprites = function(self, card, front)
-        if card.ability and card.ability.extra then 
+        if card.ability and card.ability.extra  and card.ability.extra.index_state then 
             if card.ability.extra.index_state == 'MID' then card.children.center:set_sprite_pos({x = 2, y = 0}) 
             elseif card.ability.extra.index_state == 'UP' then card.children.center:set_sprite_pos({x = 1, y = 2}) 
             elseif card.ability.extra.index_state == 'DOWN' then card.children.center:set_sprite_pos({x = 0, y = 2}) end
@@ -177,8 +177,8 @@ SMODS.Enhancement({
             vars = { card and card.ability.mult or self.config.mult }
         }
     end,
-    calculate = function(self, card, context)
-
+    calculate = function(self, card, context, effect)
+        
     end
 })
 
