@@ -1126,7 +1126,7 @@ function loteria_joker_save_check(card)
     if G.booster_pack then return false end
     local loteria_joker = SMODS.find_card('j_ortalab_black_cat')
     for _, joker_card in pairs(loteria_joker) do        
-        if pseudorandom(pseudoseed('loteria_check_keep')) < (3*G.GAME.probabilities.normal) / joker_card.ability.extra.chance then
+        if pseudorandom(pseudoseed('loteria_check_keep')) > (3*G.GAME.probabilities.normal) / joker_card.ability.extra.chance then
             joker_card:juice_up()
             card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_loteria_saved')})
             return true
