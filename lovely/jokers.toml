@@ -97,14 +97,14 @@ end
 '''
 match_indent = true
 
-## Demo Card Badges
-[[patches]]
-[patches.pattern]
-target = 'functions/UI_definitions.lua'
-pattern = '''badges[#badges + 1] = create_badge(((card.ability.name == 'Pluto' or card.ability.name == 'Ceres' or card.ability.name == 'Eris') and localize('k_dwarf_planet')) or (card.ability.name == 'Planet X' and localize('k_planet_q') or card_type),card_type_colour, nil, 1.2)'''
-position = 'after'
-match_indent = true
-payload = '''if card.config.center.ortalab_demo_card then badges = {}; end'''
+# ## Demo Card Badges
+# [[patches]]
+# [patches.pattern]
+# target = 'functions/UI_definitions.lua'
+# pattern = '''badges[#badges + 1] = create_badge(((card.ability.name == 'Pluto' or card.ability.name == 'Ceres' or card.ability.name == 'Eris') and localize('k_dwarf_planet')) or (card.ability.name == 'Planet X' and localize('k_planet_q') or card_type),card_type_colour, nil, 1.2)'''
+# position = 'after'
+# match_indent = true
+# payload = '''if card.config.center.ortalab_demo_card then badges = {}; end'''
 
 [[patches]]
 [patches.pattern]
@@ -165,10 +165,10 @@ payload = '''if obj.set == 'Loteria' then nc = loteria_joker_save_check(card) en
 [[patches]]
 [patches.pattern]
 target = 'functions/button_callbacks.lua'
-pattern = "if card.area then card.area:remove_card(card) end"
+pattern = "if G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.PLANET_PACK or G.STATE == G.STATES.SPECTRAL_PACK or G.STATE == G.STATES.SMODS_BOOSTER_OPENED then"
 match_indent = true
-position = 'before'
-payload = '''if card.area then card.area_check = card.area.config.type end'''
+position = 'after'
+payload = '''card.from_booster = true'''
 
 
 # Miracle Cure
