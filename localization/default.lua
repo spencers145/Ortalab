@@ -40,6 +40,10 @@ return {
 			['ortalab_loteria_saved'] = 'Saved!',
 			ortalab_protostar = 'Collapsed!',
 			ortalab_cured = 'Cured!',
+			ortalab_spike_debuff = 'Hand will be debuffed!',
+			ortalab_fork_cap = 'Score capped at 50%',
+			ortalab_tongs = '+1%',
+			ortalab_minimised = 'Minimised!'
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
@@ -1503,6 +1507,24 @@ return {
 			}
 		},
 		['Blind'] = {
+			['bl_ortalab_check'] = {
+				name = 'Check',
+			},
+			['bl_ortalab_bet'] = {
+				name = 'Bet',
+			},
+			['bl_ortalab_fold'] = {
+				name = 'Fold',
+			},
+			['bl_ortalab_raise'] = {
+				name = 'Raise',
+			},
+			['bl_ortalab_call'] = {
+				name = 'Call',
+			},
+			['bl_ortalab_all_in'] = {
+				name = 'All In',
+			},
 			['bl_ortalab_sinker'] = {
 				name = 'The Sinker',
 				text = {
@@ -1510,11 +1532,190 @@ return {
 					'every {C:blue}hand{} you play'
 				}
 			},
+			['bl_ortalab_fork'] = {
+				name = 'The Fork',
+				text = {
+					'Score is capped at',
+					'#1#% of blind amount'
+				}
+			},
+			['bl_ortalab_top'] = {
+				name = 'The Top',
+				text = {
+					'#1# in #2# drawn cards',
+					'are debuffed'
+				}
+			},
 			['bl_ortalab_hammer'] = {
 				name = 'The Hammer',
 				text = {
 					'Remove card enhancements',
 					'after they are scored'
+				}
+			},
+			['bl_ortalab_parasol'] = {
+				name = 'The Parasol',
+				text = {
+					'#1# are always',
+					'selected'
+				}
+			},
+			['bl_ortalab_glass'] = {
+				name = 'The Glass',
+				text = {
+					'Cards drawn face down',
+					'after each discard'
+				}
+			},
+			['bl_ortalab_tarot'] = {
+				name = 'The Tarot',
+				text = {
+					'All cards must score'
+				}
+			},
+			['bl_ortalab_oil'] = {
+				name = 'The Oil',
+				text = {
+					'Discarded cards are',
+					'returned to your deck'
+				}
+			},
+			['bl_ortalab_bellows'] = {
+				name = 'The Bellows',
+				text = {
+					'+#1# hand size'
+				}
+			},
+			['bl_ortalab_spike'] = {
+				name = 'The Spike',
+				text = {
+					'First played #1#',
+					'is debuffed'
+				}
+			},
+			['bl_ortalab_buckler'] = {
+				name = 'The Buckler',
+				text = {
+					'#1# are always',
+					'selected'
+				}
+			},
+			['bl_ortalab_room'] = {
+				name = 'The Room',
+				text = {
+					'#1# are always',
+					'selected'
+				}
+			},
+			['bl_ortalab_glyph'] = {
+				name = 'The Glyph',
+				text = {
+					'Previously played ranks', 
+					'are debuffed'
+				}
+			},
+			['bl_ortalab_reed'] = {
+				name = 'The Reed',
+				text = {
+					'#1#s, #2#s, #3#s', 
+					'and #4#s are debuffed'
+				}
+			},
+			['bl_ortalab_reed_collection'] = {
+				name = 'The Reed',
+				text = {
+					'#1# numbers from your',
+					'deck are debuffed'
+				}
+			},
+			['bl_ortalab_ladder'] = {
+				name = 'The Ladder',
+				text = {
+					'+#1# hand size,',
+					'cards are only drawn',
+					'when hand is empty'
+				}
+			},
+			['bl_ortalab_hearth'] = {
+				name = 'The Hearth',
+				text = {
+					'Cards not played this',
+					'Ante are drawn',
+					'face down'
+				}
+			},
+			['bl_ortalab_face'] = {
+				name = 'The Face',
+				text = {
+					'#1# are always',
+					'selected'
+				}
+			},
+			['bl_ortalab_spring'] = {
+				name = 'The Spring',
+				text = {
+					'Lose $ equal to',
+					'played poker', 
+					'hand\'s level'
+				}
+			},
+			['bl_ortalab_tongs'] = {
+				name = 'The Tongs',
+				text = {
+					'Score requirement increases',
+					'by #1#% per card played'
+				}
+			},
+			['bl_ortalab_beam'] = {
+				name = 'The Beam',
+				text = {
+					'#1#s, #2#s, #3#s, #4#s', 
+					'and #5#s are drawn face down'
+				}
+			},
+			['bl_ortalab_beam_collection'] = {
+				name = 'The Beam',
+				text = {
+					'#1# numbers from your',
+					'deck are drawn face down'
+				}
+			},
+			['bl_ortalab_sheep'] = {
+				name = 'The Sheep',
+				text = {
+					'Sets money to $#2# if',
+					'poker hand is not',
+					'#1#'
+				}
+			},
+			['bl_ortalab_sheep_collection'] = {
+				name = 'The Sheep',
+				text = {
+					'Sets money to $#1# if',
+					'poker hand is not',
+					'the most played'
+				}
+			},
+			['bl_ortalab_lever'] = {
+				name = 'The Lever',
+				text = {
+					'First drawn hand',
+					'is debuffed'
+				}
+			},
+			['bl_ortalab_steel'] = {
+				name = 'The Steel',
+				text = {
+					'Chips and Mult are set',
+					'to the smaller value'
+				}
+			},
+			['bl_ortalab_celadon_clubs'] = {
+				name = 'Celadon Clubs',
+				text = {
+					'Disable a type of card', 
+					'every hand',
+					'(Disabling #1# cards)'
 				}
 			},
 			['bl_ortalab_caramel_coin'] = {

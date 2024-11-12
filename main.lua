@@ -20,7 +20,7 @@ local load_table = {
     decks = true,
     coupons = true,
     stakes = true,
-    blinds = false,
+    blinds = true,
     curses = false
 }
 loc_colour('red')
