@@ -12,6 +12,7 @@ SMODS.Blind({
     atlas = 'ortalab_blinds',
     pos = {x=0, y=33},
     boss_colour = HEX('00b99f'),
+    boss = {min = 1, max = 10},
     in_pool = function(self)
         return false
     end,
@@ -27,6 +28,7 @@ SMODS.Blind({
     atlas = 'ortalab_blinds',
     pos = {x=0, y=28},
     boss_colour = HEX('27b955'),
+    boss = {min = 1, max = 10},
     in_pool = function(self)
         return false
     end,
@@ -42,6 +44,7 @@ SMODS.Blind({
     atlas = 'ortalab_blinds',
     pos = {x=0, y=30},
     boss_colour = HEX('71ba27'),
+    boss = {min = 1, max = 10},
     in_pool = function(self)
         return false
     end,
@@ -57,6 +60,7 @@ SMODS.Blind({
     atlas = 'ortalab_blinds',
     pos = {x=0, y=31},
     boss_colour = HEX('b94a00'),
+    boss = {min = 1, max = 10},
     in_pool = function(self)
         return false
     end,
@@ -72,6 +76,7 @@ SMODS.Blind({
     atlas = 'ortalab_blinds',
     pos = {x=0, y=29},
     boss_colour = HEX('c73a38'),
+    boss = {min = 1, max = 10},
     in_pool = function(self)
         return false
     end,
@@ -87,6 +92,7 @@ SMODS.Blind({
     atlas = 'ortalab_blinds',
     pos = {x=0, y=32},
     boss_colour = HEX('b92aff'),
+    boss = {min = 1, max = 10},
     in_pool = function(self)
         return false
     end,
