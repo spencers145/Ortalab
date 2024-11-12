@@ -4,10 +4,11 @@ SMODS.current_mod.config_tab = function()
             {n=G.UIT.C, config = {padding = 0.2, align = 'cm'}, nodes = {
                 create_toggle({label = localize('ortalab_config_artists'), ref_table = Ortalab.config, ref_value = 'artist_credits', info = localize('ortalab_config_artists_desc'), active_colour = Ortalab.badge_colour, right = true, callback = artist_toggle}),
                 create_toggle({label = localize('ortalab_config_full'), ref_table = Ortalab.config, ref_value = 'full_credits', info = localize('ortalab_config_full_desc'), active_colour = Ortalab.badge_colour, right = true, callback = full_toggle}),
+                create_toggle({label = localize('ortalab_config_loteria_skip'), ref_table = Ortalab.config, ref_value = 'loteria_skip', info = localize('ortalab_config_loteria_skip_desc'), active_colour = Ortalab.badge_colour, right = true}),
             }}
         }},
         -- {n=G.UIT.R, config={minh=0.1}},
-        {n=G.UIT.R, config = {minh = 0.04, minw = 4.5, colour = G.C.L_BLACK}},
+        {n=G.UIT.R, config = {minh = 0.04, minw = 4, colour = G.C.L_BLACK}},
         {n=G.UIT.R, nodes = {
             {n=G.UIT.C, config={minw = 3, padding=0.2}, nodes={
                 create_toggle({label = localize('ortalab_config_placeholder'), ref_table = Ortalab.config, ref_value = 'placeholders', info = localize('ortalab_config_placeholder_desc'), active_colour = Ortalab.badge_colour, right = true, callback = purge_collection}),

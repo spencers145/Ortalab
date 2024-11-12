@@ -1002,8 +1002,10 @@ function use_enhance_cards(self, loteria, area, copier)
         local set = true
         while set do
             local card = pseudorandom_element(G.hand.cards, pseudoseed(loteria.ability.extra.key..'_select'))
-            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.1, func = function() card:highlight(true); play_sound('card3', math.random()*0.2 + 0.9, 0.35); return true; end}))
-            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.1, func = function() card:highlight(false); return true; end}))
+            if not Ortalab.config.loteria_skip then
+                G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.1, func = function() card:highlight(true); play_sound('card3', math.random()*0.2 + 0.9, 0.35); return true; end}))
+                G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.1, func = function() card:highlight(false); return true; end}))
+            end
             if card.config.center_key ~= loteria.ability.extra.key and not card.changed then
                 if pseudorandom(pseudoseed(loteria.ability.extra.key..'_set')) < (1 / (card.ability.set == 'Enhanced' and 6 or 3)) then
                     set_enhancement(card, loteria.ability.extra.key)
@@ -1019,6 +1021,7 @@ function use_enhance_cards(self, loteria, area, copier)
 end
 
 function shuffle_cards()
+    if Ortalab.config.loteria_skip then return end
     for i = math.random(5, 10), 1, -1 do
         local card = pseudorandom_element(G.hand.cards, pseudoseed('loteria_roll'))
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.1, func = function() card:highlight(true); play_sound('card3', math.random()*0.2 + 0.9, 0.35); return true; end}))
@@ -1112,13 +1115,13 @@ end
 function bottle_randomise(card)
     local modifier = 8
     local edition = poll_edition('bottle_edition', modifier, false, false)
-    card:set_edition(edition, true, true)
     local enhance = pseudorandom_element(get_current_pool('Enhanced'), pseudoseed('bottle_enhancement'))
     while enhance == 'UNAVAILABLE' do
         enhance = pseudorandom_element(get_current_pool('Enhanced'), pseudoseed('bottle_enhancement'))
     end
-    card:set_ability(G.P_CENTERS[enhance])
     local seal = SMODS.poll_seal({key = 'bottle_seal', mod = modifier})
+    card:set_edition(edition, true, true)
+    card:set_ability(G.P_CENTERS[enhance])
     card:set_seal(seal, true, true)
 end
 

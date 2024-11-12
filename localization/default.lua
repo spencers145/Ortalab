@@ -16,6 +16,11 @@ return {
 				"objects in the collection",
 				"Requires restart"
 			},
+			ortalab_config_loteria_skip = 'Skip Loteria Animations',
+			ortalab_config_loteria_skip_desc = {
+				'Skip the animations of',
+				'most Loteria cards'
+			},
 			["ortalab_artist"] = 'Artist',
 			["ortalab_swap"] = 'Swap!',
 			['ortalab_leak'] = 'Leaked!',
