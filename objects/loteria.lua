@@ -578,7 +578,7 @@ SMODS.Consumable({
         track_usage(loteria.config.center.set, loteria.config.center_key)
         local cards = {}
 
-        for i=1, loteria.ability.extra.amount do
+        for i=1, math.min(loteria.ability.extra.amount, #G.hand.cards) do
             G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.35,func = function()
                 local selected = false
                 while not selected do
