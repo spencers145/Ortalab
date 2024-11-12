@@ -52,7 +52,7 @@ return {
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
-			ortalab_fluorescent = 'Fluroescent',
+			ortalab_fluorescent = 'Fluorescent',
 			ortalab_overexposed = 'Overexposed',
 			ortalab_anaglyphic = 'Anaglyphic',
 			ortalab_corroded_seal = 'Corroded',
