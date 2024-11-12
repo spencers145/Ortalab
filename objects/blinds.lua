@@ -513,7 +513,7 @@ SMODS.Blind({
     config = {extra = {ranks = {}, debuff_count = 4}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
-        if table.size(self.config.extra.ranks) > 0 then
+        if self.triggered then
             local ranks = {}
             for k, v in pairs(self.config.extra.ranks) do
                 table.insert(ranks, k)
@@ -528,7 +528,6 @@ SMODS.Blind({
         return {key = 'bl_ortalab_reed_collection', vars = {self.config.extra.debuff_count}}
     end,
     set_blind = function(self)
-        if table.size(self.config.extra.ranks) == 0 then
             local possible_ranks = {}
             for _, card in pairs(G.playing_cards) do
                 if not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
@@ -538,8 +537,8 @@ SMODS.Blind({
                 self.config.extra.ranks[rank] = true
                 possible_ranks[rank] = nil
             end
+            self.triggered = true
             G.GAME.blind:set_text()
-        end
     end,
     drawn_to_hand = function(self)
         for _, card in pairs(G.playing_cards) do
@@ -550,11 +549,13 @@ SMODS.Blind({
         for _, card in pairs(G.playing_cards) do
             if card.debuffed_by_reed then card:set_debuff(); card.debuffed_by_reed = nil end
         end
+        self.triggered = false
     end,
     defeat = function(self)
         for _, card in pairs(G.playing_cards) do
             if card.debuffed_by_reed then card:set_debuff(); card.debuffed_by_reed = nil end
         end
+        self.triggered = false
     end
 })
 
@@ -714,7 +715,7 @@ SMODS.Blind({
     config = {extra = {ranks = {}, flipped = 5}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
-        if table.size(self.config.extra.ranks) > 0 then
+        if self.triggered then
             local ranks = {}
             for k, v in pairs(self.config.extra.ranks) do
                 table.insert(ranks, k)
@@ -729,18 +730,17 @@ SMODS.Blind({
         return {key = 'bl_ortalab_beam_collection', vars = {self.config.extra.flipped}}
     end,
     set_blind = function(self)
-        if table.size(self.config.extra.ranks) == 0 then
-            local possible_ranks = {}
-            for _, card in pairs(G.playing_cards) do
-                if not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
-            end
-            for i=1, self.config.extra.flipped do
-                local rank = pseudorandom_element(possible_ranks, pseudoseed('ortalab_beam'))
-                self.config.extra.ranks[rank] = true
-                possible_ranks[rank] = nil
-            end
-            G.GAME.blind:set_text()
+        local possible_ranks = {}
+        for _, card in pairs(G.playing_cards) do
+            if not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
         end
+        for i=1, self.config.extra.flipped do
+            local rank = pseudorandom_element(possible_ranks, pseudoseed('ortalab_beam'))
+            self.config.extra.ranks[rank] = true
+            possible_ranks[rank] = nil
+        end
+        self.triggered = true
+        G.GAME.blind:set_text()
     end,
     stay_flipped = function(self, area, card)
         if self.config.extra.ranks[card.base.value] then card.flipped_by_beam = true; return true end
@@ -749,7 +749,11 @@ SMODS.Blind({
         for _, card in pairs(G.hand.cards) do
             if card.flipped_by_beam then card:flip() end
         end
+        self.triggered = false
     end,
+    defeat = function(self)
+        self.triggered = false
+    end
 })
 
 SMODS.Blind({
