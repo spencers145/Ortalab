@@ -11,12 +11,14 @@ pattern = '''if G.GAME.round_resets.blind_states.Boss == 'Defeated' then'''
 position = 'before'
 match_indent = true
 payload = '''
-local types = {'Small', 'Big'}
-for _, blind in ipairs(types) do
-    if G.GAME.modifiers.ortalab_only or pseudorandom('ortalab_check') < 3/8 then
-        G.GAME.round_resets.blind_choices[blind] = pseudorandom_element(Ortalab_blinds[blind], pseudoseed('ortalab_blind'))
-    else
-        G.GAME.round_resets.blind_choices[blind] = blind == 'Small' and 'bl_small' or 'bl_big'
+if G.GAME.round_resets.blind_states.Small == 'Select' then
+    local types = {'Small', 'Big'}
+    for _, blind in ipairs(types) do
+        if G.GAME.modifiers.ortalab_only or pseudorandom('ortalab_check') < 3/8 then
+            G.GAME.round_resets.blind_choices[blind] = pseudorandom_element(Ortalab_blinds[blind], pseudoseed('ortalab_blind'))
+        else
+            G.GAME.round_resets.blind_choices[blind] = blind == 'Small' and 'bl_small' or 'bl_big'
+        end
     end
 end
 '''
@@ -179,4 +181,12 @@ if G.GAME.blind.config.blind.key == 'bl_ortalab_ladder' and #G.hand.cards > 0 an
         hand_space = 0
     end
 '''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''if v.boss.showdown then '''
+position = "at"
+payload = '''if v.boss and v.boss.showdown then '''
 match_indent = true
