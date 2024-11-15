@@ -26,20 +26,14 @@ end
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
-pattern = '''if G.GAME.round_resets.blind == G.P_BLINDS.bl_small then'''
-position = 'at'
+pattern = "G.GAME.round_resets.blind_states.Big = 'Defeated'"
+position = 'after'
 match_indent = true
 payload = '''
-if G.GAME.round_resets.blind == G.P_BLINDS.bl_small or Ortalab_blinds.Small[G.GAME.round_resets.blind.key] then
-'''
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = '''if G.GAME.round_resets.blind == G.P_BLINDS.bl_big then'''
-position = 'at'
-match_indent = true
-payload = '''
-if G.GAME.round_resets.blind == G.P_BLINDS.bl_big or Ortalab_blinds.Big[G.GAME.round_resets.blind.key] then
+elseif Ortalab_blinds.Small[G.GAME.round_resets.blind.key] then
+    G.GAME.round_resets.blind_states.Small = 'Defeated'
+elseif Ortalab_blinds.Big[G.GAME.round_resets.blind.key] then
+    G.GAME.round_resets.blind_states.Big = 'Defeated'
 '''
 
 [[patches]]
