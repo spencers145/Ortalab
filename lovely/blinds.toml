@@ -26,6 +26,25 @@ end
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
+pattern = '''if G.GAME.round_resets.blind == G.P_BLINDS.bl_small then'''
+position = 'at'
+match_indent = true
+payload = '''
+if G.GAME.round_resets.blind == G.P_BLINDS.bl_small or Ortalab_blinds.Small[G.GAME.round_resets.blind.key] then
+'''
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = '''if G.GAME.round_resets.blind == G.P_BLINDS.bl_big then'''
+position = 'at'
+match_indent = true
+payload = '''
+if G.GAME.round_resets.blind == G.P_BLINDS.bl_big or Ortalab_blinds.Big[G.GAME.round_resets.blind.key] then
+'''
+
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
 pattern = '''ease_to = G.GAME.chips + math.floor(hand_chips*mult),'''
 position = 'at'
 match_indent = true

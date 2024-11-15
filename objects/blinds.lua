@@ -103,18 +103,30 @@ SMODS.Blind({
     dollars = 5,
 })
 
+Ortalab_blinds = {
+    Small = {
+        bl_ortalab_check = 'bl_ortalab_check',
+        bl_ortalab_fold = 'bl_ortalab_fold',
+        bl_ortalab_bet = 'bl_ortalab_bet'
+    },
+    Big = {
+        bl_ortalab_raise = 'bl_ortalab_raise',
+        bl_ortalab_call = 'bl_ortalab_call',
+        bl_ortalab_all_in = 'bl_ortalab_all_in'
+    }
+}
+
 local blind_get_type = Blind.get_type
 function Blind:get_type()
-    if self.key == "bl_ortalab_check" then
+    if Ortalab_blinds.Small[self.config.blind.key] then
         return 'Small'
-    elseif self.key == "bl_ortalab_raise" then 
+    elseif Ortalab_blinds.Big[self.config.blind.key] then 
+        print('big')
         return 'Big'
     else
         return blind_get_type(self)
     end
 end
-
-Ortalab_blinds = {Small = {'bl_ortalab_check', 'bl_ortalab_bet', 'bl_ortalab_fold'}, Big = {'bl_ortalab_raise', 'bl_ortalab_call', 'bl_ortalab_all_in'}}
 
 SMODS.Blind({
     key = 'sinker',
