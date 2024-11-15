@@ -215,9 +215,12 @@ SMODS.Blind({
     end,
     drawn_to_hand = function(self)
         for _, card in pairs(G.hand.cards) do
-            if pseudorandom('top_blind') < G.GAME.probabilities.normal / self.config.extra.frequency then
-                card:set_debuff(true)
-                if card.debuff then card.debuffed_by_blind = true end
+            if not card.top_check then
+                if pseudorandom('top_blind') < G.GAME.probabilities.normal / self.config.extra.frequency then
+                    card:set_debuff(true)
+                    if card.debuff then card.debuffed_by_blind = true end
+                end
+                card.top_check = true
             end
         end
     end
@@ -421,7 +424,7 @@ SMODS.Blind({
     pos = {x = 0, y = 10},
     dollars = 5,
     mult = 4,
-    boss = {min = 1, max = 10},
+    boss = {min = 3, max = 10},
     boss_colour = HEX('e56a2f'),
     config = {extra = {hand_size = 1}},
     loc_vars = function(self, info_queue, card)
