@@ -7,7 +7,7 @@ priority = 2
 [[patches]]
 [patches.pattern]
 target = 'card.lua'
-pattern = '''return generate_card_ui(self.config.center, nil, loc_vars, card_type, badges, hide_desc, main_start, main_end)'''
+pattern = '''return generate_card_ui(self.config.center, nil, loc_vars, card_type, badges, hide_desc, main_start, main_end, self)'''
 position = 'before'
 match_indent = true
 payload = '''if value == 'ortalab_chameleon' then return loc_vars end'''
@@ -139,7 +139,7 @@ match_indent = true
 [[patches]]
 [patches.pattern]
 target = "card.lua"
-pattern = '''return generate_card_ui(self.config.center, nil, loc_vars, card_type, badges, hide_desc, main_start, main_end)'''
+pattern = '''return generate_card_ui(self.config.center, nil, loc_vars, card_type, badges, hide_desc, main_start, main_end, self)'''
 position = "before"
 payload = '''
 if self.ability.shinku then 
