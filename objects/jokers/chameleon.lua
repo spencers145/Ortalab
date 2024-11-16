@@ -2,7 +2,7 @@ SMODS.Joker({
 	key = "chameleon",
 	atlas = "jokers",
 	pos = {x = 9, y = 9},
-	rarity = 3,
+	rarity = 1,
 	cost = 8,
 	unlocked = true,
 	discovered = false,
@@ -66,7 +66,7 @@ SMODS.Joker({
             local chosen_joker = card.ability.extra.copier_joker
             update_chameleon_atlas(card, G.ASSET_ATLAS[card.ability.extra.copied_joker.config.center.atlas], card.ability.extra.copied_joker.config.center.pos)
         else
-            update_chameleon_atlas(card, card.children.center.atlas, card.config.center.pos)
+            update_chameleon_atlas(card, G.ASSET_ATLAS[self.atlas], self.pos)
         end
         card.ignore_base_shader = {chameleon = true}
         card.ignore_shadow = {chameleon = true}
@@ -101,7 +101,7 @@ function update_chameleon_atlas(self, new_atlas, new_pos)
         self.children.front:set_role({major = self, role_type = 'Glued', draw_major = self})
     end
     self.children.front.sprite_pos = new_pos
-    self.children.front.atlas.name = new_atlas.key or new_atlas.name
+    self.children.front.atlas.name = new_atlas and (new_atlas.key or new_atlas.name) or 'ortalab_jokers'
     self.children.front:reset()
     self:juice_up()    
 end
