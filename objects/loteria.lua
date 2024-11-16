@@ -569,7 +569,7 @@ SMODS.Consumable({
         return {vars = {card.ability.extra.money, card.ability.extra.value, card.ability.extra.amount + (G.GAME and G.GAME.Ortalab_loteria_voucher_2 and G.GAME.Ortalab_loteria_voucher_2 or 0)        }}
     end,
     can_use = function(self, card)
-        return #G.hand.cards > 0
+        return #G.hand.cards > 0 and #G.hand.highlighted == 0
     end,
     keep_on_use = function(self, card)
         return loteria_joker_save_check(card)
