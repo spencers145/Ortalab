@@ -124,6 +124,7 @@ SMODS.Back({
             new_card:add_to_deck()
             SMODS.change_base(new_card, nil, pseudorandom_element(faces, pseudoseed('royal_deck_spawn')))
             bottle_randomise(new_card)
+            playing_card_joker_effects({new_card})
         end
     end,
     loc_vars = function(self, info_queue, card)
