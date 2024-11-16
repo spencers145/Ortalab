@@ -203,3 +203,19 @@ pattern = '''if v.boss.showdown then '''
 position = "at"
 payload = '''if v.boss and v.boss.showdown then '''
 match_indent = true
+
+## Discard to deck
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = '''draw_card(G.hand, G.discard, i*100/highlighted_count, 'down', false, G.hand.highlighted[i])'''
+position = 'at'
+match_indent = true
+payload = '''
+if G.hand.highlighted[i].corroded_discard or (G.GAME.blind.config.blind.key == 'bl_ortalab_oil' and not G.GAME.blind.disabled) then
+    draw_card(G.hand, G.deck, i*100/highlighted_count, 'down', false, G.hand.highlighted[i])
+    G.deck:shuffle()
+else
+    draw_card(G.hand, G.discard, i*100/highlighted_count, 'down', false, G.hand.highlighted[i])
+end
+'''
