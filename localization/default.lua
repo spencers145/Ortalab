@@ -1234,6 +1234,22 @@ return {
 					"to the next shop"
                 }
             },
+			['zodiac_ortalab_scorpio'] = {
+                name = "Scorpio",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'Turn unscored cards into',
+					'{C:attention}Stone Cards{} or {C:attention}Ore Cards'
+                }
+            },
+			['zodiac_ortalab_aquarius'] = {
+                name = "Aquarius",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}Two Pair",
+					'Create a copy of the',
+					'{C:attention}right-most{} scoring card'
+                }
+            },
 		},
 		["Back"] = {
 			['b_ortalab_orange'] = {
@@ -1598,6 +1614,13 @@ return {
 					'is debuffed'
 				}
 			},
+			['bl_ortalab_spike_collection'] = {
+				name = 'The Spike',
+				text = {
+					'First played most played',
+					'poker hand is debuffed'
+				}
+			},
 			['bl_ortalab_buckler'] = {
 				name = 'The Buckler',
 				text = {
@@ -1636,9 +1659,9 @@ return {
 			['bl_ortalab_ladder'] = {
 				name = 'The Ladder',
 				text = {
-					'+#1# hand size,',
+					'#1# hand size,',
 					'cards are only drawn',
-					'when hand is empty'
+					'after #2# actions'
 				}
 			},
 			['bl_ortalab_hearth'] = {

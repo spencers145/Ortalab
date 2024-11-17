@@ -190,9 +190,10 @@ target = "functions/state_events.lua"
 pattern = '''if G.GAME.blind.name == 'The Serpent' and'''
 position = "before"
 payload = '''
-if G.GAME.blind.config.blind.key == 'bl_ortalab_ladder' and #G.hand.cards > 0 and not G.GAME.blind.disabled then
-        hand_space = 0
-    end
+if G.GAME.blind.config.blind.key == 'bl_ortalab_ladder' then
+    G.GAME.blind.config.blind.config.extra.action_count = G.GAME.blind.config.blind.config.extra.action_count + 1
+    if G.GAME.blind.config.blind.config.extra.action_count < 2 then hand_space = 0 else G.GAME.blind.config.blind.config.extra.action_count = 0 end
+end
 '''
 match_indent = true
 

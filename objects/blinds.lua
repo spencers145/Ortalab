@@ -453,13 +453,13 @@ SMODS.Blind({
     mult = 2,
     boss = {min = 1, max = 10},
     boss_colour = HEX('4b71e4'),
-    config = {extra = {triggered = false, hand_type = 'High Card'}},
+    config = {extra = {triggered = false}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
-        return {vars = {localize(self.config.extra.hand_type, 'poker_hands')}}
+        return {vars = {localize(self.config.extra.hand_type or G.GAME.current_round.most_played_poker_hand, 'poker_hands')}}
     end,
     collection_loc_vars = function(self)
-        return {vars = {key = 'bl_ortalab_spike_collection'}}
+        return {key = 'bl_ortalab_spike_collection'}
     end,
     set_blind = function(self)
         self.config.extra.hand_type = G.GAME.current_round.most_played_poker_hand
@@ -582,33 +582,25 @@ SMODS.Blind({
     mult = 2,
     boss = {min = 1, max = 10},
     boss_colour = HEX('439a4f'),
-    config = {extra = {hand_size = 1}},
+    config = {extra = {hand_size = 10, actions = 2, action_count = 0}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
-        return {vars = {self.config.extra.hand_size}}
+        return {vars = {self.config.extra.hand_size, self.config.extra.actions}}
     end,
     collection_loc_vars = function(self)
         return {vars = {self.config.extra.hand_size}}
     end,
     set_blind = function(self)
-        G.hand:change_size(self.config.extra.hand_size)
+        self.config.extra.hand_change = self.config.extra.hand_size - G.hand.config.card_limit
+        G.hand:change_size(self.config.extra.hand_change)
     end,
     defeat = function(self)
-        G.hand:change_size(-self.config.extra.hand_size)
+        G.hand:change_size(-self.config.extra.hand_change)
     end,
     disable = function(self)
-        G.hand:change_size(-self.config.extra.hand_size)
+        G.hand:change_size(-self.config.extra.hand_change)
     end
 })
-
-
-local draw_to_hand = G.FUNCS.draw_from_deck_to_hand
-G.FUNCS.draw_from_deck_to_hand = function(e)
-    if G.GAME.blind.config.blind.key == 'bl_ortalab_ladder' and #G.hand.cards > 0 then
-        hand_size = 0
-    end
-    draw_to_hand(e)
-end
 
 SMODS.Blind({
     key = 'hearth',
