@@ -1585,8 +1585,8 @@ return {
 			['bl_ortalab_parasol'] = {
 				name = 'The Parasol',
 				text = {
-					'#1# are always',
-					'selected'
+					'Hand must',
+					'contain #1#'
 				}
 			},
 			['bl_ortalab_glass'] = {
@@ -1632,15 +1632,15 @@ return {
 			['bl_ortalab_buckler'] = {
 				name = 'The Buckler',
 				text = {
-					'#1# are always',
-					'selected'
+					'Hand must',
+					'contain #1#'
 				}
 			},
 			['bl_ortalab_room'] = {
 				name = 'The Room',
 				text = {
-					'#1# are always',
-					'selected'
+					'Hand must',
+					'contain #1#'
 				}
 			},
 			['bl_ortalab_glyph'] = {
@@ -1683,8 +1683,8 @@ return {
 			['bl_ortalab_face'] = {
 				name = 'The Face',
 				text = {
-					'#1# are always',
-					'selected'
+					'Hand must',
+					'contain #1#'
 				}
 			},
 			['bl_ortalab_spring'] = {

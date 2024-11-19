@@ -266,22 +266,17 @@ SMODS.Blind({
     collection_loc_vars = function(self)
         return {vars = {self.config.extra.suit}}
     end,
-    drawn_to_hand = function(self)
-        for _, card in pairs(G.hand.cards) do
-            if card:is_suit(self.config.extra.suit) then
-                card.ability.forced_selection = self.key
-                print(self.key)
-                G.hand:add_to_highlighted(card)
-            end
+    debuff_hand = function(self, cards, hand, handname, check)
+        for _, card in pairs(cards) do
+            if card:is_suit(self.config.extra.suit) then return false end
         end
+        return true
     end,
-    disable = function(self)
-        for _, card in pairs(G.hand.cards) do
-            if card.ability.forced_selection and card.ability.forced_selection == self.key then
-                card.ability.forced_selection = nil
-                G.hand:remove_from_highlighted(card)
-            end
+    in_pool = function(self)
+        for _, card in pairs(G.playing_cards) do
+            if card:is_suit(self.config.extra.suit) then return true end
         end
+        return false
     end
 })
 
@@ -351,22 +346,17 @@ SMODS.Blind({
     collection_loc_vars = function(self)
         return {vars = {self.config.extra.suit}}
     end,
-    drawn_to_hand = function(self)
-        for _, card in pairs(G.hand.cards) do
-            if card:is_suit(self.config.extra.suit) then
-                card.ability.forced_selection = self.key
-                print(self.key)
-                G.hand:add_to_highlighted(card)
-            end
+    debuff_hand = function(self, cards, hand, handname, check)
+        for _, card in pairs(cards) do
+            if card:is_suit(self.config.extra.suit) then return false end
         end
+        return true
     end,
-    disable = function(self)
-        for _, card in pairs(G.hand.cards) do
-            if card.ability.forced_selection and card.ability.forced_selection == self.key then
-                card.ability.forced_selection = nil
-                G.hand:remove_from_highlighted(card)
-            end
+    in_pool = function(self)
+        for _, card in pairs(G.playing_cards) do
+            if card:is_suit(self.config.extra.suit) then return true end
         end
+        return false
     end
 })
 
@@ -399,22 +389,17 @@ SMODS.Blind({
     collection_loc_vars = function(self)
         return {vars = {self.config.extra.suit}}
     end,
-    drawn_to_hand = function(self)
-        for _, card in pairs(G.hand.cards) do
-            if card:is_suit(self.config.extra.suit) then
-                card.ability.forced_selection = self.key
-                print(self.key)
-                G.hand:add_to_highlighted(card)
-            end
+    debuff_hand = function(self, cards, hand, handname, check)
+        for _, card in pairs(cards) do
+            if card:is_suit(self.config.extra.suit) then return false end
         end
+        return true
     end,
-    disable = function(self)
-        for _, card in pairs(G.hand.cards) do
-            if card.ability.forced_selection and card.ability.forced_selection == self.key then
-                card.ability.forced_selection = nil
-                G.hand:remove_from_highlighted(card)
-            end
+    in_pool = function(self)
+        for _, card in pairs(G.playing_cards) do
+            if card:is_suit(self.config.extra.suit) then return true end
         end
+        return false
     end
 })
 
@@ -682,22 +667,17 @@ SMODS.Blind({
     collection_loc_vars = function(self)
         return {vars = {self.config.extra.suit}}
     end,
-    drawn_to_hand = function(self)
-        for _, card in pairs(G.hand.cards) do
-            if card:is_suit(self.config.extra.suit) then
-                card.ability.forced_selection = self.key
-                print(self.key)
-                G.hand:add_to_highlighted(card)
-            end
+    debuff_hand = function(self, cards, hand, handname, check)
+        for _, card in pairs(cards) do
+            if card:is_suit(self.config.extra.suit) then return false end
         end
+        return true
     end,
-    disable = function(self)
-        for _, card in pairs(G.hand.cards) do
-            if card.ability.forced_selection and card.ability.forced_selection == self.key then
-                card.ability.forced_selection = nil
-                G.hand:remove_from_highlighted(card)
-            end
+    in_pool = function(self)
+        for _, card in pairs(G.playing_cards) do
+            if card:is_suit(self.config.extra.suit) then return true end
         end
+        return false
     end
 })
 
