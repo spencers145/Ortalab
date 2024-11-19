@@ -273,7 +273,7 @@ SMODS.Blind({
         return true
     end,
     in_pool = function(self)
-        for _, card in pairs(G.playing_cards) do
+        for _, card in pairs(G.playing_cards or {}) do
             if card:is_suit(self.config.extra.suit) then return true end
         end
         return false
@@ -353,7 +353,7 @@ SMODS.Blind({
         return true
     end,
     in_pool = function(self)
-        for _, card in pairs(G.playing_cards) do
+        for _, card in pairs(G.playing_cards or {}) do
             if card:is_suit(self.config.extra.suit) then return true end
         end
         return false
@@ -396,7 +396,7 @@ SMODS.Blind({
         return true
     end,
     in_pool = function(self)
-        for _, card in pairs(G.playing_cards) do
+        for _, card in pairs(G.playing_cards or {}) do
             if card:is_suit(self.config.extra.suit) then return true end
         end
         return false
@@ -674,7 +674,7 @@ SMODS.Blind({
         return true
     end,
     in_pool = function(self)
-        for _, card in pairs(G.playing_cards) do
+        for _, card in pairs(G.playing_cards or {}) do
             if card:is_suit(self.config.extra.suit) then return true end
         end
         return false
