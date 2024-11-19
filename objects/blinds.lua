@@ -456,13 +456,27 @@ SMODS.Blind({
     config = {extra = {triggered = false}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
-        return {vars = {localize(self.config.extra.hand_type or G.GAME.current_round.most_played_poker_hand, 'poker_hands')}}
+        if self.triggered then
+            return {vars = {localize(self.config.extra.hand_type, 'poker_hands')}}
+        else
+            return {key = 'bl_ortalab_spike_collection'}
+        end
     end,
     collection_loc_vars = function(self)
         return {key = 'bl_ortalab_spike_collection'}
     end,
     set_blind = function(self)
+        local _handname, _played, _order = 'High Card', -1, 100
+        for k, v in pairs(G.GAME.hands) do
+            if v.played > _played or (v.played == _played and _order > v.order) then 
+                _played = v.played
+                _handname = k
+            end
+        end
+        G.GAME.current_round.most_played_poker_hand = _handname
         self.config.extra.hand_type = G.GAME.current_round.most_played_poker_hand
+        self.triggered = true
+        G.GAME.blind:set_text()
     end,
     debuff_hand = function(self, cards, hand, handname, check)
         if handname == self.config.extra.hand_type and check and not self.config.extra.triggered then return true end
@@ -479,6 +493,12 @@ SMODS.Blind({
         end
         return mult, hand_chips
     end,
+    disable = function(self)
+        self.triggered = nil
+    end,
+    defeat = function(self)
+        self.triggered = nil
+    end
 })
 
 SMODS.Blind({
@@ -543,17 +563,17 @@ SMODS.Blind({
         return {key = 'bl_ortalab_reed_collection', vars = {self.config.extra.debuff_count}}
     end,
     set_blind = function(self)
-            local possible_ranks = {}
-            for _, card in pairs(G.playing_cards) do
-                if not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
-            end
-            for i=1, self.config.extra.debuff_count do
-                local rank = pseudorandom_element(possible_ranks, pseudoseed('ortalab_reed'))
-                self.config.extra.ranks[rank] = true
-                possible_ranks[rank] = nil
-            end
-            self.triggered = true
-            G.GAME.blind:set_text()
+        local possible_ranks = {}
+        for _, card in pairs(G.playing_cards) do
+            if not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
+        end
+        for i=1, self.config.extra.debuff_count do
+            local rank = pseudorandom_element(possible_ranks, pseudoseed('ortalab_reed'))
+            self.config.extra.ranks[rank] = true
+            possible_ranks[rank] = nil
+        end
+        self.triggered = true
+        G.GAME.blind:set_text()
     end,
     drawn_to_hand = function(self)
         for _, card in pairs(G.playing_cards) do
