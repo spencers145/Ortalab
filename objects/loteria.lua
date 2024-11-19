@@ -1007,7 +1007,7 @@ function use_enhance_cards(self, loteria, area, copier)
                 G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.1, func = function() card:highlight(false); return true; end}))
             end
             if card.config.center_key ~= loteria.ability.extra.key and not card.changed then
-                if pseudorandom(pseudoseed(loteria.ability.extra.key..'_set')) < (1 / (card.ability.set == 'Enhanced' and 6 or 3)) then
+                if pseudorandom(pseudoseed(loteria.ability.extra.key..'_set')) < (1 / (card.ability.set == 'Enhanced' and 8 or 3)) then
                     set_enhancement(card, loteria.ability.extra.key)
                     card.changed = true
                     set = false
