@@ -192,7 +192,13 @@ SMODS.Back({
                     trigger = 'after', delay = 0.4,
                     func = (function()
                         local new_tag = Tag(selected_tag)
-                        new_tag:set_ability()
+                        if selected_tag == 'tag_orbital' then
+                            local _poker_hands = {}
+                            for k, v in pairs(G.GAME.hands) do
+                                if v.visible then _poker_hands[#_poker_hands+1] = k end
+                            end
+                            new_tag.ability.orbital_hand = pseudorandom_element(_poker_hands, pseudoseed('orbital'))
+                        end
                         add_tag(new_tag)
                         play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
                         play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
