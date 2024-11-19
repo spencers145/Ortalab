@@ -17,12 +17,14 @@ SMODS.Joker({
 	add_to_deck = function(self, card, from_debuff)
 		G.E_MANAGER:add_event(Event({func = function()
 			ease_hands_played(card.ability.extra.hands)
+			G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.hands
 			return true
         end}))
 	end,
 	remove_from_deck = function(self, card, from_debuff)
 		G.E_MANAGER:add_event(Event({func = function()
 			ease_hands_played(-card.ability.extra.hands)
+			G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.hands
 			return true
         end}))
 	end,
