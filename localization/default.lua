@@ -1647,7 +1647,7 @@ return {
 				name = 'The Glyph',
 				text = {
 					'Previously played ranks', 
-					'are debuffed'
+					'this round are debuffed'
 				}
 			},
 			['bl_ortalab_reed'] = {
