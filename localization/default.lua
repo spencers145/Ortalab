@@ -1242,6 +1242,34 @@ return {
 					"to the next shop"
                 }
             },
+			['zodiac_ortalab_aries'] = {
+                name = "Aries",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'{C:inactive}No other effect'
+                }
+            },
+			['zodiac_ortalab_taurus'] = {
+                name = "Taurus",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'{C:inactive}No other effect'
+                }
+            },
+			['zodiac_ortalab_gemini'] = {
+                name = "Gemini",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'{C:inactive}No other effect'
+                }
+            },
+			['zodiac_ortalab_cancer'] = {
+                name = "Cancer",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'{C:inactive}No other effect'
+                }
+            },
 			['zodiac_ortalab_scorpio'] = {
                 name = "Scorpio",
                 text = {
@@ -1667,7 +1695,7 @@ return {
 			['bl_ortalab_ladder'] = {
 				name = 'The Ladder',
 				text = {
-					'#1# hand size,',
+					'+#1# hand size,',
 					'cards are only drawn',
 					'after #2# actions'
 				}

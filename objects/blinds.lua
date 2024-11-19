@@ -587,23 +587,22 @@ SMODS.Blind({
     mult = 2,
     boss = {min = 1, max = 10},
     boss_colour = HEX('439a4f'),
-    config = {extra = {hand_size = 10, actions = 2, action_count = 0}},
+    config = {extra = {hand_size = 2, actions = 2, action_count = 0}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
         return {vars = {self.config.extra.hand_size, self.config.extra.actions}}
     end,
     collection_loc_vars = function(self)
-        return {vars = {self.config.extra.hand_size}}
+        return {vars = {self.config.extra.hand_size, self.config.extra.actions}}
     end,
     set_blind = function(self)
-        self.config.extra.hand_change = self.config.extra.hand_size - G.hand.config.card_limit
-        G.hand:change_size(self.config.extra.hand_change)
+        G.hand:change_size(self.config.extra.hand_size)
     end,
     defeat = function(self)
-        G.hand:change_size(-self.config.extra.hand_change)
+        G.hand:change_size(-self.config.extra.hand_size)
     end,
     disable = function(self)
-        G.hand:change_size(-self.config.extra.hand_change)
+        G.hand:change_size(-self.config.extra.hand_size)
     end
 })
 
