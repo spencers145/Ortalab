@@ -34,7 +34,7 @@ return {
 			['ortalab_loteria_pack_2'] = 'Wumbo Chalupa Pack',
 			['ortalab_loteria_pack_3'] = 'Giga Chalupa Pack',
 			['ortalab_moldy_discard'] = 'Discard!',
-			['ortalab_moldy_hand'] = 'Hand!',
+			['ortalab_moldy_tag'] = 'Tag!',
 			['ortalab_no_tag'] = 'None',
 			['ortalab_flashback'] = 'Flashback!',
 			['ortalab_joker_miles'] = 'Upgrade!',
@@ -1077,9 +1077,9 @@ return {
 				["name"] = "Recycled Card",
 				["text"] = {
 					"{C:green}#1# in #2#{} chance",
-					"for {C:red}+#3# Discard",
-					"{C:green}#1# in #4#{} chance",
-					"for {C:blue}+#5# Hand",
+					"to not gain {C:red}+#3# Discard",
+					"{C:green}#4# in #5#{} chance",
+					"to not gain {C:attention}#6# Tag",
 				},
 			},
 			["m_ortalab_bent"] = {
