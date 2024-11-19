@@ -802,6 +802,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Bent Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
 			["c_ortalab_lot_melon"] = {
@@ -810,6 +811,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Recycled Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
 			["c_ortalab_lot_mandolin"] = {
@@ -818,6 +820,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Post Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
 			["c_ortalab_lot_rose"] = {
@@ -826,6 +829,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}IOU Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
             ["c_ortalab_lot_tree"] = {
@@ -842,6 +846,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Rusty Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
 			["c_ortalab_lot_bird"] = {
@@ -850,6 +855,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Sand Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
             ["c_ortalab_lot_rooster"] = {
@@ -884,6 +890,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Index Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
             ["c_ortalab_lot_heron"] = {
@@ -932,6 +939,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Ore Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
             ["c_ortalab_lot_bottle"] = {
