@@ -223,6 +223,9 @@ SMODS.Blind({
                 card.top_check = true
             end
         end
+    end,
+    recalc_debuff = function(self, card, from_blind)
+        return card.debuff
     end
 })
 
@@ -510,6 +513,15 @@ SMODS.Blind({
             if self.config.extra.ranks[card.base.value] then card:set_debuff(true); card.debuffed_by_glyph = true end
         end
     end,
+    recalc_debuff = function(self, card, from_blind)
+        if self.config.extra.ranks[card.base.value] then
+            card.debuffed_by_glyph = true
+            return true
+        else
+            card.debuffed_by_glyph = nil
+            return false
+        end
+    end,
     disable = function(self)
         for _, card in pairs(G.playing_cards) do
             if card.debuffed_by_glyph then card:set_debuff(); card.debuffed_by_glyph = nil end
@@ -563,6 +575,15 @@ SMODS.Blind({
     drawn_to_hand = function(self)
         for _, card in pairs(G.playing_cards) do
             if self.config.extra.ranks[card.base.value] then card:set_debuff(true); card.debuffed_by_reed = true end
+        end
+    end,
+    recalc_debuff = function(self, card, from_blind)
+        if self.config.extra.ranks[card.base.value] then
+            card.debuffed_by_reed = true
+            return true
+        else
+            card.debuffed_by_reed = nil
+            return false
         end
     end,
     disable = function(self)
@@ -819,6 +840,9 @@ SMODS.Blind({
             end
             self.config.extra.triggered = true
         end
+    end,
+    recalc_debuff = function(self, card, from_blind)
+        return card.debuff
     end
 })
 
