@@ -144,7 +144,7 @@ SMODS.Enhancement({
                 if held_card.config.center_key == 'm_ortalab_rusty' then
                     G.E_MANAGER:add_event(Event({
                         trigger = 'after',
-                        delay = 0.7,
+                        delay = 0.3,
                         func = function()
                             held_card:juice_up()
                             play_sound('ortalab_metal1', 0.8+ (0.9 + 0.2*math.random())*0.2, 0.5)
@@ -154,6 +154,7 @@ SMODS.Enhancement({
                         end
                     }))
                     rusty_in_hand = rusty_in_hand + 1
+                    if i ~= #G.hand.cards then card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_xmult',vars={card.ability.extra.base_x + (rusty_in_hand * card.ability.extra.x_gain)}}, colour = G.C.RED, delay = 0, Xmult_mod = true}) end
                 end
             end
             effect.x_mult = card.ability.extra.base_x + (rusty_in_hand * card.ability.extra.x_gain)
