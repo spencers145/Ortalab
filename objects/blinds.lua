@@ -639,7 +639,7 @@ SMODS.Blind({
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
     end,
     stay_flipped = function(self, area, card)
-        if not card.ability.played_this_ante then return true end
+        if not card.ability.played_this_ante and area == G.hand then return true end
     end,
     disable = function(self)
         for i = 1, #G.hand.cards do
@@ -770,7 +770,7 @@ SMODS.Blind({
         G.GAME.blind:set_text()
     end,
     stay_flipped = function(self, area, card)
-        if self.config.extra.ranks[card.base.value] then card.flipped_by_beam = true; return true end
+        if self.config.extra.ranks[card.base.value] and area == G.hand then card.flipped_by_beam = true; return true end
     end,
     disable = function(self)
         for _, card in pairs(G.hand.cards) do
@@ -1020,7 +1020,7 @@ SMODS.Blind({
         return {vars = {G.GAME.probabilities.normal, self.config.extra.chance}}
     end,
     stay_flipped = function (self, area, card)
-        if self.disabled then return false end
+        if self.disabled or area ~= G.hand then return false end
         if pseudorandom(pseudoseed('saffron_shield')) < G.GAME.probabilities.normal / self.config.extra.chance then
             return true
         end
