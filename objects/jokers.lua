@@ -160,7 +160,7 @@ for _, key in ipairs(joker_list) do
 end
 
 if Ortalab.config.placeholders then
-    for i=1, 151-#joker_list do
+    for i=1, 150-#joker_list do
         SMODS.Joker({
             key = 'ortalab_temp_'..i,
             pos = {x = 8, y = 9},
