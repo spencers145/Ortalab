@@ -33,6 +33,10 @@ return {
 			['ortalab_loteria_pack'] = 'Chalupa Pack',
 			['ortalab_loteria_pack_2'] = 'Wumbo Chalupa Pack',
 			['ortalab_loteria_pack_3'] = 'Giga Chalupa Pack',
+			['ortalab_zodiac_pack_plus'] = 'Astral+ Pack',
+			['ortalab_zodiac_pack_minus'] = 'Astral- Pack',
+			['ortalab_zodiac_pack_2'] = 'Wumbo Astral Pack',
+			['ortalab_zodiac_pack_3'] = 'Giga Astral Pack',
 			['ortalab_moldy_discard'] = 'Discard!',
 			['ortalab_moldy_tag'] = 'Tag!',
 			['ortalab_no_tag'] = 'None',
@@ -170,9 +174,9 @@ return {
 			['j_ortalab_televangelist'] = {
 				["name"] = "Televangelist",
 				["text"] = {
-					"Gains {X:mult,C:white}#1#X{} Mult when",
+					"Gains {X:mult,C:white}X#1#{} Mult when",
 					"a {C:loteria}Loteria Card{} is used",
-					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#2#X{C:inactive,s:0.9})"
+					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}X#2#{C:inactive,s:0.9})"
 				}
 			},
 			
@@ -473,9 +477,9 @@ return {
 			['j_ortalab_mill'] = {
 				["name"] = "Mill",
 				["text"] = {
-					"Gains {X:mult,C:white}#2#X{} Mult when",
+					"Gains {X:mult,C:white}X#2#{} Mult when",
 					"a {C:attention}Card{} changes {C:attention}Suit",
-					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
+					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}X#1#{C:inactive,s:0.9})"
 				}
 			},
 			['j_ortalab_mint_condition'] = {
@@ -543,7 +547,7 @@ return {
 				["name"] = "Pickaxe",
 				["text"] = {
 					"Destroy played {C:attention}Ore{} cards",
-					"Gains {X:mult,C:white}#2#X{} Mult per",
+					"Gains {X:mult,C:white}X#2#{} Mult per",
 					"card destroyed this way",
 					"{C:inactive,s:0.9}(Currently {X:mult,C:white,s:0.9}X#1#{C:inactive,s:0.9} Mult)"
 				}
@@ -621,10 +625,10 @@ return {
 			['j_ortalab_rusty'] = {
 				["name"] = "Rusty Joker",
 				["text"] = {
-					"Gives {X:mult,C:white}#2#X{} Mult for",
+					"Gives {X:mult,C:white}X#2#{} Mult for",
 					"each {C:attention}Rusty Card{}",
 					"in your {C:attention}full deck",
-					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
+					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}X#1#{C:inactive,s:0.9})"
 				}
 			},
 			['j_ortalab_salad'] = {
@@ -640,9 +644,9 @@ return {
 				["text"] = {
 					"Played {C:attention}Sand Cards{}",
 					"do not lose Mult",
-					"Gains {X:mult,C:white}#2#X{} Mult when",
+					"Gains {X:mult,C:white}X#2#{} Mult when",
 					"a {C:attention}Sand Card{} is played",
-					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
+					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}X#1#{C:inactive,s:0.9})"
 				}
 			},
 			['j_ortalab_scam_email'] = {
@@ -690,7 +694,7 @@ return {
 				["text"] = {
 					"Sets played {C:attention}poker hand",
 					"level to 1",
-					"Gains {X:mult,C:white}#1#X{} Mult",
+					"Gains {X:mult,C:white}X#1#{} Mult",
 					"per level {C:attention}removed",
 					"{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
 				}
@@ -985,73 +989,85 @@ return {
 			["c_ortalab_zod_aries"] = {
 				["name"] = "Aries",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_taurus"] = {
 				["name"] = "Taurus",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_gemini"] = {
 				["name"] = "Gemini",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_cancer"] = {
 				["name"] = "Cancer",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_leo"] = {
 				["name"] = "Leo",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_virgo"] = {
 				["name"] = "Virgo",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_libra"] = {
 				["name"] = "Libra",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_scorpio"] = {
 				["name"] = "Scorpio",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_sag"] = {
 				["name"] = "Sagittarius",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_capr"] = {
 				["name"] = "Capricorn",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_aquarius"] = {
 				["name"] = "Aquarius",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_pisces"] = {
 				["name"] = "Pisces",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 		},
@@ -1246,7 +1262,8 @@ return {
                 name = "Aries",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'{C:inactive}No other effect'
+					'Destroy all cards in hand of',
+					'a different {C:attention}rank'
                 }
             },
 			['zodiac_ortalab_taurus'] = {
@@ -1274,16 +1291,32 @@ return {
                 name = "Scorpio",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Turn unscored cards into',
-					'{C:attention}Stone Cards{} or {C:attention}Ore Cards'
+					'Turn #3# left-most unscored cards into',
+					'{C:attention}Stone Cards{} and {C:attention}Ore Cards'
                 }
             },
 			['zodiac_ortalab_aquarius'] = {
                 name = "Aquarius",
                 text = {
-					"{C:attention}+#1#{} levels to next {C:attention}Two Pair",
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
 					'Create a copy of the',
 					'{C:attention}right-most{} scoring card'
+                }
+            },
+			['zodiac_ortalab_sag'] = {
+                name = "Sagittarius",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'Turn all cards in hand into',
+					'the {C:attention}suit{} of the {C:attention}#2#'
+                }
+            },
+			['zodiac_ortalab_capr'] = {
+                name = "Capricorn",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'Turn #3# {C:attention}left-most{} cards in hand into',
+					'{C:attention}Index cards'
                 }
             },
 		},
@@ -1526,6 +1559,70 @@ return {
                 text = {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2#{C:loteria} Loteria{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_small_zodiac_1'] = {
+                name = "Astral+ Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} +Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_small_zodiac_2'] = {
+                name = "Astral- Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} -Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_small_zodiac_3'] = {
+                name = "Astral+ Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} +Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_small_zodiac_4'] = {
+                name = "Astral- Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} -Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_mid_zodiac_1'] = {
+                name = "Wumbo Astral Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_mid_zodiac_2'] = {
+                name = "Wumbo Astral Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_big_zodiac_1'] = {
+                name = "Giga Astral Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_big_zodiac_2'] = {
+                name = "Giga Astral Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
                     "be used immediately"
                 }
             },
