@@ -561,7 +561,7 @@ return {
 				}
 			},
 			['j_ortalab_popcorn_bag'] = {
-				["name"] = "Popcorn Bag",
+				["name"] = "Picnic Basket",
 				["text"] = {
 					"{C:mult}+#1#{} Mult",
 					"{C:mult}+#2#{} Mult per round played",
@@ -656,6 +656,14 @@ return {
 					"a {C:attention}#2#{} is scored",
 					"{C:inactive,s:0.9}(Rank changes each round)"
 				},
+			},
+			['j_ortalab_scantron'] = {
+				["name"] = "Scantron",
+				["text"] = {
+					'{C:attention}Retrigger{} all played cards',
+					"Played cards have a {C:green}#1# in #2#{} chance",
+					"to not {C:attention}retrigger",
+				}
 			},
 			['j_ortalab_scared_face'] = {
 				["name"] = "Scared Face",
@@ -1270,14 +1278,17 @@ return {
                 name = "Taurus",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'{C:inactive}No other effect'
+					'Turn #3# {C:attention}left-most{} cards in',
+					'hand into {C:attention}Rusty cards'
                 }
             },
 			['zodiac_ortalab_gemini'] = {
                 name = "Gemini",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'{C:inactive}No other effect'
+					'Turn the {C:attention}played Pair',
+					'into a {C:attention}Post Card{} and',
+					'a {C:attention}Bent Card'
                 }
             },
 			['zodiac_ortalab_cancer'] = {
@@ -1291,8 +1302,8 @@ return {
                 name = "Scorpio",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Turn #3# left-most unscored cards into',
-					'{C:attention}Stone Cards{} and {C:attention}Ore Cards'
+					'Turn #3# {C:attention}left-most{} unscored cards',
+					'into {C:attention}Stone Cards{} and {C:attention}Ore Cards'
                 }
             },
 			['zodiac_ortalab_aquarius'] = {
@@ -1315,8 +1326,8 @@ return {
                 name = "Capricorn",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Turn #3# {C:attention}left-most{} cards in hand into',
-					'{C:attention}Index cards'
+					'Turn #3# {C:attention}left-most{} cards in',
+					'hand into {C:attention}Index cards'
                 }
             },
 		},

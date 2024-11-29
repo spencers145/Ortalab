@@ -113,7 +113,7 @@ local joker_list = {
     -- 'falshe_phd',
     'monochrome',
     -- 'mixtape',
-    -- 'scantron',
+    'scantron',
     'fools_gold',
     'amber_mosquito',
     'dripstone',
