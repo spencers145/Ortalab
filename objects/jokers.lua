@@ -100,7 +100,7 @@ local joker_list = {
     -- 'futuristic',
     'salad',
     'roscharch',
-    -- 'still_water',
+    'still_water',
     'mill',
     'frowny_face',
     -- 'freezer',

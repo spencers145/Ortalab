@@ -186,3 +186,104 @@ if self.cured_debuff then
     end
 end
 '''
+
+# Still Water
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "mult, hand_chips, modded = G.GAME.blind:modify_hand(G.play.cards, poker_hands, text, mult, hand_chips)"
+match_indent = true
+position = 'before'
+payload = '''
+for i=1, #G.play.cards do
+    if table.contains(scoring_hand, G.play.cards[i]) then
+
+    else
+        if G.play.cards[i].debuff then
+                            
+            if G.play.cards[i].debuffed_by_blind then
+                G.GAME.blind.triggered = true
+            end
+            G.E_MANAGER:add_event(Event({
+                trigger = 'immediate',
+                func = (function() SMODS.juice_up_blind();return true end)
+            }))
+            card_eval_status_text(G.play.cards[i], 'debuff')
+        else
+            --Check for play doubling
+            local reps = {1}
+            
+            --From Red seal
+            local eval = eval_card(G.play.cards[i], {repetition_only = true,cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, repetition = true})
+            if next(eval) then 
+                for h = 1, eval.seals.repetitions do
+                    reps[#reps+1] = eval
+                end
+            end
+            --From jokers
+            for j=1, #G.jokers.cards do
+                --calculate the joker effects
+                local eval = eval_card(G.jokers.cards[j], {cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, other_card = G.play.cards[i], repetition = true, callback = function(card, ret) eval = {jokers = ret}
+                if next(eval) and eval.jokers then 
+                    if not eval.jokers.repetitions then eval.jokers.repetitions = 0 end
+                    for h = 1, eval.jokers.repetitions do
+                        reps[#reps+1] = eval
+                    end
+                end end})
+            end
+            --From edition
+            if G.play.cards[i].edition and G.play.cards[i].edition.key then
+                local ed = SMODS.Centers[G.play.cards[i].edition.key]
+                if ed.config and ed.config.retriggers then
+                    for h = 1, ed.config.retriggers do
+                        reps[#reps+1] = {seals = {
+                            message = localize("k_again_ex"),
+                            card = G.play.cards[i]
+                        }}
+                    end
+                end
+                if ed.calculate and type(ed.calculate) == 'function' then
+                    local check = ed:calculate(G.play.cards[i], {retrigger_edition_check = true, cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, other_card = G.play.cards[i], repetition = true})
+                    if check and type(check) == 'table' and next(check) then 
+                        for j = 1, check.repetitions do
+                            reps[#reps+1] = {seals = check}
+                        end
+                    end
+                end
+            end
+
+            for j=1,#reps do
+                percent = percent + percent_delta
+                if reps[j] ~= 1 then
+                    card_eval_status_text((reps[j].jokers or reps[j].seals).card, 'jokers', nil, nil, nil, (reps[j].jokers or reps[j].seals))
+                end
+                
+                --calculate the hand effects
+                local effects = {}
+                for k=1, #G.jokers.cards do
+                    --calculate the joker individual card effects
+                    local eval = G.jokers.cards[k]:calculate_joker({cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, other_card = G.play.cards[i], unscored = true, callback = function(card, eval, retrigger)
+                        if eval then 
+                            table.insert(effects, eval)
+                            effects[#effects].from_retrigger = retrigger
+                        end
+                    end, no_retrigger_anim = true})
+                end
+                G.play.cards[i].lucky_trigger = nil
+
+                for ii = 1, #effects do
+                    --If mult added, do mult add event and add the mult to the total
+                    if effects[ii].mult then 
+                        if effects[ii].card then juice_card(effects[ii].card) end
+                        mult = mod_mult(mult + effects[ii].mult)
+                        update_hand_text({delay = 0}, {mult = mult})
+                        card_eval_status_text(G.play.cards[i], 'mult', effects[ii].mult, percent)
+                    end
+                    
+                end
+
+            end
+        end
+    end
+end
+'''

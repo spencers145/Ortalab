@@ -748,6 +748,14 @@ return {
 					"{C:attention}#2#",
 				}
 			},
+			['j_ortalab_still_water'] = {
+				["name"] = "Still Water",
+				["text"] = {
+					'Gains {C:red}+#1#{} Mult for',
+					'each {C:attention}unscored{} card',
+					'{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)'
+				},
+			},
 			['j_ortalab_sunnyside'] = {
 				["name"] = "Sunny Side Up",
 				["text"] = {
