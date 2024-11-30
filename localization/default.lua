@@ -449,6 +449,13 @@ return {
 					"use a {C:red}discard{}",
 				}
 			},
+			['j_ortalab_grave_digger'] = {
+				["name"] = "Grave Digger",
+				["text"] = {
+					'{C:attention}+#1#{} Joker slots',
+					'{X:attention,C:white}X#2#{} Blind amount'
+				}
+			},
 			['j_ortalab_head_honcho'] = {
 				["name"] = "Head Honcho",
 				["text"] = {
@@ -505,6 +512,14 @@ return {
 				["text"] = {
 					"{C:attention}Debuffed{} cards are",
 					"instead {C:attention}retriggered"
+				}
+			},
+			['j_ortalab_misfits'] = {
+				["name"] = "The Misfits",
+				["text"] = {
+					'{X:red,C:white}X#1#{} Mult if {C:attention}played hand',
+					'contains exactly',
+					'{C:attention}#2#{} Suits and {C:attention}#2#{} Ranks'
 				}
 			},
 			['j_ortalab_monochrome'] = {
