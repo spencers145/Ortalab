@@ -408,6 +408,16 @@ return {
 					"to gain {C:money}$#3#{}", 
 				}
 			},
+			['j_ortalab_freezer'] = {
+				["name"] = "Freezer",
+				["text"] = {
+					'Gain {X:red,C:white}X#1#{} Mult for each',
+					'{C:attention}consumeable{} you are holding',
+					'Consumeables have a {C:green}#3# in #4#',
+					'chance to not be consumed',
+					'{C:inactive,s:0.9}(Currently {s:0.9,X:red,C:white}X#2#{C:inactive,s:0.9})'
+				}
+			},
 			['j_ortalab_frowny_face'] = {
 				["name"] = "Frowny Face",
 				["text"] = {
@@ -755,6 +765,13 @@ return {
 					'each {C:attention}unscored{} card',
 					'{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)'
 				},
+			},
+			['j_ortalab_spectator'] = {
+				["name"] = "Spectator",
+				["text"] = {
+					'{X:red,C:white}X#1#{} Mult on', 
+					'{C:attention}first hand{} of round'
+				}
 			},
 			['j_ortalab_sunnyside'] = {
 				["name"] = "Sunny Side Up",
