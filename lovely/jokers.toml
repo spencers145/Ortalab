@@ -287,3 +287,24 @@ for i=1, #G.play.cards do
     end
 end
 '''
+
+
+# Freezer
+[[patches]]
+[patches.pattern]
+target = 'functions/button_callbacks.lua'
+pattern = "if not nc and card.area then card.area:remove_card(card) end"
+match_indent = true
+position = 'before'
+payload = '''
+local freezers = SMODS.find_card('j_ortalab_freezer')
+if next(freezers) then
+    for _, freezer in ipairs(freezers) do
+        print('freezer!')
+        if not nc and pseudoseed('ortalab_freezer') > (G.GAME.probabilities.normal * freezer.ability.extra.chance) / freezer.ability.extra.denom then
+            nc = true
+            card_eval_status_text(freezer, 'extra', nil, nil, nil, {message = 'Saved!'})
+        end
+    end
+end
+'''

@@ -103,7 +103,7 @@ local joker_list = {
     'still_water',
     'mill',
     'frowny_face',
-    -- 'freezer',
+    'freezer',
     -- 'polished',
     -- 'grave_digger',
     -- 'spectator',
