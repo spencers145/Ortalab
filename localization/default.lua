@@ -414,7 +414,7 @@ return {
 					'Gain {X:red,C:white}X#1#{} Mult for each',
 					'{C:attention}consumeable{} you are holding',
 					'Consumeables have a {C:green}#3# in #4#',
-					'chance to not be consumed',
+					'chance to be consumed',
 					'{C:inactive,s:0.9}(Currently {s:0.9,X:red,C:white}X#2#{C:inactive,s:0.9})'
 				}
 			},
