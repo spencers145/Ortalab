@@ -6,3 +6,18 @@ function table.contains(table, element)
 	end
 	return false
 end
+
+function Ortalab.rank_from_deck(seed)
+	local ranks = {}
+	local seed = seed or 'ortalab_rank_from_deck'
+	for _, card in pairs(G.playing_cards) do
+		ranks[card.base.value] = card.base.value
+	end
+	return pseudorandom_element(ranks, pseudoseed(seed))
+end
+
+function Ortalab.hand_contains_rank(hand, rank)
+    for _, card in ipairs(hand) do
+        if card.base.value == rank then return true end
+    end
+end

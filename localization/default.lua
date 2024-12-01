@@ -52,7 +52,8 @@ return {
 			ortalab_spike_debuff = 'Hand will be debuffed!',
 			ortalab_fork_cap = 'Score capped at 50%',
 			ortalab_tongs = '+1%',
-			ortalab_minimised = 'Minimised!'
+			ortalab_minimised = 'Minimised!',
+			ortalab_rank = 'certain rank'
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
@@ -424,6 +425,15 @@ return {
 					"Played {C:attention}numbered{} cards",
 					"give {C:mult}+#1#{} Mult",
 					"when scored",
+				}
+			},
+			['j_ortalab_futuristic'] = {
+				["name"] = "Futuristic Joker",
+				["text"] = {
+					'{C:attention}Scored cards{} give {X:red,C:white}X#1#{} Mult',
+					'if {C:attention}played hand{} contains a',
+					'{C:attention}Straight {}and a {C:attention}#2#',
+					'{C:inactive,s:0.8}(Rank changes each round)'
 				}
 			},
 			['j_ortalab_generous'] = {
