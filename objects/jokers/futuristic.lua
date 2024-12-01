@@ -12,7 +12,7 @@ SMODS.Joker({
 	config = {extra = {xmult = 1.75, rank = nil}},
 	loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
-		return {vars = {card.ability.extra.xmult, card.ability.extra.rank and localize(card.ability.extra.rank, 'ranks') or localize('ortalab_rank')}}
+		return {vars = {card.ability.extra.xmult, card.ability.extra.rank and localize(card.ability.extra.rank, 'ranks') or localize('ortalab_rank'), localize('Straight', 'poker_hands')}}
 	end,
     set_ability = function(self, card)
         if G.playing_cards and #G.playing_cards > 0 then

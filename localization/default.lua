@@ -432,7 +432,7 @@ return {
 				["text"] = {
 					'{C:attention}Scored cards{} give {X:red,C:white}X#1#{} Mult',
 					'if {C:attention}played hand{} contains a',
-					'{C:attention}Straight {}and a {C:attention}#2#',
+					'{C:attention}#3# {}and a {C:attention}#2#',
 					'{C:inactive,s:0.8}(Rank changes each round)'
 				}
 			},
@@ -490,6 +490,15 @@ return {
 					"{C:green}#3# in #4#{} chance to reset",
 					"when {C:blue}Hand{} played",
 					"{C:inactive}(Currently {C:blue}+#2#{C:inactive} Chips)"
+				}
+			},
+			['j_ortalab_knitted_sweater'] = {
+				["name"] = "Knitted Sweater",
+				["text"] = {
+					'Gains {C:blue}+#1#{} Chips',
+					'if played hand contains',
+					'a {C:attention}#3#',
+					'{C:inactive}(Currently {C:blue}+#2#{C:inactive} Chips)'
 				}
 			},
 			['j_ortalab_mathmagician'] = {
