@@ -302,6 +302,14 @@ return {
 					"{C:money}$1{} less",
 				}
 			},
+			['j_ortalab_calm'] = {
+				["name"] = "Calm Joker",
+				["text"] = {
+					'{C:blue}+#1#{} Chips if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
+				}
+			},
 			['j_ortalab_cardist'] = {
 				["name"] = "Cardist",
 				["text"] = {
@@ -365,12 +373,28 @@ return {
 					"{C:attention}hand{} of round",
 				}
 			},
+			['j_ortalab_direct'] = {
+				["name"] = "Direct Joker",
+				["text"] = {
+					'{C:red}+#1#{} Mult if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
+				}
+			},
 			['j_ortalab_dripstone'] = {
 				["name"] = "Dripstone",
 				["text"] = {
 					"Each {V:1}#2#{}",
 					"held in hand",
 					"gives {C:blue}+#1#{} Chips",
+				}
+			},
+			['j_ortalab_dull'] = {
+				["name"] = "Dull Joker",
+				["text"] = {
+					'{C:red}+#1#{} Mult if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
 				}
 			},
 			['j_ortalab_evil_eye'] = {
@@ -398,6 +422,14 @@ return {
 					"When {C:attention}Blind{} is skipped,",
 					"{C:green}#2# in #3#{} chance to spawn",
 					"a {C:attention}#1#",
+				}
+			},
+			['j_ortalab_foolish'] = {
+				["name"] = "Foolish Joker",
+				["text"] = {
+					'{C:red}+#1#{} Mult if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
 				}
 			},
 			['j_ortalab_fools_gold'] = {
@@ -444,6 +476,22 @@ return {
 					"{C:chips}+#1#{} Chips when scored", 
 				}
 			},
+			['j_ortalab_glum'] = {
+				["name"] = "Glum Joker",
+				["text"] = {
+					'{C:blue}+#1#{} Chips if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
+				}
+			},
+			['j_ortalab_gnomic'] = {
+				["name"] = "Gnomic Joker",
+				["text"] = {
+					'{C:blue}+#1#{} Chips if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
+				}
+			},
 			['j_ortalab_graffiti'] = {
 				["name"] = "Graffiti",
 				["text"] = {
@@ -473,6 +521,14 @@ return {
 					"{C:loteria}Loteria Card{} and",
 					"lose {C:red}$#1#{} when a",
 					"{C:blue}Hand{} is played"
+				}
+			},
+			['j_ortalab_honest'] = {
+				["name"] = "Honest Joker",
+				["text"] = {
+					'{C:red}+#1#{} Mult if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
 				}
 			},
 			['j_ortalab_hypercalculia'] = {
@@ -569,6 +625,14 @@ return {
 				["text"] = {
 					"Sell this card to create",
 					"#1# free {C:attention}tags",
+				}
+			},
+			['j_ortalab_naive'] = {
+				["name"] = "Naive Joker",
+				["text"] = {
+					'{C:red}+#1#{} Mult if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
 				}
 			},
 			['j_ortalab_occultist'] = {
@@ -693,6 +757,14 @@ return {
 					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}X#1#{C:inactive,s:0.9})"
 				}
 			},
+			['j_ortalab_sane'] = {
+				["name"] = "Sane Joker",
+				["text"] = {
+					'{C:blue}+#1#{} Chips if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
+				}
+			},
 			['j_ortalab_scam_email'] = {
 				["name"] = "Scam Email",
 				["text"] = {
@@ -731,6 +803,14 @@ return {
 					"card above {C:attention}#3#{}",
 					"in your full deck",
 					"{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)",
+				}
+			},
+			['j_ortalab_serious'] = {
+				["name"] = "Serious Joker",
+				["text"] = {
+					'{C:blue}+#1#{} Chips if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
 				}
 			},
 			['j_ortalab_shrine'] = {
