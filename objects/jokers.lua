@@ -18,7 +18,7 @@ local joker_list = {
     -- 'cutout',
     -- 'polydactyly',
     -- 'wallet',
-    -- 'bank_loan',
+    'bank_loan',
     'revolver',
     'graffiti',
     -- 'memorial',

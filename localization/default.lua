@@ -237,6 +237,13 @@ return {
 					"{C:attention}Blind{} is selected"
 				}
 			},
+			['j_ortalab_bank_loan'] = {
+				["name"] = "Bank Loan",
+				["text"] = {
+					"Gain {C:money}$#1#",
+					"Costs {C:red}$#1#{} to sell",
+				}
+			},
 			['j_ortalab_basalt_column'] = {
 				["name"] = "Basalt Column",
 				["text"] = {
