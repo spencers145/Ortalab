@@ -26,7 +26,5 @@ function Card:set_cost()
     if self.config.center_key == 'j_ortalab_bank_loan' then
         self.sell_cost = -1 * self.ability.extra.money
         self.sell_cost_label = self.ability.extra.money
-        print('set cost')
-        print('label: '..self.sell_cost_label)
     end
 end
