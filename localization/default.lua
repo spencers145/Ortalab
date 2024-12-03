@@ -396,6 +396,15 @@ return {
 					"gives {C:blue}+#1#{} Chips",
 				}
 			},
+			['j_ortalab_dropout'] = {
+				["name"] = "Dropout",
+				["text"] = {
+					'Each played {C:attention}#1#{} gives', 
+					'{C:blue}+#2#{} Chips and',
+					'{C:red}+#3#{} Mult when',
+					'scored'
+				}
+			},
 			['j_ortalab_dull'] = {
 				["name"] = "Dull Joker",
 				["text"] = {

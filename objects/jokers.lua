@@ -39,7 +39,7 @@ local joker_list = {
     'taliaferro',
     'red_fred',
     'pitch_mitch',
-    -- 'dropout',
+    'dropout',
     'scratch_card',
     'protostar',
     -- 'crash',
