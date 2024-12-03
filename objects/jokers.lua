@@ -120,7 +120,7 @@ local joker_list = {
     'basalt_column',
     'sandstone',
     'crime_scene',
-    -- 'soil',
+    'soil',
     -- 'pinkprint',
     -- 'wide',
     -- 'gloomy_gus',

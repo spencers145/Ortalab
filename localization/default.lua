@@ -879,6 +879,15 @@ return {
 					"is selected"
 				}
 			},
+			['j_ortalab_soil'] = {
+				["name"] = "Soil",
+				["text"] = {
+					'{C:white,X:mult}X#1#{} Mult',
+					'Gains {X:mult,C:white}X#2#{} for each', 
+					'consecutive triggered card',
+					'of the same rank'
+				}
+			},
 			['j_ortalab_solo'] = {
 				["name"] = "The Solo",
 				["text"] = {

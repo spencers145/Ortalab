@@ -328,3 +328,41 @@ position = 'after'
 payload = '''
 if self.sell_cost < 0 then self.sell_cost_label = self.sell_cost_label * -1 end
 '''
+
+# Soil
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "local effects = {eval_card(scoring_hand[i], {cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, poker_hand = text})}"
+match_indent = true
+position = 'after'
+payload = '''
+local ortalab_soil_jokers = SMODS.find_card('j_ortalab_soil')
+for _, soil_joker in ipairs(ortalab_soil_jokers) do
+    if not soil_joker.ability.extra.last_triggered then
+        soil_joker.ability.extra.last_triggered = scoring_hand[i].base.id
+    elseif soil_joker.ability.extra.last_triggered == scoring_hand[i].base.id then
+        G.E_MANAGER:add_event(Event({func = function() soil_joker:juice_up(); return true; end}))
+        soil_joker.ability.extra.consecutive_ranks = soil_joker.ability.extra.consecutive_ranks + 1
+    end
+    soil_joker.ability.extra.last_triggered = scoring_hand[i].base.id
+end
+'''
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "local effects = {eval_card(G.hand.cards[i], {cardarea = G.hand, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands})}"
+match_indent = true
+position = 'after'
+payload = '''
+local ortalab_soil_jokers = SMODS.find_card('j_ortalab_soil')
+for _, soil_joker in ipairs(ortalab_soil_jokers) do
+    if not soil_joker.ability.extra.last_triggered then
+        soil_joker.ability.extra.last_triggered = G.hand.cards[i].base.id
+    elseif soil_joker.ability.extra.last_triggered == G.hand.cards[i].base.id then
+        G.E_MANAGER:add_event(Event({func = function() soil_joker:juice_up(); return true; end}))
+        soil_joker.ability.extra.consecutive_ranks = soil_joker.ability.extra.consecutive_ranks + 1
+    end
+    soil_joker.ability.extra.last_triggered = G.hand.cards[i].base.id
+end
+'''
