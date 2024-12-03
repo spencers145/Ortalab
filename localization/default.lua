@@ -547,6 +547,14 @@ return {
 					'{C:attention}#2#'
 				}
 			},
+			['j_ortalab_hot_chocolate'] = {
+				["name"] = "Hot Chocolate",
+				["text"] = {
+					'{C:chips}+#2#{} Chips per hand played',
+					'Self destructs at {C:attention}+#3#{} Chips',
+					'{C:inactive}(Currently {C:blue}+#1#{C:inactive})'
+				}
+			},
 			['j_ortalab_hypercalculia'] = {
 				["name"] = "Hypercalculia",
 				["text"] = {
