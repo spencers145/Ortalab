@@ -53,7 +53,8 @@ return {
 			ortalab_fork_cap = 'Score capped at 50%',
 			ortalab_tongs = '+1%',
 			ortalab_minimised = 'Minimised!',
-			ortalab_rank = 'certain rank'
+			ortalab_rank = 'certain rank',
+			ortalab_zodiac_add = '+1 Zodiac'
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
@@ -584,7 +585,7 @@ return {
 			['j_ortalab_mathmagician'] = {
 				["name"] = "Mathmagician",
 				["text"] = {
-					"Creates a random {C:tarot}Tarot{}",
+					"Creates a random {C:Zodiac}Zodiac{}",
 					"card if discarded hand",
 					"contains 2 {C:attention}odd cards",
 					"and 2 {C:attention}even cards",
