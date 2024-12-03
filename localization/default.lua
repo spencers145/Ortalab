@@ -54,7 +54,9 @@ return {
 			ortalab_tongs = '+1%',
 			ortalab_minimised = 'Minimised!',
 			ortalab_rank = 'certain rank',
-			ortalab_zodiac_add = '+1 Zodiac'
+			ortalab_zodiac_add = '+1 Zodiac',
+			ortalab_forklift = '+2 slots',
+			ortalab_forklift_loss = '-2 slots'
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
@@ -456,6 +458,22 @@ return {
 					"held in hand",
 					"has {C:green}#1# in #2#{} chance",
 					"to gain {C:money}$#3#{}", 
+				}
+			},
+			['j_ortalab_forklift'] = {
+				["name"] = "Forklift Certificate",
+				["text"] = {
+					"{C:attention}+#1#{} Consumable slots",
+					'after #2# consumables used',
+					'{C:inactive}(Currently #3#/#2#)'
+				}
+			},
+			['j_ortalab_forklift_granted'] = {
+				["name"] = "Forklift Certificate",
+				["text"] = {
+					"{C:attention}+#1#{} Consumable slots",
+					'after #2# consumables used',
+					'{C:inactive}(Active!)'
 				}
 			},
 			['j_ortalab_freezer'] = {

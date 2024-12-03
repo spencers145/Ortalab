@@ -139,7 +139,7 @@ local joker_list = {
     -- 'right_hand',
     -- 'evil_eye', NEW EFFECT NEEDED
     -- 'boulevard',
-    -- 'forklift',
+    'forklift',
     'pictographer',
     -- 'occultist', NEW EFFECT NEEDED
     'damp',
