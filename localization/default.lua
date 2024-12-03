@@ -613,6 +613,14 @@ return {
 					"instead {C:attention}retriggered"
 				}
 			},
+			['j_ortalab_mirage'] = {
+				["name"] = "Mirage",
+				["text"] = {
+					'Gains {X:mult,C:white}X#1#{} Mult per',
+					'{C:attention}playing card{} destroyed',
+					'{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive})'
+				}
+			},
 			['j_ortalab_misfits'] = {
 				["name"] = "The Misfits",
 				["text"] = {
