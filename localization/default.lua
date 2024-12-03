@@ -650,6 +650,14 @@ return {
 					"shop are free",
 				}
 			},
+			['j_ortalab_open_palm'] = {
+				["name"] = "Open Palm",
+				["text"] = {
+					"Adds {C:blue}#1#{} minus {C:attention}#2#X{} the rank", 
+					"of {C:attention}highest{} ranked card",
+					"held in hand to {C:blue}Chips"
+				}
+			},
 			['j_ortalab_patient'] = {
 				["name"] = "Patient Joker",
 				["text"] = {

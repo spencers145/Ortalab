@@ -27,7 +27,7 @@ local joker_list = {
     'bowling_ball',
     'artist_proof',
     'dawn',
-    -- 'open_palm',
+    'open_palm',
     'business',
     'collatz',
     'rusty',
