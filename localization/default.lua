@@ -257,8 +257,8 @@ return {
 				["name"] = "Beyond The Mask",
 				["text"] = {
 					"Earn {C:money}$#1#{} at end of round",
-					"Gains {C:money}$#2#{} per discarded {C:attention,E:1}Gold{} Card",
-					"Discarded {C:attention,E:1}Gold{} Cards are destroyed",
+					"Gains {C:money}$#2#{} per discarded {C:attention,E:1}Cosmic Card{}",
+					"Discarded {C:attention,E:1}Cosmic Cards{} are destroyed",
 				}
 			},
 			['j_ortalab_blacklist'] = {
@@ -298,7 +298,7 @@ return {
 			['j_ortalab_bowling_ball'] = {
 				["name"] = "Bowling Ball Solar System",
 				["text"] = {
-					"Create a random {C:planet}Planet",
+					"Create a random {C:Zodiac}Zodiac",
 					"card if a {C:attention}10",
 					"is held in hand",
 				}
@@ -1029,7 +1029,7 @@ return {
 				["text"] = {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
-                    "{C:attention}IOU Cards",
+                    "{C:attention}Cosmic Cards",
 					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
@@ -1324,7 +1324,7 @@ return {
 				}
 			},
 			["m_ortalab_iou"] = {
-				["name"] = "IOU Card",
+				["name"] = "Cosmic Card",
 				["text"] = {
 					"{C:attention}Temporarily{} increase",
 					"hand level by {C:attention}#1#"

@@ -24,7 +24,7 @@ local joker_list = {
     -- 'memorial',
     -- 'stonehenge',
     'joker_miles',
-    'bowling_ball',
+    'bowling_ball', -- Needs new art?
     'artist_proof',
     'dawn',
     'open_palm',
@@ -53,7 +53,7 @@ local joker_list = {
     'miracle_cure',
     -- 'yellow', 
     -- 'common_sense',
-    'shrine',
+    -- 'shrine', waiting for mythos to be implemented
     -- 'biker',
     'mathmagician',
     -- 'purple',
@@ -64,7 +64,7 @@ local joker_list = {
     'blue_card',
     -- 'attached',
     'triangle',
-    'slot_machine',
+    -- 'slot_machine', NEW EFFECT NEEDED
     -- 'street_rat',
     -- 'belmont',
     'scenic',
@@ -137,11 +137,11 @@ local joker_list = {
     -- 'actor',
     'chameleon',
     -- 'right_hand',
-    'evil_eye',
+    -- 'evil_eye', NEW EFFECT NEEDED
     -- 'boulevard',
     -- 'forklift',
     'pictographer',
-    'occultist',
+    -- 'occultist', NEW EFFECT NEEDED
     'damp',
     -- 'inheritance',
     --legendaries
