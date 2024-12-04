@@ -648,6 +648,15 @@ return {
 					'{C:attention}#2#{} Suits and {C:attention}#2#{} Ranks'
 				}
 			},
+			['j_ortalab_mixtape'] = {
+				["name"] = "Mixtape",
+				["text"] = {
+					'Gains {X:mult,C:white}X#1#{} Mult for',
+					'each {C:attention}Blind{} beaten in a',
+					'single hand',
+					'{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive})'
+				}
+			},
 			['j_ortalab_monochrome'] = {
 				["name"] = "Monochrome Joker",
 				["text"] = {
@@ -986,6 +995,14 @@ return {
 					"This Joker gains {C:mult}+#1#{} Mult if played hand",
 					"has exactly {C:attention}3{} cards",
 					"{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)",
+				}
+			},
+			['j_ortalab_vinyl'] = {
+				["name"] = "Vinyl",
+				["text"] = {
+					'{C:attention}Numbered{} cards give {C:chips}+#1#{} Chips',
+					'for every scoring {C:attention}numbered{} card',
+					'already scored'
 				}
 			},
 			['j_ortalab_virus'] = {
