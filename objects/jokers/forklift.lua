@@ -12,10 +12,10 @@ SMODS.Joker({
 	config = {extra = {slots = 2, target = 18}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'alex'} end
-        if G.GAME.consumeable_usage_total.all >= card.ability.extra.target then
+        if G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.all >= card.ability.extra.target then
             return {key = 'j_ortalab_forklift_granted', vars = {card.ability.extra.slots, card.ability.extra.target}}
         else
-            return {vars = {card.ability.extra.slots, card.ability.extra.target, G.GAME.consumeable_usage_total.all}}
+            return {vars = {card.ability.extra.slots, card.ability.extra.target, G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.all or 0}}
         end
     end,
 	calculate = function (self, card, context)
