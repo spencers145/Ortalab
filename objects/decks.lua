@@ -61,6 +61,17 @@ SMODS.Back({
 SMODS.Voucher:take_ownership('v_seed_money', {loc_vars = function(self, info_queue, card) return {vars = {self.config.extra/5 * G.GAME.interest_amount}} end}, true)
 SMODS.Voucher:take_ownership('v_money_tree', {loc_vars = function(self, info_queue, card) return {vars = {self.config.extra/5 * G.GAME.interest_amount}} end}, true)
 
+SMODS.Back({
+    key = "white", 
+    atlas = "decks",
+    pos = {x = 4, y = 0}, 
+    config = {joker_slot = -1, vouchers = {'v_ortalab_home_delivery'}}, 
+    loc_vars = function(self, info_queue, card)
+        -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'}
+        return {vars = {self.config.joker_slot, localize({type = 'name_text', set = 'Voucher', key = self.config.vouchers[1]})}}
+    end,
+})
+
 -- SMODS.Back({
 --     key = "cyan", 
 --     atlas = "decks",

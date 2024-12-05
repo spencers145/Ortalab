@@ -1584,6 +1584,13 @@ return {
 					"Earn double {C:attention}Interest"
 				}
 			},
+			['b_ortalab_white'] = {
+				["name"] = "White Deck",
+				["text"] = {
+					"{C:attention}#1#{} Joker Slot",
+					"Start with {C:attention,T:v_ortalab_home_delivery}#2#"
+				}
+			},
 			['b_ortalab_experimental'] = {
 				["name"] = "Experimental Deck",
 				["text"] = {
