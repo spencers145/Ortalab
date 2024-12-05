@@ -1599,6 +1599,15 @@ return {
 					"{T:c_ortalab_lot_barrel,C:loteria}The Barrel",
 				}
 			},
+			['b_ortalab_eclipse'] = {
+				["name"] = "Eclipse Deck",
+				["text"] = {
+					'{C:attention}+#1#{} hand level when a',
+					'{C:Zodiac}Zodiac{} card is used',
+					'{C:attention}-#1#{} level to a random hand',
+					'when a {C:planet}Planet{} card is used'
+				}
+			},
 			['b_ortalab_royal'] = {
 				["name"] = "Royal Deck",
 				["text"] = {
