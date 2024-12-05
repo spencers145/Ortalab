@@ -24,7 +24,7 @@ local joker_list = {
     -- 'memorial',
     -- 'stonehenge',
     'joker_miles',
-    'bowling_ball', -- Needs new art?
+    -- 'bowling_ball', -- Needs new art?
     'artist_proof',
     'dawn',
     'open_palm',
