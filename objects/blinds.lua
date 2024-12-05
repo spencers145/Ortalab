@@ -597,6 +597,14 @@ SMODS.Blind({
             if card.debuffed_by_reed then card:set_debuff(); card.debuffed_by_reed = nil end
         end
         self.triggered = false
+    end,
+    in_pool = function(self)
+        local possible_ranks = {}
+        for _, card in pairs(G.playing_cards or {}) do
+            if not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
+        end
+        if table.size(possible_ranks) > self.config.extra.debuff_count then return true end
+        return false
     end
 })
 
@@ -780,6 +788,14 @@ SMODS.Blind({
     end,
     defeat = function(self)
         self.triggered = false
+    end,
+    in_pool = function(self)
+        local possible_ranks = {}
+        for _, card in pairs(G.playing_cards or {}) do
+            if not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
+        end
+        if table.size(possible_ranks) > self.config.extra.flipped then return true end
+        return false
     end
 })
 
