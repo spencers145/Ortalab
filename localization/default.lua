@@ -16,6 +16,11 @@ return {
 				"objects in the collection",
 				"Requires restart"
 			},
+			ortalab_config_loteria_skip = 'Skip Loteria Animations',
+			ortalab_config_loteria_skip_desc = {
+				'Skip the animations of',
+				'most Loteria cards'
+			},
 			["ortalab_artist"] = 'Artist',
 			["ortalab_swap"] = 'Swap!',
 			['ortalab_leak'] = 'Leaked!',
@@ -28,8 +33,12 @@ return {
 			['ortalab_loteria_pack'] = 'Chalupa Pack',
 			['ortalab_loteria_pack_2'] = 'Wumbo Chalupa Pack',
 			['ortalab_loteria_pack_3'] = 'Giga Chalupa Pack',
+			['ortalab_zodiac_pack_plus'] = 'Astral+ Pack',
+			['ortalab_zodiac_pack_minus'] = 'Astral- Pack',
+			['ortalab_zodiac_pack_2'] = 'Wumbo Astral Pack',
+			['ortalab_zodiac_pack_3'] = 'Giga Astral Pack',
 			['ortalab_moldy_discard'] = 'Discard!',
-			['ortalab_moldy_hand'] = 'Hand!',
+			['ortalab_moldy_tag'] = 'Tag!',
 			['ortalab_no_tag'] = 'None',
 			['ortalab_flashback'] = 'Flashback!',
 			['ortalab_joker_miles'] = 'Upgrade!',
@@ -40,10 +49,18 @@ return {
 			['ortalab_loteria_saved'] = 'Saved!',
 			ortalab_protostar = 'Collapsed!',
 			ortalab_cured = 'Cured!',
+			ortalab_spike_debuff = 'Hand will be debuffed!',
+			ortalab_fork_cap = 'Score capped at 50%',
+			ortalab_tongs = '+1%',
+			ortalab_minimised = 'Minimised!',
+			ortalab_rank = 'certain rank',
+			ortalab_zodiac_add = '+1 Zodiac',
+			ortalab_forklift = '+2 slots',
+			ortalab_forklift_loss = '-2 slots'
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
-			ortalab_fluorescent = 'Fluroescent',
+			ortalab_fluorescent = 'Fluorescent',
 			ortalab_overexposed = 'Overexposed',
 			ortalab_anaglyphic = 'Anaglyphic',
 			ortalab_corroded_seal = 'Corroded',
@@ -161,9 +178,9 @@ return {
 			['j_ortalab_televangelist'] = {
 				["name"] = "Televangelist",
 				["text"] = {
-					"Gains {X:mult,C:white}#1#X{} Mult when",
+					"Gains {X:mult,C:white}X#1#{} Mult when",
 					"a {C:loteria}Loteria Card{} is used",
-					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#2#X{C:inactive,s:0.9})"
+					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}X#2#{C:inactive,s:0.9})"
 				}
 			},
 			
@@ -223,6 +240,13 @@ return {
 					"{C:attention}Blind{} is selected"
 				}
 			},
+			['j_ortalab_bank_loan'] = {
+				["name"] = "Bank Loan",
+				["text"] = {
+					"Gain {C:money}$#1#",
+					"Costs {C:red}$#1#{} to sell",
+				}
+			},
 			['j_ortalab_basalt_column'] = {
 				["name"] = "Basalt Column",
 				["text"] = {
@@ -235,8 +259,8 @@ return {
 				["name"] = "Beyond The Mask",
 				["text"] = {
 					"Earn {C:money}$#1#{} at end of round",
-					"Gains {C:money}$#2#{} per discarded {C:attention,E:1}Gold{} Card",
-					"Discarded {C:attention,E:1}Gold{} Cards are destroyed",
+					"Gains {C:money}$#2#{} per discarded {C:attention,E:1}Cosmic Card{}",
+					"Discarded {C:attention,E:1}Cosmic Cards{} are destroyed",
 				}
 			},
 			['j_ortalab_blacklist'] = {
@@ -276,7 +300,7 @@ return {
 			['j_ortalab_bowling_ball'] = {
 				["name"] = "Bowling Ball Solar System",
 				["text"] = {
-					"Create a random {C:planet}Planet",
+					"Create a random {C:Zodiac}Zodiac",
 					"card if a {C:attention}10",
 					"is held in hand",
 				}
@@ -286,6 +310,14 @@ return {
 				["text"] = {
 					"Rerolls cost",
 					"{C:money}$1{} less",
+				}
+			},
+			['j_ortalab_calm'] = {
+				["name"] = "Calm Joker",
+				["text"] = {
+					'{C:blue}+#1#{} Chips if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
 				}
 			},
 			['j_ortalab_cardist'] = {
@@ -351,12 +383,37 @@ return {
 					"{C:attention}hand{} of round",
 				}
 			},
+			['j_ortalab_direct'] = {
+				["name"] = "Direct Joker",
+				["text"] = {
+					'{C:red}+#1#{} Mult if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
+				}
+			},
 			['j_ortalab_dripstone'] = {
 				["name"] = "Dripstone",
 				["text"] = {
 					"Each {V:1}#2#{}",
 					"held in hand",
 					"gives {C:blue}+#1#{} Chips",
+				}
+			},
+			['j_ortalab_dropout'] = {
+				["name"] = "Dropout",
+				["text"] = {
+					'Each played {C:attention}#1#{} gives', 
+					'{C:blue}+#2#{} Chips and',
+					'{C:red}+#3#{} Mult when',
+					'scored'
+				}
+			},
+			['j_ortalab_dull'] = {
+				["name"] = "Dull Joker",
+				["text"] = {
+					'{C:red}+#1#{} Mult if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
 				}
 			},
 			['j_ortalab_evil_eye'] = {
@@ -386,6 +443,14 @@ return {
 					"a {C:attention}#1#",
 				}
 			},
+			['j_ortalab_foolish'] = {
+				["name"] = "Foolish Joker",
+				["text"] = {
+					'{C:red}+#1#{} Mult if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
+				}
+			},
 			['j_ortalab_fools_gold'] = {
 				["name"] = "Fool's Gold",
 				["text"] = {
@@ -393,6 +458,32 @@ return {
 					"held in hand",
 					"has {C:green}#1# in #2#{} chance",
 					"to gain {C:money}$#3#{}", 
+				}
+			},
+			['j_ortalab_forklift'] = {
+				["name"] = "Forklift Certificate",
+				["text"] = {
+					"{C:attention}+#1#{} Consumable slots",
+					'after #2# consumables used',
+					'{C:inactive}(Currently #3#/#2#)'
+				}
+			},
+			['j_ortalab_forklift_granted'] = {
+				["name"] = "Forklift Certificate",
+				["text"] = {
+					"{C:attention}+#1#{} Consumable slots",
+					'after #2# consumables used',
+					'{C:inactive}(Active!)'
+				}
+			},
+			['j_ortalab_freezer'] = {
+				["name"] = "Freezer",
+				["text"] = {
+					'Gain {X:red,C:white}X#1#{} Mult for each',
+					'{C:attention}consumeable{} you are holding',
+					'Consumeables have a {C:green}#3# in #4#',
+					'chance to be consumed',
+					'{C:inactive,s:0.9}(Currently {s:0.9,X:red,C:white}X#2#{C:inactive,s:0.9})'
 				}
 			},
 			['j_ortalab_frowny_face'] = {
@@ -403,12 +494,37 @@ return {
 					"when scored",
 				}
 			},
+			['j_ortalab_futuristic'] = {
+				["name"] = "Futuristic Joker",
+				["text"] = {
+					'{C:attention}Scored cards{} give {X:red,C:white}X#1#{} Mult',
+					'if {C:attention}played hand{} contains a',
+					'{C:attention}#3# {}and a {C:attention}#2#',
+					'{C:inactive,s:0.8}(Rank changes each round)'
+				}
+			},
 			['j_ortalab_generous'] = {
 				["name"] = "Generous Joker",
 				["text"] = {
 					"Played cards with",
 					"{C:diamonds}#2#{} suit give",
 					"{C:chips}+#1#{} Chips when scored", 
+				}
+			},
+			['j_ortalab_glum'] = {
+				["name"] = "Glum Joker",
+				["text"] = {
+					'{C:blue}+#1#{} Chips if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
+				}
+			},
+			['j_ortalab_gnomic'] = {
+				["name"] = "Gnomic Joker",
+				["text"] = {
+					'{C:blue}+#1#{} Chips if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
 				}
 			},
 			['j_ortalab_graffiti'] = {
@@ -426,6 +542,13 @@ return {
 					"use a {C:red}discard{}",
 				}
 			},
+			['j_ortalab_grave_digger'] = {
+				["name"] = "Grave Digger",
+				["text"] = {
+					'{C:attention}+#1#{} Joker slots',
+					'{X:attention,C:white}X#2#{} Blind amount'
+				}
+			},
 			['j_ortalab_head_honcho'] = {
 				["name"] = "Head Honcho",
 				["text"] = {
@@ -433,6 +556,22 @@ return {
 					"{C:loteria}Loteria Card{} and",
 					"lose {C:red}$#1#{} when a",
 					"{C:blue}Hand{} is played"
+				}
+			},
+			['j_ortalab_honest'] = {
+				["name"] = "Honest Joker",
+				["text"] = {
+					'{C:red}+#1#{} Mult if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
+				}
+			},
+			['j_ortalab_hot_chocolate'] = {
+				["name"] = "Hot Chocolate",
+				["text"] = {
+					'{C:chips}+#2#{} Chips per hand played',
+					'Self destructs at {C:attention}+#3#{} Chips',
+					'{C:inactive}(Currently {C:blue}+#1#{C:inactive})'
 				}
 			},
 			['j_ortalab_hypercalculia'] = {
@@ -452,10 +591,19 @@ return {
 					"{C:inactive}(Currently {C:blue}+#2#{C:inactive} Chips)"
 				}
 			},
+			['j_ortalab_knitted_sweater'] = {
+				["name"] = "Knitted Sweater",
+				["text"] = {
+					'Gains {C:blue}+#1#{} Chips',
+					'if played hand contains',
+					'a {C:attention}#3#',
+					'{C:inactive}(Currently {C:blue}+#2#{C:inactive} Chips)'
+				}
+			},
 			['j_ortalab_mathmagician'] = {
 				["name"] = "Mathmagician",
 				["text"] = {
-					"Creates a random {C:tarot}Tarot{}",
+					"Creates a random {C:Zodiac}Zodiac{}",
 					"card if discarded hand",
 					"contains 2 {C:attention}odd cards",
 					"and 2 {C:attention}even cards",
@@ -464,9 +612,9 @@ return {
 			['j_ortalab_mill'] = {
 				["name"] = "Mill",
 				["text"] = {
-					"Gains {X:mult,C:white}#2#X{} Mult when",
+					"Gains {X:mult,C:white}X#2#{} Mult when",
 					"a {C:attention}Card{} changes {C:attention}Suit",
-					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
+					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}X#1#{C:inactive,s:0.9})"
 				}
 			},
 			['j_ortalab_mint_condition'] = {
@@ -482,6 +630,31 @@ return {
 				["text"] = {
 					"{C:attention}Debuffed{} cards are",
 					"instead {C:attention}retriggered"
+				}
+			},
+			['j_ortalab_mirage'] = {
+				["name"] = "Mirage",
+				["text"] = {
+					'Gains {X:mult,C:white}X#1#{} Mult per',
+					'{C:attention}playing card{} destroyed',
+					'{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive})'
+				}
+			},
+			['j_ortalab_misfits'] = {
+				["name"] = "The Misfits",
+				["text"] = {
+					'{X:red,C:white}X#1#{} Mult if {C:attention}played hand',
+					'contains exactly',
+					'{C:attention}#2#{} Suits and {C:attention}#2#{} Ranks'
+				}
+			},
+			['j_ortalab_mixtape'] = {
+				["name"] = "Mixtape",
+				["text"] = {
+					'Gains {X:mult,C:white}X#1#{} Mult for',
+					'each {C:attention}Blind{} beaten in a',
+					'single hand',
+					'{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive})'
 				}
 			},
 			['j_ortalab_monochrome'] = {
@@ -514,12 +687,28 @@ return {
 					"#1# free {C:attention}tags",
 				}
 			},
+			['j_ortalab_naive'] = {
+				["name"] = "Naive Joker",
+				["text"] = {
+					'{C:red}+#1#{} Mult if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
+				}
+			},
 			['j_ortalab_occultist'] = {
 				["name"] = "Occultist",
 				["text"] = {
 					"All {C:spectral}Spectral{} cards and",
 					"{C:spectral}Spectral Packs{} in the",
 					"shop are free",
+				}
+			},
+			['j_ortalab_open_palm'] = {
+				["name"] = "Open Palm",
+				["text"] = {
+					"Adds {C:blue}#1#{} minus {C:attention}#2#X{} the rank", 
+					"of {C:attention}highest{} ranked card",
+					"held in hand to {C:blue}Chips"
 				}
 			},
 			['j_ortalab_patient'] = {
@@ -534,7 +723,7 @@ return {
 				["name"] = "Pickaxe",
 				["text"] = {
 					"Destroy played {C:attention}Ore{} cards",
-					"Gains {X:mult,C:white}#2#X{} Mult per",
+					"Gains {X:mult,C:white}X#2#{} Mult per",
 					"card destroyed this way",
 					"{C:inactive,s:0.9}(Currently {X:mult,C:white,s:0.9}X#1#{C:inactive,s:0.9} Mult)"
 				}
@@ -548,7 +737,7 @@ return {
 				}
 			},
 			['j_ortalab_popcorn_bag'] = {
-				["name"] = "Popcorn Bag",
+				["name"] = "Picnic Basket",
 				["text"] = {
 					"{C:mult}+#1#{} Mult",
 					"{C:mult}+#2#{} Mult per round played",
@@ -612,10 +801,10 @@ return {
 			['j_ortalab_rusty'] = {
 				["name"] = "Rusty Joker",
 				["text"] = {
-					"Gives {X:mult,C:white}#2#X{} Mult for",
+					"Gives {X:mult,C:white}X#2#{} Mult for",
 					"each {C:attention}Rusty Card{}",
 					"in your {C:attention}full deck",
-					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
+					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}X#1#{C:inactive,s:0.9})"
 				}
 			},
 			['j_ortalab_salad'] = {
@@ -631,9 +820,17 @@ return {
 				["text"] = {
 					"Played {C:attention}Sand Cards{}",
 					"do not lose Mult",
-					"Gains {X:mult,C:white}#2#X{} Mult when",
+					"Gains {X:mult,C:white}X#2#{} Mult when",
 					"a {C:attention}Sand Card{} is played",
-					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}#1#X{C:inactive,s:0.9})"
+					"{C:inactive,s:0.9}(Currently {C:white,X:mult,s:0.9}X#1#{C:inactive,s:0.9})"
+				}
+			},
+			['j_ortalab_sane'] = {
+				["name"] = "Sane Joker",
+				["text"] = {
+					'{C:blue}+#1#{} Chips if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
 				}
 			},
 			['j_ortalab_scam_email'] = {
@@ -643,6 +840,14 @@ return {
 					"a {C:attention}#2#{} is scored",
 					"{C:inactive,s:0.9}(Rank changes each round)"
 				},
+			},
+			['j_ortalab_scantron'] = {
+				["name"] = "Scantron",
+				["text"] = {
+					'{C:attention}Retrigger{} all played cards',
+					"Played cards have a {C:green}#1# in #2#{} chance",
+					"to not {C:attention}retrigger",
+				}
 			},
 			['j_ortalab_scared_face'] = {
 				["name"] = "Scared Face",
@@ -668,6 +873,14 @@ return {
 					"{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)",
 				}
 			},
+			['j_ortalab_serious'] = {
+				["name"] = "Serious Joker",
+				["text"] = {
+					'{C:blue}+#1#{} Chips if {C:attention}hand',
+					'does not contain a',
+					'{C:attention}#2#'
+				}
+			},
 			['j_ortalab_shrine'] = {
 				["name"] = "Shrine",
 				["text"] = {
@@ -681,7 +894,7 @@ return {
 				["text"] = {
 					"Sets played {C:attention}poker hand",
 					"level to 1",
-					"Gains {X:mult,C:white}#1#X{} Mult",
+					"Gains {X:mult,C:white}X#1#{} Mult",
 					"per level {C:attention}removed",
 					"{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
 				}
@@ -719,12 +932,36 @@ return {
 					"is selected"
 				}
 			},
+			['j_ortalab_soil'] = {
+				["name"] = "Soil",
+				["text"] = {
+					'{C:white,X:mult}X#1#{} Mult',
+					'Gains {X:mult,C:white}X#2#{} for each', 
+					'consecutive triggered card',
+					'of the same rank'
+				}
+			},
 			['j_ortalab_solo'] = {
 				["name"] = "The Solo",
 				["text"] = {
 					"{X:mult,C:white}X#1#{} Mult if played",
 					"hand is a",
 					"{C:attention}#2#",
+				}
+			},
+			['j_ortalab_still_water'] = {
+				["name"] = "Still Water",
+				["text"] = {
+					'Gains {C:red}+#1#{} Mult for',
+					'each {C:attention}unscored{} card',
+					'{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)'
+				},
+			},
+			['j_ortalab_spectator'] = {
+				["name"] = "Spectator",
+				["text"] = {
+					'{X:red,C:white}X#1#{} Mult on', 
+					'{C:attention}first hand{} of round'
 				}
 			},
 			['j_ortalab_sunnyside'] = {
@@ -760,6 +997,14 @@ return {
 					"{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)",
 				}
 			},
+			['j_ortalab_vinyl'] = {
+				["name"] = "Vinyl",
+				["text"] = {
+					'{C:attention}Numbered{} cards give {C:chips}+#1#{} Chips',
+					'for every scoring {C:attention}numbered{} card',
+					'already scored'
+				}
+			},
 			['j_ortalab_virus'] = {
 				["name"] = "Virus",
 				["text"] = {
@@ -793,6 +1038,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Bent Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
 			["c_ortalab_lot_melon"] = {
@@ -801,6 +1047,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Recycled Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
 			["c_ortalab_lot_mandolin"] = {
@@ -809,6 +1056,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Post Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
 			["c_ortalab_lot_rose"] = {
@@ -816,7 +1064,8 @@ return {
 				["text"] = {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
-                    "{C:attention}IOU Cards",
+                    "{C:attention}Cosmic Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
             ["c_ortalab_lot_tree"] = {
@@ -833,6 +1082,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Rusty Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
 			["c_ortalab_lot_bird"] = {
@@ -841,6 +1091,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Sand Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
             ["c_ortalab_lot_rooster"] = {
@@ -875,6 +1126,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Index Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
             ["c_ortalab_lot_heron"] = {
@@ -923,6 +1175,7 @@ return {
 					"Enhances {C:attention}#1#{} random",
                     "cards into",
                     "{C:attention}Ore Cards",
+					"{C:inactive,s:0.8}Prioritise unenhanced cards"
 				},
 			},
             ["c_ortalab_lot_bottle"] = {
@@ -968,73 +1221,85 @@ return {
 			["c_ortalab_zod_aries"] = {
 				["name"] = "Aries",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_taurus"] = {
 				["name"] = "Taurus",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_gemini"] = {
 				["name"] = "Gemini",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_cancer"] = {
 				["name"] = "Cancer",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_leo"] = {
 				["name"] = "Leo",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_virgo"] = {
 				["name"] = "Virgo",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_libra"] = {
 				["name"] = "Libra",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_scorpio"] = {
 				["name"] = "Scorpio",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_sag"] = {
 				["name"] = "Sagittarius",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_capr"] = {
 				["name"] = "Capricorn",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_aquarius"] = {
 				["name"] = "Aquarius",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 			["c_ortalab_zod_pisces"] = {
 				["name"] = "Pisces",
 				["text"] = {
-					"{C:inactive}No effect",
+					"{C:Zodiac}Improve{} the next", 
+					"{C:attention}#1#",
 				},
 			},
 		},
@@ -1060,9 +1325,9 @@ return {
 				["name"] = "Recycled Card",
 				["text"] = {
 					"{C:green}#1# in #2#{} chance",
-					"for {C:red}+#3# Discard",
-					"{C:green}#1# in #4#{} chance",
-					"for {C:blue}+#5# Hand",
+					"to not gain {C:red}+#3# Discard",
+					"{C:green}#4# in #5#{} chance",
+					"to not gain {C:attention}#6# Tag",
 				},
 			},
 			["m_ortalab_bent"] = {
@@ -1094,7 +1359,7 @@ return {
 				}
 			},
 			["m_ortalab_iou"] = {
-				["name"] = "IOU Card",
+				["name"] = "Cosmic Card",
 				["text"] = {
 					"{C:attention}Temporarily{} increase",
 					"hand level by {C:attention}#1#"
@@ -1225,6 +1490,70 @@ return {
 					"to the next shop"
                 }
             },
+			['zodiac_ortalab_aries'] = {
+                name = "Aries",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'Destroy all cards in hand of',
+					'a different {C:attention}rank'
+                }
+            },
+			['zodiac_ortalab_taurus'] = {
+                name = "Taurus",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'Turn #3# {C:attention}left-most{} cards in',
+					'hand into {C:attention}Rusty cards'
+                }
+            },
+			['zodiac_ortalab_gemini'] = {
+                name = "Gemini",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'Turn the {C:attention}played Pair',
+					'into a {C:attention}Post Card{} and',
+					'a {C:attention}Bent Card'
+                }
+            },
+			['zodiac_ortalab_cancer'] = {
+                name = "Cancer",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'{C:inactive}No other effect'
+                }
+            },
+			['zodiac_ortalab_scorpio'] = {
+                name = "Scorpio",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'Turn #3# {C:attention}left-most{} unscored cards',
+					'into {C:attention}Stone Cards{} and {C:attention}Ore Cards'
+                }
+            },
+			['zodiac_ortalab_aquarius'] = {
+                name = "Aquarius",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'Create a copy of the',
+					'{C:attention}right-most{} scoring card'
+                }
+            },
+			['zodiac_ortalab_sag'] = {
+                name = "Sagittarius",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'Turn all cards in hand into',
+					'the {C:attention}suit{} of the {C:attention}#2#'
+                }
+            },
+			['zodiac_ortalab_capr'] = {
+                name = "Capricorn",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'Turn #3# {C:attention}left-most{} cards in',
+					'hand into {C:attention}Index cards'
+                }
+            },
 		},
 		["Back"] = {
 			['b_ortalab_orange'] = {
@@ -1255,12 +1584,28 @@ return {
 					"Earn double {C:attention}Interest"
 				}
 			},
+			['b_ortalab_white'] = {
+				["name"] = "White Deck",
+				["text"] = {
+					"{C:attention}#1#{} Joker Slot",
+					"Start with {C:attention,T:v_ortalab_home_delivery}#2#"
+				}
+			},
 			['b_ortalab_experimental'] = {
 				["name"] = "Experimental Deck",
 				["text"] = {
 					"{C:blue}+#1#{} hand size",
 					"Start with a copy of",
 					"{T:c_ortalab_lot_barrel,C:loteria}The Barrel",
+				}
+			},
+			['b_ortalab_eclipse'] = {
+				["name"] = "Eclipse Deck",
+				["text"] = {
+					'{C:attention}+#1#{} hand level when a',
+					'{C:Zodiac}Zodiac{} card is used',
+					'{C:attention}-#1#{} level to a random hand',
+					'when a {C:planet}Planet{} card is used'
 				}
 			},
 			['b_ortalab_royal'] = {
@@ -1303,7 +1648,14 @@ return {
 					"Blind rewards are {C:attention}doubled",
 					"if beaten in {C:attention}1{} {C:blue}Hand"
 				}
-			}
+			},
+			['b_ortalab_overused'] = {
+				["name"] = "Overused Deck",
+				["text"] = {
+					'{C:attention}Random cards{} are',
+					'missing from the deck'
+				} 
+			},
 		},
 		['Voucher'] = {
 			['v_ortalab_cantor'] = {
@@ -1468,6 +1820,70 @@ return {
                     "be used immediately"
                 }
             },
+			['p_ortalab_small_zodiac_1'] = {
+                name = "Astral+ Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} +Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_small_zodiac_2'] = {
+                name = "Astral- Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} -Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_small_zodiac_3'] = {
+                name = "Astral+ Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} +Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_small_zodiac_4'] = {
+                name = "Astral- Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} -Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_mid_zodiac_1'] = {
+                name = "Wumbo Astral Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_mid_zodiac_2'] = {
+                name = "Wumbo Astral Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_big_zodiac_1'] = {
+                name = "Giga Astral Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
+			['p_ortalab_big_zodiac_2'] = {
+                name = "Giga Astral Pack",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
+                    "be used immediately"
+                }
+            },
 			['ortalab_1_sticker'] = {
                 name = "Ortalab Sticker",
                 text = {
@@ -1503,6 +1919,24 @@ return {
 			}
 		},
 		['Blind'] = {
+			['bl_ortalab_check'] = {
+				name = 'Check',
+			},
+			['bl_ortalab_bet'] = {
+				name = 'Bet',
+			},
+			['bl_ortalab_fold'] = {
+				name = 'Fold',
+			},
+			['bl_ortalab_raise'] = {
+				name = 'Raise',
+			},
+			['bl_ortalab_call'] = {
+				name = 'Call',
+			},
+			['bl_ortalab_all_in'] = {
+				name = 'All In',
+			},
 			['bl_ortalab_sinker'] = {
 				name = 'The Sinker',
 				text = {
@@ -1510,11 +1944,197 @@ return {
 					'every {C:blue}hand{} you play'
 				}
 			},
+			['bl_ortalab_fork'] = {
+				name = 'The Fork',
+				text = {
+					'Score is capped at',
+					'#1#% of blind amount'
+				}
+			},
+			['bl_ortalab_top'] = {
+				name = 'The Top',
+				text = {
+					'#1# in #2# drawn cards',
+					'are debuffed'
+				}
+			},
 			['bl_ortalab_hammer'] = {
 				name = 'The Hammer',
 				text = {
 					'Remove card enhancements',
 					'after they are scored'
+				}
+			},
+			['bl_ortalab_parasol'] = {
+				name = 'The Parasol',
+				text = {
+					'Hand must',
+					'contain #1#'
+				}
+			},
+			['bl_ortalab_glass'] = {
+				name = 'The Glass',
+				text = {
+					'Cards drawn face down',
+					'after each discard'
+				}
+			},
+			['bl_ortalab_tarot'] = {
+				name = 'The Tarot',
+				text = {
+					'All cards must score'
+				}
+			},
+			['bl_ortalab_oil'] = {
+				name = 'The Oil',
+				text = {
+					'Discarded cards are',
+					'returned to your deck'
+				}
+			},
+			['bl_ortalab_bellows'] = {
+				name = 'The Bellows',
+				text = {
+					'+#1# hand size'
+				}
+			},
+			['bl_ortalab_spike'] = {
+				name = 'The Spike',
+				text = {
+					'First played #1#',
+					'is debuffed'
+				}
+			},
+			['bl_ortalab_spike_collection'] = {
+				name = 'The Spike',
+				text = {
+					'First played most played',
+					'poker hand is debuffed'
+				}
+			},
+			['bl_ortalab_buckler'] = {
+				name = 'The Buckler',
+				text = {
+					'Hand must',
+					'contain #1#'
+				}
+			},
+			['bl_ortalab_room'] = {
+				name = 'The Room',
+				text = {
+					'Hand must',
+					'contain #1#'
+				}
+			},
+			['bl_ortalab_glyph'] = {
+				name = 'The Glyph',
+				text = {
+					'Previously played ranks', 
+					'this round are debuffed'
+				}
+			},
+			['bl_ortalab_reed'] = {
+				name = 'The Reed',
+				text = {
+					'#1#s, #2#s, #3#s', 
+					'and #4#s are debuffed'
+				}
+			},
+			['bl_ortalab_reed_collection'] = {
+				name = 'The Reed',
+				text = {
+					'#1# numbers from your',
+					'deck are debuffed'
+				}
+			},
+			['bl_ortalab_ladder'] = {
+				name = 'The Ladder',
+				text = {
+					'+#1# hand size,',
+					'cards are only drawn',
+					'after #2# actions'
+				}
+			},
+			['bl_ortalab_hearth'] = {
+				name = 'The Hearth',
+				text = {
+					'Cards not played this',
+					'Ante are drawn',
+					'face down'
+				}
+			},
+			['bl_ortalab_face'] = {
+				name = 'The Face',
+				text = {
+					'Hand must',
+					'contain #1#'
+				}
+			},
+			['bl_ortalab_spring'] = {
+				name = 'The Spring',
+				text = {
+					'Lose $ equal to',
+					'played poker', 
+					'hand\'s level'
+				}
+			},
+			['bl_ortalab_tongs'] = {
+				name = 'The Tongs',
+				text = {
+					'Score requirement increases',
+					'by #1#% per card played'
+				}
+			},
+			['bl_ortalab_beam'] = {
+				name = 'The Beam',
+				text = {
+					'#1#s, #2#s, #3#s, #4#s', 
+					'and #5#s are drawn face down'
+				}
+			},
+			['bl_ortalab_beam_collection'] = {
+				name = 'The Beam',
+				text = {
+					'#1# numbers from your',
+					'deck are drawn face down'
+				}
+			},
+			['bl_ortalab_sheep'] = {
+				name = 'The Sheep',
+				text = {
+					'Sets money to $#2# if',
+					'poker hand is not',
+					'#1#'
+				}
+			},
+			['bl_ortalab_sheep_collection'] = {
+				name = 'The Sheep',
+				text = {
+					'Sets money to $#1# if',
+					'poker hand is not',
+					'the most played'
+				}
+			},
+			['bl_ortalab_lever'] = {
+				name = 'The Lever',
+				text = {
+					'First drawn hand',
+					'is debuffed'
+				}
+			},
+			['bl_ortalab_steel'] = {
+				name = 'The Steel',
+				text = {
+					'Chips and Mult are set',
+					'to the smaller value'
+				}
+			},
+			['bl_ortalab_celadon_clubs'] = {
+				name = 'Celadon Clubs',
+				text = {
+					'Disable a type of card', 
+					'every hand',
+					'(Disabling #1# cards)'
 				}
 			},
 			['bl_ortalab_caramel_coin'] = {

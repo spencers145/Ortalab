@@ -300,10 +300,15 @@ G.FUNCS.skip_blind = function(e)
                 G.GAME.current_round.jokers_purchased = 0
                 G.GAME.current_round.used_packs = {}
                 G.GAME.round_resets.temp_reroll_cost = nil
-                G.GAME.round_resets.reroll_cost_increase = 0
+                G.GAME.current_round.reroll_cost_increase = 0
                 calculate_reroll_cost(true)
-                G.STATE = G.STATES.SHOP
-                G.STATE_COMPLETE = false    
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        G.STATE = G.STATES.SHOP
+                        G.STATE_COMPLETE = false    
+                        return true
+                    end
+                }))
             end
             return true
     end}))

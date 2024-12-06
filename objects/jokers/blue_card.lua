@@ -22,7 +22,7 @@ SMODS.Joker({
             }
         end
         if context.using_consumeable then
-            if context.consumeable.area_check == 'consumeable' then
+            if context.consumeable.from_booster then
                 card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.gain
                 card_eval_status_text(card, 'extra', nil, nil, nil, {message = '+'..card.ability.extra.gain, colour = G.C.BLUE})
             end

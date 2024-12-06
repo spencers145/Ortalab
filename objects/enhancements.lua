@@ -93,7 +93,7 @@ SMODS.Enhancement({
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'luna'} end
     end,
     set_sprites = function(self, card, front)
-        if card.ability and card.ability.extra then 
+        if card.ability and card.ability.extra and type(card.ability.extra) == 'table' and card.ability.extra.index_state then 
             if card.ability.extra.index_state == 'MID' then card.children.center:set_sprite_pos({x = 2, y = 0}) 
             elseif card.ability.extra.index_state == 'UP' then card.children.center:set_sprite_pos({x = 1, y = 2}) 
             elseif card.ability.extra.index_state == 'DOWN' then card.children.center:set_sprite_pos({x = 0, y = 2}) end
@@ -144,7 +144,7 @@ SMODS.Enhancement({
                 if held_card.config.center_key == 'm_ortalab_rusty' then
                     G.E_MANAGER:add_event(Event({
                         trigger = 'after',
-                        delay = 0.7,
+                        delay = 0.3,
                         func = function()
                             held_card:juice_up()
                             play_sound('ortalab_metal1', 0.8+ (0.9 + 0.2*math.random())*0.2, 0.5)
@@ -154,6 +154,7 @@ SMODS.Enhancement({
                         end
                     }))
                     rusty_in_hand = rusty_in_hand + 1
+                    if i ~= #G.hand.cards then card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_xmult',vars={card.ability.extra.base_x + (rusty_in_hand * card.ability.extra.x_gain)}}, colour = G.C.RED, delay = 0, Xmult_mod = true}) end
                 end
             end
             effect.x_mult = card.ability.extra.base_x + (rusty_in_hand * card.ability.extra.x_gain)
@@ -177,8 +178,8 @@ SMODS.Enhancement({
             vars = { card and card.ability.mult or self.config.mult }
         }
     end,
-    calculate = function(self, card, context)
-
+    calculate = function(self, card, context, effect)
+        
     end
 })
 
@@ -201,23 +202,38 @@ SMODS.Enhancement({
     atlas = "ortalab_enhanced",
     pos = {x = 3, y = 1},
     discovered = false,
-    config = {extra = {discard_chance = 5, hand_chance = 15, discards = 1, hands = 1}},
+    config = {extra = {discard_chance = 5, tag_chance = 15, discards = 1, tags = 1}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
         local card_ability = card and card.ability or self.config
         return {
-            vars = { G.GAME.probabilities.normal, card_ability.extra.discard_chance, card_ability.extra.discards, card_ability.extra.hand_chance, card_ability.extra.hands }
+            vars = { G.GAME.probabilities.normal * (card_ability.extra.discard_chance - 1), card_ability.extra.discard_chance, card_ability.extra.discards, G.GAME.probabilities.normal * (card_ability.extra.tag_chance - 1), card_ability.extra.tag_chance, card_ability.extra.tags }
         }
     end,
     calculate = function(self, card, context, effect)
         if context.cardarea == G.play and not context.repetition then
-            if pseudorandom('moldy_discards') < G.GAME.probabilities.normal / card.ability.extra.discard_chance then
+            if pseudorandom('moldy_discards') > G.GAME.probabilities.normal * (card.ability.extra.discard_chance - 1) / card.ability.extra.discard_chance then
                 ease_discard(card.ability.extra.discards)
                 card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_moldy_discard'), colour = G.C.RED})
             end
-            if pseudorandom('moldy_hands') < G.GAME.probabilities.normal / card.ability.extra.hand_chance then
-                ease_hands_played(card.ability.extra.hands)
-                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_moldy_hand'), colour = G.C.BLUE})
+            if pseudorandom('moldy_hands') > G.GAME.probabilities.normal * (card.ability.extra.tag_chance - 1) / card.ability.extra.tag_chance then
+                local tag_pool = get_current_pool('Tag')
+                local selected_tag = pseudorandom_element(tag_pool, pseudoseed('ortalab_hoarder'))
+                local it = 1
+                while selected_tag == 'UNAVAILABLE' do
+                    it = it + 1
+                    selected_tag = pseudorandom_element(tag_pool, pseudoseed('ortalab_hoarder_resample'..it))
+                end
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'after', delay = 0.4,
+                    func = (function()
+                        add_tag(Tag(selected_tag))
+                        play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+                        play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
+                        return true
+                    end)
+                }))
+                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_moldy_tag'), colour = G.C.BLUE})
             end
         end
     end

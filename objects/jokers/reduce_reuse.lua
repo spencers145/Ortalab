@@ -14,11 +14,7 @@ SMODS.Joker({
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
         return {vars = {card.ability.extra.money}}
     end,
-    calculate = function(self, card, context)
-        if context.end_of_round and not context.game_over and not context.repetition and not context.individual then
-            local dollars = G.GAME.current_round.hands_left * card.ability.extra.money
-            ease_dollars(dollars)
-            card_eval_status_text(card, 'extra', nil, nil, nil, {message = '$'..dollars, colour = G.C.MONEY})
-        end
-    end
+	calc_dollar_bonus = function(self, card)
+		return G.GAME.current_round.hands_left * card.ability.extra.money
+	end
 })

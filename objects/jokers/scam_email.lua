@@ -16,20 +16,12 @@ SMODS.Joker({
 	end,
     set_ability = function(self, card)
         if G.playing_cards and #G.playing_cards > 0 then
-            local ranks_in_deck = {}
-            for _, v in ipairs(G.playing_cards) do
-                table.insert(ranks_in_deck, v)
-            end
-            card.ability.extra.rank = pseudorandom_element(ranks_in_deck, pseudoseed('scam_email')).base.value
+            card.ability.extra.rank = Ortalab.rank_from_deck('ortalab_scam_email')
         end
     end,
 	calculate = function(self, card, context)
         if context.setting_blind then
-            local ranks_in_deck = {}
-            for _, v in ipairs(G.playing_cards) do
-                table.insert(ranks_in_deck, v)
-            end
-            card.ability.extra.rank = pseudorandom_element(ranks_in_deck, pseudoseed('scam_email')).base.value
+            card.ability.extra.rank = Ortalab.rank_from_deck('ortalab_scam_email')
             card:juice_up()
             card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize(card.ability.extra.rank, 'ranks')})
         end

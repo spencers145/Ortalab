@@ -21,7 +21,7 @@ SMODS.Joker({
             local new_joker_pool = get_current_pool('Joker')
             local final_pool = {}
             for _, v in ipairs(new_joker_pool) do
-                if v ~= 'UNAVAILABLE' and G.P_CENTERS[v].mod and G.P_CENTERS[v].mod.id == 'Ortalab' then
+                if v ~= 'UNAVAILABLE' and string.sub(v, 1, 9) == 'j_ortalab' then
                     table.insert(final_pool, v)
                 end
             end

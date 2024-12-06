@@ -2,7 +2,6 @@ SMODS.Joker({
 	key = "scared_face",
 	atlas = "jokers",
 	pos = {x = 1, y = 2},
-	loc_txt = joker_loc_txt,
 	rarity = 1,
 	cost = 5,
 	unlocked = true,

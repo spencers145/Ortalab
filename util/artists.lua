@@ -1,6 +1,6 @@
 -- Artist Colours
 G.ARGS.LOC_COLOURS['gappie'] = HEX('7BF2FF')
-G.ARGS.LOC_COLOURS['eremel'] = HEX('f7ff58')
+G.ARGS.LOC_COLOURS['eremel'] = HEX('F48CBA')
 G.ARGS.LOC_COLOURS['kosze'] = HEX('4ecf21')
 G.ARGS.LOC_COLOURS['tevi'] = HEX('18b57e')
 G.ARGS.LOC_COLOURS['crimson'] = HEX('990000')

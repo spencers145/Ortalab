@@ -17,6 +17,21 @@ payload = '''if G.GAME.modifiers.ortalab_only and _type ~= 'Seal' then
 end
 '''
 
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = '''local _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))'''
+position = 'before'
+match_indent = true
+payload = '''if G.GAME.modifiers.ortalab_only then
+    for k, v in pairs(eligible_bosses) do
+        if eligible_bosses[k] and not G.P_BLINDS[k].mod or G.P_BLINDS[k].mod.id ~= 'ortalab' then
+            eligible_bosses[k] = nil
+        end
+    end
+end
+'''
+
 ## Chameleon tooltip
 [[patches]]
 [patches.pattern]

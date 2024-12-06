@@ -25,14 +25,15 @@ SMODS.Joker({
                     trigger = 'before',
                     delay = 0.0,
                     func = (function()
-                            local card = create_card('Planet',G.consumeables, nil, nil, nil, nil, nil, 'bowling_ball')
+                            local card = create_card('Zodiac',G.consumeables, nil, nil, nil, nil, pseudorandom_element(zodiac_pool(), pseudoseed('ortalab_bowling_ball')), 'bowling_ball')
                             card:add_to_deck()
                             G.consumeables:emplace(card)
                             G.GAME.consumeable_buffer = G.GAME.consumeable_buffer - 1
                         return true
                     end)}))
                 return {
-                    message = localize('k_plus_tarot'),
+                    message = localize('ortalab_zodiac_add'),
+                    colour = G.C.SET.Zodiac,
                     card = card
                 }
             end

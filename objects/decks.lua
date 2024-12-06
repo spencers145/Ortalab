@@ -61,6 +61,17 @@ SMODS.Back({
 SMODS.Voucher:take_ownership('v_seed_money', {loc_vars = function(self, info_queue, card) return {vars = {self.config.extra/5 * G.GAME.interest_amount}} end}, true)
 SMODS.Voucher:take_ownership('v_money_tree', {loc_vars = function(self, info_queue, card) return {vars = {self.config.extra/5 * G.GAME.interest_amount}} end}, true)
 
+SMODS.Back({
+    key = "white", 
+    atlas = "decks",
+    pos = {x = 4, y = 0}, 
+    config = {joker_slot = -1, vouchers = {'v_ortalab_home_delivery'}}, 
+    loc_vars = function(self, info_queue, card)
+        -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'}
+        return {vars = {self.config.joker_slot, localize({type = 'name_text', set = 'Voucher', key = self.config.vouchers[1]})}}
+    end,
+})
+
 -- SMODS.Back({
 --     key = "cyan", 
 --     atlas = "decks",
@@ -82,6 +93,39 @@ SMODS.Back({
         return {vars = {self.config.hand_size}}
     end,
 })
+
+SMODS.Back({
+    key = "eclipse", 
+    atlas = "decks",
+    pos = {x = 1, y = 1}, 
+    config = {hand_level = 1}, 
+    loc_vars = function(self, info_queue, card)
+        -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'crimson'}
+        return {vars = {self.config.hand_level}}
+    end,
+})
+
+local use_consum = Card.use_consumeable
+function Card:use_consumeable(area, copier)
+    use_consum(self, area, copier)
+    if G.GAME.selected_back.effect.center.key == 'b_ortalab_eclipse' then
+        if self.config.center.set == 'Zodiac' then
+            local hand_type = G.ZODIACS[self.config.center.config.extra.zodiac].config.extra.hand_type
+            update_hand_text({sound = 'button', volume = 0.7, pitch = 0.8, delay = 0.3}, {handname=localize(hand_type, 'poker_hands'),chips = G.GAME.hands[hand_type].chips, mult = G.GAME.hands[hand_type].mult, level=G.GAME.hands[hand_type].level})
+            level_up_hand(self, hand_type, false, G.GAME.selected_back.effect.center.config.hand_level)
+            update_hand_text({sound = 'button', volume = 0.7, pitch = 1.1, delay = 0}, {mult = 0, chips = 0, handname = '', level = ''})
+        elseif self.config.center.set == 'Planet' then
+            local _poker_hands = {}
+            for k, v in pairs(G.GAME.hands) do
+                if v.visible then _poker_hands[#_poker_hands+1] = k end
+            end
+            local hand_type = pseudorandom_element(_poker_hands, pseudoseed('eclipse_delevel'))
+            update_hand_text({sound = 'button', volume = 0.7, pitch = 0.8, delay = 0.3}, {handname=localize(hand_type, 'poker_hands'),chips = G.GAME.hands[hand_type].chips, mult = G.GAME.hands[hand_type].mult, level=G.GAME.hands[hand_type].level})
+            level_up_hand(self, hand_type, false, -1 * G.GAME.selected_back.effect.center.config.hand_level)
+            update_hand_text({sound = 'button', volume = 0.7, pitch = 1.1, delay = 0}, {mult = 0, chips = 0, handname = '', level = ''})
+        end
+    end
+end
 
 SMODS.Back({
     key = "royal", 
@@ -124,6 +168,7 @@ SMODS.Back({
             new_card:add_to_deck()
             SMODS.change_base(new_card, nil, pseudorandom_element(faces, pseudoseed('royal_deck_spawn')))
             bottle_randomise(new_card)
+            playing_card_joker_effects({new_card})
         end
     end,
     loc_vars = function(self, info_queue, card)
@@ -190,7 +235,15 @@ SMODS.Back({
                 G.E_MANAGER:add_event(Event({
                     trigger = 'after', delay = 0.4,
                     func = (function()
-                        add_tag(Tag(selected_tag))
+                        local new_tag = Tag(selected_tag)
+                        if selected_tag == 'tag_orbital' then
+                            local _poker_hands = {}
+                            for k, v in pairs(G.GAME.hands) do
+                                if v.visible then _poker_hands[#_poker_hands+1] = k end
+                            end
+                            new_tag.ability.orbital_hand = pseudorandom_element(_poker_hands, pseudoseed('orbital'))
+                        end
+                        add_tag(new_tag)
                         play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
                         play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
                         return true
@@ -234,3 +287,26 @@ Blind.defeat = function(silent)
         obj:after_round(args)
     end
 end
+
+SMODS.Back({
+    key = "overused", 
+    atlas = "decks",
+    pos = {x = 4, y = 2}, 
+    config = {extra = {top = 20, bottom = 6}},
+    apply = function(self)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                local remove_count = pseudorandom(pseudoseed('overused_deck'), self.config.extra.bottom, self.config.extra.top)
+                for i=1, remove_count do
+                    local remove_card, index = pseudorandom_element(G.playing_cards, pseudoseed('overused_deck_remove'))
+                    remove_card:remove()
+                end
+                G.GAME.starting_deck_size = #G.playing_cards
+                return true
+            end
+        }))
+    end,
+    loc_vars = function(self, info_queue, card)
+        -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'salad'}
+    end,
+})

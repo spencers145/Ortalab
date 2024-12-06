@@ -15,14 +15,13 @@ Ortalab.load_table = {
     editions = true,
     loteria = true,
     zodiac = true,
-    zodiac = true,
     patches = true,
     decks = true,
     coupons = true,
     stakes = true,
     blinds = true,
     curses = true,
-    mythos = true
+    mythos = false
 }
 loc_colour('red')
 G.ARGS.LOC_COLOURS['Ortalab'] = HEX('990000')

@@ -4,12 +4,8 @@ SMODS.Atlas({
     px = '71',
     py = '95'
 })
-SMODS.Atlas({
-    key = 'loteria_booster',
-    path = 'loteria_boosters.png',
-    px = '71',
-    py = '95'
-})
+
+SMODS.load_file('objects/loteria_boosters.lua')()
 
 SMODS.UndiscoveredSprite({
     key = "Loteria",
@@ -106,7 +102,7 @@ SMODS.Consumable({
     pos = {x=1, y=3},
     discovered = false,
     in_pool = function(self)
-        if Ortalab.load_table.zodiac then return true else return false end
+        return false
     end,
     config = {extra = {type = 'Zodiac', amount = 2}},
     loc_vars = function(self, info_queue, card)
@@ -569,7 +565,7 @@ SMODS.Consumable({
         return {vars = {card.ability.extra.money, card.ability.extra.value, card.ability.extra.amount + (G.GAME and G.GAME.Ortalab_loteria_voucher_2 and G.GAME.Ortalab_loteria_voucher_2 or 0)        }}
     end,
     can_use = function(self, card)
-        return #G.hand.cards > 0
+        return #G.hand.cards > 0 and #G.hand.highlighted == 0
     end,
     keep_on_use = function(self, card)
         return loteria_joker_save_check(card)
@@ -578,7 +574,7 @@ SMODS.Consumable({
         track_usage(loteria.config.center.set, loteria.config.center_key)
         local cards = {}
 
-        for i=1, loteria.ability.extra.amount do
+        for i=1, math.min(loteria.ability.extra.amount, #G.hand.cards) do
             G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.35,func = function()
                 local selected = false
                 while not selected do
@@ -827,144 +823,6 @@ SMODS.Consumable({
     end
 })
 
--- Boosters
-
-local small_boosters = {keys = {'small_loteria_1', 'small_loteria_2', 'small_loteria_3', 'small_loteria_4'}, info = {
-    atlas = 'loteria_booster',
-    config = {choose = 1, extra = 3},
-    loc_vars = function(self, info_queue, card)
-        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
-        return {vars = {(card and card.ability.choose or self.config.choose) + (G.GAME and G.GAME.Ortalab_loteria_voucher and G.GAME.Ortalab_loteria_voucher or 0), card and card.ability.extra or self.config.extra}}
-    end,
-    create_card = function(self, card)
-        return create_card("Loteria", G.pack_cards, nil, nil, true,  true, nil, "lotpack")
-    end,
-    ease_background_colour = function(self)
-        ease_colour(G.C.DYN_UI.MAIN, G.C.SET.Loteria)
-        ease_background_colour{new_colour = G.C.SET.Loteria, special_colour = G.C.BLACK, contrast = 2}
-    end,
-    group_key = 'ortalab_loteria_pack',
-    draw_hand = true,
-    cost = 4,
-    weight = 1,
-    particles = function(self)
-        G.booster_pack_sparkles = Particles(1, 1, 0,0, {
-            timer = 0.015,
-            scale = 0.2,
-            initialize = true,
-            lifespan = 1,
-            speed = 1.1,
-            padding = -1,
-            attach = G.ROOM_ATTACH,
-            colours = {G.ARGS.LOC_COLOURS.loteria, lighten(G.ARGS.LOC_COLOURS.loteria, 0.4), lighten(G.ARGS.LOC_COLOURS.loteria, 0.2), darken(G.ARGS.LOC_COLOURS.loteria, 0.2)},
-            fill = true
-        })
-        G.booster_pack_sparkles.fade_alpha = 1
-        G.booster_pack_sparkles:fade(1, 0)
-    end,
-}}
-
-for i, key in ipairs(small_boosters.keys) do
-    local booster_args = {}
-    for k,v in pairs(small_boosters.info) do
-        booster_args[k] = v
-    end
-    booster_args.key = key
-    booster_args.pos = { x = i - 1, y = 0 }
-    SMODS.Booster(booster_args)
-end
-
-local mid_boosters = {keys = {'mid_loteria_1', 'mid_loteria_2'}, info = {
-    atlas = 'loteria_booster',
-    config = {choose = 1, extra = 5},
-    loc_vars = function(self, info_queue, card)
-        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
-        return {vars = {(card and card.ability.choose or self.config.choose) + (G.GAME and G.GAME.Ortalab_loteria_voucher and G.GAME.Ortalab_loteria_voucher or 0), card and card.ability.extra or self.config.extra}}
-    end,
-    create_card = function(self, card)
-        return create_card("Loteria", G.pack_cards, nil, nil, true,  true, nil, "lotpack")
-    end,
-    ease_background_colour = function(self)
-        ease_colour(G.C.DYN_UI.MAIN, G.C.SET.Loteria)
-        ease_background_colour{new_colour = G.C.SET.Loteria, special_colour = G.C.BLACK, contrast = 2}
-    end,
-    group_key = 'ortalab_loteria_pack_2',
-    draw_hand = true,
-    cost = 6,
-    weight = 1,
-    particles = function(self)
-        G.booster_pack_sparkles = Particles(1, 1, 0,0, {
-            timer = 0.015,
-            scale = 0.2,
-            initialize = true,
-            lifespan = 1,
-            speed = 1.1,
-            padding = -1,
-            attach = G.ROOM_ATTACH,
-            colours = {G.ARGS.LOC_COLOURS.loteria, lighten(G.ARGS.LOC_COLOURS.loteria, 0.4), lighten(G.ARGS.LOC_COLOURS.loteria, 0.2), darken(G.ARGS.LOC_COLOURS.loteria, 0.2)},
-            fill = true
-        })
-        G.booster_pack_sparkles.fade_alpha = 1
-        G.booster_pack_sparkles:fade(1, 0)
-    end,
-}}
-
-for i, key in ipairs(mid_boosters.keys) do
-    local booster_args = {}
-    for k,v in pairs(mid_boosters.info) do
-        booster_args[k] = v
-    end
-    booster_args.key = key
-    booster_args.pos = { x = i - 1, y = 1 }
-    SMODS.Booster(booster_args)
-end
-
-local large_boosters = {keys = {'big_loteria_1', 'big_loteria_2'}, info = {
-    atlas = 'loteria_booster',
-    config = {choose = 2, extra = 5},
-    loc_vars = function(self, info_queue, card)
-        if Ortalab.config.artist_credits and card then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
-        return {vars = {(card and card.ability.choose or self.config.choose) + (G.GAME and G.GAME.Ortalab_loteria_voucher and G.GAME.Ortalab_loteria_voucher or 0), card and card.ability.extra or self.config.extra}}
-    end,
-    create_card = function(self, card)
-        return create_card("Loteria", G.pack_cards, nil, nil, true,  true, nil, "lotpack")
-    end,
-    ease_background_colour = function(self)
-        ease_colour(G.C.DYN_UI.MAIN, G.C.SET.Loteria)
-        ease_background_colour{new_colour = G.C.SET.Loteria, special_colour = G.C.BLACK, contrast = 2}
-    end,
-    group_key = 'ortalab_loteria_pack_3',
-    draw_hand = true,
-    cost = 8,
-    weight = 1,
-    particles = function(self)
-        G.booster_pack_sparkles = Particles(1, 1, 0,0, {
-            timer = 0.015,
-            scale = 0.2,
-            initialize = true,
-            lifespan = 1,
-            speed = 1.1,
-            padding = -1,
-            attach = G.ROOM_ATTACH,
-            colours = {G.ARGS.LOC_COLOURS.loteria, lighten(G.ARGS.LOC_COLOURS.loteria, 0.4), lighten(G.ARGS.LOC_COLOURS.loteria, 0.2), darken(G.ARGS.LOC_COLOURS.loteria, 0.2)},
-            fill = true
-        })
-        G.booster_pack_sparkles.fade_alpha = 1
-        G.booster_pack_sparkles:fade(1, 0)
-    end,
-}}
-
-for i, key in ipairs(large_boosters.keys) do
-    local booster_args = {}
-    for k,v in pairs(large_boosters.info) do
-        booster_args[k] = v
-    end
-    booster_args.key = key
-    booster_args.pos = { x = i + 1, y = 1 }
-    SMODS.Booster(booster_args)
-end
-
-
 -- Functions
 
 function standard_use()
@@ -1002,10 +860,12 @@ function use_enhance_cards(self, loteria, area, copier)
         local set = true
         while set do
             local card = pseudorandom_element(G.hand.cards, pseudoseed(loteria.ability.extra.key..'_select'))
-            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.1, func = function() card:highlight(true); play_sound('card3', math.random()*0.2 + 0.9, 0.35); return true; end}))
-            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.1, func = function() card:highlight(false); return true; end}))
+            if not Ortalab.config.loteria_skip then
+                G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.1, func = function() card:highlight(true); play_sound('card3', math.random()*0.2 + 0.9, 0.35); return true; end}))
+                G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.1, func = function() card:highlight(false); return true; end}))
+            end
             if card.config.center_key ~= loteria.ability.extra.key and not card.changed then
-                if pseudorandom(pseudoseed(loteria.ability.extra.key..'_set')) < (1 / (card.ability.set == 'Enhanced' and 6 or 3)) then
+                if pseudorandom(pseudoseed(loteria.ability.extra.key..'_set')) < (1 / (card.ability.set == 'Enhanced' and 8 or 3)) then
                     set_enhancement(card, loteria.ability.extra.key)
                     card.changed = true
                     set = false
@@ -1019,6 +879,7 @@ function use_enhance_cards(self, loteria, area, copier)
 end
 
 function shuffle_cards()
+    if Ortalab.config.loteria_skip then return end
     for i = math.random(5, 10), 1, -1 do
         local card = pseudorandom_element(G.hand.cards, pseudoseed('loteria_roll'))
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.1, func = function() card:highlight(true); play_sound('card3', math.random()*0.2 + 0.9, 0.35); return true; end}))
@@ -1112,13 +973,14 @@ end
 function bottle_randomise(card)
     local modifier = 8
     local edition = poll_edition('bottle_edition', modifier, false, false)
-    card:set_edition(edition, true, true)
-    local enhance = pseudorandom_element(get_current_pool('Enhanced'), pseudoseed('bottle_enhancement'))
-    while enhance == 'UNAVAILABLE' do
-        enhance = pseudorandom_element(get_current_pool('Enhanced'), pseudoseed('bottle_enhancement'))
-    end
-    card:set_ability(G.P_CENTERS[enhance])
+    -- local enhance = pseudorandom_element(get_current_pool('Enhanced'), pseudoseed('bottle_enhancement'))
+    -- while enhance == 'UNAVAILABLE' do
+    --     enhance = pseudorandom_element(get_current_pool('Enhanced'), pseudoseed('bottle_enhancement'))
+    -- end
+    local enhance = SMODS.poll_enhancement({key = 'bottle_enhance', guaranteed = true})
     local seal = SMODS.poll_seal({key = 'bottle_seal', mod = modifier})
+    card:set_edition(edition, true, true)
+    card:set_ability(G.P_CENTERS[enhance])
     card:set_seal(seal, true, true)
 end
 
@@ -1126,7 +988,7 @@ function loteria_joker_save_check(card)
     if G.booster_pack then return false end
     local loteria_joker = SMODS.find_card('j_ortalab_black_cat')
     for _, joker_card in pairs(loteria_joker) do        
-        if pseudorandom(pseudoseed('loteria_check_keep')) < (3*G.GAME.probabilities.normal) / joker_card.ability.extra.chance then
+        if pseudorandom(pseudoseed('loteria_check_keep')) > (3*G.GAME.probabilities.normal) / joker_card.ability.extra.chance then
             joker_card:juice_up()
             card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_loteria_saved')})
             return true
