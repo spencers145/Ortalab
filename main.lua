@@ -9,23 +9,24 @@
 --- PRIORITY: -5
 
 Ortalab = SMODS.current_mod
-
-local load_table = {
+Ortalab.load_table = {
     jokers = true,
     enhancements = true,
     editions = true,
     loteria = true,
+    zodiac = true,
     zodiac = true,
     patches = true,
     decks = true,
     coupons = true,
     stakes = true,
     blinds = true,
-    curses = true
+    curses = true,
+    mythos = true
 }
 loc_colour('red')
 G.ARGS.LOC_COLOURS['Ortalab'] = HEX('990000')
-for k, v in pairs(load_table) do
+for k, v in pairs(Ortalab.load_table) do
     if v then SMODS.load_file('objects/'..k..'.lua')() end
 end
 
@@ -41,21 +42,36 @@ SMODS.Atlas({
 })
 
 AltTextures_Utils.default_atlas['Zodiac'] = 'ortalab_zodiac_cards'
+AltTextures_Utils.loc_keys['Zodiac'] = 'b_zodiac_cards'
 
 AltTexture({
     key = 'alt_zodiac',
     set = 'Zodiac',
-    path = 'zodiac_rainbow.png',
+    path = 'zodiac_coloured.png',
+    display_pos = 'c_ortalab_zod_virgo',
     loc_txt = {
         name = 'Rainbow Zodiac'
+    }
+})
+
+AltTexture({
+    key = 'alt_zodiac_tag',
+    set = 'Tag',
+    path = 'zodiac_tags_alt.png',
+    keys = {
+        'tag_ortalab_zod_scorpio',
+        'tag_ortalab_zod_aquarius'
+    },
+    loc_txt = {
+        name = 'Rainbow Tags'
     }
 })
 
 TexturePack{
     key = 'alt_orta',
     textures = {
-        'alt_tex_ortalab_alt_zodiac',
-        'alt_tex_malverk_painted'
+        'ortalab_alt_zodiac',
+        'ortalab_alt_zodiac_tag'
     },
     loc_txt = {
         name = 'Ortalab Alternate Art',

@@ -106,7 +106,7 @@ SMODS.Consumable({
     pos = {x=1, y=3},
     discovered = false,
     in_pool = function(self)
-        return false
+        if Ortalab.load_table.zodiac then return true else return false end
     end,
     config = {extra = {type = 'Zodiac', amount = 2}},
     loc_vars = function(self, info_queue, card)
