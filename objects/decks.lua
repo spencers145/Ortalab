@@ -287,3 +287,26 @@ Blind.defeat = function(silent)
         obj:after_round(args)
     end
 end
+
+SMODS.Back({
+    key = "overused", 
+    atlas = "decks",
+    pos = {x = 4, y = 2}, 
+    config = {extra = {top = 20, bottom = 6}},
+    apply = function(self)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                local remove_count = pseudorandom(pseudoseed('overused_deck'), self.config.extra.bottom, self.config.extra.top)
+                for i=1, remove_count do
+                    local remove_card, index = pseudorandom_element(G.playing_cards, pseudoseed('overused_deck_remove'))
+                    remove_card:remove()
+                end
+                G.GAME.starting_deck_size = #G.playing_cards
+                return true
+            end
+        }))
+    end,
+    loc_vars = function(self, info_queue, card)
+        -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'salad'}
+    end,
+})

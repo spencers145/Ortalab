@@ -1648,7 +1648,14 @@ return {
 					"Blind rewards are {C:attention}doubled",
 					"if beaten in {C:attention}1{} {C:blue}Hand"
 				}
-			}
+			},
+			['b_ortalab_overused'] = {
+				["name"] = "Overused Deck",
+				["text"] = {
+					'{C:attention}Random cards{} are',
+					'missing from the deck'
+				} 
+			},
 		},
 		['Voucher'] = {
 			['v_ortalab_cantor'] = {
