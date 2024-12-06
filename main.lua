@@ -44,42 +44,44 @@ SMODS.Atlas({
 AltTextures_Utils.default_atlas['Zodiac'] = 'ortalab_zodiac_cards'
 AltTextures_Utils.loc_keys['Zodiac'] = 'b_zodiac_cards'
 
-AltTexture({
-    key = 'alt_zodiac',
-    set = 'Zodiac',
-    path = 'zodiac_coloured.png',
-    display_pos = 'c_ortalab_zod_virgo',
-    loc_txt = {
-        name = 'Rainbow Zodiac'
-    }
-})
+if (SMODS.Mods['Malverk'] or {}).can_load then
+    AltTexture({
+        key = 'alt_zodiac',
+        set = 'Zodiac',
+        path = 'zodiac_coloured.png',
+        display_pos = 'c_ortalab_zod_virgo',
+        loc_txt = {
+            name = 'Rainbow Zodiac'
+        }
+    })
 
-AltTexture({
-    key = 'alt_zodiac_tag',
-    set = 'Tag',
-    path = 'zodiac_tags_alt.png',
-    keys = {
-        'tag_ortalab_zod_scorpio',
-        'tag_ortalab_zod_aquarius'
-    },
-    loc_txt = {
-        name = 'Rainbow Tags'
-    }
-})
+    AltTexture({
+        key = 'alt_zodiac_tag',
+        set = 'Tag',
+        path = 'zodiac_tags_alt.png',
+        keys = {
+            'tag_ortalab_zod_scorpio',
+            'tag_ortalab_zod_aquarius'
+        },
+        loc_txt = {
+            name = 'Rainbow Tags'
+        }
+    })
 
-TexturePack{
-    key = 'alt_orta',
-    textures = {
-        'ortalab_alt_zodiac',
-        'ortalab_alt_zodiac_tag'
-    },
-    loc_txt = {
-        name = 'Ortalab Alternate Art',
-        text = {
-            'Alternate art for {C:zodiac}Zodiac',
-            'and {C:loteria}Loteria{} cards'
+    TexturePack{
+        key = 'alt_orta',
+        textures = {
+            'ortalab_alt_zodiac',
+            'ortalab_alt_zodiac_tag'
+        },
+        loc_txt = {
+            name = 'Ortalab Alternate Art',
+            text = {
+                'Alternate art for {C:zodiac}Zodiac',
+                'and {C:loteria}Loteria{} cards'
+            }
         }
     }
-}
+end
 
 -- Config tab stuff to go below
