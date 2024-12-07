@@ -256,7 +256,7 @@ return {
 				}
 			},
 			['j_ortalab_beyond_the_mask'] = {
-				["name"] = "Beyond The Mask",
+				["name"] = "Broken Masquerade",
 				["text"] = {
 					"Earn {C:money}$#1#{} at end of round",
 					"Gains {C:money}$#2#{} per discarded {C:attention,E:1}Cosmic Card{}",
@@ -298,7 +298,7 @@ return {
 				}
 			},
 			['j_ortalab_bowling_ball'] = {
-				["name"] = "Bowling Ball Solar System",
+				["name"] = "Horoscope",
 				["text"] = {
 					"Create a random {C:Zodiac}Zodiac",
 					"card if a {C:attention}10",
