@@ -39,7 +39,7 @@ SMODS.ConsumableType({ -- Zodiac Card ConsumableType creation
         }
     },
     collection_rows = {6, 6},
-    shop_rate = 0.8,
+    shop_rate = 0.6,
     default = 'c_ortalab_zod_scorpio' -- High Card zodiac
 })
 
@@ -57,6 +57,7 @@ Ortalab.Zodiac = SMODS.Tag:extend { -- Zodiac Indicator Definition
         end
     end
 }
+Ortalab.zodiac_reduction = 2
 
 -- remove triggered zodiacs
 local evaluate_play = G.FUNCS.evaluate_play
@@ -65,16 +66,35 @@ function G.FUNCS.evaluate_play(e)
     if zodiac_current and zodiac_current.triggered then
         G.E_MANAGER:add_event(Event({
             trigger = 'after', delay = 0.2, func = function()
-                zodiac_current:remove_zodiac('+')
+                zodiac_current:remove_zodiac()
                 return true
             end}))
+    else
+        G.E_MANAGER:add_event(Event({
+            delay = 0.4,
+            trigger = 'after',
+            func = (function()
+                attention_text({
+                    text = '-'..Ortalab.zodiac_reduction,
+                    colour = G.C.WHITE,
+                    scale = 1, 
+                    hold = 1/G.SETTINGS.GAMESPEED,
+                    cover = zodiac_current.HUD_zodiac,
+                    cover_colour = G.ARGS.LOC_COLOURS.Zodiac,
+                    align = 'cm',
+                    })
+                play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+                play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
+                return true
+            end)
+        }))
     end
 end
 
 
 function add_zodiac(_tag) -- Add a zodiac to the indicator area
     G.HUD_zodiac = G.HUD_zodiac or {}
-    G.current_zodiacs = G.current_zodiacs or {}
+    G.zodiacs = G.zodiacs or {}
     local tag_sprite_ui = _tag:generate_UI()
     G.HUD_zodiac[#G.HUD_zodiac+1] = UIBox{
         definition = {n=G.UIT.ROOT, config={align = "cm",padding = 0.05, colour = G.C.CLEAR}, nodes={
@@ -90,9 +110,11 @@ function add_zodiac(_tag) -- Add a zodiac to the indicator area
     for i, v in ipairs(G.HUD_zodiac) do
         if i > 1 then G.HUD_zodiac[i].Mid.alignment.offset = {x=0,y=math.min(0.5, 2.5/#G.HUD_zodiac)}; G.HUD_zodiac[i]:recalculate() end
     end
-    G.current_zodiacs[#G.current_zodiacs + 1] = _tag
+    G.zodiacs[_tag.key] = _tag
 
     _tag.HUD_zodiac = G.HUD_zodiac[#G.HUD_zodiac]
+    zodiac_text(localize({set='Tag', key=_tag.key, type='name_text'})..' added!', _tag.key)
+    delay(0.7)
 end
 
 
@@ -102,10 +124,10 @@ function Tag:remove_zodiac(message, _colour, func) -- Remove a zodiac from the i
         trigger = 'after',
         func = (function()
             attention_text({
-                text = message,
+                text = '',
                 colour = G.C.WHITE,
                 scale = 1, 
-                hold = 0.3/G.SETTINGS.GAMESPEED,
+                hold = 0.6/G.SETTINGS.GAMESPEED,
                 cover = self.HUD_zodiac,
                 cover_colour = G.ARGS.LOC_COLOURS.Zodiac,
                 align = 'cm',
@@ -152,10 +174,8 @@ function Tag:remove_zodiac(message, _colour, func) -- Remove a zodiac from the i
             return true
         end)
     }))
-    for i, zodiac in ipairs(G.current_zodiacs) do
-        if zodiac.key == self.key then
-            G.current_zodiacs[i] = nil
-        end
+    if G.zodiacs[self.key] then
+        G.zodiacs[self.key] = nil
     end
 end
 
@@ -240,8 +260,8 @@ end
 
 function Zodiac:get_uibox_table(tag_sprite)
     tag_sprite = tag_sprite or self.tag_sprite
-    local name_to_check, loc_vars = self.name, {}
-    tag_sprite.ability_UIBox_table = generate_card_ui(G.ZODIACS[self.key], nil, loc_vars, (self.hide_ability) and 'Undiscovered' or 'Tag', nil, (self.hide_ability))
+    local name_to_check, loc_vars = self.name, G.ZODIACS[self.key]:loc_vars(nil, G.zodiacs[self.key])
+    tag_sprite.ability_UIBox_table = generate_card_ui(G.ZODIACS[self.key], nil, loc_vars, (self.hide_ability) and 'Undiscovered' or 'Tag', nil, (self.hide_ability), nil, nil, self)
     return tag_sprite
 end
 
@@ -258,7 +278,7 @@ end
 function zodiac_tooltip(_c, info_queue, card, desc_nodes, specific_vars, full_UI_table)
     desc_nodes.tag = true
     desc_nodes.title = localize({type = 'name_text', set = 'Tag', key = _c.key})
-    localize{type = 'descriptions', set = 'Tag', key = _c.key, nodes = desc_nodes, vars = specific_vars or G.ZODIACS[_c.key]:loc_vars(info_queue, true).vars}
+    localize{type = 'descriptions', set = 'Tag', key = _c.key, nodes = desc_nodes, vars = specific_vars or G.ZODIACS[_c.key]:loc_vars(info_queue).vars}
 end
 
 local start = Game.start_run
@@ -269,8 +289,8 @@ function Game:start_run(args)
         end
         self.HUD_zodiacs = nil
     end
-    if self.current_zodiacs then
-        for k, v in ipairs(self.current_zodiacs) do
+    if self.zodiacs then
+        for k, v in pairs(self.zodiacs) do
             if (type(v) == "table") and v.is and v:is(Zodiac) then 
                 v:remove_zodiac()
             end
@@ -293,30 +313,27 @@ SMODS.Consumable({
         return {vars = {localize(G.ZODIACS[self.config.extra.zodiac].config.extra.hand_type, 'poker_hands')}}
     end,
     can_use = function(self, card)
-        if G.current_zodiacs then
-            for _, zodiac in ipairs(G.current_zodiacs) do
-                if zodiac.key == card.ability.extra.zodiac then return false end
-            end
-        end
         return true
     end,
     use = function(self, card, area, copier)
-        add_zodiac(Zodiac(card.ability.extra.zodiac))
+        use_zodiac(card)
     end
 })
 
 Ortalab.Zodiac{
     key = 'aries',
     pos = {x=2, y=0},
+    colour = HEX('b64646'),
     config = {extra = {temp_level = 4, hand_type = 'Four of a Kind'}},
     loc_vars = function(self, info_queue, card)
-        return {vars = {self.config.extra.temp_level, localize(self.config.extra.hand_type, 'poker_hands')}}
+        local zodiac = card or self
+        return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     destroy = function(self, zodiac, context)
         if context.other_card.base.value == context.scoring_hand[1].base.value then
             return false
         end
-        zodiac.triggered = true
+        zodiac_reduce_level(zodiac)
         return true
     end
 }
@@ -334,28 +351,25 @@ SMODS.Consumable({
         return {vars = {localize(G.ZODIACS[self.config.extra.zodiac].config.extra.hand_type, 'poker_hands')}}
     end,
     can_use = function(self, card)
-        if G.current_zodiacs then
-            for _, zodiac in ipairs(G.current_zodiacs) do
-                if zodiac.key == card.ability.extra.zodiac then return false end
-            end
-        end
         return true
     end,
     use = function(self, card, area, copier)
-        add_zodiac(Zodiac(card.ability.extra.zodiac))
+        use_zodiac(card)
     end
 })
 
 Ortalab.Zodiac{
     key = 'taurus',
     pos = {x=3, y=0},
+    colour = HEX('cb703d'),
     config = {extra = {temp_level = 4, hand_type = 'Three of a Kind', amount = 3}},
     loc_vars = function(self, info_queue, card)
+        local zodiac = card or self
         if not card then info_queue[#info_queue + 1] = G.P_CENTERS['m_ortalab_rusty'] end
-        return {vars = {self.config.extra.temp_level, localize(self.config.extra.hand_type, 'poker_hands'), self.config.extra.amount}}
+        return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands'), zodiac.config.extra.amount}}
     end,
     pre_trigger = function(self, zodiac, context)
-        for i=1, self.config.extra.amount do
+        for i=1, zodiac.config.extra.amount do
             if G.hand.cards[i] then
                 G.E_MANAGER:add_event(Event({
                     trigger = 'before', delay = 0.2, func = function()
@@ -366,7 +380,7 @@ Ortalab.Zodiac{
                     end}))
             end
         end
-        zodiac.triggered = true
+        zodiac_reduce_level(zodiac)
         return context.mult, context.chips
     end
 }
@@ -386,24 +400,21 @@ SMODS.Consumable({
         return {vars = {localize(G.ZODIACS[self.config.extra.zodiac].config.extra.hand_type, 'poker_hands')}}
     end,
     can_use = function(self, card)
-        if G.current_zodiacs then
-            for _, zodiac in ipairs(G.current_zodiacs) do
-                if zodiac.key == card.ability.extra.zodiac then return false end
-            end
-        end
         return true
     end,
     use = function(self, card, area, copier)
-        add_zodiac(Zodiac(card.ability.extra.zodiac))
+        use_zodiac(card)
     end
 })
 
 Ortalab.Zodiac{
     key = 'gemini',
     pos = {x=4, y=0},
+    colour = HEX('d9c270'),
     config = {extra = {temp_level = 4, hand_type = 'Pair'}},
     loc_vars = function(self, info_queue, card)
-        return {vars = {self.config.extra.temp_level, localize(self.config.extra.hand_type, 'poker_hands')}}
+        local zodiac = card or self
+        return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         local effects = {'m_ortalab_post', 'm_ortalab_bent'}
@@ -419,7 +430,7 @@ Ortalab.Zodiac{
                     return true
                 end}))
         end
-        zodiac.triggered = true
+        zodiac_reduce_level(zodiac)
         return context.mult, context.chips
     end
 }
@@ -437,24 +448,21 @@ SMODS.Consumable({
         return {vars = {localize(G.ZODIACS[self.config.extra.zodiac].config.extra.hand_type, 'poker_hands')}}
     end,
     can_use = function(self, card)
-        if G.current_zodiacs then
-            for _, zodiac in ipairs(G.current_zodiacs) do
-                if zodiac.key == card.ability.extra.zodiac then return false end
-            end
-        end
         return true
     end,
     use = function(self, card, area, copier)
-        add_zodiac(Zodiac(card.ability.extra.zodiac))
+        use_zodiac(card)
     end
 })
 
 Ortalab.Zodiac{
     key = 'cancer',
     pos = {x=5, y=0},
+    colour = HEX('878879'),
     config = {extra = {temp_level = 4, hand_type = 'Flush House'}},
     loc_vars = function(self, info_queue, card)
-        return {vars = {self.config.extra.temp_level, localize(self.config.extra.hand_type, 'poker_hands')}}
+        local zodiac = card or self
+        return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         return context.mult, context.chips
@@ -474,26 +482,34 @@ SMODS.Consumable({
         return {vars = {localize(G.ZODIACS[self.config.extra.zodiac].config.extra.hand_type, 'poker_hands')}}
     end,
     can_use = function(self, card)
-        if G.current_zodiacs then
-            for _, zodiac in ipairs(G.current_zodiacs) do
-                if zodiac.key == card.ability.extra.zodiac then return false end
-            end
-        end
         return true
     end,
     use = function(self, card, area, copier)
-        add_zodiac(Zodiac(card.ability.extra.zodiac))
+        use_zodiac(card)
     end
 })
 
 Ortalab.Zodiac{
     key = 'leo',
     pos = {x=0, y=1},
+    colour = HEX('8fb85c'),
     config = {extra = {temp_level = 4, hand_type = 'Flush Five'}},
     loc_vars = function(self, info_queue, card)
-        return {vars = {self.config.extra.temp_level, localize(self.config.extra.hand_type, 'poker_hands')}}
+        local zodiac = card or self
+        return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
+        for i=1, #G.hand.cards do
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    copy_card(context.scoring_hand[3], G.hand.cards[i])
+                    G.hand.cards[i]:juice_up()
+                    context.scoring_hand[3]:juice_up()
+                    return true
+                    end
+            }))
+        end        
+        zodiac_reduce_level(zodiac)
         return context.mult, context.chips
     end
 }
@@ -511,24 +527,21 @@ SMODS.Consumable({
         return {vars = {localize(G.ZODIACS[self.config.extra.zodiac].config.extra.hand_type, 'poker_hands')}}
     end,
     can_use = function(self, card)
-        if G.current_zodiacs then
-            for _, zodiac in ipairs(G.current_zodiacs) do
-                if zodiac.key == card.ability.extra.zodiac then return false end
-            end
-        end
         return true
     end,
     use = function(self, card, area, copier)
-        add_zodiac(Zodiac(card.ability.extra.zodiac))
+        use_zodiac(card)
     end
 })
 
 Ortalab.Zodiac{
     key = 'virgo',
     pos = {x=1, y=1},
+    colour = HEX('299847'),
     config = {extra = {temp_level = 4, hand_type = 'Five of a Kind'}},
     loc_vars = function(self, info_queue, card)
-        return {vars = {self.config.extra.temp_level, localize(self.config.extra.hand_type, 'poker_hands')}}
+        local zodiac = card or self
+        return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         return context.mult, context.chips
@@ -548,26 +561,36 @@ SMODS.Consumable({
         return {vars = {localize(G.ZODIACS[self.config.extra.zodiac].config.extra.hand_type, 'poker_hands')}}
     end,
     can_use = function(self, card)
-        if G.current_zodiacs then
-            for _, zodiac in ipairs(G.current_zodiacs) do
-                if zodiac.key == card.ability.extra.zodiac then return false end
-            end
-        end
         return true
     end,
     use = function(self, card, area, copier)
-        add_zodiac(Zodiac(card.ability.extra.zodiac))
+        use_zodiac(card)
     end
 })
 
 Ortalab.Zodiac{
     key = 'libra',
     pos = {x=2, y=1},
-    config = {extra = {temp_level = 4, hand_type = 'Full House'}},
+    colour = HEX('32a18c'),
+    config = {extra = {temp_level = 4, hand_type = 'Full House', convert = 2}},
     loc_vars = function(self, info_queue, card)
-        return {vars = {self.config.extra.temp_level, localize(self.config.extra.hand_type, 'poker_hands')}}
+        local zodiac = card or self
+        return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands'), zodiac.config.extra.convert}}
     end,
     pre_trigger = function(self, zodiac, context)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                local index = {1, #context.scoring_hand}
+                for i=1, math.min(zodiac.config.extra.convert, #G.hand.cards) do
+                    local _card = copy_card(context.scoring_hand[index[i]], G.hand.cards[i])
+                    _card:juice_up()
+                    context.scoring_hand[index[i]]:juice_up()
+                end
+                return true
+            end
+        }))
+        zodiac_reduce_level(zodiac)
+
         return context.mult, context.chips
     end
 }
@@ -585,15 +608,10 @@ SMODS.Consumable({
         return {vars = {localize(G.ZODIACS[self.config.extra.zodiac].config.extra.hand_type, 'poker_hands')}}
     end,
     can_use = function(self, card)
-        if G.current_zodiacs then
-            for _, zodiac in ipairs(G.current_zodiacs) do
-                if zodiac.key == card.ability.extra.zodiac then return false end
-            end
-        end
         return true
     end,
     use = function(self, card, area, copier)
-        add_zodiac(Zodiac(card.ability.extra.zodiac))
+        use_zodiac(card)
     end
 })
 
@@ -603,13 +621,14 @@ Ortalab.Zodiac{
     colour = HEX('669ac0'),
     config = {extra = {temp_level = 4, hand_type = 'High Card', amount = 2}},
     loc_vars = function(self, info_queue, card)
-        return {vars = {self.config.extra.temp_level, localize(self.config.extra.hand_type, 'poker_hands'), self.config.extra.amount}}
+        local zodiac = card or self
+        return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands'), zodiac.config.extra.amount}}
     end,
     pre_trigger = function(self, zodiac, context)
         local amount = 1
         local modifiers = {'m_stone', 'm_ortalab_ore'}
         for _, card in pairs(context.full_hand) do
-            if table.contains(context.scoring_hand, card) or amount == self.config.extra.amount + 1 then
+            if table.contains(context.scoring_hand, card) or amount == zodiac.config.extra.amount + 1 then
                 -- do nothing
             else
                 card.add_to_scoring = true
@@ -631,7 +650,7 @@ Ortalab.Zodiac{
                 amount = amount + 1
             end
         end
-        zodiac.triggered = true
+        zodiac_reduce_level(zodiac)
         return context.mult, context.chips, true
     end
 }
@@ -656,24 +675,21 @@ SMODS.Consumable({
         return {vars = {localize(G.ZODIACS[self.config.extra.zodiac].config.extra.hand_type, 'poker_hands')}}
     end,
     can_use = function(self, card)
-        if G.current_zodiacs then
-            for _, zodiac in ipairs(G.current_zodiacs) do
-                if zodiac.key == card.ability.extra.zodiac then return false end
-            end
-        end
         return true
     end,
     use = function(self, card, area, copier)
-        add_zodiac(Zodiac(card.ability.extra.zodiac))
+        use_zodiac(card)
     end
 })
 
 Ortalab.Zodiac{
     key = 'sag',
     pos = {x=3, y=1},
+    colour = HEX('4c3ba2'),
     config = {extra = {temp_level = 4, hand_type = 'Flush'}},
     loc_vars = function(self, info_queue, card)
-        return {vars = {self.config.extra.temp_level, localize(self.config.extra.hand_type, 'poker_hands')}}
+        local zodiac = card or self
+        return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         local suits_in_flush = {}
@@ -682,8 +698,6 @@ Ortalab.Zodiac{
             suits_in_flush[card.base.suit] = suits_in_flush[card.base.suit] and suits_in_flush[card.base.suit] + 1 or 1
             if suits_in_flush[card.base.suit] > suits_in_flush[new_suit] then new_suit = card.base.suit end
         end
-        print(tprint(suits_in_flush))
-        print(new_suit)
         for _, card in pairs(G.hand.cards) do
             if not card.base.suit ~= new_suit then
                 G.E_MANAGER:add_event(Event({
@@ -695,7 +709,7 @@ Ortalab.Zodiac{
                     end}))
             end
         end
-        zodiac.triggered = true
+        zodiac_reduce_level(zodiac)
         
         return context.mult, context.chips
     end
@@ -714,15 +728,10 @@ SMODS.Consumable({
         return {vars = {localize(G.ZODIACS[self.config.extra.zodiac].config.extra.hand_type, 'poker_hands')}}
     end,
     can_use = function(self, card)
-        if G.current_zodiacs then
-            for _, zodiac in ipairs(G.current_zodiacs) do
-                if zodiac.key == card.ability.extra.zodiac then return false end
-            end
-        end
         return true
     end,
     use = function(self, card, area, copier)
-        add_zodiac(Zodiac(card.ability.extra.zodiac))
+        use_zodiac(card)
     end
 })
 
@@ -733,10 +742,11 @@ Ortalab.Zodiac{
     config = {extra = {temp_level = 4, hand_type = 'Straight', amount = 2}},
     loc_vars = function(self, info_queue, card)
         if not card then info_queue[#info_queue + 1] = G.P_CENTERS['m_ortalab_index'] end
-        return {vars = {self.config.extra.temp_level, localize(self.config.extra.hand_type, 'poker_hands'), self.config.extra.amount}}
+        local zodiac = card or self
+        return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands'), zodiac.config.extra.amount}}
     end,
     pre_trigger = function(self, zodiac, context)
-        for i=1, self.config.extra.amount do
+        for i=1, zodiac.config.extra.amount do
             if G.hand.cards[i] then
                 G.E_MANAGER:add_event(Event({
                     trigger = 'before', delay = 0.2, func = function()
@@ -747,7 +757,7 @@ Ortalab.Zodiac{
                     end}))
             end
         end
-        zodiac.triggered = true
+        zodiac_reduce_level(zodiac)
         return context.mult, context.chips
     end
 }
@@ -765,15 +775,10 @@ SMODS.Consumable({
         return {vars = {localize(G.ZODIACS[self.config.extra.zodiac].config.extra.hand_type, 'poker_hands')}}
     end,
     can_use = function(self, card)
-        if G.current_zodiacs then
-            for _, zodiac in ipairs(G.current_zodiacs) do
-                if zodiac.key == card.ability.extra.zodiac then return false end
-            end
-        end
         return true
     end,
     use = function(self, card, area, copier)
-        add_zodiac(Zodiac(card.ability.extra.zodiac))
+        use_zodiac(card)
     end
 })
 
@@ -781,10 +786,35 @@ Ortalab.Zodiac{
     key = 'aquarius',
     pos = {x=1, y=0},
     config = {extra = {temp_level = 4, hand_type = 'Two Pair'}},
+    colour = HEX('b05ab4'),
     loc_vars = function(self, info_queue, card)
-        return {vars = {self.config.extra.temp_level, localize(self.config.extra.hand_type, 'poker_hands')}}
+        local zodiac = card or self
+        return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                G.playing_card = (G.playing_card and G.playing_card + 1) or 1
+                local _card = copy_card(context.scoring_hand[1], nil, nil, G.playing_card)
+                G.playing_card = (G.playing_card and G.playing_card + 1) or 1
+                local _card2 = copy_card(context.scoring_hand[#context.scoring_hand], nil, nil, G.playing_card)
+                _card:add_to_deck()
+                _card2:add_to_deck()
+                G.deck.config.card_limit = G.deck.config.card_limit + 2
+                table.insert(G.playing_cards, _card)
+                table.insert(G.playing_cards, _card2)
+                G.deck:emplace(_card)
+                G.deck:emplace(_card2)
+                G.deck:shuffle('zodiac_aquarius')
+                context.scoring_hand[1]:juice_up()
+                context.scoring_hand[#context.scoring_hand]:juice_up()
+                _card:juice_up()
+
+                return true
+            end
+        }))
+        playing_card_joker_effects({_card})
+        zodiac_reduce_level(zodiac)
         return context.mult, context.chips
     end
 }
@@ -802,26 +832,76 @@ SMODS.Consumable({
         return {vars = {localize(G.ZODIACS[self.config.extra.zodiac].config.extra.hand_type, 'poker_hands')}}
     end,
     can_use = function(self, card)
-        if G.current_zodiacs then
-            for _, zodiac in ipairs(G.current_zodiacs) do
-                if zodiac.key == card.ability.extra.zodiac then return false end
-            end
-        end
         return true
     end,
     use = function(self, card, area, copier)
-        add_zodiac(Zodiac(card.ability.extra.zodiac))
+        use_zodiac(card)
     end
 })
 
 Ortalab.Zodiac{
     key = 'pisces',
     pos = {x=5, y=1},
+    colour = HEX('ae347f'),
     config = {extra = {temp_level = 4, hand_type = 'Straight Flush'}},
     loc_vars = function(self, info_queue, card)
-        return {vars = {self.config.extra.temp_level, localize(self.config.extra.hand_type, 'poker_hands')}}
+        local zodiac = card or self
+        return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
+        local suits_in_flush = {}
+        local new_suit = context.scoring_hand[1].base.suit
+        for _, card in pairs(context.scoring_hand) do
+            suits_in_flush[card.base.suit] = suits_in_flush[card.base.suit] and suits_in_flush[card.base.suit] + 1 or 1
+            if suits_in_flush[card.base.suit] > suits_in_flush[new_suit] then new_suit = card.base.suit end
+        end
+        for _, card in pairs(G.hand.cards) do
+            if not card.base.suit ~= new_suit then
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'before', delay = 0.2, func = function()
+                        zodiac:juice_up()
+                        SMODS.change_base(card, new_suit)
+                        if not card.edition then
+                            local new_edition = poll_edition('zodiac_pisces', nil, false, true)
+                            card:set_edition(new_edition, true, true)
+                        end
+                        card:juice_up()
+                        return true
+                    end}))
+            end
+        end
+        zodiac_reduce_level(zodiac)
         return context.mult, context.chips
     end
 }
+
+function zodiac_reduce_level(zodiac)
+    zodiac.config.extra.temp_level = math.max(0, zodiac.config.extra.temp_level - Ortalab.zodiac_reduction)
+    if zodiac.config.extra.temp_level == 0 then
+        zodiac.triggered = true
+    end
+end
+
+function use_zodiac(card)
+    if G.zodiacs and G.zodiacs[card.ability.extra.zodiac] then
+        G.zodiacs[card.ability.extra.zodiac].config.extra.temp_level = G.zodiacs[card.ability.extra.zodiac].config.extra.temp_level + G.ZODIACS[card.ability.extra.zodiac].config.extra.temp_level
+        zodiac_text(zodiac_upgrade_text(card.ability.extra.zodiac), card.ability.extra.zodiac)
+        G.zodiacs[card.ability.extra.zodiac]:juice_up(1, 1)
+        delay(0.7)
+    else
+        add_zodiac(Zodiac(card.ability.extra.zodiac))
+    end
+end
+
+function zodiac_upgrade_text(key)
+    local zodiac_name = localize({set = 'Tag', key = key, type = 'name_text'})
+    return zodiac_name .. ' upgraded!'
+end
+
+function zodiac_text(message, key)
+    ease_background_colour{special_colour = darken(G.ARGS.LOC_COLOURS['Zodiac'], 0.5), new_colour = G.ZODIACS[key].colour, tertiary_colour = G.ARGS.LOC_COLOURS.Zodiac, contrast = 1}
+    attention_text({
+        scale = 1, text = message, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play
+    })
+    G.E_MANAGER:add_event(Event({trigger = 'after', delay = 1.5, func = function() ease_background_colour_blind(G.STATE); return true; end}))
+end

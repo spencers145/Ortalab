@@ -96,7 +96,7 @@ local mid_boosters = {keys = {'mid_zodiac_1', 'mid_zodiac_2'}, info = {
     group_key = 'ortalab_zodiac_pack_2',
     draw_hand = false,
     cost = 6,
-    weight = 0.5,
+    weight = 0.4,
     particles = function(self)
         G.booster_pack_sparkles = Particles(1, 1, 0,0, {
             timer = 0.015,
@@ -141,7 +141,7 @@ local large_boosters = {keys = {'big_zodiac_1', 'big_zodiac_2'}, info = {
     group_key = 'ortalab_zodiac_pack_3',
     draw_hand = false,
     cost = 8,
-    weight = 0.5,
+    weight = 0.2,
     particles = function(self)
         G.booster_pack_sparkles = Particles(1, 1, 0,0, {
             timer = 0.015,

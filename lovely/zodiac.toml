@@ -85,11 +85,11 @@ payload = '''
 if G.current_zodiacs then
     zodiac_effect = nil
     zodiac_current = nil
-    for _, zodiac in ipairs(G.current_zodiacs) do
-        if G.ZODIACS[zodiac.key].config.extra.hand_type == text then
+    for _, zodiac in pairs(G.zodiacs) do
+        if zodiac.config.extra.hand_type == text then
             zodiac_effect = G.ZODIACS[zodiac.key]
             zodiac_current = zodiac
-            for i=1, zodiac_effect.config.extra.temp_level do
+            for i=1, zodiac_current.config.extra.temp_level do
                 iou_count = iou_count + 1
                 update_hand_text({sound = 'button', volume = 0.7, pitch = 0.9, delay = 0}, {level=G.GAME.hands[text].level..'+'..iou_count})
                 mult = mod_mult(mult+G.GAME.hands[text].l_mult)
@@ -102,7 +102,7 @@ if G.current_zodiacs then
     end
 
     if zodiac_effect then
-        ease_background_colour{special_colour = darken(G.ARGS.LOC_COLOURS['Zodiac'], 0.5), new_colour = zodiac_effect.colour, tertiary_colour = G.ARGS.LOC_COLOURS.Zodiac, contrast = 1}
+        zodiac_text(localize({set='Tag',key=zodiac_current.key,type='name_text'})..' active!', zodiac_current.key)
         if zodiac_effect.pre_trigger and type(zodiac_effect.pre_trigger) == 'function' then
             local triggered = false
             mult, hand_chips, modded, triggered = zodiac_effect:pre_trigger(zodiac_current, {full_hand = G.play.cards, scoring_hand = scoring_hand, poker_hands = poker_hands, handname = text, mult = mult, chips = hand_chips})

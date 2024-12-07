@@ -1534,8 +1534,9 @@ return {
                 name = "Aquarius",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Create a copy of the',
-					'{C:attention}right-most{} scoring card'
+					'Add a copy of the',
+					'{C:attention}left-most{} and {C:attention}right-most{}',
+					'scoring cards to deck'
                 }
             },
 			['zodiac_ortalab_sag'] = {
@@ -1552,6 +1553,39 @@ return {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
 					'Turn #3# {C:attention}left-most{} cards in',
 					'hand into {C:attention}Index cards'
+                }
+            },
+			['zodiac_ortalab_libra'] = {
+                name = "Libra",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'Turn #3# {C:attention}left-most{} cards in hand',
+					'into {C:attention}left-most{} and {C:attention}right-most{}',
+					'scoring cards'
+                }
+            },
+			['zodiac_ortalab_leo'] = {
+                name = "Leo",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'Turn all cards in hand into',
+					'the {C:attention}central{} scored card'
+                }
+            },
+			['zodiac_ortalab_virgo'] = {
+                name = "Virgo",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'{C:inactive}No other effect'
+                }
+            },
+			['zodiac_ortalab_pisces'] = {
+                name = "Pisces",
+                text = {
+					"{C:attention}+#1#{} levels to next {C:attention}#2#",
+					'Turn all cards in hand into',
+					'the {C:attention}suit{} of the {C:attention}#2#',
+					'and give them a random {C:dark_edition}Edition'
                 }
             },
 		},
