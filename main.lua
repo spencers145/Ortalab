@@ -41,10 +41,10 @@ SMODS.Atlas({
     py = '34'
 })
 
-AltTextures_Utils.default_atlas['Zodiac'] = 'ortalab_zodiac_cards'
-AltTextures_Utils.loc_keys['Zodiac'] = 'b_zodiac_cards'
 
 if (SMODS.Mods['Malverk'] or {}).can_load then
+    AltTextures_Utils.default_atlas['Zodiac'] = 'ortalab_zodiac_cards'
+    AltTextures_Utils.loc_keys['Zodiac'] = 'b_zodiac_cards'
     AltTexture({
         key = 'alt_zodiac',
         set = 'Zodiac',
