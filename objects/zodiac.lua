@@ -69,7 +69,7 @@ function G.FUNCS.evaluate_play(e)
                 zodiac_current:remove_zodiac()
                 return true
             end}))
-    else
+    elseif zodiac_current then
         G.E_MANAGER:add_event(Event({
             delay = 0.4,
             trigger = 'after',
