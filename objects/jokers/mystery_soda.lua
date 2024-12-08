@@ -15,6 +15,7 @@ SMODS.Joker({
         return {vars = {card.ability.extra.amount}}
     end,
     calculate = function(self, card, context) --Mystery Soda Logic
+        if context.end_of_round then print(tprint(context)) end
         if context.selling_self then
             local available_tags = get_current_pool('Tag')
             local selected_tags = {}

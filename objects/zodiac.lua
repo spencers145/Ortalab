@@ -12,6 +12,13 @@ SMODS.Atlas{ -- zodiac indicators atlas
     py = 34
 }
 
+SMODS.Atlas{
+    key = 'zodiac_constellations',
+    path = 'zodiac_constellations.png',
+    px = 150,
+    py = 150
+}
+
 SMODS.load_file('objects/zodiac_boosters.lua')() -- load boosters
 
 SMODS.UndiscoveredSprite({ -- undiscovered sprite
@@ -902,6 +909,38 @@ end
 
 function zodiac_text(message, key)
     ease_background_colour{special_colour = darken(G.ARGS.LOC_COLOURS['Zodiac'], 0.5), new_colour = G.ZODIACS[key].colour, tertiary_colour = G.ARGS.LOC_COLOURS.Zodiac, contrast = 1}
+    -- Adds the constellation sprite in the background
+    local zodiac_sprite = Sprite(0, 0, 150, 150, G.ASSET_ATLAS['ortalab_zodiac_constellations'], {x=0, y=0})
+    -- zodiac_sprite:define_draw_steps({
+    --     {
+    --         shader = 'dissolve',
+    --         other_obj = G.play.cards[1],
+    --         ms = 0.07 + 0.02*math.sin(1.8*G.TIMERS.REAL) + 0.00*math.sin((G.TIMERS.REAL - math.floor(G.TIMERS.REAL))*math.pi*14)*(1 - (G.TIMERS.REAL - math.floor(G.TIMERS.REAL)))^3,
+    --         mr = 0.05*math.sin(1.219*G.TIMERS.REAL) + 0.00*math.sin((G.TIMERS.REAL)*math.pi*5)*(1 - (G.TIMERS.REAL - math.floor(G.TIMERS.REAL)))^2
+    --     },
+    -- })
+    local zodiac_UI = UIBox{
+        definition = {n=G.UIT.ROOT, config = {align='cm', colour = G.C.CLEAR, minw = 6, minh = 6}, nodes = {
+            {n=G.UIT.R, nodes = {
+                {n=G.UIT.O, config = {object = zodiac_sprite, w = 6, h = 6}}
+            }}
+        }},
+        config = {instance_type = 'CARDAREA', major = G.play, align = 'cm', offset = {x=0, y=-2.7}}
+    }
+    table.insert(G.I.MOVEABLE, zodiac_UI)
+
+    attention_text({scale = 1, text = message, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play})
+    G.E_MANAGER:add_event(Event({
+        trigger = 'after',
+        delay = 1.5,
+        func = function()
+            ease_background_colour_blind(G.STATE)
+            zodiac_sprite:remove()
+            zodiac_UI:remove()
+            return true
+    end}))
+end
+
 local align_ref = CardArea.align_cards
 function CardArea:align_cards()
     if self.config.type == 'joker' and not self.cards then self.cards = {} end

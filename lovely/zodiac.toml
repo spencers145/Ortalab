@@ -11,7 +11,7 @@ pattern = '''G.GAME.current_round.hands_left = G.GAME.round_resets.hands'''
 position = 'after'
 match_indent = true
 payload = '''
-G.current_zodiacs = {}
+G.zodiacs = {}
 '''
 
 # Zodiac Loading/Saving
@@ -37,8 +37,8 @@ position = 'before'
 match_indent = true
 payload = '''
 local zodiacs = {}
-if G.current_zodiacs then
-    for k, v in ipairs(G.current_zodiacs) do
+if G.zodiacs then
+    for k, v in ipairs(G.zodiacs) do
         if (type(v) == "table") and v.is and v:is(Zodiac) then 
             local zodiacSer = v:save()
             if zodiacSer then zodiacs[k] = zodiacSer end
@@ -63,7 +63,7 @@ position = 'before'
 match_indent = true
 payload = '''
 if saveTable then 
-    G.current_zodiacs = {}
+    G.zodiacs = {}
     local zodiacs = saveTable.zodiacs or {}
     for k, v in ipairs(zodiacs) do
         local _zodiac = Zodiac('zodiac_ortalab_scorpio')
@@ -82,7 +82,7 @@ pattern = '''mult, hand_chips, modded = G.GAME.blind:modify_hand(G.play.cards, p
 position = 'before'
 match_indent = true
 payload = '''
-if G.current_zodiacs then
+if G.zodiacs then
     zodiac_effect = nil
     zodiac_current = nil
     for _, zodiac in pairs(G.zodiacs) do
