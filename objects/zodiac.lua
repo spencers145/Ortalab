@@ -66,7 +66,7 @@ function G.FUNCS.evaluate_play(e)
     if zodiac_current and zodiac_current.triggered then
         G.E_MANAGER:add_event(Event({
             trigger = 'after', delay = 0.2, func = function()
-                zodiac_current:remove_zodiac()
+                zodiac_current:remove_zodiac('')
                 return true
             end}))
     elseif zodiac_current then
@@ -119,31 +119,33 @@ end
 
 
 function Tag:remove_zodiac(message, _colour, func) -- Remove a zodiac from the indicator area
-    G.E_MANAGER:add_event(Event({
-        delay = 0.4,
-        trigger = 'after',
-        func = (function()
-            attention_text({
-                text = '',
-                colour = G.C.WHITE,
-                scale = 1, 
-                hold = 0.6/G.SETTINGS.GAMESPEED,
-                cover = self.HUD_zodiac,
-                cover_colour = G.ARGS.LOC_COLOURS.Zodiac,
-                align = 'cm',
-                })
-            play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
-            play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
-            return true
-        end)
-    }))
-    G.E_MANAGER:add_event(Event({
-        func = (function()
-            self.HUD_zodiac.states.visible = false
-            return true
-        end)
-    }))
-    
+    if message then 
+        G.E_MANAGER:add_event(Event({
+            delay = 0.4,
+            trigger = 'after',
+            func = (function()
+                attention_text({
+                    text = message,
+                    colour = G.C.WHITE,
+                    scale = 1, 
+                    hold = 0.6/G.SETTINGS.GAMESPEED,
+                    cover = self.HUD_zodiac,
+                    cover_colour = G.ARGS.LOC_COLOURS.Zodiac,
+                    align = 'cm',
+                    })
+                play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+                play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
+                return true
+            end)
+        }))
+        G.E_MANAGER:add_event(Event({
+            func = (function()
+                self.HUD_zodiac.states.visible = false
+                return true
+            end)
+        }))
+    end
+
     G.E_MANAGER:add_event(Event({
         trigger = 'after',
         delay = 0.7,
@@ -900,8 +902,9 @@ end
 
 function zodiac_text(message, key)
     ease_background_colour{special_colour = darken(G.ARGS.LOC_COLOURS['Zodiac'], 0.5), new_colour = G.ZODIACS[key].colour, tertiary_colour = G.ARGS.LOC_COLOURS.Zodiac, contrast = 1}
-    attention_text({
-        scale = 1, text = message, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play
-    })
-    G.E_MANAGER:add_event(Event({trigger = 'after', delay = 1.5, func = function() ease_background_colour_blind(G.STATE); return true; end}))
+local align_ref = CardArea.align_cards
+function CardArea:align_cards()
+    if self.config.type == 'joker' and not self.cards then self.cards = {} end
+    if not self.children then self.children = {} end
+    align_ref(self)
 end
