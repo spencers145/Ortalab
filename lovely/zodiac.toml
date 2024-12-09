@@ -102,7 +102,7 @@ if G.zodiacs then
     end
 
     if zodiac_effect then
-        zodiac_text(localize({set='Tag',key=zodiac_current.key,type='name_text'})..' active!', zodiac_current.key)
+        zodiac_text(localize({set='Tag',key=zodiac_current.key,type='name_text'})..localize('ortalab_zodiac_active'), zodiac_current.key)
         if zodiac_effect.pre_trigger and type(zodiac_effect.pre_trigger) == 'function' then
             local triggered = false
             mult, hand_chips, modded, triggered = zodiac_effect:pre_trigger(zodiac_current, {full_hand = G.play.cards, scoring_hand = scoring_hand, poker_hands = poker_hands, handname = text, mult = mult, chips = hand_chips})

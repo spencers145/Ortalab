@@ -42,7 +42,7 @@ SMODS.Atlas({
 })
 
 
-if (SMODS.Mods['Malverk'] or {}).can_load then
+if (SMODS.Mods['malverk'] or {}).can_load then
     AltTextures_Utils.default_atlas['Zodiac'] = 'ortalab_zodiac_cards'
     AltTextures_Utils.loc_keys['Zodiac'] = 'b_zodiac_cards'
     AltTexture({
@@ -55,30 +55,15 @@ if (SMODS.Mods['Malverk'] or {}).can_load then
         }
     })
 
-    AltTexture({
-        key = 'alt_zodiac_tag',
-        set = 'Tag',
-        path = 'zodiac_tags_alt.png',
-        keys = {
-            'tag_ortalab_zod_scorpio',
-            'tag_ortalab_zod_aquarius'
-        },
-        loc_txt = {
-            name = 'Rainbow Tags'
-        }
-    })
-
     TexturePack{
         key = 'alt_orta',
         textures = {
             'ortalab_alt_zodiac',
-            'ortalab_alt_zodiac_tag'
         },
         loc_txt = {
-            name = 'Ortalab Alternate Art',
+            name = 'Full Colour Zodiacs',
             text = {
                 'Alternate art for {C:zodiac}Zodiac',
-                'and {C:loteria}Loteria{} cards'
             }
         }
     }

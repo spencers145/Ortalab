@@ -56,7 +56,10 @@ return {
 			ortalab_rank = 'certain rank',
 			ortalab_zodiac_add = '+1 Zodiac',
 			ortalab_forklift = '+2 slots',
-			ortalab_forklift_loss = '-2 slots'
+			ortalab_forklift_loss = '-2 slots',
+			ortalab_zodiac_upgraded = ' upgraded!',
+			ortalab_zodiac_added = ' added!',
+			ortalab_zodiac_active = ' active!'
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
@@ -1621,8 +1624,8 @@ return {
 			['b_ortalab_white'] = {
 				["name"] = "White Deck",
 				["text"] = {
-					"{C:attention}#1#{} Joker Slot",
-					"Start with {C:attention,T:v_ortalab_home_delivery}#2#"
+					"{C:attention}+#1#{} consumable slot",
+					"{C:red}#2#{} discard"
 				}
 			},
 			['b_ortalab_experimental'] = {

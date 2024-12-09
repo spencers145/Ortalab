@@ -120,7 +120,7 @@ function add_zodiac(_tag) -- Add a zodiac to the indicator area
     G.zodiacs[_tag.key] = _tag
 
     _tag.HUD_zodiac = G.HUD_zodiac[#G.HUD_zodiac]
-    zodiac_text(localize({set='Tag', key=_tag.key, type='name_text'})..' added!', _tag.key)
+    zodiac_text(localize({set='Tag', key=_tag.key, type='name_text'})..localize('ortalab_zodiac_added'), _tag.key)
     delay(0.7)
 end
 
@@ -904,7 +904,7 @@ end
 
 function zodiac_upgrade_text(key)
     local zodiac_name = localize({set = 'Tag', key = key, type = 'name_text'})
-    return zodiac_name .. ' upgraded!'
+    return zodiac_name .. localize('ortalab_zodiac_upgraded')
 end
 
 function zodiac_text(message, key)
