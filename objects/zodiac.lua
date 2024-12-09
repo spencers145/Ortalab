@@ -910,7 +910,7 @@ end
 function zodiac_text(message, key)
     ease_background_colour{special_colour = darken(G.ARGS.LOC_COLOURS['Zodiac'], 0.5), new_colour = G.ZODIACS[key].colour, tertiary_colour = G.ARGS.LOC_COLOURS.Zodiac, contrast = 1}
     -- Adds the constellation sprite in the background
-    local zodiac_sprite = Sprite(0, 0, 150, 150, G.ASSET_ATLAS['ortalab_zodiac_constellations'], {x=0, y=0})
+    local zodiac_sprite = Sprite(0, 0, 150, 150, G.ASSET_ATLAS['ortalab_zodiac_constellations'], G.ZODIACS[key].pos)
     -- zodiac_sprite:define_draw_steps({
     --     {
     --         shader = 'dissolve',
