@@ -65,23 +65,12 @@ SMODS.Back({
     key = "white", 
     atlas = "decks",
     pos = {x = 4, y = 0}, 
-    config = {joker_slot = -1, vouchers = {'v_ortalab_home_delivery'}}, 
+    config = {consumable_slot = 1, discards = -1},
     loc_vars = function(self, info_queue, card)
         -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'}
-        return {vars = {self.config.joker_slot, localize({type = 'name_text', set = 'Voucher', key = self.config.vouchers[1]})}}
+        return {vars = {self.config.consumable_slot, self.config.discards}}
     end,
 })
-
--- SMODS.Back({
---     key = "cyan", 
---     atlas = "decks",
---     pos = {x = 1, y = 0}, 
---     config = {hands = 2, discards = -1, atlas = "Ortalab-Enhancers"}, 
---     loc_vars = function(self, info_queue, card)
---         -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'crimson'}
---         return {vars = {self.config.hands, self.config.discards}}
---     end,
--- })
 
 SMODS.Back({
     key = "experimental", 
