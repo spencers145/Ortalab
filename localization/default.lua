@@ -315,6 +315,15 @@ return {
 					"{C:money}$1{} less",
 				}
 			},
+			['j_ortalab_caffeyne'] = {
+				["name"] = "Caffeyne",
+				["text"] = {
+					"Gain {C:white,X:red}X#1#{} Mult per", 
+					'{C:attention}#2#{} triggered cards',
+					'{C:inactive}(Currently {X:red,C:white}X#3#{C:inactive} Mult)',
+					'{C:inactive,s:0.9}#4#/#2#'
+				}
+			},
 			['j_ortalab_calm'] = {
 				["name"] = "Calm Joker",
 				["text"] = {

@@ -146,6 +146,7 @@ local joker_list = {
     -- 'inheritance',
     --legendaries
     'shinku',
+    'caffeyne'
 }
 
 SMODS.Atlas({
