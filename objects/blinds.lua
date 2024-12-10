@@ -296,7 +296,7 @@ SMODS.Blind({
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
     end,
     set_blind = function(self)
-        self.config.extra.discard_amount = 0
+        self.config.extra.discard_amount = G.GAME.round_scores.cards_discarded.amt
     end,
     stay_flipped = function(self, area, card)
         if area == G.hand and self.config.extra.discard_amount < G.GAME.round_scores.cards_discarded.amt then
