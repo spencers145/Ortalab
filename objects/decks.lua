@@ -196,6 +196,17 @@ SMODS.Back({
 })
 
 SMODS.Back({
+    key = "membership", 
+    atlas = "decks",
+    pos = {x = 0, y = 2}, 
+    config = {vouchers = {'v_ortalab_home_delivery', 'v_ortalab_catalog', 'v_ortalab_window_shopping'}}, 
+    loc_vars = function(self, info_queue, card)
+        -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'crimson'}
+        return {vars = {localize({type = 'name_text', set = 'Voucher', key = self.config.vouchers[1]}), localize({type = 'name_text', set = 'Voucher', key = self.config.vouchers[2]}), localize({type = 'name_text', set = 'Voucher', key = self.config.vouchers[3]})}}
+    end,
+})
+
+SMODS.Back({
 	key = "sketched", 
 	atlas = "decks",
 	pos = {x = 1, y = 2}, 

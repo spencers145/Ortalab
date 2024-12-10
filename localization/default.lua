@@ -1664,6 +1664,14 @@ return {
 					"{T:m_wild,C:attention}Wild Cards"
 				}
 			},
+			['b_ortalab_membership'] = {
+				["name"] = "Membership Deck",
+				["text"] = {
+					"Start the run with the", 
+					'{C:attention,T:v_ortalab_home_delivery}#1#{}, {C:attention,T:v_ortalab_catalog}#2#',
+					'and {C:attention,T:v_ortalab_window_shopping}#3#{} vouchers'
+				}
+			},
 			['b_ortalab_sketched'] = {
 				["name"] = "Sketched Deck",
 				["text"] = {
