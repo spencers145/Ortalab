@@ -761,8 +761,8 @@ SMODS.Consumable({
         local rarity = original.rarity
         rarity = (rarity == 4 and 4) or (rarity == 3 and 0.98) or (rarity == 2 and 0.75) or 0
         delay(0.5)
+        draw_card(G.jokers, G.play, 1, 'up', false, joker, nil, true)
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.35, func = function()
-            draw_card(G.jokers, G.play, 1, 'up', false, joker, nil, true)
             local _center
             for i=1, 40 do
                 local new_joker = pseudorandom_element(get_current_pool('Joker', rarity, rarity == 4), pseudoseed('loteria_hand'))
@@ -780,6 +780,11 @@ SMODS.Consumable({
                             joker.children.floating_sprite.role.draw_major = joker
                             joker.children.floating_sprite.states.hover.can = false
                             joker.children.floating_sprite.states.click.can = false
+                        end
+                        if i == 1 then
+                            for key, _ in pairs(joker.T) do
+                                joker.T[key] = joker.T_ref[key]
+                            end
                         end
                         play_sound('generic1')
                         return true
