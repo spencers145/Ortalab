@@ -553,6 +553,28 @@ Ortalab.Zodiac{
         return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                local cards = {}
+                for i=1, #context.scoring_hand do
+                    G.playing_card = (G.playing_card and G.playing_card + 1) or 1
+                    local _card = copy_card(context.scoring_hand[i], nil, nil, G.playing_card)
+                    table.insert(cards, _card)
+                end
+                for i, _card in ipairs(cards) do
+                    _card:add_to_deck()
+                    G.deck.config.card_limit = G.deck.config.card_limit + 1
+                    table.insert(G.playing_cards, _card)
+                    G.deck:emplace(_card)
+                    context.scoring_hand[i]:juice_up()
+                    _card:juice_up()
+                end
+                playing_card_joker_effects(cards)
+                G.deck:shuffle('zodiac_virgo')
+                return true
+            end
+        }))
+        zodiac_reduce_level(zodiac)
         return context.mult, context.chips
     end
 }
@@ -911,14 +933,6 @@ function zodiac_text(message, key)
     ease_background_colour{special_colour = darken(G.ARGS.LOC_COLOURS['Zodiac'], 0.5), new_colour = G.ZODIACS[key].colour, tertiary_colour = G.ARGS.LOC_COLOURS.Zodiac, contrast = 1}
     -- Adds the constellation sprite in the background
     local zodiac_sprite = Sprite(0, 0, 150, 150, G.ASSET_ATLAS['ortalab_zodiac_constellations'], G.ZODIACS[key].pos)
-    -- zodiac_sprite:define_draw_steps({
-    --     {
-    --         shader = 'dissolve',
-    --         other_obj = G.play.cards[1],
-    --         ms = 0.07 + 0.02*math.sin(1.8*G.TIMERS.REAL) + 0.00*math.sin((G.TIMERS.REAL - math.floor(G.TIMERS.REAL))*math.pi*14)*(1 - (G.TIMERS.REAL - math.floor(G.TIMERS.REAL)))^3,
-    --         mr = 0.05*math.sin(1.219*G.TIMERS.REAL) + 0.00*math.sin((G.TIMERS.REAL)*math.pi*5)*(1 - (G.TIMERS.REAL - math.floor(G.TIMERS.REAL)))^2
-    --     },
-    -- })
     local zodiac_UI = UIBox{
         definition = {n=G.UIT.ROOT, config = {align='cm', colour = G.C.CLEAR, minw = 6, minh = 6}, nodes = {
             {n=G.UIT.R, nodes = {
