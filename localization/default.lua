@@ -1547,7 +1547,10 @@ return {
                 name = "Cancer",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'{C:inactive}No other effect'
+					'Turn all cards in hand into',
+					'the {C:attention}suit{} and {C:attention}ranks{} of the',
+					'{C:attention}#2#{} and give them a',
+					'random {C:attention}Enhancement'
                 }
             },
 			['zodiac_ortalab_scorpio'] = {

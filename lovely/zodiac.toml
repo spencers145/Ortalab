@@ -38,7 +38,7 @@ match_indent = true
 payload = '''
 local zodiacs = {}
 if G.zodiacs then
-    for k, v in ipairs(G.zodiacs) do
+    for k, v in pairs(G.zodiacs) do
         if (type(v) == "table") and v.is and v:is(Zodiac) then 
             local zodiacSer = v:save()
             if zodiacSer then zodiacs[k] = zodiacSer end

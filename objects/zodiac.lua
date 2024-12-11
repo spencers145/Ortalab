@@ -474,6 +474,28 @@ Ortalab.Zodiac{
         return {vars = {zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
+        local suits_in_flush = {}
+        local new_suit = context.scoring_hand[1].base.suit
+        local ranks_in_flush = {}
+        local rank1, rank2
+        for _, card in pairs(context.scoring_hand) do
+            suits_in_flush[card.base.suit] = suits_in_flush[card.base.suit] and suits_in_flush[card.base.suit] + 1 or 1
+            ranks_in_flush[card.base.value] = ranks_in_flush[card.base.value] and ranks_in_flush[card.base.value] + 1 or 1
+            if suits_in_flush[card.base.suit] > suits_in_flush[new_suit] then new_suit = card.base.suit end
+        end
+        for rank, amount in pairs(ranks_in_flush) do
+            if amount == 3 then rank1 = rank elseif amount == 2 then rank2 = rank end
+        end
+        for i, card in ipairs(G.hand.cards) do
+            G.E_MANAGER:add_event(Event({
+                trigger = 'before', delay = 0.2, func = function()
+                    zodiac:juice_up()
+                    SMODS.change_base(card, new_suit, i % 2 == 0 and rank1 or rank2)
+                    if card.ability.set ~= 'Enhanced' then card:set_ability(G.P_CENTERS[SMODS.poll_enhancement({guaranteed = true, key = 'zodiac_cancer'})]) end
+                    card:juice_up()
+                    return true
+                end}))
+        end
         return context.mult, context.chips
     end
 }
