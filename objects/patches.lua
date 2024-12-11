@@ -316,7 +316,7 @@ SMODS.Tag({
     config = {type = 'immediate', dollars = 3},
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
-        return {vars = {self.config.dollars, (G.GAME.blinds_defeated or 0)*self.config.dollars}}
+        return {vars = {card.config.dollars, (G.GAME.blinds_defeated or 0)*card.config.dollars}}
     end,
     apply = function(tag, context)
         tag:yep('+', G.C.MONEY,function() 
@@ -379,10 +379,96 @@ SMODS.Tag({
     end
 })
 
+SMODS.Tag({
+    key = 'crater',
+    atlas = 'patches',
+    pos = {x = 2, y = 3},
+    discovered = false,
+    config = {type = 'shop_final_pass', packs = 2},
+    loc_vars = function(self, info_queue, card)
+        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
+        info_queue[#info_queue + 1] = G.P_CENTERS['p_ortalab_big_zodiac_1']
+        return {vars = {self.config.packs}}
+    end,
+    apply = function(tag, context)
+        tag:yep('+', G.C.GREEN,function()
+            for i=1, tag.config.packs do
+                local pack = Card(G.shop_booster.T.x + G.shop_booster.T.w/2,
+                G.shop_booster.T.y, G.CARD_W*1.27, G.CARD_H*1.27, G.P_CARDS.empty, G.P_CENTERS['p_ortalab_big_zodiac_'..i], {bypass_discovery_center = true, bypass_discovery_ui = true})
+                create_shop_card_ui(pack, 'Booster', G.shop_booster)
+                pack.ability.booster_pos = #G.shop_booster.cards + 1
+                pack.ability.couponed = true
+                pack:start_materialize()
+                G.shop_booster:emplace(pack)
+                pack:set_cost()
+            end
+            return true
+        end)
+        
+    end
+})
+
 local skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
     local _tag = e.UIBox:get_UIE_by_ID('tag_container').config.ref_table
     skip_blind(e)
     if _tag.key == 'tag_ortalab_rewind' then return end
     G.GAME.last_selected_tag = _tag or G.GAME.last_selected_tag
+end
+
+SMODS.Tag({
+    key = 'constellation',
+    atlas = 'patches',
+    pos = {x = 1, y = 4},
+    discovered = false,
+    config = {type = 'round_start_bonus', zodiacs = 2},
+    loc_vars = function(self, info_queue, card)
+        if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
+        if card.ability.zodiac_hands and G.ZODIACS[card.ability.zodiac_hands[1]] then
+            return {vars = {
+                localize(G.ZODIACS[card.ability.zodiac_hands[1]].config.extra.hand_type, 'poker_hands'),
+                localize(G.ZODIACS[card.ability.zodiac_hands[2]].config.extra.hand_type, 'poker_hands'),
+            }}
+        else
+            return {vars = {'['..localize('k_poker_hand')..']', '['..localize('k_poker_hand')..']'}}
+        end
+    end,
+    apply = function(tag, context)
+        tag:yep('+', G.C.GREEN,function()
+            tag.triggered = true
+            return true
+        end)
+        for _, key in ipairs(tag.ability.zodiac_hands[1]) do
+            G.E_MANAGER:add_event(Event({
+                trigger = 'before',
+                delay = 4.2,
+                func = function()
+                    if G.zodiacs and G.zodiacs[key] then
+                        G.zodiacs[key].config.extra.temp_level = G.zodiacs[key].config.extra.temp_level + G.ZODIACS[key].config.extra.temp_level
+                        zodiac_text(zodiac_upgrade_text(key), key)
+                        G.zodiacs[key]:juice_up(1, 1)
+                        delay(0.7)
+                    else
+                        add_zodiac(Zodiac(key))
+                    end
+                    return true
+                end
+            }))
+        end
+    end
+})
+
+local tag_set_ability = Tag.set_ability
+function Tag:set_ability()
+    if self.key == 'tag_ortalab_constellation' then
+        if G.zodiac_choices then
+            self.ability.zodiac_hands = G.zodiac_choices
+        elseif self.ability.blind_type then
+            if G.GAME.orbital_choices and G.GAME.zodiac_choices[G.GAME.round_resets.ante][self.ability.blind_type] then
+                self.ability.zodiac_hands = G.GAME.zodiac_choices[G.GAME.round_resets.ante][self.ability.blind_type]
+            end
+        end
+    else
+        tag_set_ability(self)
+    end
 end

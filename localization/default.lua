@@ -1502,6 +1502,22 @@ return {
 					"to the next shop"
                 }
             },
+			['tag_ortalab_crater'] = {
+                name = "Crater Patch",
+                text = {
+					"Add {C:attention}#1#{} free {C:Zodiac}Giga", 
+					"{C:Zodiac}Astral Packs{}",
+					"to the next shop"
+                }
+            },
+			['tag_ortalab_constellation'] = {
+                name = "Constellation Patch",
+                text = {
+					'{C:Zodiac}Improve{} the next',
+					'{C:attention}#1#{} and',
+					'{C:attention}#2#'
+                }
+            },
 			['zodiac_ortalab_aries'] = {
                 name = "Aries",
                 text = {
@@ -1588,7 +1604,8 @@ return {
                 name = "Virgo",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'{C:inactive}No other effect'
+					'Add a {C:attention}copy{} of poker hand',
+					'into your deck'
                 }
             },
 			['zodiac_ortalab_pisces'] = {
