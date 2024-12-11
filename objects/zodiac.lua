@@ -269,7 +269,7 @@ end
 
 function Zodiac:get_uibox_table(tag_sprite)
     tag_sprite = tag_sprite or self.tag_sprite
-    local name_to_check, loc_vars = self.name, G.ZODIACS[self.key]:loc_vars(nil, G.zodiacs[self.key])
+    local name_to_check, loc_vars = self.name, G.ZODIACS[self.key]:loc_vars(nil, G.zodiacs[self.key]).vars
     tag_sprite.ability_UIBox_table = generate_card_ui(G.ZODIACS[self.key], nil, loc_vars, (self.hide_ability) and 'Undiscovered' or 'Tag', nil, (self.hide_ability), nil, nil, self)
     return tag_sprite
 end
