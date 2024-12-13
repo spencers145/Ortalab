@@ -1732,6 +1732,20 @@ return {
 			},
 		},
 		['Voucher'] = {
+			['v_ortalab_leap_year'] = {
+				["name"] = "Leap Year",
+				["text"] = {
+					'{C:zodiac}Zodiac cards{} give',
+					'{C:attention}+#1#{} temporary level'
+				}
+			},
+			['v_ortalab_chronomancy'] = {
+				["name"] = "Chronomancy",
+				["text"] = {
+					'{C:zodiac}Zodiac effects{} decay',
+					'{C:attention}#1#{} times slower'
+				}
+			},
 			['v_ortalab_cantor'] = {
 				["name"] = "Cantor Loteria",
 				["text"] = {

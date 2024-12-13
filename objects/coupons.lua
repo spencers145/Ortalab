@@ -248,6 +248,42 @@ SMODS.Voucher({
     end,
 })
 
+SMODS.Voucher({
+	key = "leap_year",
+	atlas = "coupons",
+	pos = {x = 0, y = 2},
+	cost = 10,
+	unlocked = true,
+	discovered = false,
+	available = true,
+    config = {extra = {bonus_level = 1}},
+	redeem = function(self)
+        G.GAME.Ortalab_zodiac_voucher = self.config.extra.bonus_level
+    end,
+    loc_vars = function(self, info_queue, card)
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
+        return {vars = {self.config.extra.bonus_level}}
+    end,
+})
+
+SMODS.Voucher({
+	key = "chronomancy",
+	atlas = "coupons",
+	pos = {x = 1, y = 2},
+	cost = 10,
+	unlocked = true,
+	discovered = false,
+	available = true,
+    config = {extra = {level_decrease_mod = 2}},
+    requires = {'v_ortalab_leap_year'},
+	redeem = function(self)
+        G.GAME.Ortalab_Zodiac_Reduction = G.GAME.Ortalab_Zodiac_Reduction / self.config.extra.level_decrease_mod
+    end,
+    loc_vars = function(self, info_queue, card)
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
+        return {vars = {self.config.extra.level_decrease_mod}}
+    end,
+})
 
 local BackApply_to_run_ref = Back.apply_to_run
 function Back.apply_to_run(self)
