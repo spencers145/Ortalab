@@ -53,6 +53,37 @@ SMODS.Voucher({
 })
 
 SMODS.Voucher({
+	key = "home_delivery",
+	atlas = "coupons",
+	pos = {x = 2, y = 0},
+	cost = 10,
+	unlocked = true,
+	discovered = false,
+	available = true,
+	redeem = function(self)
+    end,
+    loc_vars = function(self, info_queue, card)
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
+    end,
+})
+
+SMODS.Voucher({
+	key = "hoarding",
+	atlas = "coupons",
+	pos = {x = 3, y = 0},
+	cost = 10,
+	unlocked = true,
+	discovered = false,
+	available = false,
+    requires = {'v_ortalab_home_delivery'},
+	redeem = function(self)
+    end,
+    loc_vars = function(self, info_queue, card)
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
+    end,
+})
+
+SMODS.Voucher({
 	key = "window_shopping",
 	atlas = "coupons",
 	config = {extra = {free_rerolls = 1, cost = 1}},
@@ -96,33 +127,34 @@ SMODS.Voucher({
 })
 
 SMODS.Voucher({
-	key = "home_delivery",
+	key = "horoscope",
 	atlas = "coupons",
-	pos = {x = 2, y = 0},
+	pos = {x = 2, y = 2},
 	cost = 10,
 	unlocked = true,
 	discovered = false,
 	available = true,
-	redeem = function(self)
-    end,
     loc_vars = function(self, info_queue, card)
-        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
     end,
 })
 
 SMODS.Voucher({
-	key = "hoarding",
+	key = "natal_sign",
 	atlas = "coupons",
-	pos = {x = 3, y = 0},
+	pos = {x = 3, y = 2},
 	cost = 10,
 	unlocked = true,
 	discovered = false,
-	available = false,
-    requires = {'v_ortalab_home_delivery'},
+	available = true,
+    config = {extra = {xmult = 1.5, per = 4}},
+    requires = {'v_ortalab_horoscope'},
 	redeem = function(self)
+        G.GAME.natal_sign_rate = self.config.extra.xmult
     end,
     loc_vars = function(self, info_queue, card)
-        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
+        return {vars = {self.config.extra.xmult, self.config.extra.per}}
     end,
 })
 

@@ -65,10 +65,10 @@ payload = '''
 if saveTable then 
     G.zodiacs = {}
     local zodiacs = saveTable.zodiacs or {}
-    for k, v in ipairs(zodiacs) do
+    for k, v in pairs(zodiacs) do
         local _zodiac = Zodiac('zodiac_ortalab_scorpio')
         _zodiac:load(v)
-        add_zodiac(_zodiac)
+        add_zodiac(_zodiac, true)
     end
 end
 '''
@@ -154,3 +154,4 @@ match_indent = true
 payload = '''
 
 '''
+

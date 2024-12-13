@@ -99,7 +99,7 @@ function G.FUNCS.evaluate_play(e)
 end
 
 
-function add_zodiac(_tag) -- Add a zodiac to the indicator area
+function add_zodiac(_tag, silent) -- Add a zodiac to the indicator area
     if G.GAME.Ortalab_zodiac_voucher then
         _tag.config.extra.temp_level = _tag.config.extra.temp_level + G.GAME.Ortalab_zodiac_voucher
     end
@@ -124,7 +124,7 @@ function add_zodiac(_tag) -- Add a zodiac to the indicator area
     G.zodiacs[_tag.key] = _tag
 
     _tag.HUD_zodiac = G.HUD_zodiac[#G.HUD_zodiac]
-    zodiac_text(localize({set='Tag', key=_tag.key, type='name_text'})..localize('ortalab_zodiac_added'), _tag.key)
+    if not silent then zodiac_text(localize({set='Tag', key=_tag.key, type='name_text'})..localize('ortalab_zodiac_added'), _tag.key) end
     delay(0.7)
 end
 
@@ -296,9 +296,6 @@ end
 
 local start = Game.start_run
 function Game:start_run(args)
-    start(self, args)
-
-    self.GAME.Ortalab_Zodiac_Reduction = 2
     if self.HUD_zodiacs then
         for k, v in pairs(self.HUD_zodiacs) do
             v:remove()
@@ -312,6 +309,9 @@ function Game:start_run(args)
             end
         end
     end
+    start(self, args)
+
+    self.GAME.Ortalab_Zodiac_Reduction = 2
 end
 -- ZODIAC CODE BELOW
 
@@ -973,7 +973,7 @@ function zodiac_text(message, key)
 
     attention_text({scale = 1, text = message, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play})
     G.E_MANAGER:add_event(Event({
-        trigger = 'after',
+        trigger = 'immediate',
         delay = 1.5,
         func = function()
             ease_background_colour_blind(G.STATE)

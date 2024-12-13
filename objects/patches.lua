@@ -438,7 +438,7 @@ SMODS.Tag({
             tag.triggered = true
             return true
         end)
-        for _, key in ipairs(tag.ability.zodiac_hands[1]) do
+        for _, key in ipairs(tag.ability.zodiac_hands) do
             G.E_MANAGER:add_event(Event({
                 trigger = 'before',
                 delay = 4.2,

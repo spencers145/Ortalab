@@ -1732,6 +1732,22 @@ return {
 			},
 		},
 		['Voucher'] = {
+			['v_ortalab_horoscope'] = {
+				["name"] = "Horoscope",
+				["text"] = {
+					'{C:zodiac}Astral Packs{} always contain',
+					'the {C:zodiac}Zodiac{} card for your',
+					'most played {C:attention}poker hand',
+					'{C:inactive,s:0.8}(Respects +/- types)'
+				}
+			},
+			['v_ortalab_natal_sign'] = {
+				["name"] = "Natal Sign",
+				["text"] = {
+					'{C:zodiac}Zodiacs{} give {C:white,X:red}X#1#{} Mult',
+					'per {C:attention}#2#{} temporary levels'
+				}
+			},
 			['v_ortalab_leap_year'] = {
 				["name"] = "Leap Year",
 				["text"] = {
