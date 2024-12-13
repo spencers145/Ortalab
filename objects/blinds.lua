@@ -121,7 +121,6 @@ function Blind:get_type()
     if Ortalab_blinds.Small[self.config.blind.key] then
         return 'Small'
     elseif Ortalab_blinds.Big[self.config.blind.key] then 
-        print('big')
         return 'Big'
     else
         return blind_get_type(self)
