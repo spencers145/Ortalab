@@ -297,9 +297,8 @@ end
 local start = Game.start_run
 function Game:start_run(args)
     start(self, args)
-    
+
     self.GAME.Ortalab_Zodiac_Reduction = 2
-    print(self.GAME.Ortalab_Zodiac_Reduction)
     if self.HUD_zodiacs then
         for k, v in pairs(self.HUD_zodiacs) do
             v:remove()
