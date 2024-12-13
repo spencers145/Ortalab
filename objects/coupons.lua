@@ -205,43 +205,43 @@ SMODS.Voucher({
     end,
 })
 
-SMODS.Voucher({
-	key = "shady_trading",
-	atlas = "coupons",
-	pos = {x = 0, y = 1},
-	cost = 10,
-	unlocked = true,
-	discovered = false,
-	available = true,
-	redeem = function(self)
-        if G.GAME.spectral_rate < 2 then
-            G.GAME.spectral_rate = 2
-        end
-        G.GAME.pool_flags.shady_trading_redeemed = true
-    end,
-    loc_vars = function(self, info_queue, card)
-        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
-    end,
-})
+-- SMODS.Voucher({
+-- 	key = "shady_trading",
+-- 	atlas = "coupons",
+-- 	pos = {x = 0, y = 1},
+-- 	cost = 10,
+-- 	unlocked = true,
+-- 	discovered = false,
+-- 	available = true,
+-- 	redeem = function(self)
+--         if G.GAME.spectral_rate < 2 then
+--             G.GAME.spectral_rate = 2
+--         end
+--         G.GAME.pool_flags.shady_trading_redeemed = true
+--     end,
+--     loc_vars = function(self, info_queue, card)
+--         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
+--     end,
+-- })
 
-SMODS.Voucher({
-	key = "illegal_imports",
-	atlas = "coupons",
-	pos = {x = 1, y = 1},
-	cost = 10,
-	unlocked = true,
-	discovered = false,
-	available = false,
-	requires = {'v_ortalab_shady_trading'},
-    config = {extra = {rate = 2}},
-	redeem = function(self)
-        G.GAME.spectral_rate = G.GAME.spectral_rate * self.config.extra.rate
-    end,
-    loc_vars = function(self, info_queue, card)
-        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
-        return {vars = {self.config.extra.rate}}
-    end,
-})
+-- SMODS.Voucher({
+-- 	key = "illegal_imports",
+-- 	atlas = "coupons",
+-- 	pos = {x = 1, y = 1},
+-- 	cost = 10,
+-- 	unlocked = true,
+-- 	discovered = false,
+-- 	available = false,
+-- 	requires = {'v_ortalab_shady_trading'},
+--     config = {extra = {rate = 2}},
+-- 	redeem = function(self)
+--         G.GAME.spectral_rate = G.GAME.spectral_rate * self.config.extra.rate
+--     end,
+--     loc_vars = function(self, info_queue, card)
+--         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
+--         return {vars = {self.config.extra.rate}}
+--     end,
+-- })
 
 SMODS.Voucher({
 	key = "cantor",
