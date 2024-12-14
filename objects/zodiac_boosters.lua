@@ -42,6 +42,16 @@ local hand_types_typing = {
         c_ortalab_zod_pisces = 'Straight Flush'
     }
 }
+
+function zodiac_from_hand(hand_type)
+    for key, hand in pairs(hand_types_typing.positive) do
+        if hand == hand_type then return key end
+    end
+    for key, hand in pairs(hand_types_typing.negative) do
+        if hand == hand_type then return key end
+    end
+end
+
 local small_boosters = {keys = {'small_zodiac_1', 'small_zodiac_2', 'small_zodiac_3', 'small_zodiac_4'}, info = {
     atlas = 'zodiac_booster',
     config = {choose = 1, extra = 2},
