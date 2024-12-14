@@ -442,7 +442,7 @@ Ortalab.Zodiac{
         local effects = {'m_ortalab_post', 'm_ortalab_bent'}
         for i=1, 2 do
             context.scoring_hand[i]:set_ability(G.P_CENTERS[effects[i]], nil, true)
-            local name = card.ability.effect
+            local name = context.scoring_hand[i].ability.effect
             context.scoring_hand[i].ability.effect = nil
             G.E_MANAGER:add_event(Event({
                 trigger = 'before', delay = 0.2, func = function()
