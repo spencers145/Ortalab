@@ -57,7 +57,7 @@ local joker_list = {
     -- 'biker',
     'mathmagician',
     -- 'purple',
-    -- 'pinpoint',
+    'pin_point',
     'blacklist',
     'royal_gala',
     'croupier',

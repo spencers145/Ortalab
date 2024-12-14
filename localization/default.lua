@@ -742,6 +742,14 @@ return {
 					"{C:inactive,s:0.9}(Currently {X:mult,C:white,s:0.9}X#1#{C:inactive,s:0.9} Mult)"
 				}
 			},
+			['j_ortalab_pin_point'] = {
+				["name"] = "Pin Point",
+				["text"] = {
+					"Create the {C:zodiac}Zodiac Card{} for", 
+					"the {C:attention}poker hand{} that",
+					"defeats the {C:attention}Blind"
+				}
+			},
 			['j_ortalab_pitch_mitch'] = {
 				["name"] = "Pitch Mitch",
 				["text"] = {
