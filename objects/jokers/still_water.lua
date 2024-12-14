@@ -33,7 +33,7 @@ SMODS.Joker({
         if context.joker_main then
             return {
                 message = localize{type='variable', key='a_mult', vars={card.ability.extra.total_mult}},
-                mult = card.ability.extra.total_mult,
+                mult_mod = card.ability.extra.total_mult,
                 colour = G.C.RED,
                 card = card
             }
