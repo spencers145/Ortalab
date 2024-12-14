@@ -37,7 +37,7 @@ pattern = '''if G.GAME.current_round.voucher and G.P_CENTERS[G.GAME.current_roun
 position = 'before'
 match_indent = true
 payload = '''
-if G.GAME.current_round.voucher_2 and G.P_CENTERS[G.GAME.current_round.voucher_2] then
+if G.GAME.current_round.voucher_2 and G.P_CENTERS[G.GAME.current_round.voucher_2] and not G.GAME.used_vouchers[G.GAME.current_round.voucher_2] then
     G.shop_vouchers.config.card_limit = 2
     local card = Card(G.shop_vouchers.T.x + G.shop_vouchers.T.w / 2, G.shop_vouchers.T.y, G.CARD_W, G.CARD_H,
         G.P_CARDS.empty, G.P_CENTERS[G.GAME.current_round.voucher_2], {
