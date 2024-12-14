@@ -245,7 +245,7 @@ function Card:highlight(highlighted)
     if highlighted and self.config.center_key == 'm_ortalab_index' and self.area == G.hand and #G.hand.highlighted == 1 and not G.booster_pack then
         self.children.use_button = UIBox{
             definition = G.UIDEF.use_index_buttons(self), 
-            config = {align = 'cl', offset = {x=0.5, y=0}, parent = self}
+            config = {align = 'cl', offset = {x=0.5, y=0}, parent = self, id = 'ortalab_index'}
         }
     elseif self.area and #self.area.highlighted > 0 and not G.booster_pack then
         for _, card in ipairs(self.area.highlighted) do
@@ -257,6 +257,9 @@ function Card:highlight(highlighted)
             end
         end
         -- self.children.use_button = nil
+    end
+    if highlighted and self.children.use_button and self.children.use_button.config.id == 'ortalab_index' and self.config.center_key ~= 'm_ortalab_index' then
+        self.children.use_button:remove()
     end
 end
 
@@ -300,7 +303,7 @@ function G.UIDEF.use_index_buttons(card)
   end
 
 G.FUNCS.index_card_increase = function(e)
-    if e.config.ref_table.ability.extra.index_state ~= 'UP' then 
+    if e.config.ref_table.ability.extra and e.config.ref_table.ability.extra.index_state ~= 'UP' then 
         e.config.colour = G.C.RED
         e.config.button = 'increase_index'
     else
@@ -322,7 +325,7 @@ G.FUNCS.increase_index = function(e, mute, nosave)
 end
 
 G.FUNCS.index_card_mid = function(e)
-    if e.config.ref_table.ability.extra.index_state ~= 'MID' then 
+    if e.config.ref_table.ability.extra and e.config.ref_table.ability.extra.index_state ~= 'MID' then 
         e.config.colour = G.C.RED
         e.config.button = 'mid_index'
     else
@@ -344,7 +347,7 @@ G.FUNCS.mid_index = function(e, mute, nosave)
 end
 
 G.FUNCS.index_card_decrease = function(e)
-    if e.config.ref_table.ability.extra.index_state ~= 'DOWN' then 
+    if e.config.ref_table.ability.extra and e.config.ref_table.ability.extra.index_state ~= 'DOWN' then 
         e.config.colour = G.C.RED
         e.config.button = 'decrease_index'
     else
