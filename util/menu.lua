@@ -58,13 +58,15 @@ function create_initial_config()
 
     local zodiac_keys = {'c_ortalab_zod_gemini','c_ortalab_zod_scorpio','c_ortalab_zod_pisces'}
     for i=1, 3 do
-        local card = Card(0, 0, G.CARD_W, G.CARD_H, nil, G.P_CENTERS[zodiac_keys[i]])
+        local card = Card(0, 0, G.CARD_W, G.CARD_H, nil, G.P_CENTERS[zodiac_keys[i]], {bypass_discovery_center = true, bypass_discovery_ui = true, bypass_lock = true})
+        card.discovered = true
         Ortalab.zodiac_area:emplace(card)
     end
 
     local joker_keys = {'j_ortalab_knitted_sweater','j_ortalab_caffeyne'}
     for i=1,2 do
-        local card = Card(0,0, G.CARD_W, G.CARD_H, nil, G.P_CENTERS[joker_keys[i]])
+        local card = Card(0,0, G.CARD_W, G.CARD_H, nil, G.P_CENTERS[joker_keys[i]], {bypass_discovery_center = true, bypass_discovery_ui = true, bypass_lock = true})
+        card.discovered = true
         Ortalab.joker_area:emplace(card)
     end
 
@@ -103,7 +105,7 @@ function create_initial_config()
 					card.hover_tilt = 3
 					card:juice_up(0.05, 0.02)
 					play_sound('chips1', math.random() * 0.1 + 0.55, 0.12)
-					card.config.h_popup = create_UIBox_blind_popup(G.P_BLINDS[blind_keys[i]], card.config.blind.discovered)
+					card.config.h_popup = create_UIBox_blind_popup(G.P_BLINDS[blind_keys[i]], true)
 					card.config.h_popup_config = card:align_h_popup()
 					Node.hover(card)
 				end
