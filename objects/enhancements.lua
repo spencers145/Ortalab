@@ -207,7 +207,7 @@ SMODS.Enhancement({
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
         local card_ability = card and card.ability or self.config
         return {
-            vars = { G.GAME.probabilities.normal * (card_ability.extra.discard_chance - 1), card_ability.extra.discard_chance, card_ability.extra.discards, G.GAME.probabilities.normal * (card_ability.extra.tag_chance - 1), card_ability.extra.tag_chance, card_ability.extra.tags }
+            vars = { math.max(G.GAME.probabilities.normal, 1) * (card_ability.extra.discard_chance - 1), card_ability.extra.discard_chance / math.min(G.GAME.probabilities.normal, 1), card_ability.extra.discards, math.max(1, G.GAME.probabilities.normal) * (card_ability.extra.tag_chance - 1), card_ability.extra.tag_chance / math.min(G.GAME.probabilities.normal, 1), card_ability.extra.tags }
         }
     end,
     calculate = function(self, card, context, effect)

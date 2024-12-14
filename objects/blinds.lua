@@ -207,7 +207,7 @@ SMODS.Blind({
     config = {extra = {frequency = 5}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
-        return {vars = {G.GAME.probabilities.normal, self.config.extra.frequency}}
+        return {vars = {math.max(G.GAME.probabilities.normal, 1), self.config.extra.frequency / math.min(G.GAME.probabilities.normal, 1)}}
     end,
     collection_loc_vars = function(self)
         return {vars = {G.GAME.probabilities.normal, self.config.extra.frequency}}
@@ -1029,7 +1029,7 @@ SMODS.Blind({
     config = {extra = {chance = 2}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
-        return {vars = {G.GAME.probabilities.normal, self.config.extra.chance}}
+        return {vars = {math.max(G.GAME.probabilities.normal, 1), self.config.extra.chance / math.min(G.GAME.probabilities.normal, 1)}}
     end,
     collection_loc_vars = function(self)
         return {vars = {G.GAME.probabilities.normal, self.config.extra.chance}}

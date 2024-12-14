@@ -13,7 +13,7 @@ SMODS.Joker({
 	loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'logan'} end
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
-        return {vars = {card.ability.extra.chip_gain, card.ability.extra.chips, G.GAME.probabilities.normal, card.ability.extra.chance}}
+        return {vars = {card.ability.extra.chip_gain, card.ability.extra.chips, math.max(1, G.GAME.probabilities.normal), card.ability.extra.chance / math.min(G.GAME.probabilities.normal, 1)}}
     end,
     calculate = function(self, card, context)
         if context.before and not context.blueprint then

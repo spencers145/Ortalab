@@ -13,7 +13,7 @@ SMODS.Joker({
 	loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = {generate_ui = tag_tooltip, key = self.config.extra.tag}
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
-        return {vars = {localize({type = 'name_text', set = 'Tag', key = self.config.extra.tag}), card.ability.extra.mod * G.GAME.probabilities.normal, card.ability.extra.chance}}
+        return {vars = {localize({type = 'name_text', set = 'Tag', key = self.config.extra.tag}), card.ability.extra.mod * math.max(1, G.GAME.probabilities.normal), card.ability.extra.chance / math.min(G.GAME.probabilities.normal, 1)}}
     end,
     calculate = function(self, card, context)
         if context.skip_blind then
