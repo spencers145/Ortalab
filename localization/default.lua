@@ -60,6 +60,7 @@ return {
 			ortalab_zodiac_upgraded = ' upgraded!',
 			ortalab_zodiac_added = ' added!',
 			ortalab_zodiac_active = ' active!',
+			ortalab_zodiac_no_decay = 'No decay!',
 			ortalab_back = 'Let me play!'
         },
 		['labels'] = {
@@ -755,6 +756,14 @@ return {
 					"{C:mult}+#1#{} Mult",
 					"{C:mult}+#2#{} Mult per round played",
 					"Explodes when greater than {C:mult}+20{}",
+				}
+			},
+			['j_ortalab_prediction_dice'] = {
+				["name"] = "Prediction Dice",
+				["text"] = {
+					"{C:green}#1# in #2#{} chance for",
+					"{C:zodiac}Zodiacs{} to decay",
+					"when activated"
 				}
 			},
 			['j_ortalab_protostar'] = {

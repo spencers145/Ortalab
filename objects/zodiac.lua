@@ -935,6 +935,14 @@ Ortalab.Zodiac{
 }
 
 function zodiac_reduce_level(zodiac)
+    local zodiac_joker = SMODS.find_card('j_ortalab_prediction_dice')
+    for _, joker_card in pairs(zodiac_joker) do        
+        if pseudorandom(pseudoseed('loteria_check_keep')) > (joker_card.ability.extra.num*G.GAME.probabilities.normal) / joker_card.ability.extra.chance then
+            -- joker_card:juice_up()
+            card_eval_status_text(joker_card, 'extra', nil, nil, nil, {message = localize('ortalab_zodiac_no_decay')})
+            return
+        end
+    end
     zodiac.config.extra.temp_level = math.max(0, zodiac.config.extra.temp_level - G.GAME.Ortalab_Zodiac_Reduction)
     if zodiac.config.extra.temp_level == 0 then
         zodiac.triggered = true
