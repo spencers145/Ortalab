@@ -59,7 +59,8 @@ return {
 			ortalab_forklift_loss = '-2 slots',
 			ortalab_zodiac_upgraded = ' upgraded!',
 			ortalab_zodiac_added = ' added!',
-			ortalab_zodiac_active = ' active!'
+			ortalab_zodiac_active = ' active!',
+			ortalab_back = 'Let me play!'
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
@@ -615,7 +616,7 @@ return {
 			['j_ortalab_mathmagician'] = {
 				["name"] = "Mathmagician",
 				["text"] = {
-					"Creates a random {C:Zodiac}Zodiac{}",
+					"Creates a random {C:Loteria}Loteria{}",
 					"card if discarded hand",
 					"contains 2 {C:attention}odd cards",
 					"and 2 {C:attention}even cards",
@@ -1742,7 +1743,7 @@ return {
 				}
 			},
 			['v_ortalab_natal_sign'] = {
-				["name"] = "Natal Sign",
+				["name"] = "Natal Chart",
 				["text"] = {
 					'{C:zodiac}Zodiacs{} give {C:white,X:red}X#1#{} Mult',
 					'per {C:attention}#2#{} temporary levels'
