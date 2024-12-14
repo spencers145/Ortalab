@@ -440,15 +440,15 @@ Ortalab.Zodiac{
     end,
     pre_trigger = function(self, zodiac, context)
         local effects = {'m_ortalab_post', 'm_ortalab_bent'}
-        for i, card in ipairs(context.scoring_hand) do
-            card:set_ability(G.P_CENTERS[effects[i]], nil, true)
+        for i=1, 2 do
+            context.scoring_hand[i]:set_ability(G.P_CENTERS[effects[i]], nil, true)
             local name = card.ability.effect
-            card.ability.effect = nil
+            context.scoring_hand[i].ability.effect = nil
             G.E_MANAGER:add_event(Event({
                 trigger = 'before', delay = 0.2, func = function()
                     zodiac:juice_up()
-                    card.ability.effect = name
-                    card:juice_up()
+                    context.scoring_hand[i].ability.effect = name
+                    context.scoring_hand[i]:juice_up()
                     return true
                 end}))
         end
