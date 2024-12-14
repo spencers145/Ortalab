@@ -21,6 +21,8 @@ return {
 				'Skip the animations of',
 				'most Loteria cards'
 			},
+			ortalab_hide_intro = 'Don\'t show again',
+			ortalab_toggle_intro = 'Skip Intro Screen',
 			["ortalab_artist"] = 'Artist',
 			["ortalab_swap"] = 'Swap!',
 			['ortalab_leak'] = 'Leaked!',

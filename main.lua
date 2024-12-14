@@ -10,11 +10,13 @@ Ortalab.load_table = {
     coupons = true,
     stakes = true,
     blinds = true,
-    curses = true,
+    curses = false,
     mythos = false
 }
 loc_colour('red')
 G.ARGS.LOC_COLOURS['Ortalab'] = HEX('990000')
+G.ARGS.LOC_COLOURS.Ort_menu_colourA = HEX('686868')
+G.ARGS.LOC_COLOURS.Ort_menu_colourB = HEX('C9013C')
 for k, v in pairs(Ortalab.load_table) do
     if v then SMODS.load_file('objects/'..k..'.lua')() end
 end
