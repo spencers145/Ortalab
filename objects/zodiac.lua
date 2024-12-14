@@ -967,6 +967,7 @@ function zodiac_reduce_level(zodiac)
 end
 
 function use_zodiac(card)
+    track_usage(card.config.center.set, card.config.center_key)
     if G.zodiacs and G.zodiacs[card.ability.extra.zodiac] then
         G.zodiacs[card.ability.extra.zodiac].config.extra.temp_level = G.zodiacs[card.ability.extra.zodiac].config.extra.temp_level + (G.ZODIACS[card.ability.extra.zodiac].config.extra.temp_level * G.GAME.Ortalab_zodiac_temp_level_mod) + G.GAME.Ortalab_zodiac_voucher
         zodiac_text(zodiac_upgrade_text(card.ability.extra.zodiac), card.ability.extra.zodiac)
