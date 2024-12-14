@@ -35,18 +35,20 @@ end
 local main_menu = Game.main_menu
 function Game:main_menu(context)
     main_menu(self, context)
-    G.E_MANAGER:add_event(Event({
-        trigger = 'after',
-        delay = 0.1,
-        func = function()
-        if not Ortalab.config.initial_setup_demo_3 then
-            G.FUNCS.overlay_menu({
-                definition = create_initial_config()
-            })
-            
-        end
-        return true
-    end}))
+    if context == 'splash' then
+        G.E_MANAGER:add_event(Event({
+            trigger = 'after',
+            delay = 0.1,
+            func = function()
+            if not Ortalab.config.initial_setup_demo_3 then
+                G.FUNCS.overlay_menu({
+                    definition = create_initial_config()
+                })
+                
+            end
+            return true
+        end}))
+    end
     
 end
 
