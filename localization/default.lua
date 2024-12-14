@@ -994,6 +994,23 @@ return {
 					'{C:attention}first hand{} of round'
 				}
 			},
+			['j_ortalab_stargazing'] = {
+				["name"] = "Stargazing",
+				["text"] = {
+					"Gains {X:mult,C:white}X#1#{} Mult",
+					"per {C:zodiac}Zodiac{} activated",
+					"{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive})"
+				}
+			},
+			['j_ortalab_sun_sign'] = {
+				["name"] = "Sun Sign",
+				["text"] = {
+					"Earn {C:gold}$#1#{} at the end",
+					"of each round for each unique",
+					"{C:zodiac}Zodiac{} activated this run",
+					"{C:inactive}(Currently {C:gold}$#2#{C:inactive})"
+				}
+			},
 			['j_ortalab_sunnyside'] = {
 				["name"] = "Sunny Side Up",
 				["text"] = {

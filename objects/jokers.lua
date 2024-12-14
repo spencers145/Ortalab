@@ -53,7 +53,7 @@ local joker_list = {
     'miracle_cure',
     -- 'yellow', 
     -- 'common_sense',
-    -- 'shrine', waiting for mythos to be implemented
+    'stargazing',
     -- 'biker',
     'mathmagician',
     -- 'purple',
@@ -64,7 +64,7 @@ local joker_list = {
     'blue_card',
     -- 'attached',
     'triangle',
-    -- 'slot_machine', NEW EFFECT NEEDED
+    -- 'shrine', wait for mythos
     -- 'street_rat',
     -- 'belmont',
     'scenic',
@@ -137,7 +137,7 @@ local joker_list = {
     -- 'actor',
     'chameleon',
     -- 'right_hand',
-    -- 'evil_eye', NEW EFFECT NEEDED
+    'sun_sign',
     -- 'boulevard',
     'forklift',
     'pictographer',

@@ -310,7 +310,7 @@ function Game:start_run(args)
         end
     end
     start(self, args)
-
+    self.GAME.zodiacs_activated = {}
     self.GAME.Ortalab_Zodiac_Reduction = 2
 end
 -- ZODIAC CODE BELOW
@@ -981,7 +981,7 @@ function zodiac_text(message, key)
 
     attention_text({scale = 1, text = message, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play})
     G.E_MANAGER:add_event(Event({
-        trigger = 'immediate',
+        trigger = 'after',
         delay = 1.5,
         func = function()
             ease_background_colour_blind(G.STATE)

@@ -89,6 +89,15 @@ if G.zodiacs then
         if zodiac.config.extra.hand_type == text then
             zodiac_effect = G.ZODIACS[zodiac.key]
             zodiac_current = zodiac
+            G.GAME.zodiacs_activated[zodiac.key] = true
+
+            -- Update Stargazing Jokers
+            local stargazings = SMODS.find_card('j_ortalab_stargazing')
+            for _, stargazing_card in pairs(stargazings) do
+                stargazing_card.ability.extra.xmult = stargazing_card.ability.extra.xmult + stargazing_card.ability.extra.gain
+                card_eval_status_text(stargazing_card, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_xmult',vars={stargazing_card.ability.extra.gain}}, colour = G.C.RED})
+            end
+
             for i=1, zodiac_current.config.extra.temp_level do
                 iou_count = iou_count + 1
                 update_hand_text({sound = 'button', volume = 0.7, pitch = 0.9, delay = 0}, {level=G.GAME.hands[text].level..'+'..iou_count})
