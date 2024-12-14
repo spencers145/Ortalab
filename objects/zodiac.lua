@@ -100,6 +100,9 @@ end
 
 
 function add_zodiac(_tag, silent) -- Add a zodiac to the indicator area
+    if G.GAME.Ortalab_zodiac_temp_level_mod then
+        _tag.config.extra.temp_level = _tag.config.extra.temp_level * G.GAME.Ortalab_zodiac_temp_level_mod
+    end
     if G.GAME.Ortalab_zodiac_voucher then
         _tag.config.extra.temp_level = _tag.config.extra.temp_level + G.GAME.Ortalab_zodiac_voucher
     end
@@ -312,6 +315,8 @@ function Game:start_run(args)
     start(self, args)
     self.GAME.zodiacs_activated = {}
     self.GAME.Ortalab_Zodiac_Reduction = 2
+    self.GAME.Ortalab_zodiac_voucher = 0
+    self.GAME.Ortalab_zodiac_temp_level_mod = 1
 end
 -- ZODIAC CODE BELOW
 
@@ -342,13 +347,13 @@ Ortalab.Zodiac{
     config = {extra = {temp_level = 4, hand_type = 'Four of a Kind'}},
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
-        return {vars = {G.GAME.Ortalab_zodiac_voucher and not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher + zodiac.config.extra.temp_level or zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
+        local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     destroy = function(self, zodiac, context)
         if context.other_card.base.value == context.scoring_hand[1].base.value then
             return false
         end
-        zodiac_reduce_level(zodiac)
         return true
     end
 }
@@ -381,7 +386,8 @@ Ortalab.Zodiac{
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
         if not card then info_queue[#info_queue + 1] = G.P_CENTERS['m_ortalab_rusty'] end
-        return {vars = {G.GAME.Ortalab_zodiac_voucher and not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher + zodiac.config.extra.temp_level or zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands'), zodiac.config.extra.amount}}
+        local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         for i=1, zodiac.config.extra.amount do
@@ -429,7 +435,8 @@ Ortalab.Zodiac{
     config = {extra = {temp_level = 4, hand_type = 'Pair'}},
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
-        return {vars = {G.GAME.Ortalab_zodiac_voucher and not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher + zodiac.config.extra.temp_level or zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
+        local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         local effects = {'m_ortalab_post', 'm_ortalab_bent'}
@@ -477,7 +484,8 @@ Ortalab.Zodiac{
     config = {extra = {temp_level = 4, hand_type = 'Flush House'}},
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
-        return {vars = {G.GAME.Ortalab_zodiac_voucher and not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher + zodiac.config.extra.temp_level or zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
+        local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         local suits_in_flush = {}
@@ -502,6 +510,7 @@ Ortalab.Zodiac{
                     return true
                 end}))
         end
+        zodiac_reduce_level(zodiac)
         return context.mult, context.chips
     end
 }
@@ -533,7 +542,8 @@ Ortalab.Zodiac{
     config = {extra = {temp_level = 4, hand_type = 'Flush Five'}},
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
-        return {vars = {G.GAME.Ortalab_zodiac_voucher and not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher + zodiac.config.extra.temp_level or zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
+        local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         for i=1, #G.hand.cards do
@@ -578,7 +588,8 @@ Ortalab.Zodiac{
     config = {extra = {temp_level = 4, hand_type = 'Five of a Kind'}},
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
-        return {vars = {G.GAME.Ortalab_zodiac_voucher and not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher + zodiac.config.extra.temp_level or zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
+        local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         G.E_MANAGER:add_event(Event({
@@ -634,7 +645,8 @@ Ortalab.Zodiac{
     config = {extra = {temp_level = 4, hand_type = 'Full House', convert = 2}},
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
-        return {vars = {G.GAME.Ortalab_zodiac_voucher and not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher + zodiac.config.extra.temp_level or zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands'), zodiac.config.extra.convert}}
+        local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         G.E_MANAGER:add_event(Event({
@@ -681,7 +693,8 @@ Ortalab.Zodiac{
     config = {extra = {temp_level = 4, hand_type = 'High Card', amount = 2}},
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
-        return {vars = {G.GAME.Ortalab_zodiac_voucher and not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher + zodiac.config.extra.temp_level or zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands'), zodiac.config.extra.amount}}
+        local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         local amount = 1
@@ -748,7 +761,8 @@ Ortalab.Zodiac{
     config = {extra = {temp_level = 4, hand_type = 'Flush'}},
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
-        return {vars = {G.GAME.Ortalab_zodiac_voucher and not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher + zodiac.config.extra.temp_level or zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
+        local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         local suits_in_flush = {}
@@ -802,7 +816,8 @@ Ortalab.Zodiac{
     loc_vars = function(self, info_queue, card)
         if not card then info_queue[#info_queue + 1] = G.P_CENTERS['m_ortalab_index'] end
         local zodiac = card or self
-        return {vars = {G.GAME.Ortalab_zodiac_voucher and not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher + zodiac.config.extra.temp_level or zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands'), zodiac.config.extra.amount}}
+        local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         for i=1, zodiac.config.extra.amount do
@@ -848,7 +863,8 @@ Ortalab.Zodiac{
     colour = HEX('b05ab4'),
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
-        return {vars = {G.GAME.Ortalab_zodiac_voucher and not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher + zodiac.config.extra.temp_level or zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
+        local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         G.E_MANAGER:add_event(Event({
@@ -905,7 +921,8 @@ Ortalab.Zodiac{
     config = {extra = {temp_level = 4, hand_type = 'Straight Flush'}},
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
-        return {vars = {G.GAME.Ortalab_zodiac_voucher and not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher + zodiac.config.extra.temp_level or zodiac.config.extra.temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
+        local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
     end,
     pre_trigger = function(self, zodiac, context)
         local suits_in_flush = {}
@@ -951,7 +968,7 @@ end
 
 function use_zodiac(card)
     if G.zodiacs and G.zodiacs[card.ability.extra.zodiac] then
-        G.zodiacs[card.ability.extra.zodiac].config.extra.temp_level = G.zodiacs[card.ability.extra.zodiac].config.extra.temp_level + G.ZODIACS[card.ability.extra.zodiac].config.extra.temp_level
+        G.zodiacs[card.ability.extra.zodiac].config.extra.temp_level = G.zodiacs[card.ability.extra.zodiac].config.extra.temp_level + (G.ZODIACS[card.ability.extra.zodiac].config.extra.temp_level * G.GAME.Ortalab_zodiac_temp_level_mod) + G.GAME.Ortalab_zodiac_voucher
         zodiac_text(zodiac_upgrade_text(card.ability.extra.zodiac), card.ability.extra.zodiac)
         G.zodiacs[card.ability.extra.zodiac]:juice_up(1, 1)
         delay(0.7)

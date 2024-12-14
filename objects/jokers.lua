@@ -141,7 +141,7 @@ local joker_list = {
     -- 'boulevard',
     'forklift',
     'pictographer',
-    -- 'occultist', NEW EFFECT NEEDED
+    'astrologist',
     'damp',
     -- 'inheritance',
     --legendaries

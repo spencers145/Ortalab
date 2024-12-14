@@ -245,6 +245,14 @@ return {
 					"{C:attention}Blind{} is selected"
 				}
 			},
+			['j_ortalab_astrologist'] = {
+				["name"] = "Astrologist",
+				["text"] = {
+					'{C:zodiac}Zodiac Cards{} give {C:attention}#1#{} times',
+					'as many temporary levels but',
+					'decay {C:attention}#1#{} times faster'
+				}
+			},
 			['j_ortalab_bank_loan'] = {
 				["name"] = "Bank Loan",
 				["text"] = {
