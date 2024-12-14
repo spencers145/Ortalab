@@ -172,6 +172,8 @@ function create_initial_config()
 
 end
 
+EremelUtility = EremelUtility or {}
+
 function EremelUtility.create_toggle(args)
     args = args or {}
     args.active_colour = args.active_colour or Malverk.badge_colour
