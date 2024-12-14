@@ -35,7 +35,7 @@ SMODS.Joker({
         end
     end,
     add_to_deck = function(self, card, from_debuff)
-        if G.GAME.consumeable_usage_total.all >= card.ability.extra.target then
+        if G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.all >= card.ability.extra.target then
             G.consumeables:change_size(card.ability.extra.slots)
             card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_forklift')})
             card.triggered = true    
