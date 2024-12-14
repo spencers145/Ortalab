@@ -758,6 +758,14 @@ return {
 					"when scored"
 				}
 			},
+			['j_ortalab_policeman'] = {
+				["name"] = "Policeman",
+				["text"] = {
+					'When {C:attention}Blind{} is selected,',
+					'gain {C:red}+#2#{} discards',
+					'set Hands to {C:blue}#1#',
+				}
+			},
 			['j_ortalab_popcorn_bag'] = {
 				["name"] = "Picnic Basket",
 				["text"] = {

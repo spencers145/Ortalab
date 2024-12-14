@@ -45,7 +45,7 @@ local joker_list = {
     -- 'crash',
     'skydiving',
     'sunny_side',
-    -- 'policeman',
+    'policeman',
     'whiteboard',
     -- 'driver',
     'hot_chocolate',
