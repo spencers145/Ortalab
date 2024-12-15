@@ -356,29 +356,7 @@ G.FUNCS.skip_blind = function(e)
             add_tag(Tag(_tag.config.ref_table.key))
         end
     end
-    G.E_MANAGER:add_event(Event({
-        trigger = 'after',
-        func = function()
-            if G.GAME.used_vouchers['v_ortalab_home_delivery'] then
-                if G.blind_select then 
-                    G.blind_select:remove()
-                    G.blind_prompt_box:remove()
-                    G.blind_select = nil
-                end
-                G.GAME.current_round.jokers_purchased = 0
-                G.GAME.current_round.used_packs = {}
-                G.GAME.round_resets.temp_reroll_cost = nil
-                G.GAME.current_round.reroll_cost_increase = 0
-                calculate_reroll_cost(true)
-                G.E_MANAGER:add_event(Event({
-                    func = function()
-                        G.STATE = G.STATES.SHOP
-                        G.STATE_COMPLETE = false    
-                        return true
-                    end
-                }))
-            end
-            return true
-    end}))
     skip_blind(e)
+    
+    
 end
