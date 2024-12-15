@@ -112,11 +112,11 @@ target = "functions/state_events.lua"
 pattern = '''reset_idol_card()'''
 position = "before"
 payload = '''
-for i = 1, #G.jokers.cards do
-    if G.jokers.cards[i].ability.shinku then
+for _, joker in pairs(G.jokers.cards) do
+    if joker.ability.shinku then
         G.E_MANAGER:add_event(Event({
             func = function() 
-                G.jokers.cards[i]:start_dissolve()
+                joker:start_dissolve()
                 return true
         end}))   
     end
