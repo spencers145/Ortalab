@@ -885,10 +885,10 @@ Ortalab.Zodiac{
                 context.scoring_hand[#context.scoring_hand]:juice_up()
                 _card:juice_up()
 
+                playing_card_joker_effects({_card, _card2})
                 return true
             end
         }))
-        playing_card_joker_effects({_card, _card2})
         zodiac_reduce_level(zodiac)
         return context.mult, context.chips
     end
