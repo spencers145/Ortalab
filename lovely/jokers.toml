@@ -279,9 +279,7 @@ for i=1, #G.play.cards do
                         update_hand_text({delay = 0}, {mult = mult})
                         card_eval_status_text(G.play.cards[i], 'mult', effects[ii].mult, percent)
                     end
-                    
                 end
-
             end
         end
     end
