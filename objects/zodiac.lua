@@ -888,7 +888,7 @@ Ortalab.Zodiac{
                 return true
             end
         }))
-        playing_card_joker_effects({_card})
+        playing_card_joker_effects({_card, _card2})
         zodiac_reduce_level(zodiac)
         return context.mult, context.chips
     end
