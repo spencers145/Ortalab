@@ -968,6 +968,8 @@ SMODS.Blind({
     end
 })
 
+SMODS.Shader({key = 'celadon', path = 'applied.fs'})
+
 function celadon_check(self, card)
     card.celadon_disabled = false
     if card:is_face() then

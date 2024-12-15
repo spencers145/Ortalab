@@ -51,9 +51,9 @@ pattern = '''if not self.config.center.discovered and (self.ability.consumeable 
 position = "before"
 payload = '''
 if self.celadon_disabled and self.area == G.hand then
-    self.children.center:draw_shader('malverk_texture_selected', nil, self.ARGS.send_to_shader)
+    self.children.center:draw_shader('ortalab_celadon', nil, self.ARGS.send_to_shader)
     if self.children.front then
-        self.children.front:draw_shader('malverk_texture_selected', nil, self.ARGS.send_to_shader)
+        self.children.front:draw_shader('ortalab_celadon', nil, self.ARGS.send_to_shader)
     end
 end
 '''
