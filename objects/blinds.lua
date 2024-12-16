@@ -871,7 +871,7 @@ SMODS.Blind({
     pos = {x = 0, y = 22},
     dollars = 6,
     mult = 0.75,
-    boss = {min = 3, max = 10},
+    boss = {min = 3, max = 7},
     boss_colour = HEX('b52d2d'),
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
