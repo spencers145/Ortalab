@@ -792,9 +792,10 @@ SMODS.Consumable({
                     end}))
                 end
             end
-
+            
             G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.15, func = function()
                 joker:set_ability(_center)
+                joker:set_cost()
                 joker:juice_up()
                 play_sound('holo1')
                 return true
