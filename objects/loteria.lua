@@ -764,6 +764,7 @@ SMODS.Consumable({
         draw_card(G.jokers, G.play, 1, 'up', false, joker, nil, true)
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.35, func = function()
             local _center
+            if joker.remove_from_deck and type(joker.remove_from_deck) == 'function' then joker:remove_from_deck() end
             for i=1, 40 do
                 local new_joker = pseudorandom_element(get_current_pool('Joker', rarity, rarity == 4), pseudoseed('loteria_hand'))
                 if G.P_CENTERS[new_joker] and new_joker ~= original.key then
