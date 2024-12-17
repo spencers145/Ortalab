@@ -57,6 +57,7 @@ return {
 			ortalab_minimised = 'Minimised!',
 			ortalab_rank = 'certain rank',
 			ortalab_zodiac_add = '+1 Zodiac',
+			ortalab_loteria_add = '+1 Loteria',
 			ortalab_forklift = '+2 slots',
 			ortalab_forklift_loss = '-2 slots',
 			ortalab_zodiac_upgraded = ' upgraded!',
@@ -627,7 +628,7 @@ return {
 			['j_ortalab_mathmagician'] = {
 				["name"] = "Mathmagician",
 				["text"] = {
-					"Creates a random {C:Loteria}Loteria{}",
+					"Creates a random {C:loteria}Loteria{}",
 					"card if discarded hand",
 					"contains 2 {C:attention}odd cards",
 					"and 2 {C:attention}even cards",
