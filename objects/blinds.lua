@@ -1114,6 +1114,7 @@ SMODS.Blind({
         for k, v in ipairs(card_protos) do
             card_from_control(v)
         end
+        self.original_deck_size = G.GAME.starting_deck_size
         G.GAME.starting_deck_size = #G.playing_cards
     end,
     disable = function(self)
@@ -1129,7 +1130,7 @@ SMODS.Blind({
         for _, card in ipairs(G.deck.cards) do
             table.insert(G.playing_cards, card)
         end
-        G.GAME.starting_deck_size = #G.playing_cards
+        G.GAME.starting_deck_size = self.original_deck_size
     end
 })
 
