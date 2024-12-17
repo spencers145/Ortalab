@@ -130,9 +130,94 @@ function add_zodiac(_tag, silent) -- Add a zodiac to the indicator area
     if not silent then zodiac_text(localize({set='Tag', key=_tag.key, type='name_text'})..localize('ortalab_zodiac_added'), _tag.key) end
     delay(0.7)
 end
+Zodiac = Object:extend()
 
+function Zodiac:init(_tag, for_collection, _blind_type)
+    self.key = _tag
+    local proto = G.ZODIACS[_tag]
+    self.config = copy_table(proto.config)
+    self.pos = proto.pos
+    self.soul_pos = proto.soul_pos
+    self.name = proto.name
+    self.tally = G.GAME.zodiac_tally or 0
+    self.triggered = false
+    G.zodiacid = G.zodiacid or 0
+    self.ID = G.zodiacid
+    G.zodiacid = G.zodiacid + 1
+    self.ability = {}
+    G.GAME.zodiac_tally = G.GAME.zodiac_tally and (G.GAME.zodiac_tally + 1) or 1
+end
 
-function Tag:remove_zodiac(message, _colour, func) -- Remove a zodiac from the indicator area
+function Zodiac:generate_UI(_size)
+    _size = _size or 0.8
+
+    local tag_sprite_tab = nil
+    local tag_sprite = Sprite(0,0,_size*1,_size*1,G.ASSET_ATLAS[(not self.hide_ability) and G.ZODIACS[self.key].atlas or "tags"], (self.hide_ability) and G.tag_undiscovered.pos or self.pos)
+
+    tag_sprite.T.scale = 1
+    tag_sprite_tab = {n= G.UIT.C, config={align = "cm", ref_table = self, group = self.tally}, nodes={
+        {n=G.UIT.O, config={w=_size*1,h=_size*1, colour = G.C.BLUE, object = tag_sprite, focus_with_object = true}},
+    }}
+    tag_sprite:define_draw_steps({
+        {shader = 'dissolve', shadow_height = 0.05},
+        {shader = 'dissolve'},
+    })
+    tag_sprite.float = true
+    tag_sprite.states.hover.can = true
+    tag_sprite.states.drag.can = false
+    tag_sprite.states.collide.can = true
+    tag_sprite.config = {tag = self, force_focus = true}
+
+    tag_sprite.hover = function(_self)
+        if not G.CONTROLLER.dragging.target or G.CONTROLLER.using_touch then 
+            if not _self.hovering and _self.states.visible then
+                _self.hovering = true
+                if _self == tag_sprite then
+                    _self.hover_tilt = 3
+                    _self:juice_up(0.05, 0.02)
+                    play_sound('paper1', math.random()*0.1 + 0.55, 0.42)
+                    play_sound('tarot2', math.random()*0.1 + 0.55, 0.09)
+                end
+
+                self:get_uibox_table(tag_sprite)
+                _self.config.h_popup =  G.UIDEF.card_h_popup(_self)
+                _self.config.h_popup_config = (_self.T.x > G.ROOM.T.w*0.4) and
+                    {align =  'bl', offset = {x=-0.1,y=-_self.T.h},parent = _self} or
+                    {align =  'cr', offset = {x=0.1,y=0},parent = _self}
+                Node.hover(_self)
+                if _self.children.alert then 
+                    _self.children.alert:remove()
+                    _self.children.alert = nil
+                    if self.key and G.ZODIACS[self.key] then G.ZODIACS[self.key].alerted = true end
+                    G:save_progress()
+                end
+            end
+        end
+    end
+    tag_sprite.stop_hover = function(_self) _self.hovering = false; Node.stop_hover(_self); _self.hover_tilt = 0 end
+
+    tag_sprite:juice_up()
+    self.tag_sprite = tag_sprite
+
+    return tag_sprite_tab, tag_sprite
+end
+
+function Zodiac:get_uibox_table(tag_sprite)
+    tag_sprite = tag_sprite or self.tag_sprite
+    local name_to_check, loc_vars = self.name, G.ZODIACS[self.key]:loc_vars(nil, G.zodiacs[self.key]).vars
+    tag_sprite.ability_UIBox_table = generate_card_ui(G.ZODIACS[self.key], nil, loc_vars, (self.hide_ability) and 'Undiscovered' or 'Tag', nil, (self.hide_ability), nil, nil, self)
+    return tag_sprite
+end
+
+function Zodiac:remove_from_game()
+    local tag_key = nil
+    for k, v in pairs(G.zodiacs) do
+        if v == self then tag_key = k end
+    end
+    table.remove(G.zodiacs, tag_key)
+end
+
+function Zodiac:remove_zodiac(message, _colour, func) -- Remove a zodiac from the indicator area
     if message then 
         G.E_MANAGER:add_event(Event({
             delay = 0.4,
@@ -195,90 +280,12 @@ function Tag:remove_zodiac(message, _colour, func) -- Remove a zodiac from the i
     end
 end
 
-
-
-
-Zodiac = Tag:extend()
-
-function Zodiac:init(_tag, for_collection, _blind_type)
-    self.key = _tag
-    local proto = G.ZODIACS[_tag] or G.tag_undiscovered
-    self.config = copy_table(proto.config)
-    self.pos = proto.pos
-    self.soul_pos = proto.soul_pos
-    self.name = proto.name
-    self.tally = G.GAME.tag_tally or 0
-    self.triggered = false
-    G.tagid = G.tagid or 0
-    self.ID = G.tagid
-    G.tagid = G.tagid + 1
-    self.ability = {
-        orbital_hand = '['..localize('k_poker_hand')..']',
-        blind_type = _blind_type
+function Zodiac:save()
+    return {
+        key = self.key,
+        tally = self.tally, 
+        ability = self.ability
     }
-    G.GAME.tag_tally = G.GAME.tag_tally and (G.GAME.tag_tally + 1) or 1
-    if not for_collection then self:set_ability() end
-end
-
-function Zodiac:generate_UI(_size)
-    _size = _size or 0.8
-
-    local tag_sprite_tab = nil
-    local tag_sprite = Sprite(0,0,_size*1,_size*1,G.ASSET_ATLAS[(not self.hide_ability) and G.ZODIACS[self.key].atlas or "tags"], (self.hide_ability) and G.tag_undiscovered.pos or self.pos)
-
-    tag_sprite.T.scale = 1
-    tag_sprite_tab = {n= G.UIT.C, config={align = "cm", ref_table = self, group = self.tally}, nodes={
-        {n=G.UIT.O, config={w=_size*1,h=_size*1, colour = G.C.BLUE, object = tag_sprite, focus_with_object = true}},
-    }}
-    tag_sprite:define_draw_steps({
-        {shader = 'dissolve', shadow_height = 0.05},
-        {shader = 'dissolve'},
-    })
-    tag_sprite.float = true
-    tag_sprite.states.hover.can = true
-    tag_sprite.states.drag.can = false
-    tag_sprite.states.collide.can = true
-    tag_sprite.config = {tag = self, force_focus = true}
-
-    tag_sprite.hover = function(_self)
-        if not G.CONTROLLER.dragging.target or G.CONTROLLER.using_touch then 
-            if not _self.hovering and _self.states.visible then
-                _self.hovering = true
-                if _self == tag_sprite then
-                    _self.hover_tilt = 3
-                    _self:juice_up(0.05, 0.02)
-                    play_sound('paper1', math.random()*0.1 + 0.55, 0.42)
-                    play_sound('tarot2', math.random()*0.1 + 0.55, 0.09)
-                end
-
-                self:get_uibox_table(tag_sprite)
-                _self.config.h_popup =  G.UIDEF.card_h_popup(_self)
-                _self.config.h_popup_config = (_self.T.x > G.ROOM.T.w*0.4) and
-                    {align =  'bl', offset = {x=-0.1,y=-_self.T.h},parent = _self} or
-                    {align =  'cr', offset = {x=0.1,y=0},parent = _self}
-                Node.hover(_self)
-                if _self.children.alert then 
-                    _self.children.alert:remove()
-                    _self.children.alert = nil
-                    if self.key and G.ZODIACS[self.key] then G.ZODIACS[self.key].alerted = true end
-                    G:save_progress()
-                end
-            end
-        end
-    end
-    tag_sprite.stop_hover = function(_self) _self.hovering = false; Node.stop_hover(_self); _self.hover_tilt = 0 end
-
-    tag_sprite:juice_up()
-    self.tag_sprite = tag_sprite
-
-    return tag_sprite_tab, tag_sprite
-end
-
-function Zodiac:get_uibox_table(tag_sprite)
-    tag_sprite = tag_sprite or self.tag_sprite
-    local name_to_check, loc_vars = self.name, G.ZODIACS[self.key]:loc_vars(nil, G.zodiacs[self.key]).vars
-    tag_sprite.ability_UIBox_table = generate_card_ui(G.ZODIACS[self.key], nil, loc_vars, (self.hide_ability) and 'Undiscovered' or 'Tag', nil, (self.hide_ability), nil, nil, self)
-    return tag_sprite
 end
 
 function Zodiac:load(tag_savetable)
