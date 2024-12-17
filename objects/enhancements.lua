@@ -303,7 +303,7 @@ function G.UIDEF.use_index_buttons(card)
   end
 
 G.FUNCS.index_card_increase = function(e)
-    if e.config.ref_table.ability.extra and e.config.ref_table.ability.extra.index_state ~= 'UP' then 
+    if e.config.ref_table.ability.extra and type(e.config.ref_table.ability.extra) == 'table' and e.config.ref_table.ability.extra.index_state ~= 'UP' then 
         e.config.colour = G.C.RED
         e.config.button = 'increase_index'
     else
@@ -325,7 +325,7 @@ G.FUNCS.increase_index = function(e, mute, nosave)
 end
 
 G.FUNCS.index_card_mid = function(e)
-    if e.config.ref_table.ability.extra and e.config.ref_table.ability.extra.index_state ~= 'MID' then 
+    if e.config.ref_table.ability.extra and type(e.config.ref_table.ability.extra) == 'table' and e.config.ref_table.ability.extra.index_state ~= 'MID' then 
         e.config.colour = G.C.RED
         e.config.button = 'mid_index'
     else
@@ -347,7 +347,7 @@ G.FUNCS.mid_index = function(e, mute, nosave)
 end
 
 G.FUNCS.index_card_decrease = function(e)
-    if e.config.ref_table.ability.extra and e.config.ref_table.ability.extra.index_state ~= 'DOWN' then 
+    if e.config.ref_table.ability.extra and type(e.config.ref_table.ability.extra) == 'table' and e.config.ref_table.ability.extra.index_state ~= 'DOWN' then 
         e.config.colour = G.C.RED
         e.config.button = 'decrease_index'
     else
