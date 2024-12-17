@@ -288,14 +288,15 @@ function Zodiac:save()
     return {
         key = self.key,
         tally = self.tally, 
-        ability = self.ability
+        ability = self.ability,
+        config = self.config
     }
 end
 
 function Zodiac:load(tag_savetable)
     self.key = tag_savetable.key
     local proto = G.ZODIACS[self.key] or G.tag_undiscovered
-    self.config = copy_table(proto.config)
+    self.config = tag_savetable.config or copy_table(proto.config)
     self.pos = proto.pos
     self.name = proto.name
     self.tally = tag_savetable.tally
