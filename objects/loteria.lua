@@ -797,6 +797,7 @@ SMODS.Consumable({
             G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.15, func = function()
                 joker:set_ability(_center)
                 joker:set_cost()
+                joker:add_to_deck()
                 joker:check_chameleon()
                 joker:juice_up()
                 play_sound('holo1')
