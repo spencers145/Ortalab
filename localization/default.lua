@@ -2211,7 +2211,7 @@ return {
 				text = {
 					'+#1# hand size,',
 					'cards are only drawn',
-					'after #2# actions'
+					'after every #2# actions'
 				}
 			},
 			['bl_ortalab_hearth'] = {
