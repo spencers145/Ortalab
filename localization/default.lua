@@ -1001,7 +1001,9 @@ return {
 				["name"] = "Still Water",
 				["text"] = {
 					'Gains {C:red}+#1#{} Mult for',
-					'each {C:attention}unscored{} card',
+					'each {C:attention}hand{} with',
+					'{C:attention}unscored{} cards',
+					-- 'each {C:attention}unscored{} card',
 					'{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)'
 				},
 			},
