@@ -873,6 +873,10 @@ SMODS.Blind({
     mult = 0.75,
     boss = {min = 3, max = 7},
     boss_colour = HEX('b52d2d'),
+    in_pool = function(self)
+        if G.GAME.round_resets.ante > 8 or G.GAME.round_resets.ante < 2 then return false end
+        return true
+    end,
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
     end,
