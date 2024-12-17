@@ -202,6 +202,10 @@ function Zodiac:generate_UI(_size)
     return tag_sprite_tab, tag_sprite
 end
 
+function Zodiac:juice_up(_scale, _rot)
+    if self.tag_sprite then self.tag_sprite:juice_up(_scale, _rot) end
+end
+
 function Zodiac:get_uibox_table(tag_sprite)
     tag_sprite = tag_sprite or self.tag_sprite
     local name_to_check, loc_vars = self.name, G.ZODIACS[self.key]:loc_vars(nil, G.zodiacs[self.key]).vars
