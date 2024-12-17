@@ -765,6 +765,7 @@ SMODS.Consumable({
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.35, func = function()
             local _center
             if joker.remove_from_deck and type(joker.remove_from_deck) == 'function' then joker:remove_from_deck() end
+            joker:check_chameleon()
             for i=1, 40 do
                 local new_joker = pseudorandom_element(get_current_pool('Joker', rarity, rarity == 4), pseudoseed('loteria_hand'))
                 if G.P_CENTERS[new_joker] and new_joker ~= original.key then
@@ -796,6 +797,7 @@ SMODS.Consumable({
             G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.15, func = function()
                 joker:set_ability(_center)
                 joker:set_cost()
+                joker:check_chameleon()
                 joker:juice_up()
                 play_sound('holo1')
                 return true
@@ -805,6 +807,16 @@ SMODS.Consumable({
         end}))
     end
 })
+
+function Card:check_chameleon()
+    if self.config.center_key == 'j_ortalab_chameleon' then
+        self.children.front:remove()
+        self.children.front = nil
+        self.ignore_base_shader.chameleon = nil
+        self.ignore_shadow.chameleon = nil
+        self.config.center_key = 'old chameleon'
+    end
+end
 
 SMODS.Consumable({
     key = 'lot_tree',
