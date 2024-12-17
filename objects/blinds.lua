@@ -225,6 +225,16 @@ SMODS.Blind({
     end,
     recalc_debuff = function(self, card, from_blind)
         return card.debuff
+    end,
+    disable = function(self)
+        for _, card in pairs(G.playing_cards) do
+            if card.top_check then card:set_debuff(); card.top_check = nil end
+        end
+    end,
+    defeat = function(self)
+        for _, card in pairs(G.playing_cards) do
+            if card.top_check then card:set_debuff(); card.top_check = nil end
+        end
     end
 })
 
@@ -486,9 +496,15 @@ SMODS.Blind({
     end,
     disable = function(self)
         self.triggered = nil
+        for _, card in pairs(G.playing_cards) do
+            if card.debuff then card:set_debuff() end
+        end
     end,
     defeat = function(self)
         self.triggered = nil
+        for _, card in pairs(G.playing_cards) do
+            if card.debuff then card:set_debuff() end
+        end
     end
 })
 
@@ -862,6 +878,16 @@ SMODS.Blind({
     end,
     recalc_debuff = function(self, card, from_blind)
         return card.debuff
+    end,
+    disable = function(self)
+        for _, card in pairs(G.playing_cards) do
+            if card.debuff then card:set_debuff() end
+        end
+    end,
+    defeat = function(self)
+        for _, card in pairs(G.playing_cards) do
+            if card.debuff then card:set_debuff() end
+        end
     end
 })
 
