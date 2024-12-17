@@ -167,6 +167,10 @@ SMODS.Voucher({
 	discovered = false,
 	available = true,
 	config = {extra = {ante_gain = 1, dollars = 35}},
+    in_pool = function(self)
+        if G.GAME.round_resets.blind_ante == 8 then return false end
+        return true
+    end,
 	redeem = function(self)
         ease_ante(self.config.extra.ante_gain)
         G.GAME.round_resets.blind_ante = G.GAME.round_resets.blind_ante or G.GAME.round_resets.ante
@@ -189,6 +193,10 @@ SMODS.Voucher({
 	available = false,
     requires = {'v_ortalab_abacus'},
 	config = {extra = {ante_gain = 1, joker_slots = 1}},
+    in_pool = function(self)
+        if G.GAME.round_resets.blind_ante == 8 then return false end
+        return true
+    end,
 	redeem = function(self)
         ease_ante(self.config.extra.ante_gain)
         G.GAME.round_resets.blind_ante = G.GAME.round_resets.blind_ante or G.GAME.round_resets.ante
