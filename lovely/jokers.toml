@@ -165,10 +165,17 @@ payload = '''if obj.set == 'Loteria' then nc = loteria_joker_save_check(card) en
 [[patches]]
 [patches.pattern]
 target = 'functions/button_callbacks.lua'
-pattern = "if G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.PLANET_PACK or G.STATE == G.STATES.SPECTRAL_PACK or G.STATE == G.STATES.SMODS_BOOSTER_OPENED then"
+pattern = "if not nc and card.area then card.area:remove_card(card) end"
 match_indent = true
-position = 'after'
-payload = '''card.from_booster = true'''
+position = 'before'
+payload = '''
+if card.area == G.pack_cards then
+    local blue_cards = SMODS.find_card('j_ortalab_blue_card')
+    for _, card in pairs(blue_cards) do
+        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.gain
+        card_eval_status_text(card, 'extra', nil, nil, nil, {message = '+'..card.ability.extra.gain, colour = G.C.BLUE})
+    end
+end'''
 
 
 # Miracle Cure
