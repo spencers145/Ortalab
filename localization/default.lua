@@ -64,7 +64,9 @@ return {
 			ortalab_zodiac_added = ' added!',
 			ortalab_zodiac_active = ' active!',
 			ortalab_zodiac_no_decay = 'No decay!',
-			ortalab_back = 'Let me play!'
+			ortalab_back = 'Let me play!',
+			ortalab_blind_no_rank = 'no rank',
+			ortalab_blind_no_rank_caps = 'No rank'
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
@@ -2196,8 +2198,8 @@ return {
 			['bl_ortalab_reed'] = {
 				name = 'The Reed',
 				text = {
-					'#1#s, #2#s, #3#s', 
-					'and #4#s are debuffed'
+					'#1#, #2#, #3#', 
+					'and #4# are debuffed'
 				}
 			},
 			['bl_ortalab_reed_collection'] = {

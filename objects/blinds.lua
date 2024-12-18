@@ -570,7 +570,7 @@ SMODS.Blind({
                 table.insert(ranks, k)
             end
             table.sort(ranks, function(a, b) return a < b end)
-            return {vars = {ranks[1], ranks[2], ranks[3], ranks[4]}}
+            return {vars = {ranks[1] or localize('ortalab_blind_no_rank_caps'), ranks[2] or localize('ortalab_blind_no_rank'), ranks[3] or localize('ortalab_blind_no_rank'), ranks[4] or localize('ortalab_blind_no_rank')}}
         else
             return {key = 'bl_ortalab_reed_collection', vars = {self.config.extra.debuff_count}}
         end
@@ -581,12 +581,14 @@ SMODS.Blind({
     set_blind = function(self)
         local possible_ranks = {}
         for _, card in pairs(G.playing_cards) do
-            if not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
+            if not (self.ability.effect == 'Stone Card' or self.config.center.no_rank) and not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
         end
-        for i=1, self.config.extra.debuff_count do
-            local rank = pseudorandom_element(possible_ranks, pseudoseed('ortalab_reed'))
-            self.config.extra.ranks[rank] = true
-            possible_ranks[rank] = nil
+        if table.size(possible_ranks) > 0 then
+            for i=1, math.min(self.config.extra.debuff_count, table.size(possible_ranks)) do
+                local rank = pseudorandom_element(possible_ranks, pseudoseed('ortalab_reed'))
+                self.config.extra.ranks[rank] = true
+                possible_ranks[rank] = nil
+            end
         end
         self.triggered = true
         G.GAME.blind:set_text()
@@ -620,7 +622,7 @@ SMODS.Blind({
     in_pool = function(self)
         local possible_ranks = {}
         for _, card in pairs(G.playing_cards or {}) do
-            if not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
+            if not (self.ability.effect == 'Stone Card' or self.config.center.no_rank) and not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
         end
         if table.size(possible_ranks) > self.config.extra.debuff_count then return true end
         return false
@@ -775,7 +777,7 @@ SMODS.Blind({
                 table.insert(ranks, k)
             end
             table.sort(ranks, function(a, b) return a < b end)
-            return {vars = {ranks[1], ranks[2], ranks[3], ranks[4], ranks[5]}}
+            return {vars = {ranks[1] or localize('ortalab_blind_no_rank_caps'), ranks[2] or localize('ortalab_blind_no_rank'), ranks[3] or localize('ortalab_blind_no_rank'), ranks[4] or localize('ortalab_blind_no_rank'), ranks[5] or localize('ortalab_blind_no_rank')}}
         else
             return {key = 'bl_ortalab_beam_collection', vars = {self.config.extra.flipped}}
         end
@@ -786,12 +788,14 @@ SMODS.Blind({
     set_blind = function(self)
         local possible_ranks = {}
         for _, card in pairs(G.playing_cards) do
-            if not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
+            if not (self.ability.effect == 'Stone Card' or self.config.center.no_rank) and not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
         end
-        for i=1, self.config.extra.flipped do
-            local rank = pseudorandom_element(possible_ranks, pseudoseed('ortalab_beam'))
-            self.config.extra.ranks[rank] = true
-            possible_ranks[rank] = nil
+        if table.size(possible_ranks) > 0 then
+            for i=1, math.min(table.size(possible_ranks), self.config.extra.flipped) do
+                local rank = pseudorandom_element(possible_ranks, pseudoseed('ortalab_beam'))
+                self.config.extra.ranks[rank] = true
+                possible_ranks[rank] = nil
+            end
         end
         self.triggered = true
         G.GAME.blind:set_text()
@@ -811,7 +815,7 @@ SMODS.Blind({
     in_pool = function(self)
         local possible_ranks = {}
         for _, card in pairs(G.playing_cards or {}) do
-            if not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
+            if not (self.ability.effect == 'Stone Card' or self.config.center.no_rank) and not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
         end
         if table.size(possible_ranks) > self.config.extra.flipped then return true end
         return false
