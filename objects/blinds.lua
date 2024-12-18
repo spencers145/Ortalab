@@ -164,7 +164,7 @@ SMODS.Blind({
         delay(0.7)
     end,
     defeat = function(self)
-        G.hand:change_size(self.config.extra.hands_removed)
+        if not not G.GAME.blind.disabled then G.hand:change_size(self.config.extra.hands_removed) end
     end,
     disable = function(self)
         G.hand:change_size(self.config.extra.hands_removed)
@@ -439,7 +439,7 @@ SMODS.Blind({
         G.hand:change_size(self.config.extra.hand_size)
     end,
     defeat = function(self)
-        G.hand:change_size(-self.config.extra.hand_size)
+        if not G.GAME.blind.disabled then G.hand:change_size(-self.config.extra.hand_size) end
     end,
     disable = function(self)
         G.hand:change_size(-self.config.extra.hand_size)
@@ -647,7 +647,7 @@ SMODS.Blind({
         G.hand:change_size(self.config.extra.hand_size)
     end,
     defeat = function(self)
-        G.hand:change_size(-self.config.extra.hand_size)
+        if not G.GAME.blind.disabled then G.hand:change_size(-self.config.extra.hand_size) end
     end,
     disable = function(self)
         G.hand:change_size(-self.config.extra.hand_size)
@@ -973,12 +973,12 @@ SMODS.Blind({
         return {vars = {self.config.extra.current}}
     end,
     disable = function(self)
-        for _, card in pairs(G.hand.cards) do
+        for _, card in pairs(G.playing_cards) do
             card.celadon_disabled = false
         end
     end,
     defeat = function(self)
-        for _, card in pairs(G.hand.cards) do
+        for _, card in pairs(G.playing_cards) do
             card.celadon_disabled = false
         end
     end,
@@ -1047,7 +1047,7 @@ SMODS.Blind({
         G.hand:change_size(-self.config.extra.hand_size)
     end,
     disable = function(self)
-        G.hand:change_size(self.config.extra.hand_size)
+        if not G.GAME.blind.disabled then G.hand:change_size(self.config.extra.hand_size) end
     end,
     defeat = function(self)
         G.hand:change_size(self.config.extra.hand_size)
