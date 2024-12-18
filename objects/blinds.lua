@@ -581,7 +581,7 @@ SMODS.Blind({
     set_blind = function(self)
         local possible_ranks = {}
         for _, card in pairs(G.playing_cards) do
-            if not (self.ability.effect == 'Stone Card' or self.config.center.no_rank) and not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
+            if not (card.ability.effect == 'Stone Card' or card.config.center.no_rank) and not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
         end
         if table.size(possible_ranks) > 0 then
             for i=1, math.min(self.config.extra.debuff_count, table.size(possible_ranks)) do
@@ -622,7 +622,7 @@ SMODS.Blind({
     in_pool = function(self)
         local possible_ranks = {}
         for _, card in pairs(G.playing_cards or {}) do
-            if not (self.ability.effect == 'Stone Card' or self.config.center.no_rank) and not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
+            if not (card.ability.effect == 'Stone Card' or card.config.center.no_rank) and not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
         end
         if table.size(possible_ranks) > self.config.extra.debuff_count then return true end
         return false
@@ -788,7 +788,7 @@ SMODS.Blind({
     set_blind = function(self)
         local possible_ranks = {}
         for _, card in pairs(G.playing_cards) do
-            if not (self.ability.effect == 'Stone Card' or self.config.center.no_rank) and not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
+            if not (card.ability.effect == 'Stone Card' or card.config.center.no_rank) and not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
         end
         if table.size(possible_ranks) > 0 then
             for i=1, math.min(table.size(possible_ranks), self.config.extra.flipped) do
@@ -815,7 +815,7 @@ SMODS.Blind({
     in_pool = function(self)
         local possible_ranks = {}
         for _, card in pairs(G.playing_cards or {}) do
-            if not (self.ability.effect == 'Stone Card' or self.config.center.no_rank) and not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
+            if not (card.ability.effect == 'Stone Card' or card.config.center.no_rank) and not SMODS.Ranks[card.base.value].face then possible_ranks[card.base.value] = card.base.value end
         end
         if table.size(possible_ranks) > self.config.extra.flipped then return true end
         return false
