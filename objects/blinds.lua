@@ -1108,7 +1108,9 @@ SMODS.Blind({
         for k, v in pairs(G.P_CARDS) do
             local _ = nil
             local _r, _s = string.sub(k, 3, 3), string.sub(k, 1, 1)
-            card_protos[#card_protos+1] = {s=_s,r=_r,e=nil,d=nil,g=nil}
+            if table.contains({'S', 'C','D','H'},_s) then
+                card_protos[#card_protos+1] = {s=_s,r=_r,e=nil,d=nil,g=nil}
+            end
         end
 
         table.sort(card_protos, function (a, b) return 
