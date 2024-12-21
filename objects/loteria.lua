@@ -763,7 +763,7 @@ SMODS.Consumable({
         delay(0.5)
         draw_card(G.jokers, G.play, 1, 'up', false, joker, nil, true)
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.35, func = function()
-            local _center
+            local _center = G.P_CENTERS[original.key]
             if joker.remove_from_deck and type(joker.remove_from_deck) == 'function' then joker:remove_from_deck() end
             joker:check_chameleon()
             for i=1, 40 do
