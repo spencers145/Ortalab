@@ -360,11 +360,11 @@ local skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
     if G.GAME.used_vouchers['v_ortalab_hoarding'] then
         local _tag = e.UIBox:get_UIE_by_ID('tag_container')
-        if _tag then 
-            add_tag(Tag(_tag.config.ref_table.key))
+        if _tag then
+            local tag = Tag(_tag.config.ref_table.key, false, _tag.config.ref_table.ability.blind_type)
+            tag:set_ability()
+            add_tag(tag)
         end
     end
     skip_blind(e)
-    
-    
 end
