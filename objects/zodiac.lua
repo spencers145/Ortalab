@@ -99,11 +99,11 @@ function G.FUNCS.evaluate_play(e)
 end
 
 
-function add_zodiac(_tag, silent) -- Add a zodiac to the indicator area
-    if G.GAME.Ortalab_zodiac_temp_level_mod then
+function add_zodiac(_tag, silent, from_load) -- Add a zodiac to the indicator area
+    if G.GAME.Ortalab_zodiac_temp_level_mod and not from_load then
         _tag.config.extra.temp_level = _tag.config.extra.temp_level * G.GAME.Ortalab_zodiac_temp_level_mod
     end
-    if G.GAME.Ortalab_zodiac_voucher then
+    if G.GAME.Ortalab_zodiac_voucher and not from_load then
         _tag.config.extra.temp_level = _tag.config.extra.temp_level + G.GAME.Ortalab_zodiac_voucher
     end
     _tag.voucher_check = true
