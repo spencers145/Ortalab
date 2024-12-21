@@ -305,7 +305,6 @@ payload = '''
 local freezers = SMODS.find_card('j_ortalab_freezer')
 if next(freezers) then
     for _, freezer in ipairs(freezers) do
-        print('freezer!')
         if not nc and pseudoseed('ortalab_freezer') > (G.GAME.probabilities.normal * freezer.ability.extra.chance) / freezer.ability.extra.denom then
             nc = true
             card_eval_status_text(freezer, 'extra', nil, nil, nil, {message = 'Saved!'})

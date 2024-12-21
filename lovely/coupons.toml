@@ -70,7 +70,7 @@ target = 'card.lua'
 pattern = '''G.GAME.pack_choices = self.config.center.config.choose or 1'''
 position = 'after'
 match_indent = true
-payload = '''if self.config.center.group_key and self.config.center.group_key:find('loteria') and G.GAME.used_vouchers['v_ortalab_cantor'] then print('pack'); G.GAME.pack_choices = G.GAME.pack_choices + G.GAME.Ortalab_loteria_voucher end'''
+payload = '''if self.config.center.group_key and self.config.center.group_key:find('loteria') and G.GAME.used_vouchers['v_ortalab_cantor'] then G.GAME.pack_choices = G.GAME.pack_choices + G.GAME.Ortalab_loteria_voucher end'''
 
 [[patches]]
 [patches.pattern]
