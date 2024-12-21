@@ -16,10 +16,20 @@ return {
 				"objects in the collection",
 				"Requires restart"
 			},
-			ortalab_config_loteria_skip = 'Skip Loteria Animations',
+			ortalab_config_loteria_skip = 'Loteria',
 			ortalab_config_loteria_skip_desc = {
 				'Skip the animations of',
 				'most Loteria cards'
+			},
+			ortalab_config_enhancement_skip = 'Enhancement',
+			ortalab_config_enhancement_skip_desc = {
+				'Skip the animations of',
+				'most Enhancement\'s effects'
+			},
+			ortalab_config_zodiac_skip = 'Zodiac',
+			ortalab_config_zodiac_skip_desc = {
+				'Skip the animations of',
+				'most Zodiac effects'
 			},
 			ortalab_hide_intro = 'Don\'t show again',
 			ortalab_toggle_intro = 'Skip Intro Screen',
@@ -2064,19 +2074,19 @@ return {
             },
 		},
 		['Stake'] = {
-			['stake_ortalab_1'] = {
+			['stake_ortalab_diamond'] = {
 				name = "Ortalab Stake",
 				text = {
 				"Play with only",
 				"{C:Ortalab}Ortalab{} content"
 				}
 			},
-			['stake_ortalab_2'] = {
+			['stake_ortalab_triangle'] = {
 				["name"] = 'Ortalab Stake II',
 				["text"] = {
 					"Required score scales",
                     "faster for each {C:attention}Ante",
-                    "{s:0.8}Applies Ruby Stake"
+                    "{s:0.8}Applies Ortalab Stake II"
 				}
 			}
 		},

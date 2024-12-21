@@ -21,19 +21,21 @@ SMODS.Enhancement({
         if context.cardarea == G.play and not context.repetition then
             local chip_return = 0
             for i, held_card in pairs(G.hand.cards) do
-                G.E_MANAGER:add_event(Event({
-                    trigger = 'after',
-                    delay = 0.3,
-                    func = function()
-                        held_card:juice_up()
-                        play_sound('chips1', 0.8+ (0.9 + 0.2*math.random())*0.2, 1)
-                        card:juice_up(0.6, 0.1)
-                        G.ROOM.jiggle = G.ROOM.jiggle + 0.7    
-                        return true
-                    end
-                }))
+                if not Ortalab.config.enhancement_skip then
+                    G.E_MANAGER:add_event(Event({
+                        trigger = 'after',
+                        delay = 0.3,
+                        func = function()
+                            held_card:juice_up()
+                            play_sound('chips1', 0.8+ (0.9 + 0.2*math.random())*0.2, 1)
+                            card:juice_up(0.6, 0.1)
+                            G.ROOM.jiggle = G.ROOM.jiggle + 0.7    
+                            return true
+                        end
+                    }))
+                end
                 chip_return = chip_return + card.ability.extra.hand_chips
-                if i ~= # G.hand.cards then card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_chips',vars={chip_return}}, colour = G.C.BLUE, delay = 0, chip_mod = true}) end
+                if i ~= # G.hand.cards and not Ortalab.config.enhancement_skip then card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_chips',vars={chip_return}}, colour = G.C.BLUE, delay = 0, chip_mod = true}) end
             end
             SMODS.eval_this(card, {
                 chip_mod = chip_return,
@@ -60,19 +62,21 @@ SMODS.Enhancement({
         if context.cardarea == G.play and not context.repetition then
             local mult_return = 0
             for i, held_card in pairs(G.hand.cards) do
-                G.E_MANAGER:add_event(Event({
-                    trigger = 'after',
-                    delay = 0.3,
-                    func = function()
-                        held_card:juice_up()
-                        play_sound('chips1', 0.8+ (0.9 + 0.2*math.random())*0.2, 1)
-                        card:juice_up(0.6, 0.1)
-                        G.ROOM.jiggle = G.ROOM.jiggle + 0.7    
-                        return true
-                    end
-                }))
+                if not Ortalab.config.enhancement_skip then
+                    G.E_MANAGER:add_event(Event({
+                        trigger = 'after',
+                        delay = 0.3,
+                        func = function()
+                            held_card:juice_up()
+                            play_sound('chips1', 0.8+ (0.9 + 0.2*math.random())*0.2, 1)
+                            card:juice_up(0.6, 0.1)
+                            G.ROOM.jiggle = G.ROOM.jiggle + 0.7    
+                            return true
+                        end
+                    }))
+                end
                 mult_return = mult_return + card.ability.extra.hand_mult
-                if i ~= #G.hand.cards then card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_mult',vars={mult_return}}, colour = G.C.RED, delay = 0, mult_mod = true}) end
+                if i ~= #G.hand.cards and not Ortalab.config.enhancement_skip then card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_mult',vars={mult_return}}, colour = G.C.RED, delay = 0, mult_mod = true}) end
             end
             SMODS.eval_this(card, {
                 mult_mod = mult_return,
@@ -142,19 +146,21 @@ SMODS.Enhancement({
             local rusty_in_hand = 0
             for i, held_card in pairs(G.hand.cards) do
                 if held_card.config.center_key == 'm_ortalab_rusty' then
-                    G.E_MANAGER:add_event(Event({
-                        trigger = 'after',
-                        delay = 0.3,
-                        func = function()
-                            held_card:juice_up()
-                            play_sound('ortalab_metal1', 0.8+ (0.9 + 0.2*math.random())*0.2, 0.5)
-                            card:juice_up()
-                            G.ROOM.jiggle = G.ROOM.jiggle + 0.7    
-                            return true
-                        end
-                    }))
+                    if not Ortalab.config.enhancement_skip then
+                        G.E_MANAGER:add_event(Event({
+                            trigger = 'after',
+                            delay = 0.3,
+                            func = function()
+                                held_card:juice_up()
+                                play_sound('ortalab_metal1', 0.8+ (0.9 + 0.2*math.random())*0.2, 0.5)
+                                card:juice_up()
+                                G.ROOM.jiggle = G.ROOM.jiggle + 0.7    
+                                return true
+                            end
+                        }))
+                    end
                     rusty_in_hand = rusty_in_hand + 1
-                    if i ~= #G.hand.cards then card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_xmult',vars={card.ability.extra.base_x + (rusty_in_hand * card.ability.extra.x_gain)}}, colour = G.C.RED, delay = 0, Xmult_mod = true}) end
+                    if i ~= #G.hand.cards and not Ortalab.config.enhancement_skip then card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_xmult',vars={card.ability.extra.base_x + (rusty_in_hand * card.ability.extra.x_gain)}}, colour = G.C.RED, delay = 0, Xmult_mod = true}) end
                 end
             end
             effect.x_mult = card.ability.extra.base_x + (rusty_in_hand * card.ability.extra.x_gain)

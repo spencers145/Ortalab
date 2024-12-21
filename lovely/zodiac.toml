@@ -100,12 +100,14 @@ if G.zodiacs then
 
             for i=1, zodiac_current.config.extra.temp_level do
                 iou_count = iou_count + 1
-                update_hand_text({sound = 'button', volume = 0.7, pitch = 0.9, delay = 0}, {level=G.GAME.hands[text].level..'+'..iou_count})
-                mult = mod_mult(mult+G.GAME.hands[text].l_mult)
-                update_hand_text({delay = 0}, {mult = mult})
-                hand_chips = mod_chips(hand_chips+G.GAME.hands[text].l_chips)
-                update_hand_text({delay = 0}, {chips = hand_chips})
-                delay(0.3)
+                    update_hand_text({sound = 'button', volume = 0.7, pitch = 0.9, delay = 0}, {level=G.GAME.hands[text].level..'+'..iou_count})
+                    mult = mod_mult(mult+G.GAME.hands[text].l_mult)
+                    update_hand_text({delay = 0}, {mult = mult})
+                    hand_chips = mod_chips(hand_chips+G.GAME.hands[text].l_chips)
+                    update_hand_text({delay = 0}, {chips = hand_chips})
+                if not Ortalab.config.zodiac_skip then
+                    delay(0.3)
+                end
             end
         end
     end

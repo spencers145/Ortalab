@@ -996,6 +996,12 @@ function zodiac_upgrade_text(key)
 end
 
 function zodiac_text(message, key)
+    if Ortalab.config.zodiac_skip then return end
+    local old_colours = {
+        special_colour = copy_table(G.C.BACKGROUND.C),
+        tertiary_colour = copy_table(G.C.BACKGROUND.D),
+        new_colour = copy_table(G.C.BACKGROUND.L),
+    }
     ease_background_colour{special_colour = darken(G.ARGS.LOC_COLOURS['Zodiac'], 0.5), new_colour = G.ZODIACS[key].colour, tertiary_colour = G.ARGS.LOC_COLOURS.Zodiac, contrast = 1}
     -- Adds the constellation sprite in the background
     local zodiac_sprite = Sprite(0, 0, 150, 150, G.ASSET_ATLAS['ortalab_zodiac_constellations'], G.ZODIACS[key].pos)
@@ -1014,7 +1020,7 @@ function zodiac_text(message, key)
         trigger = 'after',
         delay = 1.5,
         func = function()
-            ease_background_colour_blind(G.STATE)
+            ease_background_colour({special_colour = old_colours.special_colour, tertiary_colour = old_colours.tertiary_colour, new_colour = old_colours.new_colour})
             zodiac_sprite:remove()
             zodiac_UI:remove()
             return true
