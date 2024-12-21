@@ -68,7 +68,7 @@ if saveTable then
     for k, v in pairs(zodiacs) do
         local _zodiac = Zodiac('zodiac_ortalab_scorpio')
         _zodiac:load(v)
-        add_zodiac(_zodiac, true)
+        add_zodiac(_zodiac, true, true)
     end
 end
 '''
