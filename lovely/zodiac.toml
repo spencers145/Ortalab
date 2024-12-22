@@ -63,7 +63,8 @@ position = 'before'
 match_indent = true
 payload = '''
 if saveTable then 
-    G.zodiacs = {}
+    self.zodiacs = {}
+    self.HUD_zodiac = {}
     local zodiacs = saveTable.zodiacs or {}
     for k, v in pairs(zodiacs) do
         local _zodiac = Zodiac('zodiac_ortalab_scorpio')
