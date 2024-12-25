@@ -164,7 +164,7 @@ SMODS.Blind({
         delay(0.7)
     end,
     defeat = function(self)
-        if not not G.GAME.blind.disabled then G.hand:change_size(self.config.extra.hands_removed) end
+        if not G.GAME.blind.disabled then G.hand:change_size(self.config.extra.hands_removed) end
     end,
     disable = function(self)
         G.hand:change_size(self.config.extra.hands_removed)
