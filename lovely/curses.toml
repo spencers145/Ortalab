@@ -3,6 +3,112 @@ version = "1.0.0"
 dump_lua = true
 priority = 1
 
+# Draw curses
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''local seal = G.P_SEALS[self.seal or {}] or {}'''
+position = 'before'
+match_indent = true
+payload = '''
+if self.curse then
+    Ortalab.curse_sprites[self.curse].role.draw_major = self
+    Ortalab.curse_sprites[self.curse]:draw_shader('dissolve', nil, nil, nil, self.children.center)
+end
+'''
+
+# Load/save curses on cards
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''seal = self.seal,'''
+position = 'before'
+match_indent = true
+payload = '''
+curse = self.curse,
+'''
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''self.seal = cardTable.seal'''
+position = 'before'
+match_indent = true
+payload = '''
+self.curse = cardTable.curse
+'''
+
+# Curse tooltips and badges
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = '''local seal = SMODS.Seals[v] or SMODS.Seal.badge_to_key[v] and SMODS.Seals[SMODS.Seal.badge_to_key[v]]'''
+position = 'before'
+match_indent = true
+payload = '''
+local curse = Ortalab.Curses[v] or Ortalab.Curse.badge_to_key[v] and Ortalab.Curses[Ortalab.Curse.badge_to_key[v]]
+if curse and curse.generate_ui ~= 0 then
+    local t = { key = v, set = 'Curse' }
+    info_queue[#info_queue+1] = t
+    if curse.loc_vars and type(curse.loc_vars) == 'function' then
+        local res = curse:loc_vars(info_queue, card) or {}
+        t.vars = res.vars
+        t.key = res.key or t.key
+    end
+end
+'''
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = '''elseif _c.set == 'Joker' then'''
+position = 'before'
+match_indent = true
+payload = '''
+elseif _c.set == 'Curse' then
+    localize{type = 'descriptions', set = 'Curse', key = _c.key, nodes = desc_nodes, vars = specific_vars or _c.vars}
+'''
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''if self.seal then badges[#badges + 1] = string.lower(self.seal)..'_seal' end'''
+position = 'before'
+match_indent = true
+payload = '''
+if self.curse then badges[#badges + 1] = string.lower(self.curse) end
+'''
+# get_badge_colour()
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = 'return G.BADGE_COL[key] or {1, 0, 0, 1}'
+position = 'before'
+match_indent = true
+payload = '''
+for k, v in pairs(Ortalab.Curses) do
+    G.BADGE_COL[k:lower()] = v.badge_colour
+end'''
+
+# copy_card()
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = 'new_card:set_seal(other.seal, true)'
+position = 'before'
+match_indent = true
+payload = '''
+new_card:set_curse(other.curse, true)
+if other.curse then
+    for k, v in pairs(other.ability.curse or {}) do
+        if type(v) == 'table' then
+            new_card.ability.curse[k] = copy_table(v)
+        else
+            new_card.ability.curse[k] = v
+        end
+    end
+end
+'''
+
+
+
 ## Populate Seal Ability Table
 [[patches]]
 [patches.pattern]
@@ -39,4 +145,74 @@ if other.seal then
 end
 '''
 
-## Corroded discard
+##  Curse calculation
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = '''local seals = card:calculate_seal(context)'''
+position = 'before'
+match_indent = true
+payload = '''
+local curses = card:calculate_curse(context)
+if curses then
+    ret.curses = curses
+end
+'''
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = '''local seals = not card.ability.extra_enhancement and card:calculate_seal(context)'''
+position = 'before'
+match_indent = true
+payload = '''
+local curses = card:calculate_curse(context)
+if curses then
+    ret.curses = curses
+end
+'''
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = '''if effects[ii].seals then'''
+position = 'before'
+match_indent = true
+payload = '''
+if effects[ii].curses then
+    if effects[ii].curses.chips then 
+        if effects[ii].card then juice_card(effects[ii].card) end
+        hand_chips = mod_chips(hand_chips + effects[ii].curses.chips)
+        update_hand_text({delay = 0}, {chips = hand_chips})
+        card_eval_status_text(scoring_hand[i], 'chips', effects[ii].curses.chips, percent)
+    end
+    
+    if effects[ii].curses.mult then 
+        if effects[ii].card then juice_card(effects[ii].card) end
+        mult = mod_mult(mult + effects[ii].curses.mult)
+        update_hand_text({delay = 0}, {mult = mult})
+        card_eval_status_text(scoring_hand[i], 'mult', effects[ii].curses.mult, percent)
+    end
+    
+    if effects[ii].curses.p_dollars then 
+        if effects[ii].card then juice_card(effects[ii].card) end
+        ease_dollars(effects[ii].curses.p_dollars)
+        card_eval_status_text(scoring_hand[i], 'dollars', effects[ii].curses.p_dollars, percent)
+    end
+    
+    if effects[ii].curses.dollars then 
+        if effects[ii].card then juice_card(effects[ii].card) end
+        ease_dollars(effects[ii].curses.dollars)
+        card_eval_status_text(scoring_hand[i], 'dollars', effects[ii].curses.dollars, percent)
+    end
+    
+    if effects[ii].curses.x_mult then 
+        if effects[ii].card then juice_card(effects[ii].card) end
+        mult = mod_mult(mult*effects[ii].curses.x_mult)
+        update_hand_text({delay = 0}, {mult = mult})
+        card_eval_status_text(scoring_hand[i], 'x_mult', effects[ii].curses.x_mult, percent)
+    end
+
+    if effects[ii].curses.func then
+        effects[ii].curses.func()
+    end
+end
+'''
