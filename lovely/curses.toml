@@ -216,3 +216,31 @@ if effects[ii].curses then
     end
 end
 '''
+
+[[patches]]
+[patches.pattern]
+target = 'cardarea.lua'
+pattern = '''if (not force) and  card and card.ability.forced_selection and self == G.hand then return end'''
+position = 'after'
+match_indent = true
+payload = '''
+if (not force) and card and card.curse == 'ortalab_possessed' and self == G.hand then return end
+'''
+[[patches]]
+[patches.pattern]
+target = 'cardarea.lua'
+pattern = '''if self.highlighted[i].ability.forced_selection and self == G.hand then'''
+position = 'after'
+match_indent = true
+payload = '''
+elseif self.highlighted[i] and self.highlighted[i].curse == 'ortalab_possessed' and self == G.hand then
+'''
+[[patches]]
+[patches.pattern]
+target = 'cardarea.lua'
+pattern = '''if v.ability.forced_selection and not self.highlighted[1] then '''
+position = 'at'
+match_indent = true
+payload = '''
+if #self.highlighted < self.config.highlighted_limit and (v.ability.forced_selection or v.curse == 'ortalab_possessed') and not v.highlighted then
+'''

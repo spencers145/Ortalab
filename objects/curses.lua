@@ -232,7 +232,8 @@ Ortalab.Curse({
     key = 'possessed',
     atlas = 'curses',
     pos = {x = 1, y = 0},
-    badge_colour = HEX('82b4f4')
+    badge_colour = HEX('82b4f4'),
+    config = {extra = {force = true}},
 })
 
 Ortalab.Curse({
