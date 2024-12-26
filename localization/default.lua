@@ -83,10 +83,10 @@ return {
 			ortalab_fluorescent = 'Fluorescent',
 			ortalab_overexposed = 'Overexposed',
 			ortalab_anaglyphic = 'Anaglyphic',
-			ortalab_corroded_seal = 'Corroded',
-			ortalab_possessed_seal = 'Possessed',
-			ortalab_restrained_seal = 'Restrained',
-			ortalab_infected_seal = 'Infected',
+			ortalab_corroded = 'Corroded',
+			ortalab_possessed = 'Possessed',
+			ortalab_restrained = 'Restrained',
+			ortalab_infected = 'Infected',
 		}
     },
     ["descriptions"] = {
@@ -1918,8 +1918,8 @@ return {
 				}
 			},
 		},
-		['Other'] = {
-			['ortalab_corroded_seal'] = {
+		['Curse'] = {
+			['ortalab_corroded'] = {
                 name = "Corroded",
                 text = {
                     "{C:red}-$#1#{} when {C:blue}played",
@@ -1928,6 +1928,15 @@ return {
 					"into deck"
                 }
             },
+			['ortalab_possessed'] = {
+                name = "Possessed",
+                text = {
+                    "Force selected when",
+					"drawn"
+                }
+            },
+		},
+		['Other'] = {
 			['p_ortalab_small_loteria_1'] = {
                 name = "Chalupa Pack",
                 text = {
