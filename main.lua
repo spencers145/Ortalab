@@ -10,7 +10,7 @@ Ortalab.load_table = {
     coupons = true,
     stakes = true,
     blinds = true,
-    curses = false,
+    curses = true,
     mythos = false
 }
 loc_colour('red')
