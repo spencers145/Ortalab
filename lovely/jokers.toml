@@ -151,16 +151,6 @@ if self.ability.shinku then
 end'''
 match_indent = true
 
-
-# G.FUNCS.use_card()
-[[patches]]
-[patches.pattern]
-target = 'functions/button_callbacks.lua'
-pattern = "if obj.keep_on_use and type(obj.keep_on_use) == 'function' then"
-match_indent = true
-position = 'before'
-payload = '''if obj.set == 'Loteria' then nc = loteria_joker_save_check(card) end'''
-
 # G.FUNCS.use_card()
 [[patches]]
 [patches.pattern]
