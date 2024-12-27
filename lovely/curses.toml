@@ -244,3 +244,26 @@ match_indent = true
 payload = '''
 if #self.highlighted < self.config.highlighted_limit and (v.ability.forced_selection or v.curse == 'ortalab_possessed') and not v.highlighted then
 '''
+
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = '''local hand_text_set = false'''
+position = 'after'
+match_indent = true
+payload = '''
+for i=1, #G.play.cards do
+    --calculate curse effects
+    local effects = eval_card(G.play.cards[i], {cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, before = true,
+    callback = function(card, ret)
+        effects = {curse = ret}
+        if effects.curse then
+            card_eval_status_text(card, 'jokers', nil, percent, nil, effects.jokers)
+            percent = percent + percent_delta
+            if effects.jokers.level_up then
+                level_up_hand(card, text)
+            end
+        end
+    end})
+end
+'''

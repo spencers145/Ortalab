@@ -234,18 +234,33 @@ Ortalab.Curse({
     pos = {x = 1, y = 0},
     badge_colour = HEX('82b4f4'),
     config = {extra = {force = true}},
+    loc_vars = function(self, info_queue, card)
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
+    end,
 })
 
 Ortalab.Curse({
     key = 'restrained',
     atlas = 'curses',
     pos = {x = 2, y = 0},
-    badge_colour = HEX('d78532')
+    badge_colour = HEX('d78532'),
+    config = {extra = {level_loss = 1}},
+    loc_vars = function(self, info_queue, card)
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
+    end,
+    calculate = function(self, card, context)
+        if context.before then
+            level_up_hand(card, context.scoring_name, false, -1 * card.ability.curse.extra.level_loss)
+        end
+    end
 })
 
 Ortalab.Curse({
     key = 'infected',
     atlas = 'curses',
     pos = {x = 3, y = 0},
-    badge_colour = HEX('a1ba56')
+    badge_colour = HEX('a1ba56'),
+    loc_vars = function(self, info_queue, card)
+        if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
+    end,
 })
