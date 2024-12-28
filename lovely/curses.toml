@@ -12,7 +12,14 @@ position = 'before'
 match_indent = true
 payload = '''
 if self.curse then
+    if self.curse == 'ortalab_infected' and self.area == G.play and self.no_score then
+        self.children.center:draw_shader('ortalab_celadon', nil, self.ARGS.send_to_shader)
+        if self.children.front then
+            self.children.front:draw_shader('ortalab_celadon', nil, self.ARGS.send_to_shader)
+        end
+    end
     Ortalab.curse_sprites[self.curse].role.draw_major = self
+    Ortalab.curse_sprites[self.curse]:draw_shader('dissolve',0, nil, nil, self.children.center,nil,nil,nil, nil,nil, 0.6)
     Ortalab.curse_sprites[self.curse]:draw_shader('dissolve', nil, nil, nil, self.children.center)
 end
 '''
@@ -245,6 +252,7 @@ payload = '''
 if #self.highlighted < self.config.highlighted_limit and (v.ability.forced_selection or v.curse == 'ortalab_possessed') and not v.highlighted then
 '''
 
+# Restrained
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
@@ -265,5 +273,33 @@ for i=1, #G.play.cards do
             end
         end
     end})
+end
+'''
+
+# Infected
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = '''card_eval_status_text(scoring_hand[i], 'debuff')'''
+position = 'after'
+match_indent = true
+payload = '''
+elseif scoring_hand[i].curse == 'ortalab_infected' then
+    G.E_MANAGER:add_event(Event({func = function() scoring_hand[i].no_score = true; return true; end}))
+    card_eval_status_text(scoring_hand[i], 'extra', nil, nil, nil, {message = localize({set = 'Curse', type = 'name_text', key = 'ortalab_infected'})..'!', colour = Ortalab.Curses.ortalab_infected.badge_colour})
+'''
+# Infected
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = '''if not G.GAME.blind:debuff_hand(G.play.cards, poker_hands, text) then'''
+position = 'before'
+match_indent = true
+payload = '''
+for _, card in ipairs(scoring_hand) do
+    if card.curse == 'ortalab_infected' then
+        G.E_MANAGER:add_event(Event({func = function() card.no_score = true; return true; end}))
+        card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize({set = 'Curse', type = 'name_text', key = 'ortalab_infected'})..'!', colour = Ortalab.Curses.ortalab_infected.badge_colour})
+    end
 end
 '''

@@ -76,7 +76,7 @@ return {
 			ortalab_zodiac_no_decay = 'No decay!',
 			ortalab_back = 'Let me play!',
 			ortalab_blind_no_rank = 'no rank',
-			ortalab_blind_no_rank_caps = 'No rank'
+			ortalab_blind_no_rank_caps = 'No rank',
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
@@ -1933,6 +1933,22 @@ return {
                 text = {
                     "Force selected when",
 					"drawn"
+                }
+            },
+			['ortalab_restrained'] = {
+                name = "Restrained",
+                text = {
+                    '{C:red}Reduces{} level of played',
+					'{C:attention}poker hand{} by {C:red}#1#{}',
+					'when played'
+                }
+            },
+			['ortalab_infected'] = {
+                name = "Infected",
+                text = {
+                    'Card {C:attention}does not{} score',
+					'{C:infected}Infected{} swaps to an uncursed',
+					'card in hand when {C:red}discarded'
                 }
             },
 		},

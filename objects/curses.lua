@@ -143,11 +143,9 @@ G.FUNCS.your_collection_curse_page = function(args)
 	end
 end
 
-function Card:set_curse(_curse, silent, immediate)
-    self.curse = nil
+function Card:set_curse(_curse, silent, immediate, spread, message)
     if self.ability.forced_selection == 'ortalab_possessed' then self.ability.forced_selection = nil end
     if _curse then
-        self.curse = _curse
         self.ability.curse = {}
         for k, v in pairs(Ortalab.Curses[_curse].config or {}) do
             if type(v) == 'table' then
@@ -156,36 +154,41 @@ function Card:set_curse(_curse, silent, immediate)
                 self.ability.curse[k] = v
             end
         end
-        -- if Ortalab.Curses[_curse].set_ability and type(Ortalab.Curses[_curse].set_ability) == 'function' then
-        --     Ortalab.Curses[_curse]:set_ability(self)
-        -- end
-        if not silent then 
+
         G.CONTROLLER.locks.seal = true
         local sound = Ortalab.Curses[_curse].sound or {sound = 'gold_seal', per = 1.2, vol = 0.4}
-            if immediate then 
-                self:juice_up(0.3, 0.3)
-                play_sound(sound.sound, sound.per, sound.vol)
-                G.CONTROLLER.locks.seal = false
-            else
-                G.E_MANAGER:add_event(Event({
-                    trigger = 'after',
-                    delay = 0.3,
-                    func = function()
-                        self:juice_up(0.3, 0.3)
+        if immediate then 
+            self.curse = nil
+            self:juice_up(0.3, 0.3)
+            if not silent then play_sound(sound.sound, sound.per, sound.vol) end
+            self.curse = _curse
+            G.CONTROLLER.locks.seal = false
+        else
+            G.E_MANAGER:add_event(Event({
+                trigger = 'after',
+                delay = 0.3,
+                func = function()
+                    self.curse = nil
+                    self:juice_up(0.3, 0.3)
+                    self.curse = _curse
+                    if not silent then
                         play_sound(sound.sound, sound.per, sound.vol)
-                    return true
+                        card_eval_status_text(self, 'extra', nil, nil, nil, {instant = true, message = message or localize({type = 'name_text', set = 'Curse', key = _curse})..'!', colour = Ortalab.Curses[_curse].badge_colour})
                     end
-                }))
-                G.E_MANAGER:add_event(Event({
-                    trigger = 'after',
-                    delay = 0.15,
-                    func = function()
-                        G.CONTROLLER.locks.seal = false
-                    return true
-                    end
-                }))
-            end
+                return true
+                end
+            }))
+            G.E_MANAGER:add_event(Event({
+                trigger = 'after',
+                delay = 0.15,
+                func = function()
+                    G.CONTROLLER.locks.seal = false
+                return true
+                end
+            }))
         end
+    else
+        self.curse = nil
     end
     self:set_cost()
 end
@@ -247,6 +250,7 @@ Ortalab.Curse({
     config = {extra = {level_loss = 1}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
+        return {vars = {card.ability.curse.extra.level_loss}}
     end,
     calculate = function(self, card, context)
         if context.before then
@@ -255,12 +259,51 @@ Ortalab.Curse({
     end
 })
 
+
+G.ARGS.LOC_COLOURS.infected = HEX('a1ba56')
+
+SMODS.Sound({
+    key = 'infected',
+    path = 'infected.ogg'
+})
+
 Ortalab.Curse({
     key = 'infected',
     atlas = 'curses',
     pos = {x = 3, y = 0},
     badge_colour = HEX('a1ba56'),
+    sound = {sound = 'ortalab_infected', per = 1.2, vol = 0.4},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
     end,
+    calculate = function(self, card, context)
+        if context.discard then
+            G.E_MANAGER:add_event(Event({
+                trigger = 'after',
+                delay = 0.4,
+                func = function()
+                    G.E_MANAGER:add_event(Event({func = function()
+                        local uncursed_hand_cards = {}
+                        for _, card in ipairs(G.hand.cards) do
+                            if not card.ability.curse then uncursed_hand_cards[#uncursed_hand_cards + 1] = card end
+                        end
+                        if #uncursed_hand_cards == 0 then return true end
+                        local card_to_spread = pseudorandom_element(uncursed_hand_cards, pseudoseed('ortalab_infected_spread'))
+                        card_to_spread:set_curse('ortalab_infected', nil, nil, true)
+                        card:set_curse()
+                        return true
+                    end}))
+                    return true
+                end
+            }))
+        end
+    end
 })
+
+local dfdtd = G.FUNCS.draw_from_discard_to_deck
+G.FUNCS.draw_from_discard_to_deck = function(e)
+    for _, card in pairs(G.discard.cards) do
+        card.no_score = nil
+    end
+    dfdtd(e)
+end
