@@ -22,10 +22,7 @@ SMODS.Joker({
         if context.joker_main then
 			local xmult_to_add = card.ability.extra.xmult + (card.ability.extra.xmult_gain * card.ability.extra.consecutive_ranks)
             return {
-                message = localize{type='variable', key='a_xmult', vars={xmult_to_add}},
-                Xmult_mod = xmult_to_add, 
-                colour = G.C.RED,
-                card = card
+                xmult = xmult_to_add
             }
         end
     end

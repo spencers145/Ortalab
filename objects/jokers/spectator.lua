@@ -17,10 +17,7 @@ SMODS.Joker({
 	calculate = function(self, card, context)
         if context.joker_main and G.GAME.current_round.hands_played == 0 then
             return {
-                message = localize{type='variable', key='a_xmult', vars={card.ability.extra.xmult}},
-                Xmult_mod = card.ability.extra.xmult, 
-                colour = G.C.RED,
-                card = card
+                xmult = card.ability.extra.xmult
             }
         end
     end

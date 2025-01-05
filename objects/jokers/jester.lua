@@ -17,9 +17,7 @@ SMODS.Joker({
     calculate = function(self, card, context)
         if context.joker_main then
             return {
-                message = localize{type='variable',key='a_chips',vars={card.ability.extra.chips}},
-                chip_mod = card.ability.extra.chips, 
-                colour = G.C.CHIPS
+                chips = card.ability.extra.chips, 
             }
         end
     end

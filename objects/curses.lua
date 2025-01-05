@@ -25,6 +25,7 @@ Ortalab.Curse = SMODS.GameObject:extend {
         Ortalab.Curses[self.key] = self
         Ortalab.curse_sprites[self.key] = Sprite(0, 0, G.CARD_W, G.CARD_H, G.ASSET_ATLAS[self.atlas] or G.ASSET_ATLAS['ortalab_curses'], self.pos)
         self.badge_to_key[self.key:lower()] = self.key
+        if not G.P_CENTER_POOLS.Curse then G.P_CENTER_POOLS.Curse = {} end
         SMODS.insert_pool(G.P_CENTER_POOLS[self.set], self)
     end,
     process_loc_text = function(self)
@@ -161,6 +162,7 @@ function Card:set_curse(_curse, silent, immediate, spread, message)
             self.curse = nil
             self:juice_up(0.3, 0.3)
             if not silent then play_sound(sound.sound, sound.per, sound.vol) end
+            if not silent then card_eval_status_text(self, 'extra', nil, nil, nil, {instant = true, message = message or localize({type = 'name_text', set = 'Curse', key = _curse})..'!', colour = Ortalab.Curses[_curse].badge_colour}) end
             self.curse = _curse
             G.CONTROLLER.locks.seal = false
         else
@@ -213,19 +215,17 @@ Ortalab.Curse({
     end,
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
-		return {vars = {card.ability.curse.extra.base, card.ability.curse.extra.gain}}
+		return {vars = {self.config.extra.base, self.config.extra.gain}}
     end,
     calculate = function(self, card, context)
-        if context.discard then
-            card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_corroded'), colour = G.C.RED})
+        if context.discard and context.other_card == card then
+            card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize({type = 'name_text', set = 'Curse', key = self.key})..'!', colour = self.badge_colour})
             card.ability.curse.extra.base = card.ability.curse.extra.base + card.ability.curse.extra.gain
             card.corroded_discard = true
         end
-        if context.cardarea and context.cardarea == G.play and not context.repetition and not context.individual then
+        if context.cardarea == G.play and context.main_scoring and not context.repetition and not context.individual then
             return {
-                message = '-'..localize('$')..card.ability.curse.extra.base,
                 p_dollars = -card.ability.curse.extra.base,
-                colour = G.C.RED,
             }
         end
     end
@@ -247,20 +247,24 @@ Ortalab.Curse({
     atlas = 'curses',
     pos = {x = 2, y = 0},
     badge_colour = HEX('d78532'),
-    config = {extra = {level_loss = 1}},
+    config = {extra = {level_loss = 2}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
-        return {vars = {card.ability.curse.extra.level_loss}}
+        return {vars = {self.config.extra.level_loss}}
     end,
     calculate = function(self, card, context)
-        if context.before then
-            level_up_hand(card, context.scoring_name, false, -1 * card.ability.curse.extra.level_loss)
+        if context.before and context.cardarea == G.play then
+            G.GAME.ortalab.temp_levels = G.GAME.ortalab.temp_levels - card.ability.curse.extra.level_loss
+            return {
+                message = localize({type = 'name_text', set = 'Curse', key = self.key})..'!',
+                colour = self.badge_colour,
+            }
         end
     end
 })
 
 
-G.ARGS.LOC_COLOURS.infected = HEX('a1ba56')
+G.ARGS.LOC_COLOURS.infected = HEX('849a3f')
 
 SMODS.Sound({
     key = 'infected',
@@ -271,13 +275,13 @@ Ortalab.Curse({
     key = 'infected',
     atlas = 'curses',
     pos = {x = 3, y = 0},
-    badge_colour = HEX('a1ba56'),
+    badge_colour = HEX('849a3f'),
     sound = {sound = 'ortalab_infected', per = 1.2, vol = 0.4},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
     end,
     calculate = function(self, card, context)
-        if context.discard then
+        if context.discard and context.other_card == card then
             G.E_MANAGER:add_event(Event({
                 trigger = 'after',
                 delay = 0.4,

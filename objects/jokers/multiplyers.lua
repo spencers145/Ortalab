@@ -2,7 +2,7 @@ SMODS.Joker({
 	key = "multiplyers",
 	atlas = "jokers",
 	pos = {x = 9, y = 6},
-	rarity = 2,
+	rarity = 3,
 	cost = 6,
 	unlocked = true,
 	discovered = false,

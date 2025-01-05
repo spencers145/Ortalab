@@ -15,14 +15,14 @@ SMODS.Joker({
 		return {vars = {card.ability.extra.slots, card.ability.extra.multiplier}}
 	end,
     add_to_deck = function(self, card, from_debuff)
-        G.jokers.config.card_limit = G.jokers.config.card_limit + card.ability.extra.slots
+        modify_joker_slot_count(card.ability.extra.slots)
         G.E_MANAGER:add_event(Event({func = function()
             update_blind_amounts()
             return true
         end}))
     end,
     remove_from_deck = function(self, card, from_debuff)
-        G.jokers.config.card_limit = G.jokers.config.card_limit - card.ability.extra.slots
+        modify_joker_slot_count(-card.ability.extra.slots)
         update_blind_amounts()
     end
 })

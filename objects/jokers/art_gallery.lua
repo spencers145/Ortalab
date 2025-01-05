@@ -19,8 +19,7 @@ SMODS.Joker({
         if context.joker_main then
             local total_cards = #G.jokers.cards + #G.consumeables.cards
             return {
-                message = localize{type='variable',key='a_chips',vars={total_cards*card.ability.extra.chips_add}},
-                chip_mod = total_cards*card.ability.extra.chips_add, 
+                chips = total_cards*card.ability.extra.chips_add, 
                 colour = G.C.CHIPS
             }
         end

@@ -20,15 +20,11 @@ SMODS.Joker({
             return {
                 message = localize('k_upgrade_ex'),
                 colour = G.C.BLUE,
-                card = card
             }
         end
         if context.joker_main and card.ability.extra.chips > 0 then
             return {
-                message = localize{type='variable', key='a_chips', vars={card.ability.extra.chips}},
-                chip_mod = card.ability.extra.chips, 
-                colour = G.C.CHIPS,
-                card = card
+                chips = card.ability.extra.chips
             }
         end
     end

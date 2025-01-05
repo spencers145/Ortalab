@@ -102,7 +102,7 @@ pattern = 'new_card:set_seal(other.seal, true)'
 position = 'before'
 match_indent = true
 payload = '''
-new_card:set_curse(other.curse, true)
+new_card:set_curse(other.curse, true, true)
 if other.curse then
     for k, v in pairs(other.ability.curse or {}) do
         if type(v) == 'table' then
@@ -114,116 +114,38 @@ if other.curse then
 end
 '''
 
-
-
-## Populate Seal Ability Table
-[[patches]]
-[patches.pattern]
-target = 'card.lua'
-pattern = '''self.seal = _seal'''
-position = 'after'
-match_indent = true
-payload = '''
-self.ability.seal = {}
-for k, v in pairs(G.P_SEALS[_seal].config or {}) do
-    if type(v) == 'table' then
-        self.ability.seal[k] = copy_table(v)
-    else
-        self.ability.seal[k] = v
-    end
-end
-'''
-
-[[patches]]
-[patches.pattern]
-target = 'functions/common_events.lua'
-pattern = '''new_card:set_seal(other.seal, true)'''
-position = 'after'
-match_indent = true
-payload = '''
-if other.seal then
-    for k, v in pairs(other.ability.seal or {}) do
-        if type(v) == 'table' then
-            new_card.ability.seal[k] = copy_table(v)
-        else
-            new_card.ability.seal[k] = v
-        end
-    end
-end
-'''
-
 ##  Curse calculation
 [[patches]]
 [patches.pattern]
 target = 'functions/common_events.lua'
-pattern = '''local seals = card:calculate_seal(context)'''
+pattern = '''if card.seal then'''
 position = 'before'
 match_indent = true
 payload = '''
-local curses = card:calculate_curse(context)
-if curses then
-    ret.curses = curses
+if card.curse then
+    local curses = card:calculate_curse(context)
+    if curses then
+        ret.curses = curses
+    end
 end
 '''
 [[patches]]
 [patches.pattern]
 target = 'functions/common_events.lua'
-pattern = '''local seals = not card.ability.extra_enhancement and card:calculate_seal(context)'''
+pattern = '''if card.seal and not card.ability.extra_enhancement then'''
 position = 'before'
 match_indent = true
 payload = '''
-local curses = card:calculate_curse(context)
-if curses then
-    ret.curses = curses
-end
-'''
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = '''if effects[ii].seals then'''
-position = 'before'
-match_indent = true
-payload = '''
-if effects[ii].curses then
-    if effects[ii].curses.chips then 
-        if effects[ii].card then juice_card(effects[ii].card) end
-        hand_chips = mod_chips(hand_chips + effects[ii].curses.chips)
-        update_hand_text({delay = 0}, {chips = hand_chips})
-        card_eval_status_text(scoring_hand[i], 'chips', effects[ii].curses.chips, percent)
-    end
-    
-    if effects[ii].curses.mult then 
-        if effects[ii].card then juice_card(effects[ii].card) end
-        mult = mod_mult(mult + effects[ii].curses.mult)
-        update_hand_text({delay = 0}, {mult = mult})
-        card_eval_status_text(scoring_hand[i], 'mult', effects[ii].curses.mult, percent)
-    end
-    
-    if effects[ii].curses.p_dollars then 
-        if effects[ii].card then juice_card(effects[ii].card) end
-        ease_dollars(effects[ii].curses.p_dollars)
-        card_eval_status_text(scoring_hand[i], 'dollars', effects[ii].curses.p_dollars, percent)
-    end
-    
-    if effects[ii].curses.dollars then 
-        if effects[ii].card then juice_card(effects[ii].card) end
-        ease_dollars(effects[ii].curses.dollars)
-        card_eval_status_text(scoring_hand[i], 'dollars', effects[ii].curses.dollars, percent)
-    end
-    
-    if effects[ii].curses.x_mult then 
-        if effects[ii].card then juice_card(effects[ii].card) end
-        mult = mod_mult(mult*effects[ii].curses.x_mult)
-        update_hand_text({delay = 0}, {mult = mult})
-        card_eval_status_text(scoring_hand[i], 'x_mult', effects[ii].curses.x_mult, percent)
-    end
-
-    if effects[ii].curses.func then
-        effects[ii].curses.func()
+if card.curse and not card.ability.extra_enhancement then
+    local curses = card:calculate_curse(context)
+    if curses then
+        ret.curses = curses
     end
 end
 '''
 
+
+# Possessed
 [[patches]]
 [patches.pattern]
 target = 'cardarea.lua'
@@ -250,30 +172,6 @@ position = 'at'
 match_indent = true
 payload = '''
 if #self.highlighted < self.config.highlighted_limit and (v.ability.forced_selection or v.curse == 'ortalab_possessed') and not v.highlighted then
-'''
-
-# Restrained
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = '''local hand_text_set = false'''
-position = 'after'
-match_indent = true
-payload = '''
-for i=1, #G.play.cards do
-    --calculate curse effects
-    local effects = eval_card(G.play.cards[i], {cardarea = G.play, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, before = true,
-    callback = function(card, ret)
-        effects = {curse = ret}
-        if effects.curse then
-            card_eval_status_text(card, 'jokers', nil, percent, nil, effects.jokers)
-            percent = percent + percent_delta
-            if effects.jokers.level_up then
-                level_up_hand(card, text)
-            end
-        end
-    end})
-end
 '''
 
 # Infected

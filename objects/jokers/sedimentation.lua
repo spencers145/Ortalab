@@ -17,9 +17,7 @@ SMODS.Joker({
     calculate = function(self, card, context) --Sedimentation Logic
         if context.joker_main and (#G.playing_cards - G.GAME.starting_deck_size) > 0 then
             return {
-                message = localize{type='variable',key='a_mult',vars={card.ability.extra.mult_per_card*(#G.playing_cards - G.GAME.starting_deck_size)}},
-                mult_mod = card.ability.extra.mult_per_card*(#G.playing_cards - G.GAME.starting_deck_size), 
-                colour = G.C.MULT
+                mult = card.ability.extra.mult_per_card*(#G.playing_cards - G.GAME.starting_deck_size)
             }
         end
     end

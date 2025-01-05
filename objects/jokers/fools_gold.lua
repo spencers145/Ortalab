@@ -18,12 +18,10 @@ SMODS.Joker({
         if not context.end_of_round and context.individual and context.cardarea == G.hand and context.other_card:is_suit(card.ability.extra.suit) then
             if pseudorandom(pseudoseed('fools_gold')) < G.GAME.probabilities.normal / card.ability.extra.chance then
 				return {
-					card = card,
 					dollars = card.ability.extra.money
 				}
 			end
 			return {
-				card = card,
 				message = localize('k_nope_ex')
 			}
         end

@@ -25,6 +25,7 @@ SMODS.Joker({
                     message = localize('k_val_up'),
                     colour = G.C.MONEY,
                 })
+                return nil, true
             end
         end
     end

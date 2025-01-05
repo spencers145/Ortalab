@@ -17,10 +17,8 @@ SMODS.Joker({
 	calculate = function(self, card, context)
         if context.joker_main then
             return {
-                message = localize{type='variable', key='a_xmult', vars={card.ability.extra.xmult + (card.ability.extra.xmult_gain * #G.consumeables.cards)}},
-                Xmult_mod = card.ability.extra.xmult + (card.ability.extra.xmult_gain * #G.consumeables.cards), 
+                xmult = card.ability.extra.xmult + (card.ability.extra.xmult_gain * #G.consumeables.cards), 
                 colour = G.C.RED,
-                card = card
             }
         end
     end

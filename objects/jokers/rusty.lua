@@ -21,8 +21,7 @@ SMODS.Joker({
         if context.joker_main then
             local count = G.playing_cards and calculate_rusty_amount() or 0
             return {
-                message = localize{type='variable',key='a_xmult',vars={card.ability.extra.xmult + (card.ability.extra.gain * count)}},
-                Xmult_mod = card.ability.extra.xmult + (card.ability.extra.gain * count)
+                xmult = card.ability.extra.xmult + (card.ability.extra.gain * count)
             }
         end
     end
@@ -31,7 +30,7 @@ SMODS.Joker({
 function calculate_rusty_amount()
     local count = 0
     for _, card in ipairs(G.playing_cards) do
-        if card.config.center_key == 'm_ortalab_rusty' then
+        if SMODS.has_enhancement(card, 'm_ortalab_rusty') then
             count = count + 1
         end
     end

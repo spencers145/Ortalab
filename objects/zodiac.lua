@@ -997,13 +997,12 @@ end
 
 function zodiac_text(message, key)
     if Ortalab.config.zodiac_skip then return end
+    Ortalab.zodiac_animation = true
     local old_colours = {
         special_colour = copy_table(G.C.BACKGROUND.C),
         tertiary_colour = copy_table(G.C.BACKGROUND.D),
         new_colour = copy_table(G.C.BACKGROUND.L),
     }
-    ease_background_colour{special_colour = darken(G.ARGS.LOC_COLOURS['Zodiac'], 0.5), new_colour = G.ZODIACS[key].colour, tertiary_colour = G.ARGS.LOC_COLOURS.Zodiac, contrast = 1}
-    -- Adds the constellation sprite in the background
     local zodiac_sprite = Sprite(0, 0, 150, 150, G.ASSET_ATLAS['ortalab_zodiac_constellations'], G.ZODIACS[key].pos)
     local zodiac_UI = UIBox{
         definition = {n=G.UIT.ROOT, config = {align='cm', colour = G.C.CLEAR, minw = 6, minh = 6}, nodes = {
@@ -1013,18 +1012,22 @@ function zodiac_text(message, key)
         }},
         config = {instance_type = 'CARDAREA', major = G.play, align = 'cm', offset = {x=0, y=-2.7}}
     }
-    table.insert(G.I.MOVEABLE, zodiac_UI)
-
-    attention_text({scale = 1, text = message, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play})
     G.E_MANAGER:add_event(Event({
         trigger = 'after',
-        delay = 1.5,
+        delay = 2,
         func = function()
             ease_background_colour({special_colour = old_colours.special_colour, tertiary_colour = old_colours.tertiary_colour, new_colour = old_colours.new_colour})
             zodiac_sprite:remove()
             zodiac_UI:remove()
+            Ortalab.zodiac_animation = false
             return true
     end}))
+    ease_background_colour{special_colour = darken(G.ARGS.LOC_COLOURS['Zodiac'], 0.5), new_colour = G.ZODIACS[key].colour, tertiary_colour = G.ARGS.LOC_COLOURS.Zodiac, contrast = 1}
+    -- Adds the constellation sprite in the background
+    table.insert(G.I.MOVEABLE, zodiac_UI)
+
+    attention_text({scale = 1, text = message, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play})
+    delay(1.5)
 end
 
 local align_ref = CardArea.align_cards

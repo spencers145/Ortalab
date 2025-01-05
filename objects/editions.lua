@@ -17,6 +17,14 @@ SMODS.Edition({
         if Ortalab.config.artist_credits and (card or Ortalab.config.full_credits) then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
         return { vars = {self.config.chips, self.config.mult}}
     end,
+    calculate = function(self, card, context)
+        if context.joker_main or (context.main_scoring and context.cardarea == G.play) then
+            return {
+                chips = card.edition.chips,
+                mult = card.edition.mult
+            }     
+        end
+    end
 })
 
 SMODS.Edition({
@@ -32,6 +40,13 @@ SMODS.Edition({
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits and (card or Ortalab.config.full_credits) then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
         return { vars = {self.config.p_dollars}}
+    end,
+    calculate = function(self, card, context)
+        if context.joker_main or (context.main_scoring and context.cardarea == G.play) then
+            return {
+                dollars = card.edition.p_dollars
+            }     
+        end
     end
 })
 
@@ -49,6 +64,15 @@ SMODS.Edition({
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits and (card or Ortalab.config.full_credits) then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
         return { vars = { self.config.chips, self.config.mult, self.config.x_mult } }
+    end,
+    calculate = function(self, card, context)
+        if context.joker_main or (context.main_scoring and context.cardarea == G.play) then
+            return {
+                swap = true,
+                message = localize('ortalab_swap'),
+                colour = G.C.PURPLE
+            }     
+        end
     end
 })
 
@@ -58,13 +82,23 @@ SMODS.Edition({
     discovered = false,
     unlocked = true,
     shader = 'overexposed',
-    config = { retriggers = 1 },
+    config = { extra = {retriggers = 1 }},
     in_shop = true,
     weight = 3,
     extra_cost = 4,
     apply_to_float = true,
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits and (card or Ortalab.config.full_credits) then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
-        return { vars = { self.config.retriggers } }
+        return { vars = { self.config.extra.retriggers } }
+    end,
+    calculate = function(self, card, context)
+        if context.repetition_only or (context.retrigger_joker_check and context.other_card == card) then
+            return {
+                repetitions = card.edition.extra.retriggers,
+                card = card,
+                colour = G.C.GREEN,
+                message = localize('k_again_ex')
+            }     
+        end
     end
 })

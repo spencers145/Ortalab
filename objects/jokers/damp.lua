@@ -21,7 +21,7 @@ SMODS.Joker({
                 level_up_hand(context.blueprint_card or card, G.GAME.last_hand_played, nil, 1)
                 update_hand_text({sound = 'button', volume = 0.7, pitch = 1.1, delay = 0}, {mult = 0, chips = 0, handname = '', level = ''})
 			end
-			return
+			return nil, true
 		end
 	end
 })

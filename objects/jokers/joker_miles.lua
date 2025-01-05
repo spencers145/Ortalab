@@ -19,17 +19,20 @@ SMODS.Joker({
         if context.before and not context.blueprint then
             if pseudorandom(pseudoseed('ortalab_joker_miles')) < G.GAME.probabilities.normal / card.ability.extra.chance then
                 card.ability.extra.chips = 0
-                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_joker_miles_reset'), colour = G.C.BLUE})
-                return
+                return {
+                    message = localize('ortalab_joker_miles_reset'),
+                    colour = G.C.BLUE
+                }
             end
             card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_gain
-            card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_joker_miles'), colour = G.C.BLUE})
+            return {
+                message = localize('ortalab_joker_miles'),
+                colour = G.C.BLUE
+            }
         end
         if context.joker_main and card.ability.extra.chips > 0 then
             return {
-                chip_mod = card.ability.extra.chips,
-                card = card,
-                message = localize{type='variable',key='a_chips',vars={card.ability.extra.chips}},
+                chips = card.ability.extra.chips,
             }
         end
     end

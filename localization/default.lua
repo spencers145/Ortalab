@@ -60,6 +60,7 @@ return {
 			['ortalab_corroded'] = 'Corroded!',
 			['ortalab_loteria_saved'] = 'Saved!',
 			ortalab_protostar = 'Collapsed!',
+			ortalab_level_up = 'Level up!',
 			ortalab_cured = 'Cured!',
 			ortalab_spike_debuff = 'Hand will be debuffed!',
 			ortalab_fork_cap = 'Score capped at 50%',
@@ -77,6 +78,8 @@ return {
 			ortalab_back = 'Let me play!',
 			ortalab_blind_no_rank = 'no rank',
 			ortalab_blind_no_rank_caps = 'No rank',
+			ortalab_joker_slot = ' Joker slot!',
+			ortalab_joker_slots = ' Joker slots!',
         },
 		['labels'] = {
 			ortalab_greyscale = 'Greyscale',
@@ -1919,6 +1922,9 @@ return {
 			},
 		},
 		['Curse'] = {
+			ortalab_all_curses = {
+				name = "random curses"
+			},
 			['ortalab_corroded'] = {
                 name = "Corroded",
                 text = {
@@ -2360,6 +2366,153 @@ return {
 					'Play only {C:attention}#1#{} hand'
 				}
 			}
+		},
+		["Mythos"] = {
+			c_ortalab_one_selected = {
+				text = {
+					'{C:Mythos,s:0.9}Curse #1# selected{s:0.9,C:attention} card in hand',
+					'{s:0.9}with {V:1,E:2,s:0.9}#2#{}',
+				},
+			},
+			c_ortalab_mult_random = {
+				text = {
+					'{C:Mythos,s:0.9}Curse #1# random{s:0.9,C:attention} cards in hand',
+					'{s:0.9}with {V:1,E:2,s:0.9}#2#{}',
+				},
+			},
+			c_ortalab_mult_random_deck = {
+				text = {
+					'{C:Mythos,s:0.9}Curse #1# random{s:0.9,C:attention} cards in deck',
+					'{s:0.9}with {V:1,E:2,s:0.9}#2#{}',
+				},
+			},
+            c_ortalab_gnome = {
+				name = 'Gnome',
+				text = {
+					'Increase {C:money}sell value{} of all {C:attention}Jokers',
+					'by {C:money}$#1#{}, then gain {C:money}sell value',
+					'of all {C:attention}Jokers',
+					'{C:inactive,s:0.8}(Currently $#2#)'
+				},
+			},
+			c_ortalab_crawler = {
+				name = 'Crawler',
+				text = {
+					'Add an {C:dark_edition}edition{} to',
+					'a {C:attention}random Joker'
+				},
+			},
+			c_ortalab_basilisk = {
+				name = 'Basilisk',
+				text = {
+					'Create {C:attention}#1#{} random',
+					'{C:attention}Enhanced Face cards',
+					'with {C:dark_edition}editions'
+				},
+			},
+			c_ortalab_abaia = {
+				name = 'Abaia',
+				text = {
+					'Create {C:attention}#1#{} random',
+					'{C:attention}Enhanced #2#s',
+					'with {C:dark_edition}editions'
+				},
+			},
+			c_ortalab_jormungand = {
+				name = 'Jormungand',
+				text = {
+					'Create {C:attention}#1#{} random',
+					'{C:attention}Enhanced Aces',
+					'with {C:dark_edition}editions'
+				},
+			},
+			c_ortalab_excalibur = {
+				name = 'Excalibur',
+				text = {
+					'{C:zodiac}Improve{} the next',
+					'{C:attention}#1#'
+				},
+			},
+			c_ortalab_wendigo = {
+				name = 'Wendigo',
+				text = {
+					'Add {C:dark_edition}Overexposed{} to',
+					'a {C:attention}random Joker'
+				},
+			},
+			c_ortalab_genie = {
+				name = 'Genie\'s Lamp',
+				text = {
+					'Add {C:dark_edition}editions{} to',
+					'{C:attention}#1#{} selected playing cards'
+				},
+			},
+			c_ortalab_kraken = {
+				name = 'Kraken',
+				text = {
+					'Add {C:attention}enhancements{} to',
+					'{C:attention}#1#{} selected playing cards'
+				},
+			},
+			c_ortalab_holy_grail = {
+				name = 'Holy Grail',
+				text = {
+					'Add {C:dark_edition}Overexposed{} to',
+					'a selected playing card'
+				},
+			},
+			c_ortalab_jackalope = {
+				name = 'Jackalope',
+				text = {
+					'Gain {C:blue}+#1#{} Hand',
+				},
+			},
+			c_ortalab_ya_te_veo = {
+				name = 'Ya Te Veo',
+				text = {
+					'{C:blue}+#1#{} hand size'
+				},
+			},
+			c_ortalab_anubis = {
+				name = 'Anubis',
+				text = {
+					'Move selected {C:attention}Joker',
+					'to {C:attention}consumable slots'
+				},
+			},
+			c_ortalab_talaria = {
+				name = 'Talaria',
+				text = {
+					'Redeem a random {C:attention}voucher'
+				},
+			},
+			c_ortalab_tree_of_life = {
+				name = 'Tree of Life',
+				text = {
+					'Apply {C:attention}Perishable{} to', 
+					'#2# random {C:attention}Jokers',
+					'{C:dark_edition}+#1#{} Joker slot'
+				},
+			},
+			c_ortalab_pandora = {
+				name = 'Pandora\'s Box',
+				text = {
+					'Add {C:attention}#1#{} copies of',
+					'selected card to your deck'
+				},
+			},
+			c_ortalab_corpus = {
+				name = 'Corpus',
+				text = {
+					'???'
+				},
+			},
+			c_ortalab_ophiuchus = {
+				name = 'Ophiuchus',
+				text = {
+					'{C:zodiac}Improve{} the next hand',
+				},
+			},
 		}
     }
 }

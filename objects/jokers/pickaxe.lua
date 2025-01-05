@@ -25,13 +25,15 @@ SMODS.Joker({
                     context.destroying_card:juice_up()
                     return true
             end}))
-            card_eval_status_text(card, 'extra', nil, nil, nil, {message = '+X'..card.ability.extra.gain, colour = G.C.RED})
-            return true
+            return {
+                message = '+X'..card.ability.extra.gain,
+                colour = G.C.RED,
+                card = card
+            }
         end
         if context.joker_main then
             return {
-                Xmult_mod = card.ability.extra.xmult,
-                message = localize{type='variable',key='a_xmult',vars={card.ability.extra.xmult}},
+                xmult = card.ability.extra.xmult,
             }
         end
     end
