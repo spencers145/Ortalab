@@ -42,7 +42,6 @@ SMODS.Joker({
                     G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + card.ability.extra.dollars
                     G.E_MANAGER:add_event(Event({func = (function() G.GAME.dollar_buffer = 0; return true end)}))
                     return {
-                        message = localize('$')..card.ability.extra.dollars,
                         dollars = card.ability.extra.dollars,
                         colour = G.C.MONEY
                     }

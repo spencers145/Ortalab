@@ -18,8 +18,7 @@ SMODS.Joker({
         if context.joker_main then
             if context.scoring_name == 'High Card' then
                 return {
-                    message = localize{type='variable',key='a_xmult',vars={card.ability.extra.x_mult}},
-                    Xmult_mod = card.ability.extra.x_mult
+                    xmult = card.ability.extra.x_mult
                 }
             end
         end

@@ -36,7 +36,8 @@ SMODS.Joker({
         if context.joker_main then
             return {
                 message = localize{type='variable',key='a_chips_minus',vars={card.ability.extra.minus_chips}},
-                chip_mod = -card.ability.extra.minus_chips, 
+				remove_default_message = true,
+                chips = -card.ability.extra.minus_chips, 
                 colour = G.C.RED
             }
         end

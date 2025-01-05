@@ -25,8 +25,7 @@ SMODS.Joker({
         end
         if context.joker_main then
             return {
-                message = localize{type='variable',key='a_mult',vars={card.ability.extra.mult_total}},
-                mult_mod = card.ability.extra.mult_total
+                mult = card.ability.extra.mult_total
             }
         end
     end

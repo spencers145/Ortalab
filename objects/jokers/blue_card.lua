@@ -17,15 +17,8 @@ SMODS.Joker({
 	calculate = function(self, card, context)
 		if context.joker_main and card.ability.extra.chips > 0 then
             return {
-                message = localize{type='variable',key='a_chips',vars={card.ability.extra.chips}},
-                chip_mod = card.ability.extra.chips
+                chips = card.ability.extra.chips
             }
         end
-        -- if context.using_consumeable then
-        --     if context.consumeable.from_booster then
-        --         card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.gain
-        --         card_eval_status_text(card, 'extra', nil, nil, nil, {message = '+'..card.ability.extra.gain, colour = G.C.BLUE})
-        --     end
-        -- end
     end
 })

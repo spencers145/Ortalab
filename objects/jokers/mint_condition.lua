@@ -22,10 +22,11 @@ function ease_dollars(mod, instant)
     ease_hook(mod, instant)
     if G.GAME.Ortalab_Scoring_Active and mod > 0 then
         local mint_jokers = SMODS.find_card('j_ortalab_mint_condition')
-        for _, card in pairs(mint_jokers) do        
+        for _, card in pairs(mint_jokers) do
             SMODS.eval_this(card, {
                 message = localize({type = 'variable', key = 'a_xmult', vars = {card.ability.extra.Xmult}}),
-                Xmult_mod = card.ability.extra.Xmult})
+                Xmult_mod = card.ability.extra.Xmult
+			})
         end
     end
 end

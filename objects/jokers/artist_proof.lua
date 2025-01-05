@@ -21,6 +21,7 @@ SMODS.Joker({
             message = message .. localize('$') .. math.abs(amount)
             card_eval_status_text(card, 'extra', nil, nil, nil, {message = message, colour = amount > 0 and G.C.MONEY or G.C.RED})
             ease_dollars(amount)
+			return nil, true
         end
     end
 })

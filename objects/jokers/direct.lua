@@ -17,7 +17,6 @@ SMODS.Joker({
 	calculate = function(self, card, context)
         if context.joker_main and not next(context.poker_hands[card.ability.extra.hand_type]) then
             return {
-                message = localize{type='variable', key='a_mult', vars={card.ability.extra.mult}},
                 mult_mod = card.ability.extra.mult, 
                 colour = G.C.RED,
                 card = card

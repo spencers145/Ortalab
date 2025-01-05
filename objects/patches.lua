@@ -466,8 +466,8 @@ end
 --             end)
 --             for _, key in ipairs(tag.ability.zodiac_hands) do
 --                 G.E_MANAGER:add_event(Event({
---                     trigger = 'before',
---                     delay = 4.2,
+--                     trigger = 'after',
+--                     delay = 1,
 --                     func = function()
 --                         if G.zodiacs and G.zodiacs[key] then
 --                             G.zodiacs[key].config.extra.temp_level = G.zodiacs[key].config.extra.temp_level + G.ZODIACS[key].config.extra.temp_level

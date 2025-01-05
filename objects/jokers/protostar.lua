@@ -18,8 +18,7 @@ SMODS.Joker({
 		if context.joker_main then
             card.ability.extra.poker_hand = context.scoring_name
             return {
-                message = localize{type='variable',key='a_chips',vars={card.ability.extra.chips}},
-                chip_mod = card.ability.extra.chips
+                chips = card.ability.extra.chips
             }
         end
         if context.after and not context.repetition and not context.individual and not context.blueprint then
@@ -41,8 +40,8 @@ SMODS.Joker({
             else
                 card.ability.extra.chips = card.ability.extra.chips - change
                 card_eval_status_text(card, 'extra', nil, nil, nil, {message = '-'..change, colour = G.C.BLUE})
+                return nil, true
             end
-            
         end
     end
 })

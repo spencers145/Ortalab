@@ -23,8 +23,10 @@ SMODS.Joker({
             if not card.ability.extra.triggered then
                 G.consumeables:change_size(card.ability.extra.slots)
                 card:juice_up()
-                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_forklift')})
                 card.ability.extra.triggered = true
+                return {
+                    message = localize('ortalab_forklift')
+                }
             end
         end
     end,

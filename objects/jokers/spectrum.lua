@@ -18,8 +18,7 @@ SMODS.Joker({
     calculate = function(self, card, context) --The Spectrum Logic
         if context.joker_main and not next(context.poker_hands["Flush"]) then
             return {
-                message = localize{type='variable',key='a_xmult',vars={card.ability.extra.x_mult}},
-                Xmult_mod = card.ability.extra.x_mult
+                xmult = card.ability.extra.x_mult
             }
         end
     end

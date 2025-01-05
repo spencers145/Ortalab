@@ -17,8 +17,7 @@ SMODS.Joker({
 	calculate = function(self, card, context)
 		if context.joker_main then
             return {
-                message = localize{type='variable',key='a_chips',vars={card.ability.extra.chips}},
-                chip_mod = card.ability.extra.chips
+                chips = card.ability.extra.chips
             }
         end
         if context.discard and not context.blueprint then

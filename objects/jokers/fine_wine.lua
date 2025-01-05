@@ -19,7 +19,9 @@ SMODS.Joker({
             if context.setting_blind and not card.getting_sliced then
                 ease_discard(card.ability.extra.discards)
                 card.ability.extra.discards = card.ability.extra.discards + card.ability.extra.gain
-                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('k_upgrade_ex')})
+                return {
+                    message = localize('k_upgrade_ex')
+                }
             end
             if context.end_of_round and not context.individual and not context.repetition then
                 if pseudorandom('fine_wine') < G.GAME.probabilities.normal/card.ability.extra.odds then

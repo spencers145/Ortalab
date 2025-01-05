@@ -27,7 +27,7 @@ SMODS.Joker({
                 end
             end
             sendDebugMessage('post: '..#G.GAME.tags)
-
+            return nil, {}
         end
     end
 })

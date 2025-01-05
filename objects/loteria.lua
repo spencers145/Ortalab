@@ -1005,7 +1005,6 @@ function bottle_randomise(card)
 end
 
 function loteria_joker_save_check(card)
-    if G.booster_pack then return false end
     local loteria_joker = SMODS.find_card('j_ortalab_black_cat')
     for _, joker_card in pairs(loteria_joker) do        
         if pseudorandom(pseudoseed('loteria_check_keep')) > (joker_card.ability.extra.num*G.GAME.probabilities.normal) / joker_card.ability.extra.chance then

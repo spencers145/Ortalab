@@ -3,7 +3,7 @@ version = "1.0.0"
 dump_lua = true
 priority = 1
 
-## Populate Seal Ability Table
+## Mythos Draw Shader
 [[patches]]
 [patches.pattern]
 target = 'card.lua'
@@ -14,4 +14,26 @@ payload = '''
 if self.ability.set == 'Mythos' then
     self.children.center:draw_shader('booster', nil, self.ARGS.send_to_shader)
 end
+'''
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''self.children.floating_sprite:draw_shader('dissolve', nil, nil, nil, self.children.center, scale_mod, rotate_mod)'''
+position = 'after'
+match_indent = true
+payload = '''
+if self.ability.set == 'Mythos' then
+    self.children.floating_sprite:draw_shader('booster', nil, nil, nil, self.children.center, scale_mod, rotate_mod)
+end
+'''
+
+## Mythos Tooltip Fix
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = '''desc_from_rows(AUT.main),'''
+position = 'after'
+match_indent = true
+payload = '''
+AUT.mythos and desc_from_rows(AUT.mythos) or nil,
 '''

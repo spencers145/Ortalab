@@ -18,8 +18,7 @@ SMODS.Joker({
         if context.joker_main then
             if G.GAME.current_round.hands_left > 0 then
                 return {
-                    message = localize{type='variable',key='a_mult',vars={card.ability.extra.mult_add*G.GAME.current_round.hands_left}},
-                    mult_mod = card.ability.extra.mult_add*G.GAME.current_round.hands_left,
+                    mult = card.ability.extra.mult_add*G.GAME.current_round.hands_left,
                     colour = G.C.MULT
                 }
             end

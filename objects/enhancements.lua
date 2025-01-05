@@ -17,8 +17,8 @@ SMODS.Enhancement({
             vars = { card and card.ability.extra.hand_chips or self.config.extra.hand_chips }
         }
     end,
-    calculate = function(self, card, context, effect)
-        if context.cardarea == G.play and not context.repetition then
+    calculate = function(self, card, context)
+        if context.cardarea == G.play and context.main_scoring then
             local chip_return = 0
             for i, held_card in pairs(G.hand.cards) do
                 if not Ortalab.config.enhancement_skip then
@@ -37,11 +37,9 @@ SMODS.Enhancement({
                 chip_return = chip_return + card.ability.extra.hand_chips
                 if i ~= # G.hand.cards and not Ortalab.config.enhancement_skip then card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_chips',vars={chip_return}}, colour = G.C.BLUE, delay = 0, chip_mod = true}) end
             end
-            SMODS.eval_this(card, {
-                chip_mod = chip_return,
-                message = localize({type = 'variable', key = 'a_chips', vars = {chip_return}}),
-            })
-            
+            return {
+                chips = chip_return
+            }            
         end
     end
 })
@@ -59,7 +57,7 @@ SMODS.Enhancement({
         }
     end,
     calculate = function(self, card, context, effect)
-        if context.cardarea == G.play and not context.repetition then
+        if context.cardarea == G.play and context.main_scoring then
             local mult_return = 0
             for i, held_card in pairs(G.hand.cards) do
                 if not Ortalab.config.enhancement_skip then
@@ -78,10 +76,9 @@ SMODS.Enhancement({
                 mult_return = mult_return + card.ability.extra.hand_mult
                 if i ~= #G.hand.cards and not Ortalab.config.enhancement_skip then card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_mult',vars={mult_return}}, colour = G.C.RED, delay = 0, mult_mod = true}) end
             end
-            SMODS.eval_this(card, {
-                mult_mod = mult_return,
-                message = localize({type = 'variable', key = 'a_mult', vars = {mult_return}}),
-            })
+            return {
+                mult = mult_return
+            }
             
         end
     end
@@ -116,9 +113,51 @@ SMODS.Enhancement({
             vars = { card and card.ability.extra.x_mult or self.config.extra.x_mult, card and card.ability.extra.change or self.config.extra.change }
         }
     end,
-    calculate = function(self, card, context, effect)
-        if context.cardarea == G.play and not context.repetition then
-            effect.x_mult = card.ability.extra.x_mult
+    calculate = function(self, card, context)
+        if context.cardarea == G.play and context.main_scoring and card.ability.extra.x_mult > 1 then
+            return {
+                xmult = card.ability.extra.x_mult
+            }
+        end
+        if context.final_scoring_step and not next(SMODS.find_card('j_ortalab_sandstone')) then
+            card.ability.extra.x_mult = card.ability.extra.x_mult - card.ability.extra.change
+            G.E_MANAGER:add_event(Event({
+                trigger = 'immediate',
+                func = function()
+                    card_eval_status_text(card, 'extra', nil, nil, nil, {message = 'Crumble', colour = G.C.GOLD, instant = true})
+                    if card.ability.extra.x_mult < 1 then
+                        card:start_dissolve()
+                    end
+                    card.particles = Particles(1, 1, 0,0, {
+                        timer = 0.015,
+                        scale = 0.3,
+                        initialize = true,
+                        lifespan = 1,
+                        speed = 3,
+                        padding = -1,
+                        attach = card,
+                        colours = {G.C.GOLD, lighten(G.C.GOLD, 0.4), lighten(G.C.GOLD, 0.2), darken(G.C.GOLD, 0.2)},
+                        fill = true
+                    })
+                    card.particles.fade_alpha = 1
+                    card.particles:fade(1, 0)
+                    
+                    return true
+                end
+            }))  
+            G.E_MANAGER:add_event(Event({
+                trigger = 'after',
+                delay = 1,
+                func = function()
+                    card.particles:remove()
+                    return true
+                end
+            }))
+        end
+        if context.destroying_card and card.ability.extra.x_mult < 1 then
+            return {
+                remove = true
+            }
         end
     end
 })
@@ -141,11 +180,11 @@ SMODS.Enhancement({
             vars = { card_ability.extra.base_x, card_ability.extra.x_gain }
         }
     end,
-    calculate = function(self, card, context, effect)
-        if context.cardarea == G.play and not context.repetition then
+    calculate = function(self, card, context)
+        if context.cardarea == G.play and context.main_scoring then
             local rusty_in_hand = 0
             for i, held_card in pairs(G.hand.cards) do
-                if held_card.config.center_key == 'm_ortalab_rusty' then
+                if SMODS.has_enhancement(held_card, 'm_ortalab_rusty') then
                     if not Ortalab.config.enhancement_skip then
                         G.E_MANAGER:add_event(Event({
                             trigger = 'after',
@@ -163,7 +202,9 @@ SMODS.Enhancement({
                     if i ~= #G.hand.cards and not Ortalab.config.enhancement_skip then card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_xmult',vars={card.ability.extra.base_x + (rusty_in_hand * card.ability.extra.x_gain)}}, colour = G.C.RED, delay = 0, Xmult_mod = true}) end
                 end
             end
-            effect.x_mult = card.ability.extra.base_x + (rusty_in_hand * card.ability.extra.x_gain)
+            return {
+                x_mult = card.ability.extra.base_x + (rusty_in_hand * card.ability.extra.x_gain)
+            }
         end
     end
 })
@@ -183,9 +224,6 @@ SMODS.Enhancement({
         return {
             vars = { card and card.ability.mult or self.config.mult }
         }
-    end,
-    calculate = function(self, card, context, effect)
-        
     end
 })
 
@@ -200,6 +238,15 @@ SMODS.Enhancement({
         return {
             vars = { card and card.ability.extra.level_up or self.config.extra.level_up }
         }
+    end,
+    calculate = function(self, card, context)
+        if context.before and context.cardarea == G.play then
+            G.GAME.ortalab.temp_levels = G.GAME.ortalab.temp_levels + card.ability.extra.level_up
+            return {
+                message = localize('ortalab_level_up'),
+                colour = G.C.PURPLE
+            }     
+        end
     end
 })
 

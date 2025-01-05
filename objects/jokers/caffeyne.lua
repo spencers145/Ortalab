@@ -27,7 +27,6 @@ SMODS.Joker({
         end
         if context.joker_main and card.ability.extra.xmult > 1 then
             return {
-                message = localize{type='variable',key='a_xmult',vars={card.ability.extra.xmult}},
                 Xmult_mod = card.ability.extra.xmult,
                 colour = G.C.RED
             }
