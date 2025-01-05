@@ -334,7 +334,7 @@ SMODS.Tag({
     config = {type = 'immediate', dollars = 3},
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
-        return {vars = {card.config.dollars, (G.GAME.blinds_defeated or 0)*card.config.dollars}}
+        return {vars = {self.config.dollars, (G.GAME.blinds_defeated or 0)*self.config.dollars}}
     end,
     apply = function(self, tag, context)
         if context.type == self.config.type then
