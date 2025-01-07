@@ -1470,6 +1470,13 @@ return {
 					"card is scored"
 				}
 			},
+			['e_ortalab_fluorescent_joker'] = {
+				name = "Fluorescent",
+				text = {
+					"Earn {C:money}$#1#{} at",
+					'end of round'
+				}
+			},
 			['e_ortalab_anaglyphic'] = {
 				name = "Anaglyphic",
 				text = {

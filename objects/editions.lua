@@ -32,17 +32,17 @@ SMODS.Edition({
     discovered = false,
     unlocked = true,
     shader = 'fluorescent',
-    config = { p_dollars = 3 },
+    config = { p_dollars = 4 },
     in_shop = true,
     weight = 12,
     extra_cost = 4,
     apply_to_float = true,
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits and (card or Ortalab.config.full_credits) then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel', title = 'Shader'} end
-        return { vars = {self.config.p_dollars}}
+        return { vars = {self.config.p_dollars}, key = card.config.center.set == 'Joker' and 'e_ortalab_fluorescent_joker'}
     end,
     calculate = function(self, card, context)
-        if context.post_joker or (context.main_scoring and context.cardarea == G.play) then
+        if (context.cardarea == G.jokers and context.end_of_round) or (context.main_scoring and context.cardarea == G.play) then
             return {
                 dollars = card.edition.p_dollars
             }     
