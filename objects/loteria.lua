@@ -77,7 +77,7 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=3, y=4},
     discovered = false,
-    config = {extra = {key = 'm_'..Ortalab.prefix..'_recycled', amount = 2}},
+    config = {extra = {key = 'm_ortalab_recycled', amount = 2}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
@@ -128,7 +128,7 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=0, y=0},
     discovered = false,
-    config = {extra = {key = 'm_'..Ortalab.prefix..'_bent', amount = 3}},
+    config = {extra = {key = 'm_ortalab_bent', amount = 3}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
@@ -175,7 +175,7 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=4, y=3},
     discovered = false,
-    config = {extra = {key = 'm_'..Ortalab.prefix..'_post', amount = 3}},
+    config = {extra = {key = 'm_ortalab_post', amount = 3}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
@@ -199,7 +199,7 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=1, y=1},
     discovered = false,
-    config = {extra = {key = 'm_'..Ortalab.prefix..'_index', amount = 2}},
+    config = {extra = {key = 'm_ortalab_index', amount = 2}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
@@ -223,7 +223,7 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=2, y=0},
     discovered = false,
-    config = {extra = {key = 'm_'..Ortalab.prefix..'_rusty', amount = 2}},
+    config = {extra = {key = 'm_ortalab_rusty', amount = 2}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
@@ -247,7 +247,7 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=2, y=3},
     discovered = false,
-    config = {extra = {key = 'm_'..Ortalab.prefix..'_sand', amount = 2}},
+    config = {extra = {key = 'm_ortalab_sand', amount = 2}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
@@ -324,7 +324,7 @@ SMODS.Consumable({
             G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
                 local over = false
                 local eligible_card = pseudorandom_element(eligible_jokers, pseudoseed('pear_select'))
-                local edition = poll_edition('pear_poll', nil, nil, true, {'e_'..Ortalab.prefix..'_anaglyphic', 'e_'..Ortalab.prefix..'_greyscale', 'e_'..Ortalab.prefix..'_fluorescent'})
+                local edition = poll_edition('pear_poll', nil, nil, true, {'e_ortalab_anaglyphic', 'e_ortalab_greyscale', 'e_ortalab_fluorescent', 'e_ortalab_overexposed'})
                 eligible_card:set_edition(edition, true)
                 check_for_unlock({type = 'have_edition'})
                 card:juice_up(0.3, 0.5)
@@ -619,7 +619,7 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=1, y=4},
     discovered = false,
-    config = {extra = {key = 'm_'..Ortalab.prefix..'_iou', amount = 2}},
+    config = {extra = {key = 'm_ortalab_iou', amount = 2}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
@@ -643,7 +643,7 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=2, y=2},
     discovered = false,
-    config = {extra = {key = 'm_'..Ortalab.prefix..'_ore', amount = 2}},
+    config = {extra = {key = 'm_ortalab_ore', amount = 2}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS[self.config.extra.key]
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end

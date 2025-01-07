@@ -1189,8 +1189,8 @@ return {
 				["name"] = "The Pear",
 				["text"] = {
 					"{C:green}#1# in #2#{} chance to add",
-                    "{C:dark_edition}Anaglyphic{}, {C:dark_edition}Fluorescent{} or",
-                    "{C:dark_edition}Greyscale{} edition to",
+                    "{C:dark_edition}Anaglyphic{}, {C:dark_edition}Fluorescent{},",
+                    "{C:dark_edition}Greyscale{} or {C:dark_edition}Overexposed{} edition to",
                     "a random {C:attention}Joker"
 				},
 			},
