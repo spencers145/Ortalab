@@ -744,7 +744,7 @@ return {
 				}
 			},
 			['j_ortalab_open_palm'] = {
-				["name"] = "Open Palm",
+				["name"] = "White Flag",
 				["text"] = {
 					"Adds {C:blue}#1#{} minus {C:attention}#2#X{} the rank", 
 					"of {C:attention}highest{} ranked card",
