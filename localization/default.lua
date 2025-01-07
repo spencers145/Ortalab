@@ -847,7 +847,7 @@ return {
 				["name"] = "Roscharch Test",
 				["text"] = {
 					"For each played {C:attention}2{} or {C:attention}5{},",
-					"{C:chips}+#1#{} Chips or {C:mult}+#2#{} Mult",
+					"{C:chips}+#1#{} Chips and {C:mult}+#2#{} Mult",
 					"when scored",
 				}
 			},

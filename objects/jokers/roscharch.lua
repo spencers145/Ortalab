@@ -16,17 +16,11 @@ SMODS.Joker({
     end,
     calculate = function(self, card, context) --Roscharch Logic
         if context.individual and context.cardarea == G.play and (context.other_card:get_id() == 5 or context.other_card:get_id() == 2) then
-            if pseudorandom('roscharch_test') <= 0.5 then
-                return {
-                    mult = card.ability.extra.mult,
-                    card = card
-                }
-            else
-                return {
-                    chips = card.ability.extra.chips,
-                    card = card
-                }
-            end
+            return {
+                mult = card.ability.extra.mult,
+                chips = card.ability.extra.chips,
+                card = card
+            }
         end
     end
 })
