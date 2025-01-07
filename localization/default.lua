@@ -478,8 +478,7 @@ return {
 				["name"] = "Flashback",
 				["text"] = {
 					"When {C:attention}Blind{} is skipped,",
-					"{C:green}#2# in #3#{} chance to spawn",
-					"a {C:attention}#1#",
+					"spawn a {C:attention}#1#",
 				}
 			},
 			['j_ortalab_foolish'] = {
