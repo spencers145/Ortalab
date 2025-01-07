@@ -795,7 +795,7 @@ return {
 				["text"] = {
 					"{C:mult}+#1#{} Mult",
 					"{C:mult}+#2#{} Mult per round played",
-					"Explodes when greater than {C:mult}+20{}",
+					"Explodes when greater than {C:mult}+#3#{}",
 				}
 			},
 			['j_ortalab_prediction_dice'] = {

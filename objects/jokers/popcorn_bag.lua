@@ -9,14 +9,14 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = false,
 	perishable_compat = true,
-    config = {extra = {a_mult = 0, a_mult_add = 4}},
+    config = {extra = {a_mult = 0, a_mult_add = 4, cap = 40}},
 	loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
-        return {vars = {card.ability.extra.a_mult, card.ability.extra.a_mult_add}}
+        return {vars = {card.ability.extra.a_mult, card.ability.extra.a_mult_add, card.ability.extra.cap}}
     end,
     calculate = function(self, card, context) --Popcorn Bag Logic
         if not context.blueprint and context.end_of_round and not context.individual and not context.repetition then
-            if card.ability.extra.a_mult + card.ability.extra.a_mult_add > 20 then
+            if card.ability.extra.a_mult + card.ability.extra.a_mult_add > card.ability.extra.cap then
                 Ortalab.remove_joker(card)
                 return {
                     message = localize('ortalab_explode'),
