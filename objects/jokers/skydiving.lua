@@ -12,24 +12,17 @@ SMODS.Joker({
 	config = {extra = {curr_xmult = 1, xmult_add = 0.3, level_loss = 1}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'alex'} end
-        return {vars = {card.ability.extra.xmult_add, card.ability.extra.curr_xmult}}
+        return {vars = {card.ability.extra.xmult_add, card.ability.extra.curr_xmult, card.ability.extra.level_loss}}
     end,
 	calculate = function(self, card, context)
 		if not context.blueprint and context.cardarea == G.jokers and context.before and G.GAME.hands[context.scoring_name].level ~= 1 then
-			if G.GAME.hands[context.scoring_name].level < 2 then
-				return {
-					card = card,
-					level_up = true,
-					message = localize('k_level_up_ex')
-				}
-			else
-				local levels_to_remove = G.GAME.hands[context.scoring_name].level - 1
+			if G.GAME.hands[context.scoring_name].level > 1 then
 				card.ability.extra.curr_xmult = card.ability.extra.curr_xmult + card.ability.extra.xmult_add
-				level_up_hand(card, context.scoring_name, nil, -card.ability.extra.level_loss)
 				return {
+					message = localize('ortalab_joker_miles'),
 					card = card,
 					colour = G.C.RED,
-					message = localize{type='variable',key='a_xmult',vars={card.ability.extra.curr_xmult}}
+					level_up = -card.ability.extra.level_loss,
 				}
 			end
 		end

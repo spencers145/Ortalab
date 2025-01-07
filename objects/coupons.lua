@@ -86,7 +86,7 @@ SMODS.Voucher({
 SMODS.Voucher({
 	key = "window_shopping",
 	atlas = "coupons",
-	config = {extra = {free_rerolls = 1, cost = 1}},
+	config = {extra = {free_rerolls = 1}},
 	pos = {x = 4, y = 0},
 	cost = 10,
 	unlocked = true,
@@ -100,7 +100,7 @@ SMODS.Voucher({
     end,
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
-        return {vars = {self.config.extra.free_rerolls, self.config.extra.cost}}
+        return {vars = {self.config.extra.free_rerolls}}
     end,
 })
 
@@ -113,7 +113,7 @@ SMODS.Voucher({
 	discovered = false,
 	available = false,
 	requires = {'v_ortalab_window_shopping'},
-	config = {extra = {free_rerolls = 2, cost = 2}},
+	config = {extra = {free_rerolls = 2}},
 	redeem = function(self)
         G.E_MANAGER:add_event(Event({func = function()
             window_infinite(self)
@@ -122,7 +122,7 @@ SMODS.Voucher({
     end,
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'flare'} end
-        return {vars = {self.config.extra.free_rerolls, self.config.extra.cost}}
+        return {vars = {self.config.extra.free_rerolls}}
     end,
 })
 
@@ -147,7 +147,7 @@ SMODS.Voucher({
 	unlocked = true,
 	discovered = false,
 	available = true,
-    config = {extra = {xmult = 1.5, per = 4}},
+    config = {extra = {xmult = 1.25, per = 4}},
     requires = {'v_ortalab_horoscope'},
 	redeem = function(self)
         G.GAME.natal_sign_rate = self.config.extra.xmult
@@ -166,20 +166,15 @@ SMODS.Voucher({
 	unlocked = true,
 	discovered = false,
 	available = true,
-	config = {extra = {ante_gain = 1, dollars = 35}},
-    in_pool = function(self)
-        if G.GAME.round_resets.blind_ante == 8 then return false end
-        return true
-    end,
+	config = {extra = {ante_gain = 1, dollars = 25, hand_size = 1}},
 	redeem = function(self)
-        ease_ante(self.config.extra.ante_gain)
-        G.GAME.round_resets.blind_ante = G.GAME.round_resets.blind_ante or G.GAME.round_resets.ante
-        G.GAME.round_resets.blind_ante = G.GAME.round_resets.blind_ante + self.config.extra.ante_gain
+        G.GAME.win_ante = G.GAME.win_ante + self.config.extra.ante_gain
+        G.hand:change_size(self.config.extra.hand_size)
         ease_dollars(self.config.extra.dollars)
     end,
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
-        return {vars = {self.config.extra.ante_gain, self.config.extra.dollars}}
+        return {vars = {self.config.extra.ante_gain, self.config.extra.dollars, self.config.extra.hand_size}}
     end,
 })
 
@@ -192,20 +187,10 @@ SMODS.Voucher({
 	discovered = false,
 	available = false,
     requires = {'v_ortalab_abacus'},
-	config = {extra = {ante_gain = 1, joker_slots = 1}},
-    in_pool = function(self)
-        if G.GAME.round_resets.blind_ante == 8 then return false end
-        return true
-    end,
+	config = {extra = {ante_gain = 2, joker_slots = 2}},
 	redeem = function(self)
-        ease_ante(self.config.extra.ante_gain)
-        G.GAME.round_resets.blind_ante = G.GAME.round_resets.blind_ante or G.GAME.round_resets.ante
-        G.GAME.round_resets.blind_ante = G.GAME.round_resets.blind_ante + self.config.extra.ante_gain
-        G.E_MANAGER:add_event(Event({func = function()
-            if G.jokers then 
-                G.jokers.config.card_limit = G.jokers.config.card_limit + self.config.extra.joker_slots
-            end
-            return true end }))
+        G.GAME.win_ante = G.GAME.win_ante + self.config.extra.ante_gain
+        modify_joker_slot_count(self.config.extra.joker_slots)
     end,
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
@@ -334,8 +319,6 @@ end
 
 function window_infinite(card)
     G.GAME.current_round.free_rerolls = G.GAME.current_round.free_rerolls + card.config.extra.free_rerolls
-    G.GAME.round_resets.reroll_cost = G.GAME.round_resets.reroll_cost + card.config.extra.cost
-    G.GAME.current_round.reroll_cost = math.max(0, G.GAME.current_round.reroll_cost + card.config.extra.cost)
     G.GAME.current_round["ortalab_rerolls"] = (G.GAME.current_round["ortalab_rerolls"] or 0) + card.config.extra.free_rerolls
     calculate_reroll_cost(true)
 end

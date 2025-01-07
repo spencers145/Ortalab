@@ -956,10 +956,9 @@ return {
 			['j_ortalab_skydiving'] = {
 				["name"] = "Skydiving",
 				["text"] = {
-					"Sets played {C:attention}poker hand",
-					"level to 1",
-					"Gains {X:mult,C:white}X#1#{} Mult",
-					"per level {C:attention}removed",
+					'{C:red}-#3#{} level to',
+					"played {C:attention}poker hand{} and",
+					"gain {X:mult,C:white}X#1#{} Mult",
 					"{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
 				}
 			},
@@ -1853,7 +1852,6 @@ return {
 				["text"] = {
 					"{C:attention}+#1#{} free {C:green}reroll{}",
 					"per shop", 
-					"{C:green}Reroll{} price {C:red}+$#2#{}",
 				}
 			},
 			['v_ortalab_infinite_scroll'] = {
@@ -1861,21 +1859,21 @@ return {
 				["text"] = {
 					"{C:attention}+#1#{} free {C:green}reroll{}",
 					"per shop", 
-					"{C:green}Reroll{} price {C:red}+$#2#{}",
 				}
 			},
 			['v_ortalab_abacus'] = {
 				["name"] = "Abacus",
 				["text"] = {
-					"{C:attention}+#1#{} Ante",
-					"Gain {C:money}$#2#", 
+					"{C:attention}+#1#{} Win Ante",
+					"Gain {C:money}$#2#",
+					"{C:blue}+#3#{} hand size" 
 				}
 			},
 			['v_ortalab_calculator'] = {
 				["name"] = "Calculator",
 				["text"] = {
-					"{C:attention}+#1#{} Ante",
-					"{C:attention}+#1#{} Joker slot", 
+					"{C:attention}+#1#{} Win Ante",
+					"{C:attention}+#2#{} Joker slots", 
 				}
 			},
 			['v_ortalab_catalog'] = {
