@@ -357,7 +357,7 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=1, y=2},
     discovered = false,
-    config = {extra = {selected = 2, rank_change = 3}},
+    config = {extra = {selected = 2, rank_change = 2}},
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
         return {vars = {card.ability.extra.selected + (G.GAME and G.GAME.Ortalab_loteria_voucher_2 and G.GAME.Ortalab_loteria_voucher_2 or 0), card.ability.extra.rank_change}}
