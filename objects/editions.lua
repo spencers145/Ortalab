@@ -18,7 +18,7 @@ SMODS.Edition({
         return { vars = {self.config.chips, self.config.mult}}
     end,
     calculate = function(self, card, context)
-        if context.joker_main or (context.main_scoring and context.cardarea == G.play) then
+        if context.pre_joker or (context.main_scoring and context.cardarea == G.play) then
             return {
                 chips = card.edition.chips,
                 mult = card.edition.mult
@@ -42,7 +42,7 @@ SMODS.Edition({
         return { vars = {self.config.p_dollars}}
     end,
     calculate = function(self, card, context)
-        if context.joker_main or (context.main_scoring and context.cardarea == G.play) then
+        if context.post_joker or (context.main_scoring and context.cardarea == G.play) then
             return {
                 dollars = card.edition.p_dollars
             }     
@@ -66,7 +66,7 @@ SMODS.Edition({
         return { vars = { self.config.chips, self.config.mult, self.config.x_mult } }
     end,
     calculate = function(self, card, context)
-        if context.joker_main or (context.main_scoring and context.cardarea == G.play) then
+        if context.pre_joker or (context.main_scoring and context.cardarea == G.play) then
             return {
                 swap = true,
                 message = localize('ortalab_swap'),
