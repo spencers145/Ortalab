@@ -69,6 +69,7 @@ return {
 			ortalab_rank = 'certain rank',
 			ortalab_zodiac_add = '+1 Zodiac',
 			ortalab_loteria_add = '+1 Loteria',
+			ortalab_cardist = '+1 Hand!',
 			ortalab_forklift = '+2 slots',
 			ortalab_forklift_loss = '-2 slots',
 			ortalab_zodiac_upgraded = ' upgraded!',
