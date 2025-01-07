@@ -1601,8 +1601,8 @@ return {
                 name = "Aries",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Destroy all cards in hand of',
-					'a different {C:attention}rank'
+					'Destroy #3# {C:attention}left-most{} cards',
+					'in hand'
                 }
             },
 			['zodiac_ortalab_taurus'] = {
@@ -1644,9 +1644,8 @@ return {
                 name = "Aquarius",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Add a copy of the',
-					'{C:attention}left-most{} and {C:attention}right-most{}',
-					'scoring cards to deck'
+					'Add a copy of the {C:attention}second{}',
+					'scoring card to deck'
                 }
             },
 			['zodiac_ortalab_sag'] = {
@@ -1669,16 +1668,15 @@ return {
                 name = "Libra",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Turn #3# {C:attention}left-most{} cards in hand',
-					'into {C:attention}left-most{} and {C:attention}right-most{}',
-					'scoring cards'
+					'Turn {C:attention}left-most{} card in hand',
+					'into {C:attention}second{} scoring card'
                 }
             },
 			['zodiac_ortalab_leo'] = {
                 name = "Leo",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Turn all cards in hand into',
+					'Turn #3# {C:attention}left-most{} cards in hand into',
 					'the {C:attention}central{} scored card'
                 }
             },
@@ -1686,8 +1684,8 @@ return {
                 name = "Virgo",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Add a {C:attention}copy{} of poker hand',
-					'into your deck'
+					'Add a {C:attention}copy{} of #3# {C:attention}central',
+					'scoring cards into your deck'
                 }
             },
 			['zodiac_ortalab_pisces'] = {

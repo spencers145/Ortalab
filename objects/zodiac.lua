@@ -356,17 +356,16 @@ Ortalab.Zodiac{
     key = 'aries',
     pos = {x=2, y=0},
     colour = HEX('b64646'),
-    config = {extra = {temp_level = 4, hand_type = 'Four of a Kind'}},
+    config = {extra = {temp_level = 4, hand_type = 'Four of a Kind', count = 3}},
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
         local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
-        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands'), zodiac.config.extra.count}}
     end,
     destroy = function(self, zodiac, context)
-        if context.other_card.base.value == context.scoring_hand[1].base.value then
-            return false
+        for i=1, math.min(#G.hand.cards, zodiac.config.extra.count) do
+            if context.other_card == G.hand.cards[i] then return true end
         end
-        return true
     end
 }
 
@@ -453,16 +452,18 @@ Ortalab.Zodiac{
     pre_trigger = function(self, zodiac, context)
         local effects = {'m_ortalab_post', 'm_ortalab_bent'}
         for i=1, 2 do
-            context.scoring_hand[i]:set_ability(G.P_CENTERS[effects[i]], nil, true)
-            local name = context.scoring_hand[i].ability.effect
-            context.scoring_hand[i].ability.effect = nil
-            G.E_MANAGER:add_event(Event({
-                trigger = 'before', delay = 0.2, func = function()
-                    zodiac:juice_up()
-                    context.scoring_hand[i].ability.effect = name
-                    context.scoring_hand[i]:juice_up()
-                    return true
-                end}))
+            if context.scoring_hand[i].config.center.set ~= 'Enhanced' then
+                context.scoring_hand[i]:set_ability(G.P_CENTERS[effects[i]], nil, true)
+                local name = context.scoring_hand[i].ability.effect
+                context.scoring_hand[i].ability.effect = nil
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'before', delay = 0.2, func = function()
+                        zodiac:juice_up()
+                        context.scoring_hand[i].ability.effect = name
+                        context.scoring_hand[i]:juice_up()
+                        return true
+                    end}))
+            end
         end
         zodiac_reduce_level(zodiac)
         return context.mult, context.chips
@@ -551,22 +552,24 @@ Ortalab.Zodiac{
     key = 'leo',
     pos = {x=0, y=1},
     colour = HEX('8fb85c'),
-    config = {extra = {temp_level = 4, hand_type = 'Flush Five'}},
+    config = {extra = {temp_level = 4, effects = 3, hand_type = 'Flush Five'}},
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
         local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
-        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands'), zodiac.config.extra.effects}}
     end,
     pre_trigger = function(self, zodiac, context)
-        for i=1, #G.hand.cards do
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    copy_card(context.scoring_hand[3], G.hand.cards[i])
-                    G.hand.cards[i]:juice_up()
-                    context.scoring_hand[3]:juice_up()
-                    return true
-                    end
-            }))
+        for i=1, zodiac.config.extra.effects do
+            if G.hand.cards[i] then
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        copy_card(context.scoring_hand[3], G.hand.cards[i])
+                        G.hand.cards[i]:juice_up()
+                        context.scoring_hand[3]:juice_up()
+                        return true
+                        end
+                }))
+            end
         end        
         zodiac_reduce_level(zodiac)
         return context.mult, context.chips
@@ -601,13 +604,13 @@ Ortalab.Zodiac{
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
         local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
-        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands')}}
+        return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands'), 3}}
     end,
     pre_trigger = function(self, zodiac, context)
         G.E_MANAGER:add_event(Event({
             func = function()
                 local cards = {}
-                for i=1, #context.scoring_hand do
+                for i=2, #context.scoring_hand-1 do
                     G.playing_card = (G.playing_card and G.playing_card + 1) or 1
                     local _card = copy_card(context.scoring_hand[i], nil, nil, G.playing_card)
                     table.insert(cards, _card)
@@ -617,7 +620,7 @@ Ortalab.Zodiac{
                     G.deck.config.card_limit = G.deck.config.card_limit + 1
                     table.insert(G.playing_cards, _card)
                     G.deck:emplace(_card)
-                    context.scoring_hand[i]:juice_up()
+                    context.scoring_hand[i+1]:juice_up()
                     _card:juice_up()
                 end
                 playing_card_joker_effects(cards)
@@ -654,7 +657,7 @@ Ortalab.Zodiac{
     key = 'libra',
     pos = {x=2, y=1},
     colour = HEX('32a18c'),
-    config = {extra = {temp_level = 4, hand_type = 'Full House', convert = 2}},
+    config = {extra = {temp_level = 4, hand_type = 'Full House', convert = 1}},
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
         local temp_level = (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.Ortalab_zodiac_voucher or 0)
@@ -663,7 +666,7 @@ Ortalab.Zodiac{
     pre_trigger = function(self, zodiac, context)
         G.E_MANAGER:add_event(Event({
             func = function()
-                local index = {1, #context.scoring_hand}
+                local index = {2}
                 for i=1, math.min(zodiac.config.extra.convert, #G.hand.cards) do
                     local _card = copy_card(context.scoring_hand[index[i]], G.hand.cards[i])
                     _card:juice_up()
@@ -882,22 +885,16 @@ Ortalab.Zodiac{
         G.E_MANAGER:add_event(Event({
             func = function()
                 G.playing_card = (G.playing_card and G.playing_card + 1) or 1
-                local _card = copy_card(context.scoring_hand[1], nil, nil, G.playing_card)
-                G.playing_card = (G.playing_card and G.playing_card + 1) or 1
-                local _card2 = copy_card(context.scoring_hand[#context.scoring_hand], nil, nil, G.playing_card)
+                local _card = copy_card(context.scoring_hand[2], nil, nil, G.playing_card)
                 _card:add_to_deck()
-                _card2:add_to_deck()
-                G.deck.config.card_limit = G.deck.config.card_limit + 2
+                G.deck.config.card_limit = G.deck.config.card_limit + 1
                 table.insert(G.playing_cards, _card)
-                table.insert(G.playing_cards, _card2)
                 G.deck:emplace(_card)
-                G.deck:emplace(_card2)
                 G.deck:shuffle('zodiac_aquarius')
-                context.scoring_hand[1]:juice_up()
-                context.scoring_hand[#context.scoring_hand]:juice_up()
+                context.scoring_hand[2]:juice_up()
                 _card:juice_up()
 
-                playing_card_joker_effects({_card, _card2})
+                playing_card_joker_effects({_card})
                 return true
             end
         }))
