@@ -1407,7 +1407,8 @@ return {
 				["name"] = "Recycled Card",
 				["text"] = {
 					"{C:green}#1# in #2#{} chance",
-					"to not gain {C:red}+#3# Discard",
+					"to not add {C:blue}+#7#{} Chips",
+					"and gain {C:red}+#3# Discard",
 					"{C:green}#4# in #5#{} chance",
 					"to not gain {C:attention}#6# Tag",
 				},

@@ -255,19 +255,23 @@ SMODS.Enhancement({
     atlas = "ortalab_enhanced",
     pos = {x = 3, y = 1},
     discovered = false,
-    config = {extra = {discard_chance = 5, tag_chance = 15, discards = 1, tags = 1}},
+    config = {extra = {discard_chance = 5, tag_chance = 15, discards = 1, tags = 1, chips = 100}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
         local card_ability = card and card.ability or self.config
         return {
-            vars = { math.max(G.GAME.probabilities.normal, 1) * (card_ability.extra.discard_chance - 1), card_ability.extra.discard_chance / math.min(G.GAME.probabilities.normal, 1), card_ability.extra.discards, math.max(1, G.GAME.probabilities.normal) * (card_ability.extra.tag_chance - 1), card_ability.extra.tag_chance / math.min(G.GAME.probabilities.normal, 1), card_ability.extra.tags }
+            vars = { math.max(G.GAME.probabilities.normal, 1) * (card_ability.extra.discard_chance - 1), card_ability.extra.discard_chance / math.min(G.GAME.probabilities.normal, 1), card_ability.extra.discards, math.max(1, G.GAME.probabilities.normal) * (card_ability.extra.tag_chance - 1), card_ability.extra.tag_chance / math.min(G.GAME.probabilities.normal, 1), card_ability.extra.tags, card_ability.extra.chips }
         }
     end,
-    calculate = function(self, card, context, effect)
-        if context.cardarea == G.play and not context.repetition then
+    calculate = function(self, card, context)
+        if context.cardarea == G.play and context.main_scoring then
             if pseudorandom('moldy_discards') > G.GAME.probabilities.normal * (card.ability.extra.discard_chance - 1) / card.ability.extra.discard_chance then
                 ease_discard(card.ability.extra.discards)
-                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_moldy_discard'), colour = G.C.RED})
+                return {
+                    message = localize('ortalab_moldy_discard'),
+                    colour = G.C.RED,
+                    chips = card.ability.extra.chips
+                }
             end
             if pseudorandom('moldy_hands') > G.GAME.probabilities.normal * (card.ability.extra.tag_chance - 1) / card.ability.extra.tag_chance then
                 local tag_pool = get_current_pool('Tag')
@@ -286,7 +290,10 @@ SMODS.Enhancement({
                         return true
                     end)
                 }))
-                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ortalab_moldy_tag'), colour = G.C.BLUE})
+                return {
+                    message = localize('ortalab_moldy_tag'),
+                    colour = G.C.BLUE
+                }
             end
         end
     end
