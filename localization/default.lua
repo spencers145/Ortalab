@@ -243,8 +243,9 @@ return {
 				["name"] = "Amber Mosquito",
 				["text"] = {
 					"Each {V:1}#2#{}",
-					"held in hand",
-					"gives {X:mult,C:white}X#1#{} Mult",
+					"held in hand has a",
+					'{C:green}#3# in #4#{} chance to',
+					"not give {X:mult,C:white}X#1#{} Mult",
 				}
 			},
 			['j_ortalab_art_gallery'] = {
@@ -814,7 +815,7 @@ return {
 					"loses {C:blue}#2#{} Chips for each",
 					"time {C:attention}poker hand{} has been",
 					"played this run",
-					"{C:inactive,s:0.8}(Create an {C:green,s:0.8}Uncommon Joker",
+					"{C:inactive,s:0.8}(Replace with an {C:green,s:0.8}Uncommon Joker",
 					"{C:inactive,s:0.8} when reaching 0)"
 				}
 			},

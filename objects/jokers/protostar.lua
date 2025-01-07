@@ -9,7 +9,7 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
-	config = {extra = {chips = 100, change = 2, poker_hand = ''}},
+	config = {extra = {chips = 100, change = 100, poker_hand = ''}},
 	loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
 		return {vars = {card.ability.extra.chips, card.ability.extra.change}}
@@ -29,9 +29,16 @@ SMODS.Joker({
                     trigger = 'after',
                     delay = 0.4,
                     func = function() 
+                        local edition = card.edition.key
+                        local stickers = {}
+                        for k, v in pairs(SMODS.Stickers) do
+                            if card.ability[k] then
+                                table.insert(stickers, k)
+                            end
+                        end
+
                         card:start_dissolve()
-                        local new_joker = SMODS.create_card({area = G.jokers, set = 'Joker', rarity = 0.8})
-                        new_joker:set_edition(nil, true, true)
+                        local new_joker = SMODS.create_card({area = G.jokers, set = 'Joker', rarity = 0.8, edition = edition, stickers = stickers})
                         new_joker:add_to_deck()
                         G.jokers:emplace(new_joker)
                         new_joker:start_materialize()
