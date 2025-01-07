@@ -642,8 +642,8 @@ return {
 				["name"] = "Mathmagician",
 				["text"] = {
 					"Creates a random {C:loteria}Loteria{}",
-					"card if discarded hand",
-					"contains 2 {C:attention}odd cards",
+					"or {C:zodiac}Zodiac {}card if discarded",
+					"hand contains 2 {C:attention}odd cards",
 					"and 2 {C:attention}even cards",
 				}
 			},
