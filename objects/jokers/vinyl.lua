@@ -25,11 +25,12 @@ SMODS.Joker({
                     if not context.scoring_hand[i]:is_face() then prior_cards = prior_cards + 1 end
                 end
             end
-            return {
-                message = localize{type='variable',key='a_chips',vars={card.ability.extra.chips * chip_mod}},
-                chips = card.ability.extra.chips * chip_mod,
-                card = card
-            }
+            if chip_mod > 0 then
+                return {
+                    chips = card.ability.extra.chips * chip_mod,
+                    card = card
+                }
+            end
         end
     end
 })
