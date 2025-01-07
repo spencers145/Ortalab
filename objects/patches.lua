@@ -245,10 +245,10 @@ SMODS.Tag({
     atlas = 'patches',
     pos = {x = 0, y = 1},
     discovered = false,
-    config = {type = 'round_start_bonus', discards = 2},
+    config = {type = 'round_start_bonus', discards = 3, hands = 3},
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
-        return {vars = {self.config.discards}}
+        return {vars = {self.config.discards, self.config.hands}}
     end,
     apply = function(self, tag, context)
         if context.type == self.config.type then
@@ -256,6 +256,7 @@ SMODS.Tag({
                 return true
             end)
             ease_discard(tag.config.discards)
+            ease_hands_played(tag.config.hands)
             tag.triggered = true
         end
     end

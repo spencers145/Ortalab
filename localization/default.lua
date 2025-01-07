@@ -1497,6 +1497,7 @@ return {
 			["tag_ortalab_slipup"] = {
 				["name"] = "Slip-Up Patch",
 				["text"] = {
+					"{C:blue}+#2#{} hands and",
 					"{C:red}+#1#{} discards",
 					"next round"
 				},
