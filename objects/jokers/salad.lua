@@ -30,7 +30,8 @@ SMODS.Joker({
                 card.ability.extra.chips = card.ability.extra.chips - card.ability.extra.change
                 return {
                     message = '-'..card.ability.extra.change,
-                    colour = G.C.BLUE
+                    colour = G.C.BLUE,
+                    card = card
                 }
             end
             
