@@ -314,7 +314,6 @@ return {
 			['j_ortalab_black_friday'] = {
 				["name"] = "Black Friday",
 				["text"] = {
-					"{C:red}-#1#{} Chips",
 					"All cards in the shop",
 					"are {C:money}#2#%{} off",
 				}
