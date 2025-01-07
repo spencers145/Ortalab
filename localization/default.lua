@@ -338,8 +338,8 @@ return {
 			['j_ortalab_business'] = {
 				["name"] = "Business Joker",
 				["text"] = {
-					"Rerolls cost",
-					"{C:money}$1{} less",
+					"Gain {C:money}$#1#{} when",
+					"shop is rerolled"
 				}
 			},
 			['j_ortalab_caffeyne'] = {

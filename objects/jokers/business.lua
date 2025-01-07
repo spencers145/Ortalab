@@ -9,22 +9,16 @@ SMODS.Joker({
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
-	config = {extra = {reroll_cut = 1}},
+	config = {extra = {reroll_gain = 2}},
 	loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'alex'} end
-		return {vars = {card.ability.extra.reroll_cut}}
+		return {vars = {card.ability.extra.reroll_gain}}
 	end,
-	add_to_deck = function(self, card, from_debuff)
-		G.E_MANAGER:add_event(Event({func = function()
-			G.GAME.round_resets.reroll_cost = G.GAME.round_resets.reroll_cost - card.ability.extra.reroll_cut
-			G.GAME.current_round.reroll_cost = math.max(0, G.GAME.current_round.reroll_cost - card.ability.extra.reroll_cut)
-			return true
-        end}))
-	end,
-	remove_from_deck = function(self, card, from_debuff)
-		G.E_MANAGER:add_event(Event({func = function()
-			G.GAME.round_resets.reroll_cost = G.GAME.round_resets.reroll_cost + card.ability.extra.reroll_cut
-			return true
-        end}))
-	end,
+	calculate = function(self, card, context)
+		if context.reroll_shop then
+			return {
+				dollars = card.ability.extra.reroll_gain
+			}
+		end
+	end
 })
