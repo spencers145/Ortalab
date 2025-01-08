@@ -126,6 +126,7 @@ SMODS.Tag({
     config = {type = 'store_joker_modify', edition = 'e_ortalab_overexposed'},
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
+        info_queue[#info_queue+1] = G.P_CENTERS[self.config.edition]
     end,
     apply = function(self, tag, context)
         if context.type == self.config.type then
