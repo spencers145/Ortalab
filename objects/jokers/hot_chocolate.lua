@@ -9,7 +9,7 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = false,
 	perishable_compat = false,
-	config = {extra = {chips = 0, change = 5, limit = 5}},
+	config = {extra = {chips = 0, change = 5, limit = 150}},
 	loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
 		return {vars = {card.ability.extra.chips, card.ability.extra.change, card.ability.extra.limit}}
