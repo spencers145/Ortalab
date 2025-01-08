@@ -89,7 +89,7 @@ SMODS.Back({
     pos = {x = 1, y = 1}, 
     config = {hand_level = 1}, 
     loc_vars = function(self, info_queue, card)
-        -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'crimson'}
+        -- info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'shai'}
         return {vars = {self.config.hand_level}}
     end,
 })

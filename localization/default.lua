@@ -117,6 +117,11 @@ return {
 					"parchmentVoyage",
 				}
 			},
+			['shai'] = {
+				["text"] = {
+					"Shai",
+				}
+			},
 			['gappie'] = {
 				["text"] = {
 					"Gappie",
