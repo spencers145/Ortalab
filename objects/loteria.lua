@@ -101,9 +101,6 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=1, y=3},
     discovered = false,
-    in_pool = function(self)
-        return false
-    end,
     config = {extra = {type = 'Zodiac', amount = 2}},
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
