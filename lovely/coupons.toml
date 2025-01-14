@@ -92,7 +92,7 @@ match_indent = true
 payload = '''
 if G.GAME.used_vouchers.v_ortalab_natal_sign then
     for _, curr_zod in pairs(G.zodiacs) do
-        for i=1, math.ceil(curr_zod.config.extra.temp_level / 4) do
+        for i=1, math.floor(curr_zod.config.extra.temp_level / 4) do
             if not Ortalab.config.zodiac_skip then 
                 G.E_MANAGER:add_event(Event({
                     delay = 2/G.SETTINGS.GAMESPEED,
