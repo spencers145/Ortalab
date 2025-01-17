@@ -10,6 +10,7 @@ SMODS.Joker({
 	eternal_compat = true,
 	perishable_compat = false,
 	config = {extra = {dollars = 1, dollars_add = 1}},
+    enhancement_gate = 'm_ortalab_iou',
 	calc_dollar_bonus = function(self, card)
 		return card.ability.extra.dollars
 	end,
