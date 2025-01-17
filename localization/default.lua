@@ -622,7 +622,8 @@ return {
 			['j_ortalab_hypercalculia'] = {
 				["name"] = "Hypercalculia",
 				["text"] = {
-					"All cards count as",
+					"All cards are",
+					'considered',
 					"{C:attention}numbered{} cards"
 				}
 			},

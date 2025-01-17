@@ -86,3 +86,13 @@ end
 to_big = to_big or function(x, y)
     return x
 end
+
+function Card:is_numbered(from_boss)
+    if self.debuff and not from_boss then return end
+    local id = self:get_id()
+    local rank = SMODS.Ranks[self.base.value]
+    if not id then return end
+    if (id > 0 and rank and not rank.face) or next(SMODS.find_card("j_ortalab_hypercalculia")) then
+        return true
+    end
+end
