@@ -134,9 +134,14 @@ SMODS.Voucher({
 	unlocked = true,
 	discovered = false,
 	available = true,
+    config = {extra = {extra_choices = 1}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
+        return {vars = {card.ability.extra.extra_choices}}
     end,
+    redeem = function(self, voucher)
+        G.GAME.ortalab.vouchers.horoscope = G.GAME.ortalab.vouchers.horoscope + voucher.ability.extra.extra_choices
+    end
 })
 
 SMODS.Voucher({

@@ -49,6 +49,7 @@ for i, key in ipairs(small_boosters.keys) do
     end
     booster_args.key = key
     booster_args.pos = { x = i - 1, y = 0 }
+    booster_args.ortalab_type = 'Loteria'
     SMODS.Booster(booster_args)
 end
 
@@ -94,6 +95,7 @@ for i, key in ipairs(mid_boosters.keys) do
     end
     booster_args.key = key
     booster_args.pos = { x = i - 1, y = 1 }
+    booster_args.ortalab_type = 'Loteria'
     SMODS.Booster(booster_args)
 end
 
@@ -139,5 +141,6 @@ for i, key in ipairs(large_boosters.keys) do
     end
     booster_args.key = key
     booster_args.pos = { x = i + 1, y = 1 }
+    booster_args.ortalab_type = 'Loteria'
     SMODS.Booster(booster_args)
 end

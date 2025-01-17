@@ -70,7 +70,29 @@ target = 'card.lua'
 pattern = '''G.GAME.pack_choices = self.config.center.config.choose or 1'''
 position = 'after'
 match_indent = true
-payload = '''if self.config.center.group_key and self.config.center.group_key:find('loteria') and G.GAME.used_vouchers['v_ortalab_cantor'] then G.GAME.pack_choices = G.GAME.pack_choices + G.GAME.Ortalab_loteria_voucher end'''
+payload = '''
+if self.config.center.group_key and self.config.center.group_key:find('loteria') and G.GAME.used_vouchers['v_ortalab_cantor'] then
+    G.GAME.pack_choices = G.GAME.pack_choices + G.GAME.Ortalab_loteria_voucher
+end
+if self.config.center.ortalab_type and self.config.center.ortalab_type == 'Zodiac' then
+    G.GAME.pack_size = G.GAME.pack_size + G.GAME.ortalab.vouchers.horoscope
+end'''
+
+# Horoscope Coupon Increase Zodiac Pack Limit
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+booster_obj = self.config.center
+'''
+payload = '''
+if self.config.center.ortalab_type and self.config.center.ortalab_type == 'Zodiac' then
+    self.ability.extra = self.ability.extra + G.GAME.ortalab.vouchers.horoscope
+end
+'''
+
 
 [[patches]]
 [patches.pattern]
@@ -78,9 +100,11 @@ target = 'card.lua'
 pattern = '''local used_tarot = copier or self'''
 position = 'after'
 match_indent = true
-payload = '''if self.config.center.set == 'Loteria' and G.GAME.used_vouchers['v_ortalab_tabla'] then
+payload = '''
+if self.config.center.set == 'Loteria' and G.GAME.used_vouchers['v_ortalab_tabla'] then
     if self.ability.extra.amount then self.ability.extra.amount = self.ability.extra.amount + G.GAME.Ortalab_loteria_voucher_2 end
-end'''
+end
+'''
 
 # Natal Sign Calculation
 [[patches]]

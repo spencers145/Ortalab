@@ -1817,10 +1817,8 @@ return {
 			['v_ortalab_horoscope'] = {
 				["name"] = "Horoscope",
 				["text"] = {
-					'{C:zodiac}Astral Packs{} always contain',
-					'the {C:zodiac}Zodiac{} card for your',
-					'most played {C:attention}poker hand',
-					'{C:inactive,s:0.8}(Respects +/- types)'
+					"{C:zodiac}Astral Packs{} contain",
+					'{C:attention}#1#{} extra card'
 				}
 			},
 			['v_ortalab_natal_sign'] = {
@@ -2034,7 +2032,7 @@ return {
                 }
             },
 			['p_ortalab_small_zodiac_1'] = {
-                name = "Astral+ Pack",
+                name = "Astral Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
@@ -2042,7 +2040,7 @@ return {
                 }
             },
 			['p_ortalab_small_zodiac_2'] = {
-                name = "Astral- Pack",
+                name = "Astral Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
@@ -2050,7 +2048,7 @@ return {
                 }
             },
 			['p_ortalab_small_zodiac_3'] = {
-                name = "Astral+ Pack",
+                name = "Astral Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
@@ -2058,7 +2056,7 @@ return {
                 }
             },
 			['p_ortalab_small_zodiac_4'] = {
-                name = "Astral- Pack",
+                name = "Astral Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
