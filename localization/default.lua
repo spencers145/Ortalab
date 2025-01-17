@@ -322,7 +322,7 @@ return {
 				["name"] = "Black Friday",
 				["text"] = {
 					"All cards in the shop",
-					"are {C:money}#2#%{} off",
+					"are {C:money}#1#%{} off",
 				}
 			},
 			['j_ortalab_blue_card'] = {
