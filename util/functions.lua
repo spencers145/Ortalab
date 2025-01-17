@@ -35,7 +35,9 @@ function Game:init_game_object()
     local ret = igo(self)
     ret.ortalab = {
         vouchers = {
-            horoscope = 0
+            horoscope = 0,
+            cantor = 0,
+            tabla = 0
         },
         temp_levels = 0,
 		tree_of_life_count = 0,

@@ -12,7 +12,7 @@ local small_boosters = {keys = {'small_loteria_1', 'small_loteria_2', 'small_lot
     config = {choose = 1, extra = 3},
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
-        return {vars = {(card and card.ability.choose or self.config.choose) + (G.GAME and G.GAME.Ortalab_loteria_voucher and G.GAME.Ortalab_loteria_voucher or 0), card and card.ability.extra or self.config.extra}}
+        return {vars = {(card and card.ability.choose or self.config.choose) + (G.GAME and G.GAME.ortalab.vouchers.cantor), card and card.ability.extra or self.config.extra}}
     end,
     create_card = function(self, card)
         return create_card("Loteria", G.pack_cards, nil, nil, true,  true, nil, "lotpack")
@@ -58,7 +58,7 @@ local mid_boosters = {keys = {'mid_loteria_1', 'mid_loteria_2'}, info = {
     config = {choose = 1, extra = 5},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
-        return {vars = {(card and card.ability.choose or self.config.choose) + (G.GAME and G.GAME.Ortalab_loteria_voucher and G.GAME.Ortalab_loteria_voucher or 0), card and card.ability.extra or self.config.extra}}
+        return {vars = {(card and card.ability.choose or self.config.choose) + (G.GAME and G.GAME.ortalab.vouchers.cantor), card and card.ability.extra or self.config.extra}}
     end,
     create_card = function(self, card)
         return create_card("Loteria", G.pack_cards, nil, nil, true,  true, nil, "lotpack")
@@ -104,7 +104,7 @@ local large_boosters = {keys = {'big_loteria_1', 'big_loteria_2'}, info = {
     config = {choose = 2, extra = 5},
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits and card then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'kosze'} end
-        return {vars = {(card and card.ability.choose or self.config.choose) + (G.GAME and G.GAME.Ortalab_loteria_voucher and G.GAME.Ortalab_loteria_voucher or 0), card and card.ability.extra or self.config.extra}}
+        return {vars = {(card and card.ability.choose or self.config.choose) + (G.GAME and G.GAME.ortalab.vouchers.cantor), card and card.ability.extra or self.config.extra}}
     end,
     create_card = function(self, card)
         return create_card("Loteria", G.pack_cards, nil, nil, true,  true, nil, "lotpack")

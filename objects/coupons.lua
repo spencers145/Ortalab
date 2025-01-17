@@ -250,8 +250,8 @@ SMODS.Voucher({
 	discovered = false,
 	available = true,
     config = {extra = {bonus_cards = 1}},
-	redeem = function(self)
-        G.GAME.Ortalab_loteria_voucher = self.config.extra.bonus_cards
+	redeem = function(self, voucher)
+        G.GAME.ortalab.vouchers.cantor = voucher.ability.extra.bonus_cards
     end,
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'crimson'} end
@@ -270,7 +270,7 @@ SMODS.Voucher({
     config = {extra = {bonus_cards = 1}},
     requires = {'v_ortalab_cantor'},
 	redeem = function(self)
-        G.GAME.Ortalab_loteria_voucher_2 = self.config.extra.bonus_cards
+        G.GAME.ortalab.vouchers.tabla = self.config.extra.bonus_cards
     end,
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'crimson'} end
