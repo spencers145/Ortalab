@@ -81,48 +81,32 @@ local small_boosters = {keys = {'small_zodiac_1', 'small_zodiac_2', 'small_zodia
         G.booster_pack_sparkles.fade_alpha = 1
         G.booster_pack_sparkles:fade(1, 0)
     end,
-    },
-    create = {
-        {create_card = function(self, card, i)
-            local most_used = nil
-            if G.GAME.used_vouchers.v_ortalab_horoscope and i == 1 then
-                local new_most_used, value = nil, 0
-                for zodiac_key, hand_type in pairs(hand_types_typing.positive) do
-                    if G.GAME.hands[hand_type].visible and G.GAME.hands[hand_type].played > value then
-                        new_most_used = zodiac_key
-                        value = G.GAME.hands[hand_type].played
-                    end
+    create_card = function(self, card, i)
+        local most_used = nil
+        if G.GAME.used_vouchers.v_ortalab_horoscope and i == 1 then
+            local new_most_used, value = nil, 0
+            for zodiac_key, hand_type in pairs(hand_types_typing.positive) do
+                if G.GAME.hands[hand_type].visible and G.GAME.hands[hand_type].played > value then
+                    new_most_used = zodiac_key
+                    value = G.GAME.hands[hand_type].played
                 end
-                most_used = new_most_used
             end
-            return create_card("Zodiac", G.pack_cards, nil, nil, true,  true, most_used or pseudorandom_element(zodiac_pool('positive'), pseudoseed('zodiac_positive_pack')), "zodpack")
-        end,
-        group_key = 'ortalab_zodiac_pack_plus',},
-        {create_card = function(self, card, i)
-            local most_used = nil
-            if G.GAME.used_vouchers.v_ortalab_horoscope and i == 1 then
-                local new_most_used, value = nil, 0
-                for zodiac_key, hand_type in pairs(hand_types_typing.negative) do
-                    if G.GAME.hands[hand_type].visible and G.GAME.hands[hand_type].played > value then
-                        new_most_used = zodiac_key
-                        value = G.GAME.hands[hand_type].played
-                    end
+            for zodiac_key, hand_type in pairs(hand_types_typing.negative) do
+                if G.GAME.hands[hand_type].visible and G.GAME.hands[hand_type].played > value then
+                    new_most_used = zodiac_key
+                    value = G.GAME.hands[hand_type].played
                 end
-                most_used = new_most_used
             end
-            return create_card("Zodiac", G.pack_cards, nil, nil, true,  true, most_used or pseudorandom_element(zodiac_pool('negative'), pseudoseed('zodiac_negative_pack')), "zodpack")
-        end,
-        group_key = 'ortalab_zodiac_pack_minus',}
+            most_used = new_most_used
+        end
+        return create_card("Zodiac", G.pack_cards, nil, nil, true,  true, most_used or pseudorandom_element(zodiac_pool(), pseudoseed('zodiac_pack')), "zodpack")
+    end,
     }
 }
 
 for i, key in ipairs(small_boosters.keys) do
     local booster_args = {}
     for k,v in pairs(small_boosters.info) do
-        booster_args[k] = v
-    end
-    local other_values = small_boosters.create[(i-1)%2 + 1]
-    for k,v in pairs(other_values) do
         booster_args[k] = v
     end
     booster_args.key = key

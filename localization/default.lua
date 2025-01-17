@@ -2037,7 +2037,7 @@ return {
                 name = "Astral+ Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:zodiac} +Zodiac{} cards to",
+                    "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
                     "be used immediately"
                 }
             },
@@ -2045,7 +2045,7 @@ return {
                 name = "Astral- Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:zodiac} -Zodiac{} cards to",
+                    "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
                     "be used immediately"
                 }
             },
@@ -2053,7 +2053,7 @@ return {
                 name = "Astral+ Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:zodiac} +Zodiac{} cards to",
+                    "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
                     "be used immediately"
                 }
             },
@@ -2061,7 +2061,7 @@ return {
                 name = "Astral- Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{C:zodiac} -Zodiac{} cards to",
+                    "{C:attention}#2#{C:zodiac} Zodiac{} cards to",
                     "be used immediately"
                 }
             },
