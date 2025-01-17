@@ -288,7 +288,7 @@ SMODS.Voucher({
 	available = true,
     config = {extra = {bonus_level = 1}},
 	redeem = function(self)
-        G.GAME.Ortalab_zodiac_voucher = self.config.extra.bonus_level
+        G.GAME.ortalab.vouchers.leap_year = self.config.extra.bonus_level
     end,
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
@@ -307,7 +307,7 @@ SMODS.Voucher({
     config = {extra = {level_decrease_mod = 2}},
     requires = {'v_ortalab_leap_year'},
 	redeem = function(self)
-        G.GAME.Ortalab_Zodiac_Reduction = G.GAME.Ortalab_Zodiac_Reduction / self.config.extra.level_decrease_mod
+        G.GAME.ortalab.zodiacs.reduction = G.GAME.ortalab.zodiacs.reduction / self.config.extra.level_decrease_mod
     end,
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end

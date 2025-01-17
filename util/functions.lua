@@ -37,12 +37,19 @@ function Game:init_game_object()
         vouchers = {
             horoscope = 0,
             cantor = 0,
-            tabla = 0
+            tabla = 0,
+            leap_year = 0
+        },
+        zodiacs = {
+            reduction = 2,
+            temp_level_mod = 1
         },
         temp_levels = 0,
-		tree_of_life_count = 0,
-        ya_te_veo_count = 0,
-        jackalope_count = 0,
+        mythos = {
+            tree_of_life_count = 0,
+            ya_te_veo_count = 0,
+            jackalope_count = 0,
+        }
 
     }
 	return ret
