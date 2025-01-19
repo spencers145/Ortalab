@@ -122,7 +122,7 @@ if G.zodiacs then
             
             for i=1, #G.play.cards do
                 if G.play.cards[i].add_to_scoring then
-                    G.play.cards[i].add_to_scoring = nil
+                    G.play.cards[i]:add_to_scoring()
                     table.insert(scoring_hand, G.play.cards[i])
                 end
             end
