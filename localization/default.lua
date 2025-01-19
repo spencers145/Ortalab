@@ -768,7 +768,7 @@ return {
 			['j_ortalab_pickaxe'] = {
 				["name"] = "Pickaxe",
 				["text"] = {
-					"Destroy played {C:attention}Ore{} cards",
+					"Destroy played {C:attention}rankless{} cards",
 					"Gains {X:mult,C:white}X#2#{} Mult per",
 					"card destroyed this way",
 					"{C:inactive,s:0.9}(Currently {X:mult,C:white,s:0.9}X#1#{C:inactive,s:0.9} Mult)"
