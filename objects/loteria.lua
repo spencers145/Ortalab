@@ -569,12 +569,18 @@ SMODS.Consumable({
     use = function(self, loteria, area, copier)
         track_usage(loteria.config.center.set, loteria.config.center_key)
         local cards = {}
+        local available_cards = {}
+        for _, card in pairs(G.hand.cards) do
+            if card:get_chip_bonus() > 0 or get_chips_from_enhancement(card) > 0 or get_chips_from_edition(card) > 0 then
+                table.insert(available_cards, card)
+            end
+        end
 
-        for i=1, math.min(loteria.ability.extra.amount, #G.hand.cards) do
+        for i=1, math.min(loteria.ability.extra.amount, #available_cards) do
             G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.35,func = function()
                 local selected = false
                 while not selected do
-                    local selected_card = pseudorandom_element(G.hand.cards, pseudoseed('heron'))
+                    local selected_card = pseudorandom_element(available_cards, pseudoseed('heron'))
                     if not selected_card.highlighted then
                         G.hand:add_to_highlighted(selected_card)
                         selected = true
@@ -589,10 +595,9 @@ SMODS.Consumable({
             for _, card in pairs(G.hand.highlighted) do
                 G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.35,func = function()
                     local chips = card:get_chip_bonus()
-                    if card.edition then
-                        local ret = card:get_edition()
-                        if ret.chip_mod then chips = chips + ret.chip_mod end
-                    end
+                    local edition_chips = get_chips_from_edition(card)
+                    local enhancement_chips = get_chips_from_enhancement(card)
+                    chips = chips + edition_chips + enhancement_chips
                     local money = math.floor(chips/loteria.ability.extra.value)
                     card_eval_status_text(card, 'dollars', money, nil, nil, {instant = true})
                     total = total + money
@@ -608,6 +613,23 @@ SMODS.Consumable({
         end}))
     end
 })
+
+function get_chips_from_edition(card)
+    if not card.edition then return 0 end
+    local ret = card:calculate_edition({main_scoring = true, cardarea = G.play})
+    if ret.chips then return ret.chips end
+    if ret.chip_mod then return ret.chip_mod end
+    return 0
+end
+
+function get_chips_from_enhancement(card)
+    if card.config.center.set ~= 'Enhanced' then return 0 end
+    local ret = card:calculate_enhancement({heron_check = true})
+    if not ret then return 0 end
+    if ret.chips then return ret.chips end
+    if ret.chip_mod then return ret.chip_mod end
+    return 0
+end
 
 SMODS.Consumable({
     key = 'lot_rose',

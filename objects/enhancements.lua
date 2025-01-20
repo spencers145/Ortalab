@@ -18,6 +18,9 @@ SMODS.Enhancement({
         }
     end,
     calculate = function(self, card, context)
+        if context.heron_check then
+            return { chips = (#G.hand.cards - #G.hand.highlighted) * card.ability.extra.hand_chips }
+        end
         if context.cardarea == G.play and context.main_scoring then
             local chip_return = 0
             for i, held_card in pairs(G.hand.cards) do
