@@ -1251,9 +1251,10 @@ return {
             ["c_ortalab_lot_flag"] = {
 				["name"] = "The Flag",
 				["text"] = {
-					"Increases or decreases",
-					"rank of up to {C:attention}#1#{}",
-					"selected cards by",
+					"Increases the {C:attention}left-most",
+					"selected card's rank and",
+					"decrease the {C:attention}right-most",
+					"selected card's rank by",
 					"up to {C:attention}#2#"
 				},
 			},
@@ -1607,8 +1608,8 @@ return {
                 name = "Aries",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Destroy #3# {C:attention}left-most{} cards',
-					'in hand'
+					'Destroy up to #3# {C:attention}left-most{} cards',
+					'of a different rank in hand'
                 }
             },
 			['zodiac_ortalab_taurus'] = {

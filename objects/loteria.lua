@@ -367,25 +367,24 @@ SMODS.Consumable({
     end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
-        local options = {}
-        for i=1, card.ability.extra.rank_change do
-            table.insert(options, i)
-        end
+        table.sort(G.hand.highlighted, function (a, b) return a.T.x + a.T.w/2 < b.T.x + b.T.w/2 end)
+        local signs = {1, -1}
         for i=1, #G.hand.highlighted do
             local percent = 1.15 - (i-0.999)/(#G.hand.highlighted-0.998)*0.3
             G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() G.hand.highlighted[i]:flip();play_sound('card1', percent);G.hand.highlighted[i]:juice_up(0.3, 0.3);return true end }))
-        end
-        for _, card in pairs(G.hand.highlighted) do
-            local sign = pseudorandom(pseudoseed('flag_sign')) > 0.5 and 1 or -1
-            local change = pseudorandom_element(options, pseudoseed('flag_change'))
-            for i=1, change do
-                G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
-                    card.base.id = card.base.id+sign
-                    local rank_suffix = get_rank_suffix(card)
-                    assert(SMODS.change_base(card, nil, rank_suffix))
-                return true end }))
-            end
-            -- card_eval_status_text(card, 'extra', nil, nil, nil, {message = tostring(sign*change), colour = G.ARGS.LOC_COLOURS.loteria, delay = 0.4})
+            local change = pseudorandom(pseudoseed('flag_change'), 1, card.ability.extra.rank_change)
+            G.E_MANAGER:add_event(Event({
+                trigger = 'after',
+                delay = 0.4,
+                func = function()
+                    for j=1, change do
+                        G.hand.highlighted[i].base.id = G.hand.highlighted[i].base.id + signs[i]
+                        local rank_suffix = get_rank_suffix(G.hand.highlighted[i])
+                        assert(SMODS.change_base(G.hand.highlighted[i], nil, rank_suffix))
+                    end
+                    return true
+                end
+            }))
         end
         for i=1, #G.hand.highlighted do
             local percent = 0.85 + (i-0.999)/(#G.hand.highlighted-0.998)*0.3
