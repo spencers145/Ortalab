@@ -1294,7 +1294,9 @@ return {
 				["name"] = "The Bonnet",
 				["text"] = {
 					"Gain between {C:money}-$#1#",
-                    "and {C:money}$#2#"
+                    "and {C:money}$#2#",
+					"{C:inactive}Doubled if played with",
+					"{C:inactive}$#2# or more"
 				},
 			},
 			["c_ortalab_lot_boot"] = {
