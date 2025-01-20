@@ -689,7 +689,7 @@ return {
 			['j_ortalab_misfits'] = {
 				["name"] = "The Misfits",
 				["text"] = {
-					'{X:red,C:white}X#1#{} Mult if {C:attention}played hand',
+					'{X:red,C:white}X#1#{} Mult if {C:attention}poker hand',
 					'contains exactly',
 					'{C:attention}#2#{} Suits and {C:attention}#2#{} Ranks'
 				}
