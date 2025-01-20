@@ -221,7 +221,7 @@ SMODS.Enhancement({
     no_suit = true,
     replace_base_card = true,
     always_scores = true,
-    config = {mult = 10},
+    config = {mult = 15},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'eremel'} end
         return {
