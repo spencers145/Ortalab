@@ -1402,7 +1402,7 @@ return {
 				["text"] = {
 					"{X:mult,C:white}X#1#{} Mult,",
                     "loses {X:mult,C:white}X#2#{} Mult", 
-					"when played",
+					"when held in hand",
                     "{C:inactive,s:0.7}(Destroyed when played at {X:mult,C:white,s:0.7}X1{C:inactive,s:0.7} Mult)",
 				},
 			},
