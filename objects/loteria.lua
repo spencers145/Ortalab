@@ -408,13 +408,34 @@ SMODS.Consumable({
         return {vars = {card.ability.extra.amount + (G.GAME and G.GAME.ortalab.vouchers.tabla)}}
     end,
     can_use = function(self, card)
-        return #G.hand.cards > 0
+        return #G.hand.highlighted <= card.ability.extra.amount
     end,
     keep_on_use = function(self, card)
         return loteria_joker_save_check(card)
     end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
+        local destroyed_cards = {}
+        for i=#G.hand.highlighted, 1, -1 do
+            destroyed_cards[#destroyed_cards+1] = G.hand.highlighted[i]
+        end
+        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+            play_sound('tarot1')
+            card:juice_up(0.3, 0.5)
+            return true end }))
+        G.E_MANAGER:add_event(Event({
+            trigger = 'after',
+            delay = 0.2,
+            func = function() 
+                for i=#G.hand.highlighted, 1, -1 do
+                    local card = G.hand.highlighted[i]
+                    if SMODS.shatters(card) then 
+                        card:shatter()
+                    else
+                        card:start_dissolve(nil, i == #G.hand.highlighted)
+                    end
+                end
+                return true end }))
         delay(0.5)
         G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.35,func = function()
             local new_cards = {}

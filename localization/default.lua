@@ -1270,6 +1270,8 @@ return {
             ["c_ortalab_lot_bottle"] = {
 				["name"] = "The Bottle",
 				["text"] = {
+					"Destroy up to {C:attention}#1#",
+					"selected cards",
 					"Create {C:attention}#1# modified",
 					"cards in your hand"
 				},
