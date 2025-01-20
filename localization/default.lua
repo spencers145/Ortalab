@@ -416,7 +416,7 @@ return {
 			['j_ortalab_damp'] = {
 				["name"] = "Damp Joker",
 				["text"] = {
-					"Upgrades the last",
+					"Upgrades the first",
 					"played {C:attention}poker hand{}",
 					"scored this blind",
 				}
