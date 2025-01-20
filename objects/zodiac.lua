@@ -355,7 +355,7 @@ Ortalab.Zodiac{
     config = {extra = {temp_level = 4, hand_type = 'Four of a Kind', count = 2}},
     loc_vars = function(self, info_queue, card)
         local zodiac = card or self
-        local temp_level = (not zodiac.voucher_check and G.GAME.ortalab.zodiacs.temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.ortalab.vouchers.leap_year)
+        local temp_level = (not zodiac.voucher_check and G.GAME.ortalab.zodiacs.temp_level_mod or 1) * zodiac.config.extra.temp_level + (not zodiac.voucher_check and G.GAME.ortalab.vouchers.leap_year or 0)
         return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands'), zodiac.config.extra.count}}
     end,
     pre_trigger = function(self, zodiac, context)
