@@ -297,8 +297,8 @@ return {
 				["name"] = "Broken Masquerade",
 				["text"] = {
 					"Earn {C:money}$#1#{} at end of round",
-					"Gains {C:money}$#2#{} per discarded {C:attention,E:1}Cosmic Card{}",
-					"Discarded {C:attention,E:1}Cosmic Cards{} are destroyed",
+					"Gains {C:money}$#2#{} per scored {C:attention,E:1}Cosmic Card{}",
+					"Scored {C:attention,E:1}Cosmic Cards{} are destroyed",
 				}
 			},
 			['j_ortalab_blacklist'] = {
