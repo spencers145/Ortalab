@@ -175,7 +175,7 @@ SMODS.Enhancement({
     atlas = "ortalab_enhanced",
     pos = {x = 0, y = 1},
     discovered = false,
-    config = {extra = {base_x = 0.5, x_gain = 0.75}},
+    config = {extra = {base_x = 0.75, x_gain = 0.5}},
     loc_vars = function(self, info_queue, card)
         if card and Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'gappie'} end
         local card_ability = card and card.ability or self.config
