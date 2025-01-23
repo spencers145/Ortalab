@@ -802,8 +802,8 @@ SMODS.Consumable({
         track_usage(card.config.center.set, card.config.center_key)
         local joker = G.jokers.highlighted[1]
         local original = joker.config.center
-        local rarity = original.rarity
-        rarity = (rarity == 4 and 4) or (rarity == 3 and 0.98) or (rarity == 2 and 0.75) or 0
+        local base_rarities = {'Common', 'Uncommon', 'Rare', 'Legendary'}
+        local rarity = base_rarities[original.rarity] or original.rarity
         delay(0.5)
         draw_card(G.jokers, G.play, 1, 'up', false, joker, nil, true)
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.35, func = function()
@@ -811,11 +811,11 @@ SMODS.Consumable({
             if joker.remove_from_deck and type(joker.remove_from_deck) == 'function' then joker:remove_from_deck() end
             joker:check_chameleon()
             for i=1, 40 do
-                local new_joker = pseudorandom_element(get_current_pool('Joker', rarity, rarity == 4), pseudoseed('loteria_hand'))
+                local new_joker = pseudorandom_element(get_current_pool('Joker', rarity, rarity == 'Legendary'), pseudoseed('loteria_hand'))
                 if G.P_CENTERS[new_joker] and new_joker ~= original.key then
                     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.15, func = function()
                         _center = G.P_CENTERS[new_joker]
-                        joker.children.center = Sprite(joker.T.x, joker.T.y, joker.T.w, joker.T.h, G.ASSET_ATLAS[_center.atlas or 'centers'], _center.pos)
+                        joker.children.center = Sprite(joker.T.x, joker.T.y, joker.T.w, joker.T.h, G.ASSET_ATLAS[_center.atlas or 'Joker'], _center.pos)
                         joker.children.center.states.hover = joker.states.hover
                         joker.children.center.states.click = joker.states.click
                         joker.children.center.states.drag = joker.states.drag
