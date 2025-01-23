@@ -90,19 +90,6 @@ if self.config.center.ortalab_type == 'Zodiac' then
 end
 '''
 
-
-[[patches]]
-[patches.pattern]
-target = 'card.lua'
-pattern = '''local used_tarot = copier or self'''
-position = 'after'
-match_indent = true
-payload = '''
-if self.config.center.set == 'Loteria' and G.GAME.used_vouchers['v_ortalab_tabla'] then
-    if self.ability.extra.amount then self.ability.extra.amount = self.ability.extra.amount + G.GAME.ortalab.vouchers.tabla end
-end
-'''
-
 # Natal Sign Calculation
 [[patches]]
 [patches.pattern]

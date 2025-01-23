@@ -526,9 +526,9 @@ return {
 				["name"] = "Freezer",
 				["text"] = {
 					'Gain {X:red,C:white}X#1#{} Mult for each',
-					'{C:attention}consumeable{} you are holding',
-					'Consumeables have a {C:green}#3# in #4#',
-					'chance to be consumed',
+					'{C:attention}consumable{} you are holding',
+					'Consumables have a {C:green}#3# in #4#',
+					'chance to be consumed when used',
 					'{C:inactive,s:0.9}(Currently {s:0.9,X:red,C:white}X#2#{C:inactive,s:0.9})'
 				}
 			},
