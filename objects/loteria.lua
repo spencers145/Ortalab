@@ -64,10 +64,14 @@ SMODS.Consumable({
             end
         end
         play_sound('timpani')
-        local card = create_card(nil, G.consumeables, nil, nil, nil, nil, pseudorandom_element(options, pseudoseed('rooster_card')), 'rooster')
-        card:add_to_deck()
-        G.consumeables:emplace(card)
-        card:juice_up(0.3, 0.5)
+        G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+        if #G.consumeables.cards + G.GAME.consumeable_buffer <= G.consumeables.config.card_limit then
+            local card = create_card(nil, G.consumeables, nil, nil, nil, nil, pseudorandom_element(options, pseudoseed('rooster_card')), 'rooster')
+            card:add_to_deck()
+            G.consumeables:emplace(card)
+            card:juice_up(0.3, 0.5)
+        end
+        G.GAME.consumeable_buffer = G.GAME.consumeable_buffer - 1
     end
 })
 
@@ -379,7 +383,7 @@ SMODS.Consumable({
                 delay = 0.4,
                 func = function()
                     for j=1, change do
-                        G.hand.highlighted[i].base.id = G.hand.highlighted[i].base.id + signs[i]
+                        G.hand.highlighted[i].base.id = G.hand.highlighted[i].base.id + signs[2 - (i % 2)]
                         local rank_suffix = get_rank_suffix(G.hand.highlighted[i])
                         assert(SMODS.change_base(G.hand.highlighted[i], nil, rank_suffix))
                     end
@@ -402,13 +406,13 @@ SMODS.Consumable({
     atlas = 'loteria_cards',
     pos = {x=3, y=2},
     discovered = false,
-    config = {extra = {amount = 2}},
+    config = {extra = {amount = 2, selected = 2}},
     loc_vars = function(self, info_queue, card)
         if Ortalab.config.artist_credits then info_queue[#info_queue+1] = {generate_ui = ortalab_artist_tooltip, key = 'parchment'} end
         return {vars = {card.ability.extra.amount + (G.GAME and G.GAME.ortalab.vouchers.tabla)}}
     end,
     can_use = function(self, card)
-        return #G.hand.highlighted <= card.ability.extra.amount
+        return selected_use(self, card)
     end,
     keep_on_use = function(self, card)
         return loteria_joker_save_check(card)
@@ -439,7 +443,7 @@ SMODS.Consumable({
         delay(0.5)
         G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.35,func = function()
             local new_cards = {}
-            for i=1, card.ability.extra.amount do
+            for i=1, card.ability.extra.amount + G.GAME.ortalab.vouchers.tabla do
                 G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function()
                     local new_card = create_playing_card({center = G.P_CENTERS[pseudorandom_element(get_current_pool('Enhanced'), pseudoseed('bottle'))]}, G.play)
                     G.deck.config.card_limit = G.deck.config.card_limit + 1
@@ -598,7 +602,7 @@ SMODS.Consumable({
             end
         end
 
-        for i=1, math.min(loteria.ability.extra.amount, #available_cards) do
+        for i=1, math.min(loteria.ability.extra.amount + G.GAME.ortalab.vouchers.tabla, #available_cards) do
             G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.35,func = function()
                 local selected = false
                 while not selected do
@@ -916,7 +920,7 @@ function use_enhance_cards(self, loteria, area, copier)
         if v.config.center_key ~= loteria.ability.extra.key then valid_cards = valid_cards + 1 end
     end
     shuffle_cards()
-    for i=1, math.min(loteria.ability.extra.amount, valid_cards) do
+    for i=1, math.min(loteria.ability.extra.amount + G.GAME.ortalab.vouchers.tabla, valid_cards) do
         local set = true
         while set do
             local card = pseudorandom_element(G.hand.cards, pseudoseed(loteria.ability.extra.key..'_select'))
@@ -960,7 +964,7 @@ function set_enhancement(card, key)
 end
 
 function create_consumables(card)
-    for i = 1, math.min(card.ability.extra.amount, G.consumeables.config.card_limit - #G.consumeables.cards) do
+    for i = 1, math.min(card.ability.extra.amount + G.GAME.ortalab.vouchers.tabla, G.consumeables.config.card_limit - #G.consumeables.cards) do
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
             if G.consumeables.config.card_limit > #G.consumeables.cards then
                 play_sound('timpani')
