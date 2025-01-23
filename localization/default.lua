@@ -34,6 +34,7 @@ return {
 			ortalab_hide_intro = 'Don\'t show again',
 			ortalab_toggle_intro = 'Skip Intro Screen',
 			["ortalab_artist"] = 'Artist',
+			ortalab_effects = 'Effects',
 			["ortalab_swap"] = 'Swap!',
 			['ortalab_leak'] = 'Leaked!',
 			['ortalab_empty'] = 'Empty!',
@@ -704,11 +705,10 @@ return {
 				}
 			},
 			['j_ortalab_monochrome'] = {
-				["name"] = "Monochrome Joker",
+				["name"] = "Prismatic Joker",
 				["text"] = {
-					"All cards are also",
-					"considered to be {V:1}#1#{}",
-					"{C:inactive,s:0.8}Changes when blind is selected",
+					"All cards act as",
+					"all suits when {C:attention}scored"
 				}
 			},
 			['j_ortalab_multiplyers'] = {
