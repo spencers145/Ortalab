@@ -791,6 +791,10 @@ SMODS.Consumable({
     can_use = function(self, card)
         if G.STATE ~= G.STATES.HAND_PLAYED and G.STATE ~= G.STATES.DRAW_TO_HAND and G.STATE ~= G.STATES.PLAY_TAROT or any_state then
             if #G.jokers.highlighted == card.ability.extra.selected then
+                local base_rarities = {'Common', 'Uncommon', 'Rare', 'Legendary'}
+            local rarity = base_rarities[G.jokers.highlighted[1].config.center.rarity] or G.jokers.highlighted[1].config.center.rarity
+                local pool = get_current_pool('Joker', rarity, rarity == 'Legendary')
+                if #pool == 1 and pool[1] == 'j_joker' then return false end
                 return true
             end
         end
