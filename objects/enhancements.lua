@@ -287,7 +287,7 @@ SMODS.Enhancement({
                 G.E_MANAGER:add_event(Event({
                     trigger = 'after', delay = 0.4,
                     func = (function()
-                        add_tag(Tag(selected_tag))
+                        add_tag(Tag(selected_tag, false, 'Small'))
                         play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
                         play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
                         return true
