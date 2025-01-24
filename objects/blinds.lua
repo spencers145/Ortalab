@@ -1096,7 +1096,7 @@ SMODS.Blind({
     atlas = 'ortalab_blinds',
     pos = {x = 0, y = 26},
     dollars = 8,
-    mult = 2.5,
+    mult = 2,
     boss = {min = 1, max = 10, showdown = true},
     boss_colour = HEX('a85476'),
     loc_vars = function(self, info_queue, card)
