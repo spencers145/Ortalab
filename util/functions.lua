@@ -42,7 +42,8 @@ function Game:init_game_object()
         },
         zodiacs = {
             reduction = 2,
-            temp_level_mod = 1
+            temp_level_mod = 1,
+            activated = {}
         },
         temp_levels = 0,
         mythos = {

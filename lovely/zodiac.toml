@@ -90,7 +90,7 @@ if G.zodiacs then
         if zodiac.config.extra.hand_type == text then
             zodiac_effect = G.ZODIACS[zodiac.key]
             zodiac_current = zodiac
-            G.GAME.zodiacs_activated[zodiac.key] = true
+            G.GAME.ortalab.zodiacs.activated[zodiac.key] = true
 
             -- Update Stargazing Jokers
             local stargazings = SMODS.find_card('j_ortalab_stargazing')
