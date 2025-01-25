@@ -329,19 +329,12 @@ function window_infinite(card)
 end
 
 function Ortalab.spawn_booster()
-    G.GAME.current_round.used_packs = G.GAME.current_round.used_packs or {}
-    if not G.GAME.current_round.used_packs[1] then
-        G.GAME.current_round.used_packs[1] = get_pack('shop_pack').key
-    end
-
-    if G.GAME.current_round.used_packs[1] ~= 'USED' then 
-        local card = Card(G.shop_booster.T.x + G.shop_booster.T.w/2,
-        G.shop_booster.T.y, G.CARD_W*1.27, G.CARD_H*1.27, G.P_CARDS.empty, G.P_CENTERS[G.GAME.current_round.used_packs[1]], {bypass_discovery_center = true, bypass_discovery_ui = true})
-        create_shop_card_ui(card, 'Booster', G.shop_booster)
-        card.ability.booster_pos = #G.shop_booster.cards + 1
-        card:start_materialize()
-        G.shop_booster:emplace(card)
-    end
+    local card = Card(G.shop_booster.T.x + G.shop_booster.T.w/2,
+    G.shop_booster.T.y, G.CARD_W*1.27, G.CARD_H*1.27, G.P_CARDS.empty, G.P_CENTERS[get_pack('shop_pack').key], {bypass_discovery_center = true, bypass_discovery_ui = true})
+    create_shop_card_ui(card, 'Booster', G.shop_booster)
+    card.ability.booster_pos = #G.shop_booster.cards + 1
+    card:start_materialize()
+    G.shop_booster:emplace(card)
 end
 
 local skip_blind = G.FUNCS.skip_blind
