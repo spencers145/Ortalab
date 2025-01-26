@@ -285,7 +285,7 @@ SMODS.Consumable({
     end,
     use = function(self, card, area, copier)
         track_usage(card.config.center.set, card.config.center_key)
-        local doubled = G.GAME.dollars >= card.ability.extra.max and 2 or 1
+        local doubled = to_big(G.GAME.dollars) >= to_big(card.ability.extra.max) and 2 or 1
         local money = pseudorandom(pseudoseed('bonnet'), card.ability.extra.min * doubled, card.ability.extra.max * doubled)
         ease_dollars(money)
     end
