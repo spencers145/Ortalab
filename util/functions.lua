@@ -131,7 +131,6 @@ function get_new_small()
         end
     end
 
-    print(tprint(eligible_bosses))
     local _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))
     
     return boss
