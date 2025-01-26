@@ -97,3 +97,80 @@ function Card:is_numbered(from_boss)
         return true
     end
 end
+
+function get_new_small()
+    G.GAME.perscribed_small = G.GAME.perscribed_small or {
+    }
+    if G.GAME.perscribed_small and G.GAME.perscribed_small[G.GAME.round_resets.ante] then 
+        local ret_boss = G.GAME.perscribed_small[G.GAME.round_resets.ante] 
+        G.GAME.perscribed_small[G.GAME.round_resets.ante] = nil
+        return ret_boss
+    end
+    if G.FORCE_SMALL then return G.FORCE_SMALL end
+
+    local eligible_bosses = {bl_small = true}
+    for k, v in pairs(G.P_BLINDS) do
+        if not v.small then
+            -- don't add
+        elseif v.in_pool and type(v.in_pool) == 'function' then
+            local res, options = v:in_pool()
+            eligible_bosses[k] = res and true or nil
+        elseif (v.small.min <= math.max(1, G.GAME.round_resets.ante) and ((math.max(1, G.GAME.round_resets.ante))%G.GAME.win_ante ~= 0 or G.GAME.round_resets.ante < 2)) then
+            eligible_bosses[k] = true
+        end
+    end
+    for k, v in pairs(G.GAME.banned_keys) do
+        if eligible_bosses[k] then eligible_bosses[k] = nil end
+    end
+
+    if G.GAME.modifiers.ortalab_only then
+        for k, v in pairs(eligible_bosses) do
+            if v and not G.P_BLINDS[k].mod or G.P_BLINDS[k].mod.id ~= 'ortalab' then
+                eligible_bosses[k] = nil
+            end
+        end
+    end
+
+    print(tprint(eligible_bosses))
+    local _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))
+    
+    return boss
+end
+
+function get_new_big()
+    G.GAME.perscribed_big = G.GAME.perscribed_big or {
+    }
+    if G.GAME.perscribed_big and G.GAME.perscribed_big[G.GAME.round_resets.ante] then 
+        local ret_boss = G.GAME.perscribed_big[G.GAME.round_resets.ante] 
+        G.GAME.perscribed_big[G.GAME.round_resets.ante] = nil
+        return ret_boss
+    end
+    if G.FORCE_BIG then return G.FORCE_BIG end
+
+    local eligible_bosses = {bl_big = true}
+    for k, v in pairs(G.P_BLINDS) do
+        if not v.big then
+            -- don't add
+        elseif v.in_pool and type(v.in_pool) == 'function' then
+            local res, options = v:in_pool()
+            eligible_bosses[k] = res and true or nil
+        elseif (v.big.min <= math.max(1, G.GAME.round_resets.ante) and ((math.max(1, G.GAME.round_resets.ante))%G.GAME.win_ante ~= 0 or G.GAME.round_resets.ante < 2)) then
+            eligible_bosses[k] = true
+        end
+    end
+    for k, v in pairs(G.GAME.banned_keys) do
+        if eligible_bosses[k] then eligible_bosses[k] = nil end
+    end
+
+    if G.GAME.modifiers.ortalab_only then
+        for k, v in pairs(eligible_bosses) do
+            if v and not G.P_BLINDS[k].mod or G.P_BLINDS[k].mod.id ~= 'ortalab' then
+                eligible_bosses[k] = nil
+            end
+        end
+    end
+
+    local _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))
+    
+    return boss
+end
