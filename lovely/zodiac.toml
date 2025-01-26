@@ -168,3 +168,26 @@ payload = '''
 
 '''
 
+# Stop editions being drawn too early
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+match_indent = true
+position = 'at'
+pattern = '''
+if self.edition[v.key:sub(3)] and v.shader then
+'''
+payload = '''
+if self.edition[v.key:sub(3)] and v.shader and not self.delay_edition then
+'''
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+match_indent = true
+position = 'at'
+pattern = '''
+if (self.edition and self.edition.negative) or (self.ability.name == 'Antimatter' and (self.config.center.discovered or self.bypass_discovery_center)) then
+'''
+payload = '''
+if (self.edition and self.edition.negative and not self.delay_edition) or (self.ability.name == 'Antimatter' and (self.config.center.discovered or self.bypass_discovery_center)) then
+'''
