@@ -31,10 +31,14 @@ SMODS.Joker({
         recolour_atlases(card, HSL_RGB({((G.TIMERS.REAL % 360)/10), 0.2, 0.2, 1}))
     end,
     update = function(self, card, dt)
-        self:set_sprites(card)
+        card.ability.extra.dt = card.ability.extra.dt + dt
+        if card.ability.extra.dt > 2 then
+            card.ability.extra.dt = 0
+            self:set_sprites(card)
+        end
     end,
     draw = function(self, card, layer)
-        card.children.center:draw_shader('negative_shine',nil, card.ARGS.send_to_shader)
+        card.children.center:draw_shader('voucher',nil, card.ARGS.send_to_shader)
     end
 })
 
