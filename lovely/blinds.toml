@@ -42,6 +42,20 @@ elseif G.GAME.round_resets.blind.small then
 elseif G.GAME.round_resets.blind.big then
     G.GAME.round_resets.blind_states.Big = 'Defeated'
 '''
+# Handle setting new blinds
+[[patches]]
+[patches.pattern]
+target = 'blind.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+self.boss = blind and not not blind.boss
+'''
+payload = '''
+self.small = blind and not not blind.small
+self.big = blind and not not blind.big
+'''
+
 
 
 [[patches]]
