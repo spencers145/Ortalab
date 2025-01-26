@@ -152,7 +152,7 @@ SMODS.Voucher({
 	unlocked = true,
 	discovered = false,
 	available = true,
-    config = {extra = {xmult = 1.25, per = 4}},
+    config = {extra = {xmult = 1.1, per = 4}},
     requires = {'v_ortalab_horoscope'},
 	redeem = function(self)
         G.GAME.natal_sign_rate = self.config.extra.xmult
