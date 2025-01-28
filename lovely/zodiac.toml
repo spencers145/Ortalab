@@ -99,11 +99,9 @@ if G.zodiacs then
                 card_eval_status_text(stargazing_card, 'extra', nil, nil, nil, {message = localize{type='variable',key='a_xmult',vars={stargazing_card.ability.extra.gain}}, colour = G.C.RED})
             end
 
-            local level_text = G.GAME.hands[text].level
-            if type(level_text) == 'table' then level_text = level_text:to_string() end
             for i=1, zodiac_current.config.extra.temp_level do
                 G.GAME.ortalab.temp_levels = G.GAME.ortalab.temp_levels + 1
-                    update_hand_text({sound = 'button', volume = 0.7, pitch = 0.9, delay = 0}, {level=level_text..'+'..G.GAME.ortalab.temp_levels})
+                    update_hand_text({sound = 'button', volume = 0.7, pitch = 0.9, delay = 0}, {level=number_format(G.GAME.hands[text].level)..'+'..G.GAME.ortalab.temp_levels})
                     mult = mod_mult(mult+G.GAME.hands[text].l_mult)
                     update_hand_text({delay = 0}, {mult = mult})
                     hand_chips = mod_chips(hand_chips+G.GAME.hands[text].l_chips)
