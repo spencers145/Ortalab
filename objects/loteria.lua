@@ -643,6 +643,7 @@ SMODS.Consumable({
 function get_chips_from_edition(card)
     if not card.edition then return 0 end
     local ret = card:calculate_edition({main_scoring = true, cardarea = G.play})
+    if not ret then return 0 end
     if ret.chips then return ret.chips end
     if ret.chip_mod then return ret.chip_mod end
     return 0
