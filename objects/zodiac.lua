@@ -762,14 +762,12 @@ Ortalab.Zodiac{
                             card:juice_up()
                             card.config.center.replace_base_card = true                
                             card.becoming_no_rank = nil
-                            card.ability.effect = name
                             return true
                         end
                     }))
                     card:set_ability(G.P_CENTERS[change], nil, true)
                     local name = card.ability.effect
                     card.becoming_no_rank = true
-                    card.ability.effect = nil
                     card.config.center.replace_base_card = nil
                 end
                 
