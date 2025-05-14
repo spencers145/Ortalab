@@ -29,19 +29,6 @@ self.GAME.round_resets.blind_choices.Small = get_new_small()
 self.GAME.round_resets.blind_choices.Big = get_new_big()
 '''
 
-# Handle defeating custom small/big blinds
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = "G.GAME.round_resets.blind_states.Big = 'Defeated'"
-position = 'after'
-match_indent = true
-payload = '''
-elseif G.GAME.round_resets.blind.small then
-    G.GAME.round_resets.blind_states.Small = 'Defeated'
-elseif G.GAME.round_resets.blind.big then
-    G.GAME.round_resets.blind_states.Big = 'Defeated'
-'''
 # Handle setting new blinds
 [[patches]]
 [patches.pattern]
@@ -241,6 +228,62 @@ if G.hand.highlighted[i].corroded_discard or (G.GAME.blind.config.blind.key == '
 else
     draw_card(G.hand, G.discard, i*100/highlighted_count, 'down', false, G.hand.highlighted[i])
 end
+'''
+
+
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+match_indent = true
+position = 'at'
+pattern = '''
+if G.GAME.round_resets.blind == G.P_BLINDS.bl_small then
+'''
+payload = '''
+small_blinds = {"bl_ortalab_fold", "bl_ortalab_check", "bl_ortalab_bet"}
+big_blinds = {"bl_ortalab_all_in", "bl_ortalab_call", "bl_ortalab_raise"}
+
+local is_small = false
+local is_big = false
+
+for _, value in ipairs(small_blinds) do
+    if value == G.GAME.round_resets.blind.key then
+        is_small = true
+        break
+    end
+end
+
+for _, value in ipairs(big_blinds) do
+    if value == G.GAME.round_resets.blind.key then
+        is_big = true
+        break
+    end
+end
+
+
+
+if not G.GAME.round_resets.blind.key then
+    if G.GAME.blind:get_type() == 'Small' then
+        is_small = true
+    elseif G.GAME.blind:get_type() == 'Big' then
+        is_big = true
+    end
+end
+
+local cfg = G.GAME.round_resets.blind
+if cfg == G.P_BLINDS.bl_small or is_small then
+'''
+
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+match_indent = true
+position = 'at'
+pattern = '''
+elseif G.GAME.round_resets.blind == G.P_BLINDS.bl_big then
+'''
+payload = '''
+elseif cfg == G.P_BLINDS.bl_big or is_big then
 '''
 
 # Rouge Rose

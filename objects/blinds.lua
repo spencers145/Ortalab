@@ -87,10 +87,16 @@ SMODS.Blind({
 
 local blind_get_type = Blind.get_type
 function Blind:get_type()
-    if self.small then return 'Small'
-    elseif self.big then return 'Big'
-    else return blind_get_type(self) end
+local cfg = self.config and self.config.blind
+    if self.small or (cfg and cfg.small) then
+return 'Small'
+    elseif self.big or (cfg and cfg.big) then
+return 'Big'
+    else
+return blind_get_type(self)
 end
+end
+
 
 SMODS.Blind({
     key = 'sinker',
