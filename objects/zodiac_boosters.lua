@@ -65,7 +65,11 @@ local small_boosters = {keys = {'small_zodiac_1', 'small_zodiac_2', 'small_zodia
     end,
     draw_hand = false,
     cost = 4,
-    weight = 0.5,
+    weight = 0.35,
+    get_weight = function(self)
+        local new_weight = self.weight * (G.GAME.used_vouchers['v_ortalab_horoscope'] and 2 or 1)
+        return new_weight
+    end,
     particles = function(self)
         G.booster_pack_sparkles = Particles(1, 1, 0,0, {
             timer = 0.015,
@@ -115,7 +119,11 @@ local mid_boosters = {keys = {'mid_zodiac_1', 'mid_zodiac_2'}, info = {
     group_key = 'ortalab_zodiac_pack_2',
     draw_hand = false,
     cost = 6,
-    weight = 0.4,
+    weight = 0.35,
+    get_weight = function(self)
+        local new_weight = self.weight * (G.GAME.used_vouchers['v_ortalab_horoscope'] and 2 or 1)
+        return new_weight
+    end,
     particles = function(self)
         G.booster_pack_sparkles = Particles(1, 1, 0,0, {
             timer = 0.015,
@@ -161,7 +169,11 @@ local large_boosters = {keys = {'big_zodiac_1', 'big_zodiac_2'}, info = {
     group_key = 'ortalab_zodiac_pack_3',
     draw_hand = false,
     cost = 8,
-    weight = 0.2,
+    weight = 0.0875,
+    get_weight = function(self)
+        local new_weight = self.weight * (G.GAME.used_vouchers['v_ortalab_horoscope'] and 2 or 1)
+        return new_weight
+    end,
     particles = function(self)
         G.booster_pack_sparkles = Particles(1, 1, 0,0, {
             timer = 0.015,

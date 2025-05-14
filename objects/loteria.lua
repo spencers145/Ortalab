@@ -30,7 +30,7 @@ SMODS.ConsumableType({
         }
     },
     collection_rows = {6, 5},
-    shop_rate = 1,
+    shop_rate = 0.7,
     default = 'c_ortalab_lot_rooster'
 })
 
