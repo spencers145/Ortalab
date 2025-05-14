@@ -23,3 +23,11 @@ This is designed partly to help counterweight their inclusion in modpacks.
 ## Buffed Vouchers
 Some of the vouchers added for Loteria and Zodiac packs & cards now increase their commonness, on top of their original effects.
 This counterweights the slightly increased rarity of the cards and their packs, but also opens up several avenues to choose to see them more or less often during a run.
+
+## Fixed Bugs
+Small Blinds no longer pay out on red stake or higher.
+Blinds properly save and load their statuses. Before, saving and loading while in a big or small blind, then beating it, would beat the boss blind instead and reset the ante.
+Fixed The Tarot not working with modded rankless cards, and some other hands that should score involving rankless cards.
+
+## Nerfed Soil
+Down to x0.5 per repeatedly scored rank from x0.75. That's it.
