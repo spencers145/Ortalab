@@ -1612,8 +1612,8 @@ return {
                 name = "Aries",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Destroy up to #3# {C:attention}left-most{} cards',
-					'of a different rank in hand'
+					'Destroy {C:attention}left-most{} card of a',
+					'different rank in hand'
                 }
             },
 			['zodiac_ortalab_taurus'] = {
@@ -1637,25 +1637,29 @@ return {
                 name = "Cancer",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Turn all cards in hand into',
-					'the {C:attention}suit{} and {C:attention}ranks{} of the',
-					'{C:attention}#2#{} and give them a',
-					'random {C:attention}Enhancement'
+					'{C:green}#3# in #4#{} chance to turn',
+					'each card held in hand',
+					'into the {C:attention}suit{} and {C:attention}ranks{}',
+					'of the {C:attention}#2#{}',
+					'{C:green}#3# in #5#{} chance to also give',
+					'a random {C:attention}Enhancement'
                 }
             },
 			['zodiac_ortalab_scorpio'] = {
                 name = "Scorpio",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Turn #3# {C:attention}left-most{} unscored cards',
-					'into {C:attention}Stone Cards{} and {C:attention}Ore Cards'
+					'{C:green}#3# in #4#{} chance to give',
+					'each unscored card a',
+					'random {C:attention}rankless Enhancement'
                 }
             },
 			['zodiac_ortalab_aquarius'] = {
                 name = "Aquarius",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Add a copy of the {C:attention}second{}',
+					'{C:green}#3# in #4#{} chance to',
+					'add a copy of the {C:attention}second{}',
 					'scoring card to deck'
                 }
             },
@@ -1663,31 +1667,35 @@ return {
                 name = "Sagittarius",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Turn all cards in hand into',
-					'the {C:attention}suit{} of the {C:attention}#2#'
+					'{C:green}#3# in #4#{} chance to turn',
+					'each card in hand into the',
+					'{C:attention}suit{} of the {C:attention}#2#'
                 }
             },
 			['zodiac_ortalab_capr'] = {
                 name = "Capricorn",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Turn #3# {C:attention}left-most{} cards in',
-					'hand into {C:attention}Index cards'
+					'{C:green}#3# in #4#{} chance to turn',
+					'each {C:attention}unenhanced{} scored card',
+					'into an {C:attention}Index card'
                 }
             },
 			['zodiac_ortalab_libra'] = {
                 name = "Libra",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Turn {C:attention}left-most{} card in hand',
-					'into {C:attention}second{} scoring card'
+					'{C:green}#4# in #5#{} chance to turn',
+					'{C:attention}left-most{} card in hand into',
+					'{C:attention}second{} scoring card'
                 }
             },
 			['zodiac_ortalab_leo'] = {
                 name = "Leo",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Turn #3# {C:attention}left-most{} cards in hand into',
+					'{C:green}#4# in #5#{} chance each to turn the',
+					'#3# {C:attention}left-most{} cards in hand into',
 					'the {C:attention}central{} scored card'
                 }
             },
@@ -1695,8 +1703,9 @@ return {
                 name = "Virgo",
                 text = {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
-					'Add a {C:attention}copy{} of #3# {C:attention}central',
-					'scoring cards into your deck'
+					'{C:green}#4# in #5#{} chance each to',
+					'add a {C:attention}copy{} of the #3#',
+					'{C:attention}central scoring cards{} to deck'
                 }
             },
 			['zodiac_ortalab_pisces'] = {
@@ -1705,7 +1714,8 @@ return {
 					"{C:attention}+#1#{} levels to next {C:attention}#2#",
 					'Turn all cards in hand into',
 					'the {C:attention}suit{} of the {C:attention}#2#',
-					'and give them a random {C:dark_edition}Edition'
+					'and {C:green}#3# in #4#{} chance to give',
+					'each a random {C:dark_edition}Edition'
                 }
             },
 		},
@@ -1824,7 +1834,8 @@ return {
 				["name"] = "Horoscope",
 				["text"] = {
 					"{C:zodiac}Astral Packs{} contain",
-					'{C:attention}#1#{} extra card'
+					'{C:attention}#1#{} extra card and',
+					'appear {C:attention}twice{} as often'
 				}
 			},
 			['v_ortalab_natal_sign'] = {
@@ -1838,7 +1849,9 @@ return {
 				["name"] = "Leap Year",
 				["text"] = {
 					'{C:zodiac}Zodiac cards{} give',
-					'{C:attention}+#1#{} temporary level'
+					'{C:attention}+#1#{} temporary level and',
+					'appear {C:attention}twice{} as often',
+					'in the shop'
 				}
 			},
 			['v_ortalab_chronomancy'] = {
@@ -1853,7 +1866,8 @@ return {
 				["text"] = {
 					"You can select", 
 					"{C:attention}#1#{} extra card",
-					"from {C:loteria}Chalupa Packs"
+					"from {C:loteria}Chalupa Packs{} and",
+					"they appear {C:attention}twice{} as often"
 				}
 			},
 			['v_ortalab_tabla'] = {
