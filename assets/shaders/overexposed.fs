@@ -1,156 +1,132 @@
-#if defined(VERTEX) || __VERSION__ > 100 || defined(GL_FRAGMENT_PRECISION_HIGH)
-	#define MY_HIGHP_OR_MEDIUMP highp
-#else
-	#define MY_HIGHP_OR_MEDIUMP mediump
+#ifdef GL_ES
+  precision mediump float;
+  precision mediump int;
 #endif
 
-extern MY_HIGHP_OR_MEDIUMP vec2 overexposed;
-
-extern MY_HIGHP_OR_MEDIUMP number dissolve;
-extern MY_HIGHP_OR_MEDIUMP number time;
-extern MY_HIGHP_OR_MEDIUMP vec4 texture_details;
-extern MY_HIGHP_OR_MEDIUMP vec2 image_details;
+extern vec2 overexposed;
+extern float dissolve;
+extern float time;
+extern vec4 texture_details;
+extern vec2 image_details;
 extern bool shadow;
-extern MY_HIGHP_OR_MEDIUMP vec4 burn_colour_1;
-extern MY_HIGHP_OR_MEDIUMP vec4 burn_colour_2;
-extern MY_HIGHP_OR_MEDIUMP vec2 mouse_screen_pos;
-extern MY_HIGHP_OR_MEDIUMP float hovering;
-extern MY_HIGHP_OR_MEDIUMP float screen_scale;
-// the following four vec4 are (as far as I can tell) required and shouldn't be changed
+extern vec4 burn_colour_1;
+extern vec4 burn_colour_2;
+extern vec2 mouse_screen_pos;
+extern float hovering;
+extern float screen_scale;
 
-vec4 dissolve_mask(vec4 tex, vec2 texture_coords, vec2 uv)
-{
+// dissolve mask
+vec4 dissolve_mask(vec4 tex, vec2 tc, vec2 uv) {
     if (dissolve < 0.001) {
-        return vec4(shadow ? vec3(0.,0.,0.) : tex.xyz, shadow ? tex.a*0.3: tex.a);
+        return vec4(shadow ? vec3(0.0) : tex.xyz,
+                    shadow ? tex.a * 0.3 : tex.a);
     }
+    float adjusted = (dissolve * dissolve * (3.0 - 2.0 * dissolve)) * 1.02 - 0.01;
+    float t_val = time * 10.0 + 2003.0;
+    vec2 base = floor(uv * texture_details.ba) / max(texture_details.b, texture_details.a);
+    vec2 centered = (base - 0.5) * 2.3 * max(texture_details.b, texture_details.a);
 
-    float adjusted_dissolve = (dissolve*dissolve*(3.-2.*dissolve))*1.02 - 0.01; //Adjusting 0.0-1.0 to fall to -0.1 - 1.1 scale so the mask does not pause at extreme values
-
-	float t = time * 10.0 + 2003.;
-	vec2 floored_uv = (floor((uv*texture_details.ba)))/max(texture_details.b, texture_details.a);
-    vec2 uv_scaled_centered = (floored_uv - 0.5) * 2.3 * max(texture_details.b, texture_details.a);
-	
-	vec2 field_part1 = uv_scaled_centered + 50.*vec2(sin(-t / 143.6340), cos(-t / 99.4324));
-	vec2 field_part2 = uv_scaled_centered + 50.*vec2(cos( t / 53.1532),  cos( t / 61.4532));
-	vec2 field_part3 = uv_scaled_centered + 50.*vec2(sin(-t / 87.53218), sin(-t / 49.0000));
-
-    float field = (1.+ (
-        cos(length(field_part1) / 19.483) + sin(length(field_part2) / 33.155) * cos(field_part2.y / 15.73) +
-        cos(length(field_part3) / 27.193) * sin(field_part3.x / 21.92) ))/2.;
+    vec2 f1 = centered + 50.0 * vec2(sin(-t_val / 143.634), cos(-t_val / 99.4324));
+    vec2 f2 = centered + 50.0 * vec2(cos(t_val / 53.1532), cos(t_val / 61.4532));
+    vec2 f3 = centered + 50.0 * vec2(sin(-t_val / 87.53218), sin(-t_val / 49.0));
+    float field = (1.0 + (
+        cos(length(f1) / 19.483) +
+        sin(length(f2) / 33.155) * cos(f2.y / 15.73) +
+        cos(length(f3) / 27.193) * sin(f3.x / 21.92)
+    )) * 0.5;
     vec2 borders = vec2(0.2, 0.8);
+    float res = (0.5 + 0.5 * cos(adjusted / 82.612 + (field - 0.5) * 3.14))
+        - (base.x > borders.y ? (base.x - borders.y) * (5.0 + 5.0 * dissolve) : 0.0) * dissolve
+        - (base.y > borders.y ? (base.y - borders.y) * (5.0 + 5.0 * dissolve) : 0.0) * dissolve
+        - (base.x < borders.x ? (borders.x - base.x) * (5.0 + 5.0 * dissolve) : 0.0) * dissolve
+        - (base.y < borders.x ? (borders.x - base.y) * (5.0 + 5.0 * dissolve) : 0.0) * dissolve;
 
-    float res = (.5 + .5* cos( (adjusted_dissolve) / 82.612 + ( field + -.5 ) *3.14))
-    - (floored_uv.x > borders.y ? (floored_uv.x - borders.y)*(5. + 5.*dissolve) : 0.)*(dissolve)
-    - (floored_uv.y > borders.y ? (floored_uv.y - borders.y)*(5. + 5.*dissolve) : 0.)*(dissolve)
-    - (floored_uv.x < borders.x ? (borders.x - floored_uv.x)*(5. + 5.*dissolve) : 0.)*(dissolve)
-    - (floored_uv.y < borders.x ? (borders.x - floored_uv.y)*(5. + 5.*dissolve) : 0.)*(dissolve);
-
-    if (tex.a > 0.01 && burn_colour_1.a > 0.01 && !shadow && res < adjusted_dissolve + 0.8*(0.5-abs(adjusted_dissolve-0.5)) && res > adjusted_dissolve) {
-        if (!shadow && res < adjusted_dissolve + 0.5*(0.5-abs(adjusted_dissolve-0.5)) && res > adjusted_dissolve) {
-            tex.rgba = burn_colour_1.rgba;
-        } else if (burn_colour_2.a > 0.01) {
-            tex.rgba = burn_colour_2.rgba;
-        }
+    if (tex.a > 0.01 && burn_colour_1.a > 0.01 && !shadow &&
+        res > adjusted &&
+        res < adjusted + 0.8 * (0.5 - abs(adjusted - 0.5))) {
+        tex = (res < adjusted + 0.5 * (0.5 - abs(adjusted - 0.5)))
+            ? burn_colour_1
+            : (burn_colour_2.a > 0.01 ? burn_colour_2 : tex);
     }
-
-    return vec4(shadow ? vec3(0.,0.,0.) : tex.xyz, res > adjusted_dissolve ? (shadow ? tex.a*0.3: tex.a) : .0);
+    return vec4(shadow ? vec3(0.0) : tex.xyz,
+                res > adjusted ? (shadow ? tex.a * 0.3 : tex.a) : 0.0);
 }
 
-number hue(number s, number t, number h)
-{
-	number hs = mod(h, 1.)*6.;
-	if (hs < 1.) return (t-s) * hs + s;
-	if (hs < 3.) return t;
-	if (hs < 4.) return (t-s) * (4.-hs) + s;
-	return s;
+// hue helper
+float hue(float s, float t, float h) {
+    float hs = mod(h, 1.0) * 6.0;
+    if (hs < 1.0) return (t - s) * hs + s;
+    if (hs < 3.0) return t;
+    if (hs < 4.0) return (t - s) * (4.0 - hs) + s;
+    return s;
 }
 
-vec4 RGB(vec4 c)
-{
-	if (c.y < 0.0001)
-		return vec4(vec3(c.z), c.a);
-
-	number t = (c.z < .5) ? c.y*c.z + c.z : -c.y*c.z + (c.y+c.z);
-	number s = 2.0 * c.z - t;
-	return vec4(hue(s,t,c.x + 1./3.), hue(s,t,c.x), hue(s,t,c.x - 1./3.), c.w);
+// RGB from HSL
+vec4 RGB(vec4 c) {
+    if (c.y < 0.0001) return vec4(vec3(c.z), c.a);
+    float tVal = (c.z < 0.5) ? c.y * c.z + c.z : -c.y * c.z + (c.y + c.z);
+    float sVal = 2.0 * c.z - tVal;
+    return vec4(
+        hue(sVal, tVal, c.x + 1.0 / 3.0),
+        hue(sVal, tVal, c.x),
+        hue(sVal, tVal, c.x - 1.0 / 3.0),
+        c.w
+    );
 }
 
-vec4 HSL(vec4 c)
-{
-	number low = min(c.r, min(c.g, c.b));
-	number high = max(c.r, max(c.g, c.b));
-	number delta = high - low;
-	number sum = high+low;
-
-	vec4 hsl = vec4(.0, .0, .5 * sum, c.a);
-	if (delta == .0)
-		return hsl;
-
-	hsl.y = (hsl.z < .5) ? delta / sum : delta / (2.0 - sum);
-
-	if (high == c.r)
-		hsl.x = (c.g - c.b) / delta;
-	else if (high == c.g)
-		hsl.x = (c.b - c.r) / delta + 2.0;
-	else
-		hsl.x = (c.r - c.g) / delta + 4.0;
-
-	hsl.x = mod(hsl.x / 6., 1.);
-	return hsl;
+// HSL conversion
+vec4 HSL(vec4 c) {
+    float lo = min(c.r, min(c.g, c.b));
+    float hi = max(c.r, max(c.g, c.b));
+    float d = hi - lo;
+    float sumVal = hi + lo;
+    vec4 hsl = vec4(0.0, 0.0, 0.5 * sumVal, c.a);
+    if (d == 0.0) return hsl;
+    hsl.y = (hsl.z < 0.5) ? d / sumVal : d / (2.0 - sumVal);
+    if (hi == c.r) hsl.x = (c.g - c.b) / d;
+    else if (hi == c.g) hsl.x = (c.b - c.r) / d + 2.0;
+    else hsl.x = (c.r - c.g) / d + 4.0;
+    hsl.x = mod(hsl.x / 6.0, 1.0);
+    return hsl;
 }
 
-vec3 reinhardToneMap(vec3 color, float exposure)
-{
-    color *= exposure/(1. + color / exposure);
-    color = pow(color, vec3(1. / 2.2));
+// Reinhard tone mapping
+vec3 reinhardToneMap(vec3 color, float exposure) {
+    color *= exposure / (1.0 + color / exposure);
+    color = pow(color, vec3(1.0 / 2.2));
     return color;
 }
 
-// this is what actually changes the look of card
-vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords )
-{
-    
-    // turns the texture into pixels
-    vec4 tex = Texel(texture, texture_coords);
-    vec4 basetex = Texel(texture, texture_coords);
-	vec2 uv = (((texture_coords)*(image_details)) - texture_details.xy*texture_details.ba)/texture_details.ba;
-    float t = overexposed.g + time;
-
-
-    if (tex.a == 0){
-        tex.a = 0;
-    } else {
-    vec3 color = tex.rgb;
-    float rate = 1.5 - uv.y - 0.3*sin(0.8*t);
-    if(rate > 1){
-        rate = 1 - mod(rate, 1);
+// main effect
+vec4 effect(mediump vec4 colour, Image texture, mediump vec2 tc, mediump vec2 sc) {
+    vec4 tex = Texel(texture, tc);
+    vec4 baseTex = tex;
+    vec2 uv = (tc * image_details - texture_details.xy * texture_details.ba)
+              / texture_details.ba;
+    float t_anim = overexposed.g + time;
+    if (tex.a > 0.0) {
+        vec3 color = tex.rgb;
+        float rate = 1.5 - uv.y - 0.3 * sin(0.8 * t_anim);
+        if (rate > 1.0) {
+            rate = 1.0 - mod(rate, 1.0);
+        }
+        color *= (2.3 * rate);
+        vec3 newColor = reinhardToneMap(color, 1.5);
+        tex = vec4(newColor, 1.0);
+        float ratio = 0.9;
+        tex = ratio * tex + (1.0 - ratio) * baseTex;
     }
-    color *= (2.3 * rate);
-    vec3 newColor = reinhardToneMap(color, 1.5);
-    // newColor += 0.5*sin(overexposed.r*0.12512);
-    tex = vec4(newColor, 1.);
-    
-    float ratio = 0.9;
-    tex = ratio*tex + (1-ratio)*basetex;
+    return dissolve_mask(tex * colour, tc, uv);
 }
-    // required
-	return dissolve_mask(tex*colour, texture_coords, uv);
-}
-
-// for transforming the card while your mouse is on it
-
 
 #ifdef VERTEX
-vec4 position( mat4 transform_projection, vec4 vertex_position )
-{
-    if (hovering <= 0.){
-        return transform_projection * vertex_position;
-    }
-    float mid_dist = length(vertex_position.xy - 0.5*love_ScreenSize.xy)/length(love_ScreenSize.xy);
-    vec2 mouse_offset = (vertex_position.xy - mouse_screen_pos.xy)/screen_scale;
-    float scale = 0.2*(-0.03 - 0.3*max(0., 0.3-mid_dist))
-                *hovering*(length(mouse_offset)*length(mouse_offset))/(2. -mid_dist);
-
-    return transform_projection * vertex_position + vec4(0,0,0,scale);
+vec4 position(highp mat4 transform_projection, highp vec4 vertex_position) {
+    if (hovering <= 0.0) return transform_projection * vertex_position;
+    float mid = length(vertex_position.xy - 0.5 * love_ScreenSize.xy)
+              / length(love_ScreenSize.xy);
+    vec2 offset = (vertex_position.xy - mouse_screen_pos) / screen_scale;
+    float scale = 0.2 * (-0.03 - 0.3 * max(0.0, 0.3 - mid))
+                * hovering * dot(offset, offset) / (2.0 - mid);
+    return transform_projection * vertex_position + vec4(0.0, 0.0, 0.0, scale);
 }
 #endif
