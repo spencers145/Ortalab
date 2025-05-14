@@ -417,9 +417,10 @@ Ortalab.Zodiac{
             if G.hand.cards[i] then
                 G.hand.cards[i]:set_ability(G.P_CENTERS['m_ortalab_rusty'], nil, true)
                 G.E_MANAGER:add_event(Event({
-                    trigger = 'before', delay = 0.2, func = function()
+                    trigger = 'before', delay = 0.5, func = function()
                         zodiac:juice_up()
                         G.hand.cards[i]:juice_up()
+                        play_sound('tarot1')
                         return true
                     end}))
             end
@@ -469,10 +470,11 @@ Ortalab.Zodiac{
                 local name = context.scoring_hand[i].ability.effect
                 context.scoring_hand[i].ability.effect = nil
                 G.E_MANAGER:add_event(Event({
-                    trigger = 'before', delay = 0.2, func = function()
+                    trigger = 'before', delay = 0.5, func = function()
                         zodiac:juice_up()
                         context.scoring_hand[i].ability.effect = name
                         context.scoring_hand[i]:juice_up()
+                        play_sound('tarot1')
                         return true
                     end}))
             end
@@ -528,18 +530,19 @@ Ortalab.Zodiac{
         for i, card in ipairs(G.hand.cards) do
             local new_rank = SMODS.Ranks[i % 2 == 0 and rank1 or rank2]
             if not SMODS.has_no_rank(card) and pseudorandom('zodiac_cancer_turn') < G.GAME.probabilities.normal / self.config.extra.turn_odds then
-            card.base.suit = new_suit
-            card.base.id = new_rank.id
-            card.base.nominal = new_rank.nominal or 0
-            card.base.face_nominal = new_rank.face_nominal or 0
-            G.E_MANAGER:add_event(Event({
-                trigger = 'before', delay = 0.2, func = function()
-                    zodiac:juice_up()
-                    SMODS.change_base(card, new_suit, i % 2 == 0 and rank1 or rank2)
+                card.base.suit = new_suit
+                card.base.id = new_rank.id
+                card.base.nominal = new_rank.nominal or 0
+                card.base.face_nominal = new_rank.face_nominal or 0
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'before', delay = 0.5, func = function()
+                        zodiac:juice_up()
+                        SMODS.change_base(card, new_suit, i % 2 == 0 and rank1 or rank2)
                         if card.ability.set ~= 'Enhanced' and pseudorandom('zodiac_cancer_enhance') < G.GAME.probabilities.normal / self.config.extra.also_enhance_odds then card:set_ability(G.P_CENTERS[SMODS.poll_enhancement({guaranteed = true, key = 'zodiac_cancer'})]) end
-                    card:juice_up()
-                    return true
-                end}))
+                        card:juice_up()
+                        play_sound('tarot1')
+                        return true
+                    end}))
             end
         end
         zodiac_reduce_level(zodiac)
@@ -588,11 +591,12 @@ Ortalab.Zodiac{
                 G.hand.cards[i]:set_edition(context.scoring_hand[3].edition and context.scoring_hand[3].edition.key, false, true)
                 G.hand.cards[i]:set_ability(G.P_CENTERS[context.scoring_hand[3].config.center_key], nil, true)
                 G.E_MANAGER:add_event(Event({
-                    func = function()
+                    trigger = 'before', delay = 0.5, func = function()
                         copy_card(context.scoring_hand[3], G.hand.cards[i], nil, nil, true)
                         G.hand.cards[i].delay_edition = nil
                         G.hand.cards[i]:juice_up()
                         context.scoring_hand[3]:juice_up()
+                        play_sound('tarot1')
                         return true
                         end
                 }))
@@ -636,13 +640,15 @@ Ortalab.Zodiac{
     pre_trigger = function(self, zodiac, context)
         G.E_MANAGER:add_event(Event({
             func = function()
+                local some_cards = false
                 local cards = {}
                 for i=2, #context.scoring_hand-1 do
                     if pseudorandom('zodiac_virgo') < G.GAME.probabilities.normal / self.config.extra.odds then
-                    G.playing_card = (G.playing_card and G.playing_card + 1) or 1
-                    local _card = copy_card(context.scoring_hand[i], nil, nil, G.playing_card)
-                    table.insert(cards, _card)
-context.scoring_hand[i]:juice_up()
+                        G.playing_card = (G.playing_card and G.playing_card + 1) or 1
+                        local _card = copy_card(context.scoring_hand[i], nil, nil, G.playing_card)
+                        table.insert(cards, _card)
+                        context.scoring_hand[i]:juice_up()
+                        some_cards = true
                     end 
                 end
                 for i, _card in ipairs(cards) do
@@ -650,11 +656,12 @@ context.scoring_hand[i]:juice_up()
                     G.deck.config.card_limit = G.deck.config.card_limit + 1
                     table.insert(G.playing_cards, _card)
                     G.deck:emplace(_card)
-                    context.scoring_hand[i+1]:juice_up()
                     _card:juice_up()
                 end
-                playing_card_joker_effects(cards)
-                G.deck:shuffle('zodiac_virgo')
+                if some_cards then
+                    playing_card_joker_effects(cards)
+                    G.deck:shuffle('zodiac_virgo')
+                end
                 return true
             end
         }))
@@ -694,26 +701,27 @@ Ortalab.Zodiac{
         return {vars = {temp_level, localize(zodiac.config.extra.hand_type, 'poker_hands'), zodiac.config.extra.convert, 2*G.GAME.probabilities.normal, zodiac.config.extra.odds}}
     end,
     pre_trigger = function(self, zodiac, context)
-if pseudorandom('zodiac_libra') < 2*G.GAME.probabilities.normal / self.config.extra.odds then
-        for i=1, math.min(zodiac.config.extra.convert, #G.hand.cards) do
-            if G.hand.cards[i] then
-                G.hand.cards[i].base.suit = context.scoring_hand[2].base.suit
-                G.hand.cards[i].base.id = context.scoring_hand[2].base.id
-                G.hand.cards[i].base.nominal = context.scoring_hand[2].base.nominal
-                G.hand.cards[i].base.face_nominal = context.scoring_hand[2].base.face_nominal
-                G.hand.cards[i].delay_edition = true
-                G.hand.cards[i]:set_edition(context.scoring_hand[2].edition and context.scoring_hand[2].edition.key, false, true)
-                G.hand.cards[i]:set_ability(G.P_CENTERS[context.scoring_hand[2].config.center_key], nil, true)
-                G.E_MANAGER:add_event(Event({
-                    func = function()
-                        local _card = copy_card(context.scoring_hand[2], G.hand.cards[i], nil, nil, true)
-                        G.hand.cards[i].delay_edition = nil
-                        _card:juice_up()
-                        context.scoring_hand[2]:juice_up()
-                        return true
-                    end
-                }))
-end
+        if pseudorandom('zodiac_libra') < 2*G.GAME.probabilities.normal / self.config.extra.odds then
+            for i=1, math.min(zodiac.config.extra.convert, #G.hand.cards) do
+                if G.hand.cards[i] then
+                    G.hand.cards[i].base.suit = context.scoring_hand[2].base.suit
+                    G.hand.cards[i].base.id = context.scoring_hand[2].base.id
+                    G.hand.cards[i].base.nominal = context.scoring_hand[2].base.nominal
+                    G.hand.cards[i].base.face_nominal = context.scoring_hand[2].base.face_nominal
+                    G.hand.cards[i].delay_edition = true
+                    G.hand.cards[i]:set_edition(context.scoring_hand[2].edition and context.scoring_hand[2].edition.key, false, true)
+                    G.hand.cards[i]:set_ability(G.P_CENTERS[context.scoring_hand[2].config.center_key], nil, true)
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            local _card = copy_card(context.scoring_hand[2], G.hand.cards[i], nil, nil, true)
+                            G.hand.cards[i].delay_edition = nil
+                            _card:juice_up()
+                            context.scoring_hand[2]:juice_up()
+                            play_sound('tarot1')
+                            return true
+                        end
+                    }))
+                end
             end
         end
         zodiac_reduce_level(zodiac)
@@ -760,32 +768,30 @@ Ortalab.Zodiac{
         local changed_something = false
         for _, card in pairs(context.full_hand) do
             if not table.contains(context.scoring_hand, card) and not SMODS.always_scores(card) and pseudorandom('zodiac_scorpio') < G.GAME.probabilities.normal / self.config.extra.odds then
-                                local change = modifiers[amount]
+                local change = modifiers[amount]
                 card.add_to_scoring = function()
                     G.E_MANAGER:add_event(Event({
                         trigger = 'after',
                         delay = 0.5,
-                        func = function()
-                                                        card.becoming_no_rank = nil
+                        func = function()                
+                            card.becoming_no_rank = nil
                             return true
                         end
                     }))
-                    end
+                end
 
                 local new_ability = G.P_CENTERS[SMODS.poll_enhancement({guaranteed = true, key = 'zodiac_cancer', options = modifiers})]
-card:set_ability(new_ability)
-                    card.becoming_no_rank = true
-local name = card.ability.effect
-                    card.config.center.replace_base_card = true
+                card:set_ability(new_ability)
+                card.becoming_no_rank = true
+                local name = card.ability.effect
+                card.config.center.replace_base_card = true
                 zodiac:juice_up()
                 card:juice_up()
 
-                    card.config.center.replace_base_card = nil
-                end
-                
-                amount = amount + 1
+                changed_something = true
             end
         end
+        if changed_something then play_sound('tarot1') end
         zodiac_reduce_level(zodiac)
         return context.mult, context.chips, true
     end
@@ -839,10 +845,11 @@ Ortalab.Zodiac{
             if not card.base.suit ~= new_suit and not SMODS.has_no_rank(card) and pseudorandom('zodiac_sag') < G.GAME.probabilities.normal / self.config.extra.odds then
                 card.base.suit = new_suit
                 G.E_MANAGER:add_event(Event({
-                    trigger = 'before', delay = 0.2, func = function()
+                    trigger = 'before', delay = 0.5, func = function()
                         zodiac:juice_up()
                         SMODS.change_base(card, new_suit)
                         card:juice_up()
+                        play_sound('tarot1')
                         return true
                     end}))
             end
@@ -891,10 +898,11 @@ Ortalab.Zodiac{
                 local name = context.scoring_hand[i].ability.effect
                 context.scoring_hand[i].ability.effect = nil
                 G.E_MANAGER:add_event(Event({
-                    trigger = 'before', delay = 0.2, func = function()
+                    trigger = 'before', delay = 0.5, func = function()
                         zodiac:juice_up()
                         context.scoring_hand[i].ability.effect = name
                         context.scoring_hand[i]:juice_up()
+                        play_sound('tarot1')
                         return true
                     end}))
             end
@@ -938,17 +946,18 @@ Ortalab.Zodiac{
         G.E_MANAGER:add_event(Event({
             func = function()
                 G.playing_card = (G.playing_card and G.playing_card + 1) or 1
-if pseudorandom('zodiac_aquarius') < G.GAME.probabilities.normal / self.config.extra.odds then
-                local _card = copy_card(context.scoring_hand[2], nil, nil, G.playing_card)
-                _card:add_to_deck()
-                G.deck.config.card_limit = G.deck.config.card_limit + 1
-                table.insert(G.playing_cards, _card)
-                G.deck:emplace(_card)
-                G.deck:shuffle('zodiac_aquarius')
-                context.scoring_hand[2]:juice_up()
-                _card:juice_up()
+                if pseudorandom('zodiac_aquarius') < G.GAME.probabilities.normal / self.config.extra.odds then
+                    local _card = copy_card(context.scoring_hand[2], nil, nil, G.playing_card)
+                    _card:add_to_deck()
+                    G.deck.config.card_limit = G.deck.config.card_limit + 1
+                    table.insert(G.playing_cards, _card)
+                    G.deck:emplace(_card)
+                    G.deck:shuffle('zodiac_aquarius')
+                    context.scoring_hand[2]:juice_up()
+                    _card:juice_up()
+                    play_sound('card3')
 
-                playing_card_joker_effects({_card})
+                    playing_card_joker_effects({_card})
                 end
                 return true
             end
@@ -995,6 +1004,10 @@ Ortalab.Zodiac{
             suits_in_flush[card.base.suit] = suits_in_flush[card.base.suit] and suits_in_flush[card.base.suit] + 1 or 1
             if suits_in_flush[card.base.suit] > suits_in_flush[new_suit] then new_suit = card.base.suit end
         end
+        local delay = 0.5
+        if #G.hand.cards > 15 then
+            delay = 0.3
+        end
         for _, card in pairs(G.hand.cards) do
             if not card.base.suit ~= new_suit and not SMODS.has_no_rank(card) then
                 card.base.suit = new_suit
@@ -1008,11 +1021,12 @@ Ortalab.Zodiac{
                     card:set_edition(new_edition, false, true)
                 end
                 G.E_MANAGER:add_event(Event({
-                    trigger = 'before', delay = 0.2, func = function()
+                    trigger = 'before', delay = delay, func = function()
                         zodiac:juice_up()
                         SMODS.change_base(card, new_suit)
                         card.delay_edition = false
                         card:juice_up()
+                        play_sound('tarot1')
                         return true
                     end}))
             end
