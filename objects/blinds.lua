@@ -311,9 +311,9 @@ SMODS.Blind({
         local _,_,_,scoring_hand,_ = G.FUNCS.get_poker_hand_info(cards)
         local always_scores_count = 0
         for _, card in pairs(cards) do
-            if card.config.center.always_scores then always_scores_count = always_scores_count + 1 end
+            if SMODS.always_scores(card) then always_scores_count = always_scores_count + 1 end
         end
-        if #scoring_hand + always_scores_count ~= #cards then return true end
+        if #scoring_hand + always_scores_count ~= #cards and always_scores_count ~= #cards then return true end
     end,
 })
 
